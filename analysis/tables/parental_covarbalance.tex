@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\begin{center}  \captionof{table}{\textbf{Parental covariate balance}}
+\begin{adjustwidth}{3cm}{}
+
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\scalebox{0.5}{
+\begin{tabular}{l*{16}{c}}
+\toprule
+Group &\multicolumn{3}{c}{Control 1 (Nov76-Oct77)} & & \multicolumn{3}{c}{Control 2 (Nov77-Oct78)} & & \multicolumn{3}{c}{Control 3 (Nov79-Oct80)}& &\multicolumn{4}{c}{Treatment (Nov78-Oct79)} \\ 
+
+\cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){6-8} \cmidrule(lr{1em}){10-12} \cmidrule(lr{1em}){14-17}
+
+
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& &\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}& &\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)} &\multicolumn{1}{c}{(9)}& &\multicolumn{1}{c}{(10)}&\multicolumn{1}{c}{(11)}&\multicolumn{1}{c}{(12)}&\multicolumn{1}{c}{(13)}\\
+            &\multicolumn{1}{c}{$\mathbb{E}_{Pre}[Y]$}&\multicolumn{1}{c}{$\mathbb{E}_{Post}[Y]$}&\multicolumn{1}{c}{Raw $\Delta$} & &\multicolumn{1}{c}{$\mathbb{E}_{Pre}[Y]$}&\multicolumn{1}{c}{$\mathbb{E}_{Post}[Y]$}&\multicolumn{1}{c}{Raw $\Delta$} & &\multicolumn{1}{c}{$\mathbb{E}_{Pre}[Y]$}&\multicolumn{1}{c}{$\mathbb{E}_{Post}[Y]$}&\multicolumn{1}{c}{Raw $\Delta$} & &\multicolumn{1}{c}{$\mathbb{E}_{Pre}[Y]$}&\multicolumn{1}{c}{$\mathbb{E}_{Post}[Y]$}&\multicolumn{1}{c}{Raw $\Delta$}&\multicolumn{1}{c}{DD-RD}\\
+\midrule 
+\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{German citizenship}\\
+\hline
+ & 0.678 & 0.682 & .005 &		& 0.701 & 0.729 & 0.028 & 		& 0.771 & 0.784 & 0.012 &		& 0.750 & 0.753 & 0.002 & -0.012 \\
+& & & (0.018) 				& & & & (0.018)			& & & & (0.019)			& & & & (0.018) & (0.017) \\
+
+\textbf{Age at childbirth}\\
+\hline
+ & 28.937 & 29.321 & 0.384 &		& 28.996 & 28.977 & -0.018 & 		& 29.047 & 29.021 & -0.026 &		& 29.003 & 29.077 & 0.074 & -0.002 \\
+& & & (0.452) 				& & & & (0.340)			& & & & (0.223)			& & & & (0.247) & (0.348) \\
+
+\\
+\multicolumn{12}{l}{\textbf{Education: Secondary school leaving qualification from}}\\
+\hline
+Lowest track & 0.495 & 0.478 & -0.017 &		& 0.441 & 0.484 & 0.043 & 		& 0.437 & 0.436 & 0.000 &		& 0.450 & 0.432 & -0.018 & -0.024 \\
+& & & (0.016) 				& & & & (0.033)			& & & & (0.012)			& & & & (0.015) & (0.018) \\
+Middle track & 0.220 & 0.207 & -0.013 &		& 0.207 & 0.217 & 0.010 & 		& 0.241 & 0.241 & 0.000 &		& 0.244 & 0.247 & 0.003 & 0.003 \\
+& & & (0.019) 				& & & & (0.026)			& & & & (0.011)			& & & & (0.015) & (0.016) \\
+Highest track & 0.201 & 0.230 & 0.030 &		& 0.264 & 0.236 & -0.028 & 		& 0.271 & 0.280 & 0.009 &		& 0.252 & 0.265 & 0.013 & 0.008 \\
+& & & (0.024) 				& & & & (0.020)			& & & & (0.019)			& & & & (0.015) & (0.015) \\
+
+\bottomrule
+\end{tabular}
+}
+%\caption{Parental pre-determined characteristics, treatment and control cohorts}\label{tab:parental_covariate_balance}
+\begin{minipage}{0.76\colwidth} % choose width suitably
+{\footnotesize \textit{Note:} This table reports descriptive statistics of pre-birth parental characteristics for different cohorts of fathers and mothers, who became parents between November 1976 and October 1980. The first two columns list per cohort average outcomes of parents within half a year before or after the cutoff day respectively. Columns (3), (6), (9) and (12) show difference-in-means estimators for these parental outcomes. Column (13) reports DD-RD estimates according to equation (1). 
+Clustered standard errors are reported in parentheses. Significance levels: * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). \newline \textit{Source: }German Micro Census, waves 2005, 2009 and 2013\par}
+\end{minipage}
+\end{adjustwidth}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
