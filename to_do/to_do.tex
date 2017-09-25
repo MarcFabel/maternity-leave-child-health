@@ -14,14 +14,50 @@
 
 
 
+%%%%%%%%%%%       Deadlines         %%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Deadlines:}\newline
+\begin{tabular}{ccc}
+\hline 
+Event & deadline & time	 \\ 
+\hline 
+Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. \\
+dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
+SOLE (Toronto) & 31.10. & 04 \& 05 Mai 2018\\
+dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\ 
+\hline 
+\end{tabular} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Elemente mit der höchsten Priorität sind am obersten Ende der Liste:
+
+
 \begin{enumerate}
+
 \item \textbf{Pooling}:\newline Ist das  überhaupt in Ordnung? Impliziert, dass die Effekte über die Jahre diesselben sind. Alternativ: für ausgewählte	Jahre zeigen
 
-\item \textbf{Parental covariate balance:}\newline sollte unabhängig davon sein ob das Kind noch im Haushalt lebt. Andere Datenquellen durchsuchen (z.B. IPUMS)
+
+\item \textbf{Outcomes: }\vspace{-1em}
+\begin{itemize}
+\item[-]Metabolic Syndrome \newline read up Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH], welche Diagnosen verstecken sich hinter dem Begriff: high blood pressure, obesity, heart disease, heart attack,...
+\item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
+\end{itemize}
 
 
+
+\item \textbf{Identification:}\vspace{-1em}
+\begin{itemize}
+\item[-]\textbf{check parallel trends}: Granger style regression/event study/leads and lags test
+\end{itemize}
+
+
+\item \textbf{Reduced form}\newline 
+RD graphs:\vspace{-1em}
+\begin{enumerate}
+\item treat und control in einem graph
+\item pro Jahr
+\item mit absoluten Zahlen
+\item mit ratios, die im Nenner die ursprünglichen Geburtszahlen beinhalten
+\item nonparametric ? 
+\end{enumerate}
+\item \textbf{Parental covariate balance:}\newline sollte unabhängig davon sein ob das Kind noch im Haushalt lebt. Andere Datenquellen durchsuchen (z.B. IPUMS, oder SHARE/SOEP)
 \begin{quote}
 \texttt{[Natalia Email 19.09.]}\newline
 Beispiel: MZ 1980 
@@ -38,13 +74,107 @@ Ende 27.04.1980
 3. Variable ef66 Alter von 00-99.
 
 $\rightarrow$	Vielleicht kann man aus ef66 und interview-datum noch weitere infos ziehen….
-
 \end{quote}
+
+
+\item  \textbf{spatial heterogeneity nach counterfactual mode of care [Rafael Lalive]:} \newline eligibility (wo haben damals die meisten Frauen gearbeitet? rough approx. rural-urban); vielleicht gleich einen spatial treatment intensity index erstellen:\newline $inten_{r,t}=f(FLFP_{r,1979}, Share_foreigners_{r,t}$, ) \newline
+with region $r$ at time $t$. 
+\begin{itemize}
+\item[-] \textbf{FLFP in 1979:}\newline Sefan Wöhrmüller Daten oder shares aus MZ ziehen (Marc Piopiunik)
+\end{itemize}
+
+
+\item \textbf{Cost-Benefit Analysis [Rafael Lalive]}\newline Back-of-the-envelope calculation, welche Kosten werden dem Gesundheitssystem eingespaart durch X weniger Diagnosen von Y, in relation setzen zu was hat das damals gekostet. Argumentieren entlang der Linien von Hillary Hoynes: benefits materialize way later and in other dimensions which were early goals in mind
 
 \item \textbf{KKH Daten Main Table}\newline dependent mean (sd) auf control anpassen
 
 \item \textbf{Bandwidth}\newline 2 Monate als Standardfall nehmen? \newline
-Siehe auch Baker \& Milligan, $N=8$
+Siehe auch Baker \& Milligan, $N=8$ [Natalia]
+
+\item \textbf{Effect size:}\vspace{-1em}
+\begin{itemize}
+\item[-]in sd units (HH: metabolic syndrome and footstamps: 0.4 sd , corresponds to a famine shock) [EALE]
+\item[-] How are the results \textbf{comparable to other studies} relevant in that field (as they look at similar reforms at roughly the same times)? What do they find, what do we find? Differences in scales, why?[Verein, Lena Janys]
+\item[-] effects too large? how do we explain these given that other studies find little/nothing (usually: introduction (expansion) positive (no) effects) [D Kühnle, Verein]
+\item[-] Natalia Email [19.09.2017]\vspace{-0.5em}
+\begin{itemize}
+\item Wichtiges Argument, auch für die dt PL reform: betrifft Kinder bzw Babys in sehr jungem Alter.
+\item literature: Barnett (2011) Science; Nores \& Barnett (2010) 
+\end{itemize}
+
+
+\end{itemize}
+
+
+\item \textbf{$\Delta Y$:}\newline
+Unterschied pre/post cutoff, zumindest im descriptive teil
+
+
+\item \textbf{robustness section:}\newline
+ratios mit den Geburtszaheln im Nenner (DESTATIS): $\frac{\#\ of diagnosis}{\#\ people born_m}$
+
+
+\item \textbf{Life-course perspective:}\vspace{-1em}
+\begin{itemize}
+\item[-]andere Spezifikation: pooled lassen und nicht auf das Alter beschränken sondern vielmehr den ITT mit year dummies interagieren: \newline
+$\gamma\  treat \times after \times yeardummy$
+\item[-] nicht über survey jahr sondern Alter der patienten $\rightarrow$ treatment und control group sollten gleich alt sein
+\end{itemize}
+
+
+\item \textbf{Effekte durch die reform:}\newline
+Look up: does reform induce substitution for \textbf{formal/informal} care? [Verein, commentator mentioned that he found positive effects for Austria] 
+
+
+\item \textbf{P-values/power:}\vspace{-1em}
+\begin{itemize}
+\item[-] Nothing found for Micro Census: is that an issue of too few observations? Carry out \textbf{power calculations}. This should not be difficult as the size of the treatment effect is known from the hospital registry data. [Verein]
+	\item[-] Correction of \textbf{p-values}: adjust for multiple outcomes (\texttt{Bonferroni correction}?). The issue is that 1 out of 20 outcome is significant by pure chance. This point was mentioned in association to significant coefficient of Dtrack2. [Verein, Lena Janys]
+\end{itemize}
+
+
+\item \textbf{Channels:}\vspace{-1em}
+\begin{itemize}
+\item[-] Maternal health outcomes
+\end{itemize}
+
+
+\item \textbf{Econometric specification:}\vspace{-1em}
+\begin{itemize}
+\item[-] include gender in vector of controls
+\end{itemize}
+
+
+\item \textbf{Other data/outcomes:}\vspace{-1 em}
+\begin{itemize}
+\item[-] hospital admission very extreme $\rightarrow$ less extreme outcomes? [D. Kühnle] RWI HI data
+\item[-] INKAR daten (Indikatoren und Karten zur Raum- und Stadtentwicklung)\newline kann ich da etwas rausfinden für variation of FLFP in late 1970s, immigrants 
+\item[-] Health of mothers: \vspace{-.5em}
+\begin{enumerate}
+\item RKI: aber dort sind die Daten – zumindest für die 1979 Reform – wahrscheinclih eher nicht geeignet [Natalia]
+\item  Nationale Kohorte – falls hier die genaue Geburtenhistorie abgefragt wird, könnte man hier evtl Glück haben. Den fragebogen konnte ich auf die Schnelle nicht auf der Homepage finden. \texttt{http://nako.de/}
+\end{enumerate}
+\end{itemize}
+
+
+\item \textbf{"Hopsital"}\newline What is defined as a hopsital, read up in documentation. wide definition
+
+
+\item \textbf{Framing im paper:} 
+\begin{itemize}
+\item[-] fetal origin hypothesis (Barker, 1990): chronic conditions later in life can be attributed back to in-utero and early-childhood setting
+\item[-] LR effects of policies have to be taken into account, were probably not the original goal when dsigning the policy instrument, larger and in different dimensions than originally thought [HH, EALE keynote]
+\end{itemize}
+
+\item \textbf{Reading list:}
+\begin{itemize}
+\item[-] Molly Schnell - The role of Physician Behavior in the Opiod Epidemic [EALE]\newline
+good job market paper, kleines theoretisches model nebenbei
+\item[-]  Dahmann \& Schnitzlein: The Protective (?) Effect of Education on Mental Health   \newline
+ Nice motivation why mental health problems are so important to focus on 
+
+\end{itemize}
+
 \end{enumerate}
 
 
