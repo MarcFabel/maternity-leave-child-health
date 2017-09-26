@@ -1,29 +1,32 @@
-/*
+/*******************************************************************************
+* File name: 	mlch_KKH_prepare_hosp
+* Author: 		Marc Fabel
+* Date: 		26.09.2017
+* Description:	Analyse der KKH Diagnosedaten:
+*				1) Zusammenspielen der einzelnen Datensätze von der KKH Diagnosestatistik
+*				2) Mit der Bevölkerung  pro MOB (generiert in Do-File: prepare_regionalst_MY.do)
+*				3) notwendige Variablen generieren
+*
+* Inputs:  		$KKH\0_OstWest_gender_meta  ...  $KKH\7_OstWest_alten
+*				$temp\bevoelkerung_final.dta
+* Outputs:		$temp\KKH_final_R1
+*
+* Updates:
+*
+*******************************************************************************/
 
-Analyse der KKH Diagnosedaten: 
 
-1) Zusammenspielen der einzelnen Datensätze von der KKH Diagnosestatistik
- 
-2) Mit der Bevölkerung  pro MOB (generiert in Do-File: prepare_regionalst_MY.do)
-
-3) notwendige Variablen generieren
-*/
-
-
-
-
-***********************************************
-	*** PREAMBLE ***
-***********************************************
+// ***************************** PREAMBLE********************************
 	clear all
 	set more off
 	
-	global path "F:\KKH_Diagnosedaten\analyse_local"
-	global temp  "$path\temp"
-	//ENTSPRECHEN MOMENTAN NUR DUMMYDATEN
-	global KKH "F:\KKH_Diagnosedaten\analyse_local\source" 
+	global path "F:\econ\m-l-c-h\analysis"
+	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
+	global MZ "F:\KKH_Diagnosedaten\"
+	global temp  "$path/temp"
+	global KKH "$path\source" 
 
-	
+// ***********************************************************************
 	
 	
 ////////////////////////////////////////////////////////////////////////////////////////

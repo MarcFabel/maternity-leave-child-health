@@ -1,50 +1,32 @@
-// Prepare Regionalstatistik und Mikrozensus
+/*******************************************************************************
+* File name: 	mlch_KKH_prepare_regionalst_MZ
+* Author: 		Marc Fabel
+* Date: 		26.09.2017
+* Description:	Prepare Regionalstatistik und Mikrozensus
+*				1) nimmt Regionalstatistik auf Kreisebene und collspsed auf GDR Ebene
+*				2) MZ dranspielen
+*
+* Inputs:  		$excel/Bevoelkerung_Altersjahre_Geschlecht `i'
+*				$MZ/MOB_Distr_GDRFRG.csv
+* Outputs:		$temp\bevoelkerung_final.dta
+*
+* Updates:
+*
+*******************************************************************************/
 
-/* Vorgehen: 
 
 
-1) nimmt Regionalstatistik auf Kreisebene und collspsed auf GDR Ebene
-
-2) MZ dranspielen
-
-*/
-
-***********************************************
-	*** PREAMBLE ***
-***********************************************
+// ***************************** PREAMBLE********************************
 	clear all
 	set more off
 	
-	global path "F:\KKH_Diagnosedaten\analyse_local"
+	global path "F:\econ\m-l-c-h\analysis"
 	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
 	global MZ "F:\KKH_Diagnosedaten\"
-	global temp  "$path/temp"
-
-	
-	/*
-	ACHTUNG!!!!!!!!
-	NICHT HIERUAS KOPIEREN; CODE SEHR VERSCHIEDEN ZU DEM DER REGIONALDATENBANK
-	
-	
-	
-	*/
-
+	global temp  "$path/temp"	
+// ***********************************************************************
 	
 
-	
-	*global path "D:\Data\Gast\GWA22_3053_MF_KH"
-	*global path "Z:\ifo\GWA22_2827_MF_KH"
-	*global path "F:\KKH_Diagnosedaten\extrahieren_local"
-	 *global path "B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
-	
-	*global source "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
-
-	/*global source "$path\A_Mikrodaten\"
-	global temp "$path\D_Ergebnisse\temp\" 
-	global tables   "$path\D_Ergebnisse\TABLES"
-	global logfiles "$path\D_Ergebnisse\LOGFILES"*/
-	
-	
 	
 ********************************************************************************
 		*****  Erster Schritt, Regionalstatistik  *****
