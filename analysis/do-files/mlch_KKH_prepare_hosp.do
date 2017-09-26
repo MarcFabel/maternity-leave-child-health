@@ -20,11 +20,11 @@
 	clear all
 	set more off
 	
-	global path "F:\econ\m-l-c-h\analysis"
+	global path  "F:\econ\m-l-c-h\analysis"
 	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
-	global MZ "F:\KKH_Diagnosedaten\"
+	global MZ    "F:\KKH_Diagnosedaten\"
 	global temp  "$path/temp"
-	global KKH "$path\source" 
+	global KKH   "$path\source" 
 
 // ***********************************************************************
 	
