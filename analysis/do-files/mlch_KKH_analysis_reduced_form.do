@@ -20,16 +20,16 @@
 	clear all
 	set more off
 	
-	global path  "F:\econ\m-l-c-h\analysis"
-	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
-	global MZ    "F:\KKH_Diagnosedaten\"
+	*global path  "F:\econ\m-l-c-h\analysis"					//Work
+	global path  "/Users/marcfabel/econ/m-l-c-h/analysis"	//MAC
+	
 	global temp  "$path/temp"
 	global KKH   "$path/source" 
 	global graph "$path/graphs/KKH" 
 // ***********************************************************************
 
 
-use "$temp\KKH_final_R1", clear
+use "$temp/KKH_final_R1", clear
 
 // ******* Step 1: RD over time *******
 capture program drop RD_over_time
