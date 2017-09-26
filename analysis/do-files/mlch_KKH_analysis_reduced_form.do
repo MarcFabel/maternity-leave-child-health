@@ -33,26 +33,22 @@ use "$temp\KKH_final_R1", clear
 
 // ******* Step 1: RD over time *******
 capture program drop RD_over_time
-	program define RD_over_time
-		qui bys Datum:egen AVRG_`1' = mean (`1')
+program define RD_over_time
+	qui bys Datum:egen AVRG_`1' = mean (`1')
+	keep if treat == 1
+	
+	foreach y of numlist 2005 (1) 2013 {
 
-		/*qui reg `1' NumX Num_after after
-		qui predict `1'_hat_linear
-		qui reg `1' NumX NumX2 after Num_after Num2_after
-		qui predict `1'_hat_quadratic
-		qui reg `1' NumX NumX2 NumX3 after Num_after Num2_after Num3_after
-		qui predict `1'_hat_cubic	
-		qui reg `1'  NumX Num_after after if (NumX!=-1 & NumX!=1)
-		qui predict `1'_donut_linear*/
-		scatter AVRG_`1' temp,  scheme(s1mono )  title(" `4' ") ///
-                 tline(01may1979, lw(medthick ) lpattern(solid)) ///
-                xtitle("Birth month") ytitle(" `1' ") yscale(r(`2' `3')) ///
-                ylabel(#5,grid) tlabel(15nov1978 (60) 15sep1979, format(%tdmy)) tmtick(15dec1978 (60) 15oct1979) ///
-				ttext(`5' 01apr1979 "2 months", box) ttext(`5' 01jun1979 "6 months", box)  ///
+	
+	
+	}
+	scatter AVRG_`1' Datum2,  scheme(s1mono )  title(" `4' ") ///
+		tline(01may1979, lw(medthick ) lpattern(solid)) ///
+        xtitle("Birth month") ytitle(" `1' ") yscale(r(`2' `3')) ///
+        ylabel(#5,grid) tlabel(15nov1978 (60) 15sep1979, format(%tdmy)) tmtick(15dec1978 (60) 15oct1979) ///
+		ttext(`5' 01apr1979 "2 months", box) ttext(`5' 01jun1979 "6 months", box)  ///
 				legend(off)
-				
-		*graph export "$graphs/R1_RD_`1'_plain.pdf", as(pdf) replace
-	end		
+	end		//end of program
 
 
 
