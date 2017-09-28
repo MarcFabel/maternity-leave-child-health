@@ -20,13 +20,14 @@
 	clear all
 	set more off
 	
-	global path  "F:\econ\m-l-c-h\analysis"
-	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
-	global MZ    "F:\KKH_Diagnosedaten\"
-	global temp  "$path/temp"	
+*	global path       "F:/econ/m-l-c-hanalysis"					//WORK _Windows
+	global path  	  "/Users/marcfabel/econ/m-l-c-h/analysis"		//Mac
+	global population "$path/source/population"
+	global temp  	  "$path/temp"	
 // ***********************************************************************
 	
 
+	
 	
 ********************************************************************************
 		*****  Erster Schritt, Regionalstatistik  *****
@@ -36,10 +37,10 @@
 
 *erst ab Welle 2003, fr√ºhere Jahre sind in der Regionalstatistik nicht verf√ºgbar
 
-forvalues i = 2005(1)2013{
+forvalues i = 2005(1)2013 {
 
 
-	import excel "$excel\49 Bevoelkerung Altersjahre\Bevoelkerung_Altersjahre_Geschlecht `i'.xlsx", ///
+	import excel "$population/49 Bevoelkerung Altersjahre/Bevoelkerung_Altersjahre_Geschlecht `i'.xlsx", ///
 		/*cellrange(A29:L9460)*/ clear
 		
 		*import excel "$excel\49 Bevoelkerung Altersjahre\Bevoelkerung_Altersjahre_Geschlecht 2005.xlsx", clear
@@ -112,18 +113,18 @@ forvalues i = 2005(1)2013{
 	*order lkrid lkr year 
 
 	if `i'==2005{
-		save "$temp\bevoelkerung_prepare.dta", replace
+		save "$temp/bevoelkerung_prepare.dta", replace
 
 		}
 			
 	else{
-		append using "$temp\bevoelkerung_prepare.dta" 
+		append using "$temp/bevoelkerung_prepare.dta" 
 		*sort lkrid lkr year
 		*sort lkrid lkr year gender
 		
 		*drop goettingen krs
 		*drop if lkrid == 3159
-		save "$temp\bevoelkerung_prepare.dta", replace
+		save "$temp/bevoelkerung_prepare.dta", replace
 		sort GDR year YOB 
 		} 
 
@@ -139,7 +140,7 @@ forvalues i = 2005(1)2013{
 *Regionalstatistik an die Mikrozensusgewichte ranmergen
 
 	*MZ Gewichte aufrufen
-	import delim using "$MZ\MOB_Distr_GDRFRG.csv", clear
+	import delim using "$population/MOB_Distr_GDRFRG.csv", clear
 	rename v1 MOB
 	rename v2 year
 	rename v3 YOB
@@ -174,4 +175,25 @@ forvalues i = 2005(1)2013{
 	drop ratio* ypop*
 	order year GDR YOB MOB
 	
-	save "$temp\bevoelkerung_final.dta", replace
+	save "$temp/bevoelkerung_final.dta", replace
+	
+	
+	
+	
+////////////////
+//		Schritt 3: Destatis Daten zur ursprünglichen Bevölkerung mitaufnehmen 
+////////////////	
+	import excel "$population/destatis_fertility_long.xlsx", sheet("Sheet 1") cellrange(A1:E194)
+	rename A YOB 
+	rename B MOB
+	rename C fert_m
+	rename D fert_f
+	rename E fert_t
+	
+	label var fert_m "Fertility birthyear (male)"
+	label var fert_f "Fertility birthyear (female)"
+	label var fert_t "Fertility birthyear (total)"
+	
+
+
+	
