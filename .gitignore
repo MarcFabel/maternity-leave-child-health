@@ -1,3 +1,6 @@
+# soll den temp folder im Analyse teil ausnehmen
+analysis/temp
+# NACHFOLGEND WAS SCHON VORGEGEBN WAR:
 *-blx.bib
 *.asv
 *.aux
@@ -12,7 +15,7 @@
 *.glo
 *.idx
 *.ilg
-*.ind
+*.indgit
 *.lof
 *.log
 *.lot
