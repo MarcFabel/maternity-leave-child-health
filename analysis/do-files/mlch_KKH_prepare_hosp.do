@@ -20,11 +20,9 @@
 	clear all
 	set more off
 	
-	global path  "F:\econ\m-l-c-h\analysis"
-	global excel "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Excel\Rohdaten"
-	global MZ    "F:\KKH_Diagnosedaten\"
+	global path  "F:\econ\m-l-c-h\analysis"		//MAC at work
 	global temp  "$path/temp"
-	global KKH   "$path\source" 
+	global KKH   "$path/source/KKH_FDZ" 
 
 // ***********************************************************************
 	
@@ -385,6 +383,8 @@ keep if reform == 1
 	*order year Datum QOB FRG GDR treat after TxA FxT FxTxA FxA  MxY control reform Dmon*
 	
 		save "$temp\KKH_final_R1", replace
+		saveold "$temp\KKH_final_R1", replace v(12)
+		
 restore
 	
 	clear all

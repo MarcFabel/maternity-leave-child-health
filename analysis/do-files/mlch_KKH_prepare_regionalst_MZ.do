@@ -183,17 +183,46 @@ forvalues i = 2005(1)2013 {
 ////////////////
 //		Schritt 3: Destatis Daten zur urspr�nglichen Bev�lkerung mitaufnehmen 
 ////////////////	
-	import excel "$population/destatis_fertility_long.xlsx", sheet("Sheet 1") cellrange(A1:E194)
+	import excel "$population/destatis_fertility_long.xlsx", sheet("Sheet 1") cellrange(A1:E194) clear
 	rename A YOB 
-	rename B MOB
-	rename C fert_m
-	rename D fert_f
-	rename E fert_t
+	rename B mt		//auxiliary variable, has to be transformed
+	rename C fertm
+	rename D fertf
+	rename E fert
 	
-	label var fert_m "Fertility birthyear (male)"
-	label var fert_f "Fertility birthyear (female)"
-	label var fert_t "Fertility birthyear (total)"
+	label var fert "Fertility birthyear (total)"
+	label var fertm "Fertility birthyear (male)"
+	label var fertf "Fertility birthyear (female)"
 	
+	gen temp = _n	// Hilfsvariable, die das löschen der Variablennamen in den Einträgen ermöglicht
+	drop if temp <= 2
+	drop temp
+	
+	
+	qui gen MOB = 1 if mt == "Januar" 
+	qui replace MOB = 2 if mt == "Februar"
+	qui replace MOB = 3 if mt == "März"
+	qui replace MOB = 4 if mt == "April"
+	qui replace MOB = 5 if mt == "Mai"
+	qui replace MOB = 6 if mt == "Juni"
+	qui replace MOB = 7 if mt == "Juli"
+	qui replace MOB = 8 if mt == "August"
+	qui replace MOB = 9 if mt == "September"
+	qui replace MOB = 10 if mt == "Oktober"
+	qui replace MOB = 11 if mt == "November"
+	qui replace MOB = 12 if mt == "Dezember"
+	drop mt
+	
+	destring, replace
+	qui gen GDR = 0		// nur für Westdeutschland
+	
+	merge 1:m MOB YOB GDR using "$temp/bevoelkerung_final"
+	drop _merge 
+	
+	save "$temp/bevoelkerung_final.dta", replace
+
+	
+
 
 
 	
