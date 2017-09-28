@@ -383,7 +383,7 @@ keep if reform == 1
 	*order year Datum QOB FRG GDR treat after TxA FxT FxTxA FxA  MxY control reform Dmon*
 	
 		save "$temp\KKH_final_R1", replace
-		saveold "$temp\KKH_final_R1", replace v(12)
+		saveold "$temp\KKH_final_R1_V12", replace v(12)
 		
 restore
 	
