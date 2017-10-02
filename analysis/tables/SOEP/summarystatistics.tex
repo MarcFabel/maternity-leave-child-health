@@ -1,0 +1,109 @@
+\begin{center}
+\begin{longtable}{l*{8}{c}} 
+
+\caption{Summary statistics}\label{tab:SummaryStatistics_small}\\
+\toprule
+& & \multicolumn{3}{c}{Control (\(N\)=10214)} & & \multicolumn{3}{c}{Treatment (\(N\)=3647)}\\
+\cmidrule{3-5}\cmidrule{7-9}
+\textit{Variable} && \textit{Range} & \textit{mean} & \textit{s.d.} & & \textit{Range} & \textit{mean} & \textit{s.d.} \\
+\midrule\\
+\endfirsthead
+\multicolumn{9}{c}
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+& & \multicolumn{3}{c}{Control (\(N\)=10214)} & & \multicolumn{3}{c}{Treatment (\(N\)=3647)}\\
+\cmidrule{3-5}\cmidrule{7-9}
+\textit{Variable} && \textit{Range} & \textit{mean} & \textit{s.d.} & & \textit{Range} & \textit{mean} & \textit{s.d.} \\
+\midrule\\
+\endhead
+\bottomrule \multicolumn{9}{l}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\underline{A: Background Characteristics} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% GENERAL CHARACTERISTICS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Sex & & \{0,1\} &0.54 &0.50 &  & \{0,1\} &0.55 &0.50 \\ 
+Age & & [16,38] & 28.12 & 5.77 &  & [15,36] & 27.66 & 5.45 \\ 
+D\_migback & & \{0,1\} &0.22 &0.42 &  & \{0,1\} &0.21 &0.41 \\ 
+D\_married & & \{0,1\} &0.36 &0.48 &  & \{0,1\} &0.33 &0.47 \\ 
+D\_child & & \{0,1\} &0.42 &0.49 &  & \{0,1\} &0.37 &0.48 \\ 
+Numchild & & [1,7] & 1.86 &0.89 &  & [1,6] & 1.79 &0.80 \\ 
+D\_siblings & & \{0,1\} &0.88 &0.33 &  & \{0,1\} &0.91 &0.28 \\ 
+D\_employed & & \{0,1\} &0.83 &0.37 &  & \{0,1\} &0.81 &0.39 \\ 
+HHIncome & & [0,581237] & 44112 & 32490 &  & [0,310847] & 43926 & 32517 \\ 
+Yrs\_schooling & & [7,18] & 12.19 & 2.78 &  & [7,18] & 12.57 & 2.66 \\ 
+\textit{School certificate}\\
+\quad \quad Track1 (Hauptschule)& & \{0,1\} &0.22 &0.41 &  & \{0,1\} &0.21 &0.41 \\ 
+\quad \quad Track2 (Realschule) & & \{0,1\} &0.33 &0.47 &  & \{0,1\} &0.26 &0.44 \\ 
+\quad \quad Track3 (Gymnasium)& & \{0,1\} &0.29 &0.46 &  & \{0,1\} &0.35 &0.48 \\  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\	% BIOMETRIC MEASURES
+\underline{B.1: Biometric measures}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+Height & & [117,210] & 174.11 & 9.17 &  & [149,203] & 174.11 & 9.47 \\ 
+Weight & & [40,250] & 75.32 & 17.39 &  & [39,200] & 76.11 & 18.51 \\ 
+BMI & & [15.43,73.05] & 24.74 & 4.91 &  & [15.73,63.29] & 24.91 & 5.07 \\ 
+D\_overw\_obese (BMI$>25$) & & \{0,1\} &0.38 &0.49 &  & \{0,1\} &0.40 &0.49 \\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\	% OBJECTIVE MEASURES
+\underline{B.2: Objective measures}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+D\_sick & & \{0,1\} &0.60 &0.49 &  & \{0,1\} &0.58 &0.49 \\ 
+Days\_sick & & [1,365] & 7.83 & 20.27 &  & [1,365] & 7.70 & 21.97 \\ 
+D\_doctor & & \{0,1\} &0.61 &0.49 &  & \{0,1\} &0.63 &0.48 \\ 
+Docvisits & & [1,99] & 1.93 & 3.24 &  & [1,90] & 2.13 & 4.07 \\ 
+D\_hospital & & \{0,1\} &0.11 &0.31 &  & \{0,1\} &0.12 &0.32 \\ 
+D\_disab & & \{0,1\} &0.03 &0.16 &  & \{0,1\} &0.02 &0.14 \\ 
+D\_illness & & \{0,1\} &0.37 &0.48 &  & \{0,1\} &0.34 &0.47 \\ 
+D\_chronill & & \{0,1\} &0.26 &0.44 &  & \{0,1\} &0.26 &0.44 \\ 
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\	% SUBJECTIVE MEASURES
+\underline{B.3: Subjective measures}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Health\_concerns & & [1,3] & 1.61 &0.66 &  & [1,3] & 1.59 &0.66 \\ 
+SAH\_5 & & [1,5] & 3.84 &0.85 &  & [1,5] & 3.84 &0.88 \\ 
+SAS\_10 & & [0,10] & 6.80 & 2.22 &  & [0,10] & 6.89 & 2.22 \\ 
+Problems\_activ & & [1,3] & 1.27 &0.52 &  & [1,3] & 1.26 &0.50 \\ 
+Handle\_stress & & [1,7] & 4.49 & 1.50 &  & [1,7] & 4.61 & 1.47 \\ 
+Phys\_pain & & [1,5] & 1.78 &0.95 &  & [1,5] & 1.71 &0.94 \\ 
+Constr\_soc\_contact & & [1,5] & 4.46 &0.87 &  & [1,5] & 4.48 &0.88 \\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\	% HEALTH BEHAVIOR
+\underline{B.4: Health behavior}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Healthydiet & & [1,4] & 2.42 &0.73 &  & [1,4] & 2.45 &0.73 \\ 
+D\_smoke & & \{0,1\} &0.39 &0.49 &  & \{0,1\} &0.39 &0.49 \\ 
+Cigarettes & & [1,60] & 14.66 & 8.01 &  & [1,40] & 13.49 & 6.95 \\ 
+Alcohol & & [1,4] & 2.57 &0.87 &  & [1,4] & 2.59 &0.90 \\ 
+D\_privHI & & \{0,1\} &0.09 &0.28 &  & \{0,1\} &0.11 &0.32 \\ 
+Hrsleep\_wrk & & [2,12] & 6.81 & 1.09 &  & [2,10] & 6.84 & 1.04 \\ 
+Hrsleep\_wknd & & [1,14] & 7.81 & 1.36 &  & [3,20] & 7.85 & 1.39 \\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{longtable}
+\end{center}
+\vspace{-1cm}\hspace{-2.3 cm}
+\begin{minipage}{1.1\textwidth} % choose width suitably
+{\footnotesize \textit{Note:} This table reports summary statistics for treatment and control group separately. Panel A presents individual background characteristics, panel B1 biometric indicators, panel B2 shows objective health outcomes and panel B3 subjective health measures. Panel B4 covers health behavior. The sample contains outcomes over the period 1993-2014.  \newline \textit{Source: }German Socio-Economic Panel, version 31\par}
+\end{minipage}

@@ -1,0 +1,56 @@
+
+\begin{landscape}
+
+\begin{table}[htp] \begin{adjustwidth}{-2cm}{}
+
+ \centering  \vspace{-1cm} 
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\vspace*{\fill}
+\caption{Health outcomes, Difference-in-difference Regression Discontinuity}\label{tab:Healthoutcomes_DDRD}
+
+\begin{tabular}{l*{10}{c}}
+\toprule
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}\\ 
+\midrule\\
+
+\textbf{Biometric Outcomes}\\
+
+	\input{tables/Biometric_Measures}
+	\midrule
+	\input{tables/Biometric_Measures_obs}
+	\\ \\
+	\textbf{Objective Health}\\
+        
+        
+     \input{tables/Objective_Health_Measures}
+     \midrule
+     \input{tables/Objective_Health_Measures_obs}
+	\\ \\
+	\textbf{Subjective Health}\\
+	         
+        
+     \input{tables/Subjective_Health_Measures}
+     \midrule
+     \input{tables/Subjective_Health_Measures_obs}
+	\\ \\
+	\textbf{Health Behavior}\\
+        
+     \input{tables/Health_Behavior}
+     \midrule
+     \input{tables/Health_Behavior_obs}
+     \bottomrule
+\end{tabular}
+\vspace*{\fill}
+
+\begin{minipage}{1.7\textwidth} % choose width suitably
+{\footnotesize \textit{Note:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation \ref{eq:RD+DD}. The control group is comprised of children that are born in the same months but two years before and one year after the reform (i.e. children born between November 1976 and October 1977, November 1977 and October 1978, and November 1979 and October 1980). The outcomes are measured over the period 1993-2014.  \newline
+Clustered standard errors are reported in parentheses. Significance levels: + \(p<0.15\), * \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\). \newline \textit{Source: }German Socio-Economic Panel, version 31\par}
+\end{minipage}
+ \end{adjustwidth}
+
+\end{table}
+
+\end{landscape}
+
+
+
