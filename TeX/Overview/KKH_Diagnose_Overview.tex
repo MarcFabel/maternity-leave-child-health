@@ -1,0 +1,1704 @@
+\documentclass[a4paper ]{article}
+
+\usepackage{etex}		% clash when too many dimensions
+\usepackage{lettrine}	% für ersten Buchstaben groß
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{/Users/marcfabel/Dropbox/Uni/Tinbergen/MPhil/STATA/GRAPHS/}}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{ amssymb }
+\usepackage{amsmath}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumerate} % roman enumeration
+\usepackage{wrapfig}
+
+\usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}%both together help to have subfigures, other specifications which are nice: labelformat = parens -> number in paranthesis
+\usepackage[singlelinecheck=on]{subcaption}
+
+%\usepackage{tikz}
+%\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage[authoryear, round, comma]{natbib}
+
+\usepackage{titlesec} %section headers 
+\titleformat*{\section}{\large\bfseries}
+
+
+
+\usepackage{dsfont} %Double stroke, e.g. for indicator function
+
+
+\usepackage{afterpage}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{adjustbox}
+
+\usepackage[hyphens]{url}
+
+
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+
+ \usepackage{hyperref}
+ \hypersetup{
+      colorlinks   = true,
+     citecolor    = darkblue,
+ 	linkcolor= darkblue,
+     urlcolor=darkblue }
+
+\usepackage[
+	top    = 2.3cm,
+	bottom = 2cm,
+	left   = 1.8cm,
+	right  = 1.8cm]{geometry}		%option: showframe=true (see page boundaries)
+	
+\usepackage{changepage} % adjust width on sides of the page, needed tto place tables in the middle of the page
+
+
+
+
+
+\usepackage{pdflscape}
+\usepackage{layouts}% temporär, zurbestimmung von textwdith
+
+
+
+
+
+\makeatletter
+\def\input@path{{../../analysis/tables/KKH/}}
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+
+\graphicspath{{../../analysis/graphs/KKH/}}
+
+\usepackage{supertabular}
+
+
+
+
+
+%\newgeometry{
+%	top    = 3.5cm,
+%	bottom = 2cm,
+%	left   = 5.0cm,
+%	right  = 2.8cm}
+%	
+\author{Marc Fabel}
+\title{Overview of diagnoses outcomes}
+\date{Last revision of this document: \today} 
+\begin{document}
+%
+%	\thispagestyle{empty}
+%\begin{landscape}
+\maketitle
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Meta-Daten: Einlieferung ins KKH, Verweildauer, Anteil die OP hatten}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_hospital_tr_fits.pdf}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_hospital_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_hospital_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+% &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)} \\ 
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_hospital_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_hospital_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_hospital_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_hospital_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Share_OP_t_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Share_OP_m_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Share_OP_f_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Share_OP}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Share_OP}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Share_OPm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Share_OPf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_LOS_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_LOS_M_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_LOS_F_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\  
+\midrule 
+\input{R1_Overvw_Length_of_Stay}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Length_of_Stay}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Length_of_Staym}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Length_of_Stayf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+%
+%%------------------------------------------------------------------------------------
+\newpage
+\section{Hauptdiagnose Kapitel}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_1_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_1_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_1_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_1_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_1_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_1_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_1_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_2_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_2_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_2_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_2_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_2_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_2_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_2_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_5_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_5_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_5_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_5_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_5_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_5_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_5_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_6_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_6_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_6_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_6_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_6_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_6_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_6_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_7_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_7_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_7_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_7_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_7_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_7_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_7_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_8_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_8_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_8_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_8_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_8_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_8_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_8_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_9_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_9_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_9_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_9_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_9_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_9_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_9_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_10_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_10_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_10_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_10_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_10_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_10_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_10_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_11_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_11_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_11_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_11_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_11_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_11_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_11_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_12_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_12_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_12_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_12_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_12_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_12_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_12_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_13_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_13_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_13_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_13_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_13_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_13_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_13_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_14_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_14_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_14_r}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_17_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_17_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_17_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_17_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_17_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_17_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_17_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_18_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_18_rm_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_18_rf_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_18_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_18_r}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_18_rm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_18_rf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%%------------------------------------------------------------------------------------
+\newpage
+\section{Einzeldiagnosen}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Neurosis_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Neurosis_m_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Neurosis_f_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Neurosis}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Neurosis}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Neurosism}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Neurosisf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Joints_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Joints_m_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Joints_f_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Joints}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Joints}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Jointsm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Jointsf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Kidneys_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Kidneys_m_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Kidneys_f_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Kidneys}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Kidneys}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Kidneysm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Kidneysf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%%%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Bile_pancreas_fits}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Bile_pancreas_m_fits}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Bile_pancreas_f_fits}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Bile_pancreas}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Bile_pancreas}
+		\caption{Total}		
+	\end{subfigure}
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Bile_pancreasm}
+		\caption{Men}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Bile_pancreasf}
+		\caption{Women}
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\section{Krankheiten, die nur Frauen betreffen}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_genital_w_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_genital_w_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_genital_w_r}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Pregnancy_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Pregnancy}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Pregnancy}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Delivery_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Delivery}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Delivery}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\section{Andere Einzeldiagnosen, die nicht mehr nach gender aufgedröselt werden können}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Stomach_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Stomach}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Stomach}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Diag_verdauung_r_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Diag_verdauung_r}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Diag_verdauung_r}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Benign_neoplasm_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Benign_neoplasm}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Benign_neoplasm}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Malig_neoplasm_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Malig_neoplasm}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Malig_neoplasm}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Lymphoma_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Lymphoma}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Lymphoma}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Depression_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Depression}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Depression}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Heart_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Heart}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Heart}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Personality_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Personality}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Personality}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Symp_resp_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Symp_resp}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Symp_resp}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+%------------------------------------------------------------------------------------
+\newpage
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_Calculi_fits}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+\begin{table}[h]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}|cccc}
+\toprule
+&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+ \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+ &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+\midrule 
+\input{R1_Overvw_Calculi}
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_LC_Calculi}
+		\caption{Total}		
+	\end{subfigure}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
