@@ -172,7 +172,7 @@ forvalues i = 2005(1)2013 {
 	qui gen bev = round(ratio_GDR * ypop_)
 	qui gen bevf = round(ratio_GDR_female * ypop_f)
 	qui gen bevm = round(ratio_GDR_male * ypop_m)
-	drop ratio* ypop*
+	drop  ypop* //ratio*
 	order year GDR YOB MOB
 	
 	save "$temp/bevoelkerung_final.dta", replace
