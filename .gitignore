@@ -2,6 +2,7 @@
 analysis/temp/*
 !analysis/temp/KKH_final_R1_V12.dta #except the onefile everything is ignored
 
+*tex.bak
 # NACHFOLGEND WAS SCHON VORGEGEBN WAR:
 *-blx.bib
 *.asv
