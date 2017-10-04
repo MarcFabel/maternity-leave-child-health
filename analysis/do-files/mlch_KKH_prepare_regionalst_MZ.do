@@ -20,8 +20,8 @@
 	clear all
 	set more off
 	
-	global path       "F:/econ/m-l-c-h/analysis"					//WORK _Windows
-*	global path  	  "/Users/marcfabel/econ/m-l-c-h/analysis"		//Mac
+	global path       "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis" 	//WORK _Windows
+*	global path  	  "/Users/marcfabel/econ/m-l-c-h/analysis"					//Mac
 	global population "$path/source/population"
 	global temp  	  "$path/temp"	
 // ***********************************************************************

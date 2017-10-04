@@ -20,7 +20,7 @@
 	clear all
 	set more off
 	
-	global path  "F:\econ\m-l-c-h\analysis"		//MAC at work
+	global path  "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"		//MAC at work
 	global temp  "$path/temp"
 	global KKH   "$path/source/KKH_FDZ" 
 
