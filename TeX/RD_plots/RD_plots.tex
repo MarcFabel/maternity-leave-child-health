@@ -1,0 +1,132 @@
+\documentclass[a4paper ]{article}
+
+\usepackage{etex}		% clash when too many dimensions
+\usepackage{lettrine}	% für ersten Buchstaben groß
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{/Users/marcfabel/Dropbox/Uni/Tinbergen/MPhil/STATA/GRAPHS/}}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{ amssymb }
+\usepackage{amsmath}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumerate} % roman enumeration
+\usepackage{wrapfig}
+
+\usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}%both together help to have subfigures, other specifications which are nice: labelformat = parens -> number in paranthesis
+\usepackage[singlelinecheck=on]{subcaption}
+
+%\usepackage{tikz}
+%\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage[authoryear, round, comma]{natbib}
+
+\usepackage{titlesec} %section headers 
+\titleformat*{\section}{\large\bfseries}
+
+
+
+\usepackage{dsfont} %Double stroke, e.g. for indicator function
+
+
+\usepackage{afterpage}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{adjustbox}
+
+\usepackage[hyphens]{url}
+
+
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+
+ \usepackage{hyperref}
+ \hypersetup{
+      colorlinks   = true,
+     citecolor    = darkblue,
+ 	linkcolor= darkblue,
+     urlcolor=darkblue }
+
+\usepackage[
+	top    = 2.3cm,
+	bottom = 2cm,
+	left   = 1.8cm,
+	right  = 1.8cm]{geometry}		%option: showframe=true (see page boundaries)
+	
+\usepackage{changepage} % adjust width on sides of the page, needed tto place tables in the middle of the page
+
+
+
+
+
+\usepackage{pdflscape}
+\usepackage{layouts}% temporär, zurbestimmung von textwdith
+
+
+
+
+
+%\makeatletter
+%\def\input@path{{tables/KKH/}}
+%%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+%\makeatother
+
+\graphicspath{{../../analysis/graphs/KKH/RD/}}
+
+\usepackage{supertabular}
+\author{Marc Fabel}
+\title{Reduced form: RD graphs}
+\date{Last revision of this document: \today} 
+\begin{document}
+\maketitle
+
+\textbf{How this document works: }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%	TEMPLATE	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+\centering
+\caption{Pooled}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Absolute numbers}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Ratio (approx)}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5_r.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Ratio (births)}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5_r2.pdf}	
+\end{subfigure}
+%%%%%% surveyjahr
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_2005.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_r_2005.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_r_2005.pdf}	
+\end{subfigure}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\end{document}
