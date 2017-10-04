@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{color,soul}			% ermöglicht das highlighten von text
 \author{Marc Fabel}
 \title{To Do Liste}
 \date{\flushleft{Last revision of the document: \today}}
@@ -16,11 +17,11 @@
 
 %%%%%%%%%%%       Deadlines         %%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Deadlines:}\newline
-\begin{tabular}{ccc}
+\begin{tabular}{cccc}
 \hline 
-Event & deadline & time	 \\ 
+Event & deadline & time	& angemeldet \\ 
 \hline 
-Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. \\
+Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. & \checkmark \\
 dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
 IAB (Nürnberg) & 15.10. & 01-02 Februar 2018 \\
 SOLE (Toronto) & 31.10. & 04 \& 05 Mai 2018\\
@@ -38,7 +39,7 @@ dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\
 
 \item \textbf{Outcomes: }\vspace{-1em}
 \begin{itemize}
-\item[-]Metabolic Syndrome \newline read up Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH], welche Diagnosen verstecken sich hinter dem Begriff: high blood pressure, obesity, heart disease, heart attack,...
+\item[-]\hl{Metabolic Syndrome} \newline read up Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH], welche Diagnosen verstecken sich hinter dem Begriff: high blood pressure, obesity, heart disease, heart attack,...
 \item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
 \end{itemize}
 
@@ -50,7 +51,7 @@ dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\
 \end{itemize}
 
 
-\item \textbf{Reduced form}\newline 
+\item \textbf{\hl{Reduced form}}\newline 
 RD graphs:\vspace{-1em}
 \begin{enumerate}
 \item treat und control in einem graph
@@ -58,6 +59,7 @@ RD graphs:\vspace{-1em}
 \item mit absoluten Zahlen
 \item mit ratios, die im Nenner die ursprünglichen Geburtszahlen beinhalten
 \item nonparametric ? 
+\item with residuals ? 
 \end{enumerate}
 \item \textbf{Parental covariate balance:}\newline sollte unabhängig davon sein ob das Kind noch im Haushalt lebt. Andere Datenquellen durchsuchen (z.B. IPUMS, oder SHARE/SOEP)
 \begin{quote}
@@ -82,7 +84,7 @@ $\rightarrow$	Vielleicht kann man aus ef66 und interview-datum noch weitere info
 \item  \textbf{spatial heterogeneity nach counterfactual mode of care [Rafael Lalive]:} \newline eligibility (wo haben damals die meisten Frauen gearbeitet? rough approx. rural-urban); vielleicht gleich einen spatial treatment intensity index erstellen:\newline $inten_{r,t}=f(FLFP_{r,1979}, Share_foreigners_{r,t}$, ) \newline
 with region $r$ at time $t$. 
 \begin{itemize}
-\item[-] \textbf{FLFP in 1979:}\newline Sefan Wöhrmüller Daten oder shares aus MZ ziehen (Marc Piopiunik) Bastian 16.OKTOBER!
+\item[-] \textbf{\hl{FLFP in 1979:}}\newline Sefan Wöhrmüller Daten oder shares aus MZ ziehen (Marc Piopiunik) Bastian 16.OKTOBER!
 \end{itemize}
 
 
@@ -119,7 +121,7 @@ Unterschied pre/post cutoff, zumindest im descriptive teil
 \end{itemize}
 
 
-\item \textbf{Life-course perspective:}\vspace{-1em}
+\item \textbf{\hl{Life-course perspective:}}\vspace{-1em}
 \begin{itemize}
 \item[-]andere Spezifikation: pooled lassen und nicht auf das Alter beschränken sondern vielmehr den ITT mit year dummies interagieren: \newline
 $\gamma\  treat \times after \times yeardummy$
