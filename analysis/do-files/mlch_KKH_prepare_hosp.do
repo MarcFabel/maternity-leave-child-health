@@ -198,6 +198,9 @@
 	
 	foreach var of varlist $total {
 		generate `var'_r = `var' / bev
+		label var `var'_r "Ratio: approx. (MZ + Regionalstatistik)"
+		generate `var'_r2 = `var' / fert
+		label var `var'_r2 "Ratio using number of births (destatis)"
 	}
 		
 
@@ -231,6 +234,9 @@
 
 	foreach var of varlist $female {
 		generate `var'_rf = `var'_f / bevf
+		label var `var'_rf "Ratio: approx. (MZ + Regionalstatistik)"
+		generate `var'_rf2 = `var' / fertf
+		label var `var'_rf2 "Ratio using number of births (destatis)"
 	}
 	
 	
@@ -265,6 +271,9 @@
 	
 	foreach var of varlist $male {
 		generate `var'_rm = `var' / bevm
+		label var `var'_rm "Ratio: approx. (MZ + Regionalstatistik)"
+		generate `var'_rm2 = `var' / fertm
+		label var `var'_rm2 "Ratio using number of births (destatis)"
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////
