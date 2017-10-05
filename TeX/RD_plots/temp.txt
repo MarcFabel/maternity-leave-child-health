@@ -1,0 +1,32 @@
+\begin{figure}[h]
+\centering
+\caption{Pooled}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Absolute numbers}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Ratio (approx)}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5_r.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\caption{Ratio (births)}
+		\includegraphics[width=0.99\textwidth]{R1_RD_pooled_CG_Diag_5_r2.pdf}	
+\end{subfigure}
+%%%%%% surveyjahr
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_2005.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_r_2005.pdf}	
+\end{subfigure}
+\begin{subfigure}[t]{0.31\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{R1_RD_peryear_Diag_5_r_2005.pdf}	
+\end{subfigure}
+\end{figure}
