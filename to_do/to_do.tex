@@ -19,19 +19,24 @@
 \textbf{Deadlines:}\newline
 \begin{tabular}{cccc}
 \hline 
-Event & deadline & time	& angemeldet \\ 
+Event & deadline & time	& eingereicht \\ 
 \hline 
 Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. & \checkmark \\
-dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
-IAB (Nürnberg) & 15.10. & 01-02 Februar 2018 \\
+%dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
+%IAB (Nürnberg) & 15.10. & 01-02 Februar 2018 \\
 SOLE (Toronto) & 31.10. & 04 \& 05 Mai 2018\\
 IZA world labor (Berlin) & 15.11. & 28-29.06\\
 dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\ 
 \hline 
 \end{tabular} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\textbf{Kleine To-Do Liste:}
 \begin{itemize}
 \item[-] Do-files von generated variables reinigen $\rightarrow$ in prepare Teil auslagern
+\item[-] Kein hard Coding (Life Course approach) $\rightarrow$ magic numbers
+
 \end{itemize}
 
 
@@ -45,8 +50,8 @@ dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\
 \begin{itemize}
 \item[-]\hl{Metabolic Syndrome} \newline read up Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH], welche Diagnosen verstecken sich hinter dem Begriff: high blood pressure, obesity, heart disease, heart attack,...
 \item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
+\item[-] Outcomes 1995 - 2005 noch beantragen, Achtung andere classification
 \end{itemize}
-
 
 
 \item \textbf{Identification:}\vspace{-1em}
@@ -69,19 +74,15 @@ RD graphs:\vspace{-1em}
 \item \textbf{Parental covariate balance:}\newline sollte unabhängig davon sein ob das Kind noch im Haushalt lebt. Andere Datenquellen durchsuchen (z.B. IPUMS, oder SHARE/SOEP)
 \begin{quote}
 \texttt{[Natalia Email 19.09.]}\newline
-Beispiel: MZ 1980 
-
+Beispiel: MZ 1980 \newline
 1.	Info zu Geburtsmonat   Geboren in den Monaten
 Januar bis April = 1
-Mai bis Dezember  =2 
-
-$\rightarrow$	Zumindest kann man, da reform cut-off May 1, 1979 genau der geburtsmonatseinteilung entspricht, in pre and post-kids/families unterteilen.
-
+Mai bis Dezember  =2 \newline
+$\rightarrow$	Zumindest kann man, da reform cut-off May 1, 1979 genau der geburtsmonatseinteilung entspricht, in pre and post-kids/families unterteilen.\newline
 2.	Datenerhebung: 
 Beginn 21.04.1980 
-Ende 27.04.1980 
-3. Variable ef66 Alter von 00-99.
-
+Ende 27.04.1980 \newline
+3. Variable ef66 Alter von 00-99.\newline
 $\rightarrow$	Vielleicht kann man aus ef66 und interview-datum noch weitere infos ziehen….
 \end{quote}
 
@@ -95,10 +96,13 @@ with region $r$ at time $t$.
 
 \item \textbf{Cost-Benefit Analysis [Rafael Lalive]}\newline Back-of-the-envelope calculation, welche Kosten werden dem Gesundheitssystem eingespaart durch X weniger Diagnosen von Y, in relation setzen zu was hat das damals gekostet. Argumentieren entlang der Linien von Hillary Hoynes: benefits materialize way later and in other dimensions which were early goals in mind
 
+
 \item \textbf{KKH Daten Main Table}\newline dependent mean (sd) auf control anpassen
+
 
 \item \textbf{Bandwidth}\newline 2 Monate als Standardfall nehmen? \newline
 Siehe auch Baker \& Milligan, $N=8$ [Natalia]
+
 
 \item \textbf{Effect size:}\vspace{-1em}
 \begin{itemize}
@@ -110,8 +114,6 @@ Siehe auch Baker \& Milligan, $N=8$ [Natalia]
 \item Wichtiges Argument, auch für die dt PL reform: betrifft Kinder bzw Babys in sehr jungem Alter.
 \item literature: Barnett (2011) Science; Nores \& Barnett (2010) 
 \end{itemize}
-
-
 \end{itemize}
 
 
@@ -154,22 +156,31 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 \item \textbf{Econometric specification:}\vspace{-1em}
 \begin{itemize}
 \item[-] include gender in vector of controls
+\item[-] Poisson model for rates??? 
+\end{itemize}
+
+
+\item \textbf{Validity:}\vspace{-1em}
+\begin{itemize}
+\item[-] family and newborn characteristics smooth around threshold; number of births McCrary test [EcUFam, L. Gonzalez, presentation]
 \end{itemize}
 
 
 \item \textbf{Other data/outcomes:}\vspace{-1 em}
 \begin{itemize}
-\item[-] hospital admission very extreme $\rightarrow$ less extreme outcomes? [D. Kühnle] RWI HI data
+\item[-] hospital admission very extreme $\rightarrow$ less extreme outcomes? [D. Kühnle] RWI HI data, Amelie Wuppermann (Krankenkassenvereinigung Berlin und TKK)
 \item[-] INKAR daten (Indikatoren und Karten zur Raum- und Stadtentwicklung)\newline kann ich da etwas rausfinden für variation of FLFP in late 1970s, immigrants 
 \item[-] Health of mothers: \vspace{-.5em}
 \begin{enumerate}
 \item RKI: aber dort sind die Daten – zumindest für die 1979 Reform – wahrscheinclih eher nicht geeignet [Natalia]
 \item  Nationale Kohorte – falls hier die genaue Geburtenhistorie abgefragt wird, könnte man hier evtl Glück haben. Den fragebogen konnte ich auf die Schnelle nicht auf der Homepage finden. \texttt{http://nako.de/}
 \end{enumerate}
+\item[-] Standardize independent variable: coefficient indicates "effect sizes"( of one standard deviation change) [EcuFam, Ch. Ruhm presentation]
+\item[-] Number of cases  per 1000 [EcUFam, Chr Ruhm feedback] 
 \end{itemize}
 
 
-\item \textbf{"Hopsital"}\newline What is defined as a hopsital, read up in documentation. wide definition
+\item \textbf{"Hospital"}\newline What is defined as a hospital, read up in documentation. wide definition
 
 
 \item \textbf{Framing im paper:} \vspace{-1em}
@@ -179,6 +190,9 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 \item[-] differentiation of treatment (was ist bei der refrom passiert?). 1. time allocation due to reform (figures is DS und SL) und 2. counterfactual mode of care: maternal care (the moms would have stayed at home anyway) $\rightarrow$ they benefit from additional job protection and 750 DM.
 (KÜhnle \& Hübner paper).
 \item[-] What is the difference between our work and to DS und LS? Different populations (zeros for all women with less than 20hrs).
+\item[-] Is the effect an effect on health or health care consumption [EcUFam, L. Ganzalez, discussion during her presentation]
+\item[-] Suprising that there is no sorting of parents with CS: what was the share of parents in the 1970s? [EcUFam, feedback]
+\item[-] Why these health outcomes? Better motivation than just it was in other studies
 \end{itemize}
 
 \item \textbf{Reading list:}
