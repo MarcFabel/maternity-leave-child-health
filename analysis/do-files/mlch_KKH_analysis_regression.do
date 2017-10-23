@@ -462,30 +462,6 @@ rename Diag_krank_schwanger_r Pregnancy
 	
 	
 
-/* OLD VERSION: OHNE Age of treatment group auf der X-Achse
-	capture program drop LC
-	program define LC
-		eststo clear
-		capture drop b CIL CIR
-		qui gen b=.
-		qui gen CIL =.
-		qui gen CIR =. 
-		
-		forvalues X = 2005 (1) 2013 {
-			DDRD `1' " " " if year == `X' & (control == 2 | control == 4)"
-			qui replace b = _b[TxA] if year == `X'
-			qui replace CIL = (_b[TxA]-1.645*_se[TxA]) if year == `X'
-			qui replace CIR = (_b[TxA]+1.645*_se[TxA]) if year == `X'
-		}
-		
-		twoway rarea CIL CIR year, sort color(gs14) lcolor(gray) lpattern(dash) || ///
-			line b year, sort color(gray) ///
-			legend(off) ytitle(ITT `1') scheme(s1mono) ///
-			yline(0, lw(thin) lpattern(solid)) color(black) 
-			graph export "$graphs/R1_LC_`1'.pdf", as(pdf) replace
-	
-	end
-	*/
 	
 	
 
@@ -559,6 +535,15 @@ rename Diag_krank_schwanger_r Pregnancy
 	LC2 Diag_verdauung_r "Symptoms of the digestive system"
 	LC2	Heart "Non-ischemic heart disease"
 	LC2 Bile_pancreas "Diseases of the bile and pancreas"
+
+	
+////////////// 07.10.2017: Alternative Spezifikation mit tripple interaction
+	keep if control == 2 | control == 4
+	foreach X of numlist 2005(1)2013 {
+		gen TxA_`X' = TxA*`X'
+	}
+	
+	reg Diag_5_r treat after TxA Dmon* TxA_2006 - TxA_2013 , vce(cluster MxY) 
 
 	
 

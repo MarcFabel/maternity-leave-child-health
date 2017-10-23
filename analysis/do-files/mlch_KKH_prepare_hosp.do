@@ -310,6 +310,25 @@
 	//FRG
 	qui gen FRG = cond(GDR==0,1,0)
 	
+	// alternative MOB (depict TG & CG in same graph)
+	qui gen     MOB_altern = 1  if MOB == 11
+	qui replace MOB_altern = 2  if MOB == 12
+	qui replace MOB_altern = 3  if MOB == 1
+	qui replace MOB_altern = 4  if MOB == 2
+	qui replace MOB_altern = 5  if MOB == 3
+	qui replace MOB_altern = 6  if MOB == 4
+	qui replace MOB_altern = 7  if MOB == 5
+	qui replace MOB_altern = 8  if MOB == 6
+	qui replace MOB_altern = 9  if MOB == 7
+	qui replace MOB_altern = 10 if MOB == 8
+	qui replace MOB_altern = 11 if MOB == 9
+	qui replace MOB_altern = 12 if MOB == 10
+	
+	label define MOB_ALTERN 1 "11" 2 "12" 3 "01" 4 "02" 5 "03" 6 "04" 7 "05" 8 "06" ///
+		9 "07" 10 "08" 11 "09" 12 "10"  
+	label values MOB_altern MOB_ALTERN
+	label var MOB_altern "Um TG & CG im selben graph darstellen zu können"
+	
 	
 	save "$temp\KK_final_all", replace
 	*in Reformen abspeichern
