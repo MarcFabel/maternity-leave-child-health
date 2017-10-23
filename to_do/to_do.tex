@@ -133,6 +133,7 @@ Unterschied pre/post cutoff, zumindest im descriptive teil
 \item[-]andere Spezifikation: pooled lassen und nicht auf das Alter beschränken sondern vielmehr den ITT mit year dummies interagieren: \newline
 $\gamma\  treat \times after \times yeardummy$
 \item[-] nicht über survey jahr sondern Alter der patienten $\rightarrow$ treatment und control group sollten gleich alt sein
+\item[-] in Gruppen zusammenfassen (e.g. 26-29 Jahre, 30-33, 33-36)
 \end{itemize}
 
 
@@ -143,7 +144,7 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 \item \textbf{P-values/power:}\vspace{-1em}
 \begin{itemize}
 \item[-] Nothing found for Micro Census: is that an issue of too few observations? Carry out \textbf{power calculations}. This should not be difficult as the size of the treatment effect is known from the hospital registry data. [Verein]
-	\item[-] Correction of \textbf{p-values}: adjust for multiple outcomes (\texttt{Bonferroni correction}?). The issue is that 1 out of 20 outcome is significant by pure chance. This point was mentioned in association to significant coefficient of Dtrack2. [Verein, Lena Janys]
+\item[-] Correction of \textbf{p-values}: adjust for multiple outcomes (\texttt{Bonferroni correction}?). The issue is that 1 out of 20 outcome is significant by pure chance. This point was mentioned in association to significant coefficient of Dtrack2. [Verein, Lena Janys]
 \end{itemize}
 
 
@@ -156,13 +157,15 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 \item \textbf{Econometric specification:}\vspace{-1em}
 \begin{itemize}
 \item[-] include gender in vector of controls
-\item[-] Poisson model for rates??? 
+\item[-] Poisson model for rates [EcUFam, Jason Lindo presentation]
+\item[-] Introduce weighting: not every observation is equally important $\rightarrow$ account for the fact that the share in Mai is more informative than in December
+\item[-] regression: Aufsummieren der Jahre und Regression mit kleinem $N$ laufen lassen
 \end{itemize}
 
 
 \item \textbf{Validity:}\vspace{-1em}
 \begin{itemize}
-\item[-] family and newborn characteristics smooth around threshold; number of births McCrary test [EcUFam, L. Gonzalez, presentation]
+\item[-] family and newborn characteristics smooth around threshold; number of births McCrary test [EcUFam, L. Gonzalez, presentation]\newline \texttt{Natalia's comment:}possible sources: human fertility database (MPI for demographic research) haben die Zugriff auf births per day? Alternativ: Landesämter
 \end{itemize}
 
 
@@ -191,7 +194,7 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 (KÜhnle \& Hübner paper).
 \item[-] What is the difference between our work and to DS und LS? Different populations (zeros for all women with less than 20hrs).
 \item[-] Is the effect an effect on health or health care consumption [EcUFam, L. Ganzalez, discussion during her presentation]
-\item[-] Suprising that there is no sorting of parents with CS: what was the share of parents in the 1970s? [EcUFam, feedback]
+\item[-] Suprising that there is no sorting of parents with cesarean sections: what was the share of parents in the 1970s? [EcUFam, feedback]
 \item[-] Why these health outcomes? Better motivation than just it was in other studies
 \end{itemize}
 
