@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{color,soul}			% ermöglicht das highlighten von text
+\usepackage{hyperref}
 \author{Marc Fabel}
 \title{To Do Liste}
 \date{\flushleft{Last revision of the document: \today}}
@@ -13,8 +14,9 @@
 \maketitle
 
 
-
-
+\hfill{\hyperlink{DONE}{\Large{\texttt{List of things that were done}}}
+\bigskip
+\label{TODO}
 %%%%%%%%%%%       Deadlines         %%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Deadlines:}\newline
 \begin{tabular}{cccc}
@@ -30,6 +32,12 @@ dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\
 \hline 
 \end{tabular} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
 
 \bigskip
 \textbf{Kleine To-Do Liste:}
@@ -48,7 +56,6 @@ dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\
 
 \item \textbf{Outcomes: }\vspace{-1em}
 \begin{itemize}
-\item[-]\hl{Metabolic Syndrome} \newline read up Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH], welche Diagnosen verstecken sich hinter dem Begriff: high blood pressure, obesity, heart disease, heart attack,...
 \item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
 \item[-] Outcomes 1995 - 2005 noch beantragen, Achtung andere classification
 \end{itemize}
@@ -213,7 +220,23 @@ good job market paper, kleines theoretisches model nebenbei
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				DONE 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\hfill{\hyperlink{TODO}{\Large{\texttt{Link back to what still has to be done}}}
+\bigskip
 
+\label{DONE}
+\textbf{List of things that were done already: }
+\begin{itemize}
+\item \textbf{Outcomes: }\vspace{-1em}
+\begin{itemize}
+\item[-]\textbf{Metabolic Syndrome}  from Hoynes, Schanzenbach \& Almond (2016, AER) [EALE Keynote HH]\newline
+
+equal weighted average of the $z$-score (normalisation $\mu=0$ and $\sigma=1$) of five dichotomous variables: obese, diabetic, high blood pressure, heart disease and heart attack. The multiple measures were aggregated in order to improve statistical power. The mean and standard devtion is taken from the "control group" of cohorts born before the intervention.
+\end{itemize}
+\end{itemize}
 
 
 
