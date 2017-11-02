@@ -15,15 +15,15 @@
 	set more off
 	*global path "D:\Data\Gast\GWA22_3053_MF_KH"
 	*global path "Z:\ifo\GWA22_2827_MF_KH"
-	global path "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\Extrahieren_local"
+	*global path "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\Extrahieren_local"
 	* global path "B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
 	
-	global source "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
+	*global source "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
 
-	*global source "$path\A_Mikrodaten\"
-	*global temp "$path\D_Ergebnisse\temp\" 
-	*global tables   "$path\D_Ergebnisse\TABLES"
-	*global logfiles "$path\D_Ergebnisse\LOGFILES"
+	global source "$path\A_Mikrodaten\"
+	global temp "$path\D_Ergebnisse\temp\" 
+	global tables   "$path\D_Ergebnisse\TABLES"
+	global logfiles "$path\D_Ergebnisse\LOGFILES"
 	
 	
 	global temp "$path\temp" 
@@ -35,7 +35,7 @@
 	global date = "$date1"  + "$date2" + "$date3" 
 	
 	capture log close
-	*log using "$logfiles\KKH_Metabolic_syndrome_${date}_MarcFabel" , text replace
+	log using "$logfiles\KKH_Metabolic_syndrome_${date}_MarcFabel" , text replace
 
 	
 //////////////////////////////////////////////////////////////////////////////// 
@@ -104,9 +104,9 @@ Verwendete Variablen:
 // 1995-1999
 foreach wave of numlist 1995(1)1999 {
 
-	 use "$source\dstf_sa95_`wave'.dta", clear
+	 *use "$source\dstf_sa95_`wave'.dta", clear
 	 *use "$source\dstf_sa95_1995.dta", clear
-	 *use "$source\kdfv_sa95_`wave'.dta", clear
+	 use "$source\kdfv_sa95_`wave'.dta", clear
 	 
 	*use "$source\gwap_sa95_2013.dta", clear
  
@@ -242,9 +242,9 @@ foreach wave of numlist 1995(1)1999 {
 ////////////////////////////////////////////////////////////////////////////////	
 foreach wave of numlist 2000(1)2013 {
 
-	 use "$source\dstf_sa95_`wave'.dta", clear
+	 *use "$source\dstf_sa95_`wave'.dta", clear
 	* use "$source\dstf_sa95_2000.dta", clear
-	 *use "$source\kdfv_sa95_`wave'.dta", clear
+	 use "$source\kdfv_sa95_`wave'.dta", clear
 	 
 	*use "$source\gwap_sa95_2013.dta", clear
  
@@ -433,7 +433,7 @@ foreach x of numlist 1996(1)2013 {
 	qui replace reform = 3 if (YOB >= 1990 & YOB <= 1995)
 	
 save "$temp\data_final", replace
-
+/*
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -454,7 +454,7 @@ save "$temp\data_final", replace
 	use "$temp\data_final.dta", clear 
 	collapse (sum) Diag* hospital SummeVerweildauer=Verweildauer (mean) Share_OP=Op ///
 		DurschnVerweildauer=Verweildauer, by(year YOB MOB GDR female)
-		
+	
 	** CHECKS:
 	*a) Minimum Problem
 	foreach var of varlist Diag* {
@@ -482,7 +482,7 @@ save "$temp\data_final", replace
 	collapse, by(year YOB MOB GDR)
 	*/
 	
-	
+*/	
 	
 log close	
 	
