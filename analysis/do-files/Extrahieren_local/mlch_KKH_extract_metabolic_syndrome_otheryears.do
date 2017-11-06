@@ -4,7 +4,7 @@
 *	USES:   Wellen 1995-2013 von der Krankenhausdiagnosestatistik
 *	SAVES:  
 *	Author: Marc Fabel
-*	Last revision of this Do-File: 25.10.2017 
+*	Last revision of this Do-File: 06.11.2017 
 //////////////////////////////////////////////////////////////////////////////// 
 
 
