@@ -4,7 +4,7 @@
 *	USES:   Wellen 1995-2013 von der Krankenhausdiagnosestatistik
 *	SAVES:  
 *	Author: Marc Fabel
-*	Last revision of this Do-File: 25.10.2017 
+*	Last revision of this Do-File: 06.11.2017 
 //////////////////////////////////////////////////////////////////////////////// 
 
 
@@ -13,21 +13,28 @@
 ***********************************************
 	clear all
 	set more off
+
+	
+	// GWAP/Landesamt
+	global path "B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
 	*global path "D:\Data\Gast\GWA22_3053_MF_KH"
 	*global path "Z:\ifo\GWA22_2827_MF_KH"
-	*global path "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\Extrahieren_local"
-	* global path "B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
-	
-	*global source "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
-
 	global source "$path\A_Mikrodaten\"
-	global temp "$path\D_Ergebnisse\temp\" 
-	global tables   "$path\D_Ergebnisse\TABLES"
-	global logfiles "$path\D_Ergebnisse\LOGFILES"
+	global temp "$path\D_Ergebnisse\Fabel\temp\" 
+	global tables   "$path\D_Ergebnisse\Fabel\TABLES"
+	global logfiles "$path\D_Ergebnisse\Fabel\LOGFILES"
+	global file "kdfv_sa95_"
+	*global file "gwap_sa95_"
+
 	
-	
+/*	
+	// Lokale Maschine
+	global path "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\Extrahieren_local"
+	global source "G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
 	global temp "$path\temp" 
 	global logfiles "$path\LOGFILES"
+	global file "dstf_sa95_"
+*/
 
 	global date1 = substr("$S_DATE",1,2)	// Day
 	global date2 = substr("$S_DATE",4,3)	// Month
@@ -104,12 +111,7 @@ Verwendete Variablen:
 // 1995-1999
 foreach wave of numlist 1995(1)1999 {
 
-	 *use "$source\dstf_sa95_`wave'.dta", clear
-	 *use "$source\dstf_sa95_1995.dta", clear
-	 use "$source\kdfv_sa95_`wave'.dta", clear
-	 
-	*use "$source\gwap_sa95_2013.dta", clear
- 
+	use "$source\$file`wave'.dta", clear
 	gen year = `wave'
  
 	*Zurückrechnen auf Geburtsdatum:
@@ -123,9 +125,11 @@ foreach wave of numlist 1995(1)1999 {
 	qui gen YOB = year(dofm(Datum))
 	
 	*restrict to only relevant sample:
-	keep if (Datum >= tm(1976m11) & Datum <= tm(1980m10)) | /// 
+	keep if (Datum >= tm(1976m11) & Datum <= tm(1980m10))
+	
+	/*| /// 
 			(Datum >= tm(1985m7)  & Datum <= tm(1989m6)) | ///
-			(Datum >= tm(1990m7)  & Datum <= tm(1995m6))
+			(Datum >= tm(1990m7)  & Datum <= tm(1995m6))*/
 
 	sort Datum
 	order YOB MOB
@@ -133,9 +137,6 @@ foreach wave of numlist 1995(1)1999 {
 ********************************************************************************
 		*****  Diagnosenzusammenfassung  *****
 ********************************************************************************	
-	*encode three digit number
-	*destring EF8, gen(lkrid) force
-	
 	*Main Diagnosis
 	qui gen diag0 = substr(EF8,1,1)
 	qui gen diag00 = substr(EF8,1,2)
@@ -182,7 +183,7 @@ foreach wave of numlist 1995(1)1999 {
 	qui gen Diag_symp_circ_resp = 1 if (diag000 == 785 | diag000 == 786)
 	qui gen Diag_symp_verdauung = 1 if diag000 == 787	// Syptmoe des Verdauungssytems
 	qui gen Diag_sonst_herzkrank = 1 if (diag000 >= 420 & diag000 <= 429 & diag000 != 424)
-	qui gen Diag_psych_alkohol = 1 if (diag000 == 291 | diag000 ==303 | diag000 == 980)
+	qui gen Diag_psych_drogen = 1 if (diag000 == 291 | diag000 ==303 | diag000 == 980 | diag000 == 304 | diag000 == 305)
 	
 	*Metadaten:
 	qui egen hospital = rowtotal(Diag_1 -Diag_18)
@@ -240,14 +241,9 @@ foreach wave of numlist 1995(1)1999 {
 ////////////////////////////////////////////////////////////////////////////////
 		*****  2000 - 2013  *****
 ////////////////////////////////////////////////////////////////////////////////	
-foreach wave of numlist 2000(1)2013 {
+foreach wave of numlist 2000(1)2014 {
 
-	 *use "$source\dstf_sa95_`wave'.dta", clear
-	* use "$source\dstf_sa95_2000.dta", clear
-	 use "$source\kdfv_sa95_`wave'.dta", clear
-	 
-	*use "$source\gwap_sa95_2013.dta", clear
- 
+	use "$source\$file`wave'.dta", clear
 	gen year = `wave'
  
 	*Zurückrechnen auf Geburtsdatum:
@@ -261,9 +257,11 @@ foreach wave of numlist 2000(1)2013 {
 	qui gen YOB = year(dofm(Datum))
 	
 	*restrict to only relevant sample:
-	keep if (Datum >= tm(1976m11) & Datum <= tm(1980m10)) | /// 
+	keep if (Datum >= tm(1976m11) & Datum <= tm(1980m10)) 
+	
+	/*| /// 
 			(Datum >= tm(1985m7)  & Datum <= tm(1989m6)) | ///
-			(Datum >= tm(1990m7)  & Datum <= tm(1995m6))
+			(Datum >= tm(1990m7)  & Datum <= tm(1995m6))*/
 
 	sort Datum
 	order YOB MOB
@@ -359,7 +357,8 @@ foreach wave of numlist 2000(1)2013 {
 	qui gen Diag_symp_circ_resp = 1 if (diagX == "R" & (diag00 >= 00 & diag00 <= 09))
 	qui gen Diag_symp_verdauung = 1 if (diagX == "R" & (diag00 >= 10 & diag00 <= 19))
 	qui gen Diag_sonst_herzkrank = 1 if diagX == "I" & ((diag00>=30 & diag00<=33) | (diag00>=39 & diag00<=52))  
-	qui gen Diag_psych_alkohol = 1 if (diagX == "F" & diag00==10) | (diagX == "T" & diag00==51) 
+	qui gen Diag_psych_drogen = 1 if (diagX == "F" & diag00==10) | (diagX == "T" & diag00==51) 
+	qui replace Diag_psych_drogen = 1 if (diagX == "F" & (diag00>= 11 & diag00<=19 & diag00 !=17) )
 	
 	*Metadaten:
 	qui egen hospital = rowtotal(Diag_1 -Diag_18)
@@ -410,7 +409,7 @@ foreach wave of numlist 2000(1)2013 {
 
 	
 	save "$temp\prepared_`wave'.dta", replace
-} // end: loop 2000-2013
+} // end: loop 2000-2014
 
 
 
@@ -419,21 +418,24 @@ foreach wave of numlist 2000(1)2013 {
 // generate repeated cross-section
 use "$temp\prepared_1995.dta", clear
 
-foreach x of numlist 1996(1)2013 {
+foreach x of numlist 1996(1)2014 {
 	qui append using "$temp\prepared_`x'.dta"
 	qui erase "$temp\prepared_`x'.dta"
 }
 	qui erase "$temp\prepared_1995.dta"
 
-	
+/*	
 //Reformkohorten markieren
 	qui gen reform=.
 	qui replace reform = 1 if (YOB >= 1976 & YOB <= 1980)
 	qui replace reform = 2 if (YOB >= 1985 & YOB <= 1989)
-	qui replace reform = 3 if (YOB >= 1990 & YOB <= 1995)
+	qui replace reform = 3 if (YOB >= 1990 & YOB <= 1995)*/
+	
+//Schwieirge variablen streichen
+		qui drop Diag_symp*
 	
 save "$temp\data_final", replace
-/*
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -443,46 +445,60 @@ save "$temp\data_final", replace
 	
 	/* Notitz an Herrn Bergmann: 
 	1) zunächst keine Probleme mit Anzahl der Fälle (immer grösser gleich 3) 
-		-> Stellen, die einer Streichung bedürfen, markiere ich extra
-	2) keine Diagnose wird in unterschiedlichen tiefen angefragt, d.h. ich frage immer die 
-	tiefstmögliche tiefe an und sonst aggregiere ich hoch (z.B. nicht nach geschlecht)
-	3) tiefste Ebene ist: Anzahl der Fälle nach Geburtsmonat, Ost/West und Geschlecht
+	2) der zweite Datensatz wird nur für Frauen generiert, da das Diagnosekapitel 14
+	alle Fälle in der Schwangerschaft betrifft
+	3) tiefste Ebene ist: Anzahl der Fälle in Westdeutschland nach monatsgenauem
+	Geburtsdatum und Geschlecht
 	*/
-	
 
-	*ideal: geht vermutlich nicht
+//a) Diagnosen, die beide Geschlechter betreffen
 	use "$temp\data_final.dta", clear 
+
+	keep if GDR == 0
+	drop Diag_14
+
 	collapse (sum) Diag* hospital SummeVerweildauer=Verweildauer (mean) Share_OP=Op ///
-		DurschnVerweildauer=Verweildauer, by(year YOB MOB GDR female)
+		DurschnVerweildauer=Verweildauer, by(year YOB MOB female)
 	
+	sort YOB MOB year female
+	save "$temp/1_data_final_collapsed_reform1.dta", replace	
+	
+//b) Diagnosen, die nur Frauen betreffen
+	use "$temp\data_final.dta", clear 
+
+	keep if GDR == 0
+	keep if female == 1
+	keep YOB MOB year GDR female Diag_14 Op Verweildauer
+
+	collapse (sum) Diag* SummeVerweildauer=Verweildauer (mean) Share_OP=Op ///
+		DurschnVerweildauer=Verweildauer, by(year YOB MOB)
+	
+	sort YOB MOB year 
+	save "$temp/2_data_final_collapsed_reform1_Frauen.dta", replace
+	
+	
+	
+	
+/*	
 	** CHECKS:
 	*a) Minimum Problem
+		*use "$temp\data_final_collapsed.dta", clear
+
+	use "$temp\data_final_collapsed_reform1.dta", clear
+	*use "$temp/data_final_collapsed_nogender.dta"
+	
+	keep if GDR == 0
+	*drop if female == 0
 	foreach var of varlist Diag* {
 		qui summ `var'
 		if r(min)<=2{
-			disp "Problem" 
+			disp "Problem in variable `var'" 
 		}
 	}
+*/
 	
 		
 	
-	*1) auf West/Ost collapsen -- alle Kohorten
-	use "$temp\data_final.dta", clear
-	collapse (sum) Diag_metabolic_syndrome, ///
-		by(year YOB MOB GDR female)
-	save "$tables/8_Metabolic_syndrome.dta", replace
-	
-	
-	
-	
-	/* Wenn nicht geht:
-	1) Ostdeutschland weglassen? keep if GDR == 0
-	2) andere Reformen weglassen kkep if refrom == 1
-	3)nicht nach geschlecht
-	collapse, by(year YOB MOB GDR)
-	*/
-	
-*/	
 	
 log close	
 	
