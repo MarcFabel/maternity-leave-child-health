@@ -1,14 +1,57 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass{scrartcl} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} % better control over placement of tables and figures in the text
+\usepackage{graphicx} % input of graphics
+\usepackage{xcolor} % advanced color package
+\usepackage{url, hyperref} % include (clickable) URLs
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} % better tables
+\usepackage{threeparttable} % add notes below tables
+
+\renewcommand\TPTrlap{}		% add margins on the side of the notes
+\renewcommand\TPTnoteSettings{%
+\setlength\leftmargin{5 pt}%
+\setlength\rightmargin{5 pt}%
+}
+\usepackage[center, format=plain, font=normalsize, nooneline, labelfont={bf}]{caption} % change format of captions of tables and graphs 
+
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts} % more math symbols and commands
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+
+
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+%--------------------------------------------------------------------
+%	AUTHOR & TITLE
+%--------------------------------------------------------------------
 \author{Natalia Danzer \& Marc Fabel}
 \title{Maternity Leave Coverage and the Long-Term Health Outcomes of Children in Germany}
+
+%--------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%--------------------------------------------------------------------
 \begin{document}
 \maketitle
 \tableofcontents
@@ -53,13 +96,146 @@ By 3 years of age, many of the metabolic and growth differences between the brea
 
 
 
+\newpage
+\section{Appendix}
+\subsection{Outcomes Hospital registry data}
 
 
-
-
-
-
-
+\begin{table}[h] % table environment for caption and label
+\begin{threeparttable}
+\centering % center the tabular
+\caption{Main diagnosis chapters} % caption
+\label{tab:outcomes_coding_main_chapters} 
+\begin{tabular}{lrrr} % alignment and number of columns of actual table
+\toprule % top thicker horizontal line (" rule ")
+&\multicolumn{2}{c}{ICD-9} & \multicolumn{1}{c}{ICD-10} \\ 
+\cmidrule(lr){2 -3} \cmidrule(lr){4 -4}
+%	qui gen Diag_1	= 1 if (diag000 >= 001 & diag000 <= 139)	// Infektiöse Krankheiten
+%	qui gen Diag_2	= 1 if (diag000 >= 140 & diag000 <= 239)	// Neubildungen
+%	qui gen Diag_4 	= 1 if (diag000 >= 240 & diag000 <= 278)	// Stoffwechselkrankheiten
+%	qui gen Diag_5	= 1 if (diag000 >= 290 & diag000 <= 319) 	//*mental and behavioral disorders
+%	qui gen Diag_6  = 1 if (diag000 >= 320 & diag000 <= 359)	// Krankheiten des Nervensystems
+%	qui gen Diag_7  = 1 if (diag000 >= 360 & diag000 <= 389)	// Auge & Ohr
+%	qui gen Diag_8	= 1 if (diag000 >= 390 & diag000 <= 459)	//*Krankheiten des Kreislaufsystems
+%	qui gen Diag_9	= 1 if (diag000 >= 460 & diag000 <= 519)	//*Atmungssystem
+%	qui gen Diag_10 = 1 if (diag000 >= 520 & diag000 <= 579)	//* Verdauungssystem
+%	qui gen Diag_11 = 1 if (diag000 >= 680 & diag000 <= 709)	// Haut
+%	qui gen Diag_12 = 1 if (diag000 >= 710 & diag000 <= 739)	// Muskel_Skelett_Bindegewebe
+%	qui gen Diag_13 = 1 if (diag000 >= 580 & diag000 <= 629)	// Urogenitalsystem
+%	qui gen Diag_14 = 1 if (diag000 >= 630 & diag000 <= 676)	// Schwangerschaft
+%	qui gen Diag_17 = 1 if (diag000 >= 780 & diag000 <= 799)	// Symptome & abnorme klinische Befunde
+%	qui gen Diag_18 = 1 if (diag000 >= 800 & diag000 <= 999)	// Verletzungen und co
+	
+ 001–139: infectious and parasitic diseases
+ 140–239: neoplasms
+ 240–279: endocrine, nutritional and metabolic diseases, and immunity disorders
+ 280–289: diseases of the blood and blood-forming organs
+ 290–319: mental disorders
+ 320–359: diseases of the nervous system
+ 360–389: diseases of the sense organs
+ 390–459: diseases of the circulatory system
+ 460–519: diseases of the respiratory system
+ 520–579: diseases of the digestive system
+ 580–629: diseases of the genitourinary system
+ 630–679: complications of pregnancy, childbirth, and the puerperium
+ 680–709: diseases of the skin and subcutaneous tissue
+ 710–739: diseases of the musculoskeletal system and connective tissue
+ 740–759: congenital anomalies
+ 760–779: certain conditions originating in the perinatal period
+ 780–799: symptoms, signs, and ill-defined conditions
+ 800–999: injury and poisoning
+ 
+ * Indices:
+	* 1) Metabolic Syndorme
+	qui gen Diag_metabolic_syndrome = 1 if (diag000 == 250) // diabetes
+	qui replace Diag_metabolic_syndrome = 1 if (diag000 == 401 | diag000 == 402 | diag000 == 404 | diag000 == 405) //bluthochdruck
+	qui replace Diag_metabolic_syndrome = 1 if (diag000 == 278) // Adipositas und übergewicht
+	qui replace Diag_metabolic_syndrome = 1 if (diag000 >= 410 & diag000 <= 414) //Ischämische Herzkrankheiten
+	* 2) Respiratory Sytem
+	qui gen Diag_Index_respiratory = 1 if (diag000 >= 460 & diag000 <= 466)	// Akute Infektionen der Atmungsorgane
+	qui replace Diag_Index_respira = 1 if (diag000 >= 480 & diag000 <= 486)	// Lungenentzündung
+	qui replace Diag_Index_respira = 1 if (diag000 >= 490 & diag000 <= 496 & diag000 != 495)	// Chron Entzündung untere Atemweg (inkl Asthma)
+	
+	*Einzeldiagnosen
+	qui gen Diag_symp_circ_resp = 1 if (diag000 == 785 | diag000 == 786)
+	qui gen Diag_symp_verdauung = 1 if diag000 == 787	// Syptmoe des Verdauungssytems
+	qui gen Diag_sonst_herzkrank = 1 if (diag000 >= 420 & diag000 <= 429 & diag000 != 424)
+	qui gen Diag_psych_drogen = 1 if (diag000 == 291 | diag000 ==303 | diag000 == 980 | diag000 == 304 | diag000 == 305)
+	
+%--------------------------------------------------------------------
+%	ICD-10
+%--------------------------------------------------------------------	
+	qui replace diagOvrvw=1  if diagX == "A" | diagX == "B"						
+	qui replace diagOvrvw=2  if diagX == "C" | (diagX == "D" & diag00<=48)		
+	*qui replace diagOvrvw=3  if diagX == "D" & (diag00 >=50 & diag00<=90)		
+	qui replace diagOvrvw=4  if diagX == "E" & (diag00 >=00 & diag00 <=90)		
+	qui replace diagOvrvw=5  if diagX == "F"									
+	qui replace diagOvrvw=6  if diagX == "G"									
+	qui replace diagOvrvw=7  if diagX == "H" & diag00<=95						
+	qui replace diagOvrvw=8  if diagX == "I"									
+	qui replace diagOvrvw=9  if diagX == "J"									
+	qui replace diagOvrvw=10 if diagX == "K" & diag00 <=93						
+	qui replace diagOvrvw=11 if diagX == "L" 									
+	qui replace diagOvrvw=12 if diagX == "M"									
+	qui replace diagOvrvw=13 if diagX == "N"									
+	qui replace diagOvrvw=14 if diagX == "O"									
+	qui replace diagOvrvw=15 if diagX == "P" & diag00 <=96						
+	qui replace diagOvrvw=16 if diagX == "Q"									
+	qui replace diagOvrvw=17 if diagX == "R"									
+	qui replace diagOvrvw=18 if diagX == "S" | diagX == "T"						
+	qui replace diagOvrvw=19 if diagX == "Z"
+	
+	
+#delimit;
+	label define DIAGNOSEN
+	1  "[A00-B99] Infektiöse und parasitäre Krankheiten"
+	2  "[C00-D48] Neubildungen"
+	3  "[D50-D90] Krankheiten des Blutes und blutbildenden Organe"
+	4  "[E00-E90] Endokrine, Ernährungs- u Stoffwechselkrankh."
+	5  "[F00-F99] Psychische und Verhaltensstörungen"
+	6  "[G00-G99] Krankheiten des Nervensystems"
+	7  "[H00-H95] Krankheiten des Auges und Ohres"
+	8  "[I00-I99] Krankheiten des Kreislaufsystems"	
+	9  "[J00-J99] Krankheiten des Atmungssystems"
+	10 "[K00-K93] Krankheiten des Verdauungssystems"
+	11 "[L00-L99] Krankheiten der Haut"
+	12 "[M00-M99] Muskel, Skelett u Bindegewebe"
+	13 "[N00-N99] Urogenitalsystem"
+	14 "[O00-O99] Schwangerschaft, Geburt, Wochenbett"
+	15 "[P00-P96] Perinatalperiode"
+	16 "[Q00-Q99] Angeborene Fehlbildungen, Deformitäten, Chromosomenabnomalien"
+	17 "[R00-R99] Symptome, aborm. Laborbefunde"
+	18 "[S00-T98] Verletzungen, Vergiftungen, äußere Ursachen"
+	19 "[Z00-Z99] anderes, z.B Neugeborene"	;
+#delimit cr
+	
+//Indices 
+	* 1) Metabolic Syndorme
+	qui gen Diag_metabolic_syndrome = 1 if (diagX == "E" & (diag00 ==11 | diag00 ==12)) // diabetes [HIER NUR TYP 2!!!]
+	qui replace Diag_metabolic_syndrome = 1 if (diagX == "I" & (diag00 == 10 | diag00 == 11 | diag00 == 13 | diag00 == 15)) //bluthochdruck
+	qui replace Diag_metabolic_syndrome = 1 if (diagX == "E" & (diag00 >= 65 & diag00 <= 68)) // Adipositas und übergewicht
+	qui replace Diag_metabolic_syndrome = 1 if (diagX == "I" & (diag00 >= 20 & diag00 <= 25)) //Ischämische Herzkrankheiten
+	* 2) Respiratory system
+	qui gen Diag_Index_respiratory = 1 if (diagX == "J" & (diag00 >= 40 & diag00 <= 47)) // Chron Entzündung untere Atemweg (inkl Asthma)
+	qui replace Diag_Index_respira = 1 if (diagX == "J" & (diag00 >= 20 & diag00 <= 22)) // akute Bronchitis
+	qui replace Diag_Index_respira = 1 if (diagX == "J" & (diag00 >= 12 & diag00 <= 18)) // Lungenentzündung
+		
+	*Einzeldiagnosen
+	qui gen Diag_symp_circ_resp = 1 if (diagX == "R" & (diag00 >= 00 & diag00 <= 09))
+	qui gen Diag_symp_verdauung = 1 if (diagX == "R" & (diag00 >= 10 & diag00 <= 19))
+	qui gen Diag_sonst_herzkrank = 1 if diagX == "I" & ((diag00>=30 & diag00<=33) | (diag00>=39 & diag00<=52))  
+	qui gen Diag_psych_drogen = 1 if (diagX == "F" & diag00==10) | (diagX == "T" & diag00==51) 
+	qui replace Diag_psych_drogen = 1 if (diagX == "F" & (diag00>= 11 & diag00<=19 & diag00 !=17) )	
+	
+%List of ICD-9 codes E and V codes: external causes of injury and supplemental classification
+\bottomrule % bottom thicker horizontal line (" rule ")
+\end{tabular}
+\begin{tablenotes}
+      \scriptsize{ \item \textit{Notes:} From European shortlist
+      International statistical classification of diseases and related health problems (ICD), medical classification list provided by the World Health Organisation.}
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
 
 
 
