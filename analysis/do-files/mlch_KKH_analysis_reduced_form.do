@@ -144,113 +144,122 @@ foreach var of varlist Diag_5 {
 
 
 
-// ************* Moving Averages ******************************************
+// ************* Moving Averages ***********************************************
+use "$temp/KKH_final_R1", clear
+drop if GDR == 1
+drop GDR
+
+/* System: 
+
+X_neu	  1		  2		  3		  4		|	  5		  6		  7		  8
+MOB		111201	120102	010203	020304	|	050607	060708	070809	080910
+MOB_a	010203	020304	...
+			auf letzten Monat 					auf ersten Monat averages legen
+			
+	- die neue X variable ist nur ein hypotheitsches Konstrukt
+	- es wird mit MOB_a erstellt
+	Genereller approach
+	qui gen num = . 
+	//erster Punkt: 
+	/*
+	qui gen temp = 1 if MOB_a == 1 | MOB_a == 2 | MOB_a == 3
+	qui bys control temp: egen temp2 = total(Diag_5)
+	qui replace num = temp2 if MOB_a == 3 
+	*/
+*/	
+
+	
+	
+// In Programm Struktur	
+capture program drop MA_3
+program define MA_3
+	qui gen `2' = . 
+	//erster Punkt: 
+	/*
+	qui gen temp = 1 if MOB_a == 1 | MOB_a == 2 | MOB_a == 3
+	qui bys control temp: egen temp2 = total(Diag_5)
+	qui replace num = temp2 if MOB_a == 3 
+	*/
+	
+	//General Problem:
+	*Pre-treatment
+	local j = 1
+	while `j' <= 4 {
+		capture drop temp*
+		qui gen temp = 1 if MOB_a == `j' | MOB_a == `j'+1 | MOB_a == `j'+2
+		qui bys control temp: egen temp2 = total(`1')
+		qui replace `2' = temp2 if MOB_a == `j'+2 
+		local j =`j'+1
+	}
+	*Post-treatment
+	local j = 5
+	while `j' <= 8 {
+		capture drop temp*
+		qui gen temp = 1 if MOB_a == `j' | MOB_a == `j'+1 | MOB_a == `j'+2
+		qui bys control temp: egen temp2 = total(`1')
+		qui replace `2' = temp2 if MOB_a == `j'+2 
+		local j =`j'+1
+	}
+	sort Datum
+end // end:programm	
+//numerators
+foreach var of varlist Diag_5
+	MA_3 `var' `var'_ma
+}
+
+//denominators
+MA_3 bev bev_ma
+MA_3 fert fert_ma
+
+// ratios bilden
+foreach var of varlist Diag_5 {
+	qui gen D5_pop = `var'_ma / bev_ma
+	qui gen D5_fert = `var'_ma / fert_ma
+}
+
+// semi new X variable - hat nur andere labels
+qui gen MOB_ma = MOB_al	
+#delimit ;
+	label define MOB_MA 
+	3 "11/12/01"
+	4 "12/01/02"
+	5 "01/02/03"
+	6 "02/03/04"
+	7 "05/06/07"
+	8 "06/07/08"
+	9 "07/08/09"
+	10 "08/09/10";
+#delimit cr
+label val MOB_ma MOB_MA
+
+
 *Ausgangsbasis: Code von RD_pooled
 *program define RD_pooled
-foreach 1 of varlist Diag_5_r2 {
+foreach 1 of varlist D5_pop  {
 	qui bys Datum control: egen AVRG_`1' = mean (`1') 
 	qui reg `1' NumX Num_after after if treat == 1
 	qui predict `1'_hat_linear_T
 	*qui reg `1' NumX Num_after after if control == 2
 	*qui predict `1'_hat_linear_C
 		
-	scatter AVRG_`1' MOB_altern if treat == 1, color(gs4) || ///
-		line `1'_hat_linear_T MOB_altern if after == 1, sort color(black) || ///
-		line `1'_hat_linear_T MOB_altern if after == 0, sort color(black) ///
-		scheme(s1mono )  title(" Pooled ") ///
+	scatter AVRG_`1' MOB_ma if treat == 1, color(gs4)  ///
+		scheme(s1mono )  title(" Moving averages ") ///
         xtitle("Birth month") ytitle(" `1' ") ///
         ylabel(#5,grid) ///
-		xlabel(1(2)12, val) xmtick(2(2)12) ///
-		legend(label(1 "Treatment") label(2 "Control ") label(3 "Linear fit") label(5 "Linear fit"))  legend(size(small)) ///
-		legend( order(1 2)) legend(pos(5) ring(0) col(2)) ///
+		xlabel(3(2)9, val) xmtick(4(2)10) ///
+		legend(off) ///
 		xline(6.5, lw(medthick ) lpattern(solid))
 	graph export "$graph/RD/R1_RD_pooled_CG_`1'.pdf", replace	
 	drop `1'_hat* AVRG*
+	
+	/*
+	|| ///
+		line `1'_hat_linear_T MOB_ma if after == 1, sort color(black) || ///
+		line `1'_hat_linear_T MOB_ma if after == 0, sort color(black)
+		*/
 }
+// *****************************************************************************
 	
-	//variable des MA konstruieren
-	capture drop bev_avrg
-	qui by Datum GDR: egen bev_summ = total(bev)
-	qui by Datum GDR: egen fert_summ = total(fert)
-	qui by Datum GDR: egen Diag_5_summ = total(Diag_5)
-	
-		
-	
-	bys Datum: gen temp = _n
-	gen n = _n
-	order temp
-	
-	
-	summ temp
-	global T = r(max)	
-	gen temp2 = sum(Diag_5)
-	
-	qui gen temp3 = .
-	qui replace temp3 = temp2 if ( n>=&T & n <= 2*$T)
-	
-	
-	order n temp* Datum Diag_5 bev Diag_5_summ MOB_altern bev bev_summ fert fert_summ  
-
-	
-	
-	
-/*	NICT MEHR BENÖTIGT
-	*hilfsvar MA(2month) & MA(3month)
-	qui gen aux_ma2 = .
-	qui replace aux_ma2 = 1 if (MOB_alt == 1 | MOB_alt == 2)
-	qui replace aux_ma2 = 2 if (MOB_alt == 2 | MOB_alt == 3)
-	qui replace aux_ma2 = 3 if (MOB_alt == 3 | MOB_alt == 4)
-	qui replace aux_ma2 = 4 if (MOB_alt == 4 | MOB_alt == 5)
-	qui replace aux_ma2 = 5 if (MOB_alt == 5 | MOB_alt == 6)
-	qui replace aux_ma2 = 6 if (MOB_alt == 7 | MOB_alt == 8)
-	qui replace aux_ma2 = 7 if (MOB_alt == 8 | MOB_alt == 9)
-	qui replace aux_ma2 = 8 if (MOB_alt == 9 | MOB_alt == 10)
-	qui replace aux_ma2 = 9 if (MOB_alt == 10 | MOB_alt == 11)
-	qui replace aux_ma2 = 10 if (MOB_alt == 11 | MOB_alt == 12)
-
-	*hilfsvar MA(3 month)
-	qui gen aux_ma3 = .
-	local j = 1
-	while `j' <=4 { 
-		qui replace aux_ma3 = `j' if (MOB_alt == `j' | MOB_alt == `j'+1 | MOB_alt == `j'+2)
-		local j = `j' + 1
-	}
-	local j = 5
-	while `j' <=8 {
-		qui replace aux_ma3 = `j' if (MOB_alt == `j'+2 | MOB_alt == `j'+3 | MOB_alt == `j'+4)
-		local j = `j' + 1
-	}
-*/	
-	
-//loop für generating MA (use MOB_altern) (zuerst mit fertility
-foreach 1 of var list Diag_5 {	
-	*2 month smoth
-	qui gen `1'_
-	*3 month smooth
-
-}
-	
-/* Controlgruppe
-scatter AVRG_`1' MOB_altern if control == 2, color(gs13) msymbol(Dh) || ///
-		line `1'_hat_linear_C MOB_altern if after == 1, sort lpattern(dash) color(gs13) || ///
-		line `1'_hat_linear_C MOB_altern if after == 0, sort lpattern(dash) color(gs13) || /// */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
