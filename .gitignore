@@ -76,3 +76,5 @@ ___*
 .env/installed_conda_pkgs
 .env/installed_pip_pkgs
 .env/installed_spec.json
+
+TeX/_paper/Korrekturen/
