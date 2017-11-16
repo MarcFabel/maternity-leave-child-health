@@ -146,10 +146,10 @@ label var Delivery "Obstructed labor & problems during delivery"
 	
 	
 	foreach var of varlist $total {
-		generate r_pop_`var' = `var' / bev
-		label var r_pop_`var' "Ratio: approx. (MZ + Regionalstatistik)"
-		generate r_fert_`var' = `var' / fert
-		label var r_fert_`var' "Ratio using number of births (destatis)"
+		generate r_pop_`var' = `var'*1000 / bev
+		label var r_pop_`var' "Ratio: approx. (MZ + Regionalstatistik); per thousand"
+		generate r_fert_`var' = `var'*1000 / fert
+		label var r_fert_`var' "Ratio using number of births (destatis); per thousand"
 	}
 		
 
