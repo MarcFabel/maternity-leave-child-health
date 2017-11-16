@@ -10,7 +10,7 @@
 *				$MZ/MOB_Distr_GDRFRG.csv
 * Outputs:		$temp\bevoelkerung_final.dta
 *
-* Updates:
+* Updates:		14.11.2017 Long format im letzten Schritt noch hinzugefügt (Ohne DDR)
 *
 *******************************************************************************/
 
@@ -24,6 +24,10 @@
 *	global path  	  "/Users/marcfabel/econ/m-l-c-h/analysis"					//Mac
 	global population "$path/source/population"
 	global temp  	  "$path/temp"	
+	
+*magic numbers
+	global first_year = 2005
+	global last_year  = 2013	
 // ***********************************************************************
 	
 
@@ -37,7 +41,7 @@
 
 *erst ab Welle 2003, frühere Jahre sind in der Regionalstatistik nicht verfügbar
 
-forvalues i = 2005(1)2013 {
+forvalues i = $first_year (1) $last_year {
 
 
 	import excel "$population/49 Bevoelkerung Altersjahre/Bevoelkerung_Altersjahre_Geschlecht `i'.xlsx", ///
@@ -112,7 +116,7 @@ forvalues i = 2005(1)2013 {
 	
 	*order lkrid lkr year 
 
-	if `i'==2005{
+	if `i'==$first_year{
 		save "$temp/bevoelkerung_prepare.dta", replace
 
 		}
@@ -218,8 +222,23 @@ forvalues i = 2005(1)2013 {
 	
 	merge 1:m MOB YOB GDR using "$temp/bevoelkerung_final"
 	drop _merge 
-	
 	save "$temp/bevoelkerung_final.dta", replace
+	
+////////////////
+//		Schritt 4: Bevoelkerung_final noch in long format abspeichern (nach gender)
+////////////////
+	*drop totals & ratios
+	qui drop fert bev ratio*
+	rename fertm fert0
+	rename fertf fert1
+	rename bevm bev0
+	rename bevf bev1
+	reshape long fert bev,i(YOB MOB GDR year) j(female)
+	*keep if GDR == 0
+	label define GENDER 0 "Male" 1 "Female"
+	label values female GENDER
+	
+	save "$temp/bevoelkerung_final_long.dta", replace
 
 	
 
