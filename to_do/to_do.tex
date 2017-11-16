@@ -7,6 +7,7 @@
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{color,soul}			% ermöglicht das highlighten von text
 \usepackage{hyperref}
+\usepackage{enumerate}
 \author{Marc Fabel}
 \title{To Do Liste}
 \date{\flushleft{Last revision of the document: \today}}
@@ -28,8 +29,8 @@ Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. & \checkmark \\
 %dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
 %IAB (Nürnberg) & 15.10. & 01-02 Februar 2018 \\
 SOLE (Toronto) & 31.10. & 04 \& 05 Mai 2018 & \checkmark \\
-IZA world labor (Berlin) & 15.11. & 28-29.06\\
-dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 \\ 
+IZA world labor (Berlin) & 15.11. & 28-29.06 & \checkmark\\
+dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 & \checkmark \\ 
 \hline 
 \end{tabular} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,7 +104,7 @@ with region $r$ at time $t$.
 \end{itemize}
 
 
-\item \textbf{Cost-Benefit Analysis [Rafael Lalive]}\newline Back-of-the-envelope calculation, welche Kosten werden dem Gesundheitssystem eingespaart durch X weniger Diagnosen von Y, in relation setzen zu was hat das damals gekostet. Argumentieren entlang der Linien von Hillary Hoynes: benefits materialize way later and in other dimensions which were early goals in mind
+\item \textbf{Cost-Benefit Analysis [Rafael Lalive]}\newline Back-of-the-envelope calculation, welche Kosten werden dem Gesundheitssystem eingespaart durch X weniger Diagnosen von Y, in relation setzen zu was hat das damals gekostet (kann man da die \textit{DRG} ausnützen?). Argumentieren entlang der Linien von Hillary Hoynes: benefits materialize way later and in other dimensions which were early goals in mind
 
 
 \item \textbf{KKH Daten Main Table}\newline dependent mean (sd) auf control anpassen
@@ -213,6 +214,15 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 	\item[-] Stäkrer auf die life-cycle Geschichte auslegen, da dies noch nicht Teil der Literatur ist [Anna Raute]
 \end{itemize}
 
+\item \textbf{Motivation im Paper:}
+\begin{itemize}
+	\item[-] Show relevance of certain diseases: 
+	\begin{enumerate}[(i)]
+	\item Overview table Diag X for 20-25 year olds over 1995-2014
+	\item Comparison with other EU States (EUROSTAT) or the US
+	\end{enumerate}
+\end{itemize}
+
 \item \textbf{Reading list:}
 \begin{itemize}
 	\item[-] Molly Schnell - The role of Physician Behavior in the Opiod Epidemic [EALE]\newline
@@ -247,6 +257,12 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 	\textit{
 	(i) noch fehlende Jahre beantragt (1995-2005 + 2014 $\rightarrow$ 20 Jahre) und (ii) neue Einzeldiagnosen: Metabolisches Syndrom, Index für Krankheiten des Atmungssystems und Verhaltensstörung aufrgund von Drogen (inklusive Alkohol\footnote{Für Alkohol alleine reichen die Fallzahlen nicht aus; muss dann am GWAP gemacht werden. Ist vielleicht aber auch das interessantere Maß.}. Dieses Mal habe ich mich nur auf die Reform 1 und nur auf Westdeutschland beschränkt; dafür aber pro Gescchlecht. Für eine etwaige DDD müssen wir dann auch an den GWAP. Das resultierende Panel hat 1,824 Beobachtungen.}\newline
 	\hl{Es gibt zwischen den ICD Kodierungen einen strukurellen Bruch: e.g. \texttt{scatter Diag\_Index\_resp year}} 
+	
+\item \textbf{Andere Datensätze, die nicht in Frage kommen:}	
+\begin{itemize}
+	\item[-] \textbf{pairfam:} \textit{sample of 12,402 randomly selected anchor persons of the three birth cohorts 1991-93, 1981-83, and 1971-73; no information about breastfeeding}
+	\item[-]
+\end{itemize}
 \end{itemize}
 
 
