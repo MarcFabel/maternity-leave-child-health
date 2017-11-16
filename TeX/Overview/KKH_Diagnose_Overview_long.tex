@@ -1,0 +1,123 @@
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass{scrartcl} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} % better control over placement of tables and figures in the text
+\usepackage{graphicx} % input of graphics
+\usepackage{xcolor} % advanced color package
+\usepackage{url, hyperref} % include (clickable) URLs
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} % better tables
+\usepackage{threeparttable}
+\renewcommand\TPTrlap{}
+        \renewcommand\TPTnoteSettings{%
+            \setlength\leftmargin{5pt}%  
+            \setlength\rightmargin{5pt}%
+          }
+
+\usepackage[center, format=plain, font=normalsize, nooneline, labelfont={bf}]{caption} % change format of captions of tables and graphs 
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\lb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}
+% optional argument: b = bottom or t= top alignment
+
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb} % more math symbols and commands
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/KKH/}}
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/KKH/}}
+
+
+
+
+
+
+%\newgeometry{
+%	top    = 3.5cm,
+%	bottom = 2cm,
+%	left   = 5.0cm,
+%	right  = 2.8cm}
+%	
+\author{Marc Fabel}
+\title{Overview of diagnoses outcomes}
+\date{Last revision of this document: \today} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN OF DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+This document contains the results from the data in long format, i.e. per gender.
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{temp}
+
+
+
+%\begin{table}[h]\centering
+%\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+%\begin{tabular}{l*{3}{c}|cccc}
+%\toprule
+%% &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)} \\ 
+%&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
+% \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
+% &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
+%\midrule 
+%\input{R1_Overvw_hospital_r}
+%\bottomrule
+%\end{tabular}
+%\end{table}
+%
+%
+%
+\begin{table}[h] % table environment for caption and label
+\begin{threeparttable}
+\centering % center the tabular
+\caption{Regression Output with \texttt {esttab}} % caption
+\label{table 1} % label to refer to it in the text
+\input{temp}
+\begin{tablenotes}
+    \item \scriptsize 
+\emph{Notes:} Data from STAR Experiment. Standard errors in parentheses. ***/**/* indicate significance at the 1\%/5\%/10\% level.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+
+
+\end{document}
