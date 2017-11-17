@@ -62,6 +62,7 @@
 
 
 
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
 
 
 %\newgeometry{
@@ -105,15 +106,33 @@ This document contains the results from the data in long format, i.e. per gender
 %
 %
 %
-\begin{table}[h] % table environment for caption and label
+\newpage
+hu
+\newpage
+%=============================================
+
+\begin{table}[H] % table environment for caption and label
 \begin{threeparttable}
 \centering % center the tabular
-\caption{Regression Output with \texttt {esttab}} % caption
+\caption{Robustness with respect to Inclusion of \texttt{fixed effects} and \texttt{covariates}} % caption
 \label{table 1} % label to refer to it in the text
 \input{temp}
 \begin{tablenotes}
     \item \scriptsize 
 \emph{Notes:} Clustered standard errors in parentheses. ***/**/* indicate significance at the 1\%/5\%/10\% level. Personal covariates contain age, age squared and a gender dummy. Ratios indicate cases per thousand; either approximated population or original number of births.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+%=============================================
+\begin{table}[H] % table environment for caption and label
+\begin{threeparttable}
+\centering % center the tabular
+\caption{Robustness with respect to the choice of \texttt{control group}} % caption
+\label{table 1} % label to refer to it in the text
+\input{D_5}
+\begin{tablenotes}
+    \item \scriptsize 
+\emph{Notes:} Clustered standard errors in parentheses. ***/**/* indicate significance at the 1\%/5\%/10\% level. All regressions contain Birthmonth FE. Ratios indicate cases per thousand; either approximated population or original number of births.
     \end{tablenotes}
   \end{threeparttable}
 \end{table}
