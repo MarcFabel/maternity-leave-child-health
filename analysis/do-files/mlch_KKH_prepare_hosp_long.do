@@ -31,7 +31,7 @@
 	
 	// in Frauendatensatz ein female dummy einfügen, dass auf diesen gemerged werden kann
 	use "$KKH/3_OstWest_Frauen_ohneJunge.dta", clear
-	qui gen female = 0
+	qui gen female = 1
 	save "$KKH/3-2_OstWest_Frauen_ohneJunge.dta", replace
 	
 	
