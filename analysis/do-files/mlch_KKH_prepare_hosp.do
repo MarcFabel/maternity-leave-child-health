@@ -298,7 +298,7 @@ order YOB MOB year GDR reform fert bev length_of_stay summ_stay share_surgery  	
 	foreach var of varlist $female {
 		generate r_pop_`var'_f = `var'_f*1000 / bevf
 		label var r_pop_`var'_f "Ratio: approx. (MZ + Regionalstatistik); per thousand"
-		generate r_fert_`var'_f = `var'*1000 / fertf
+		generate r_fert_`var'_f = `var'_f*1000 / fertf
 		label var r_fert_`var'_f "Ratio using number of births (destatis); per thousand"
 	}
 	
@@ -317,9 +317,9 @@ order YOB MOB year GDR reform fert bev length_of_stay summ_stay share_surgery  	
 	*rausgenommen: Share_OP_m DurschnVerweildauer_m
 	
 	foreach var of varlist $male {
-		generate r_pop_`var'_m = `var'*1000 / bevm
+		generate r_pop_`var'_m = `var'_m*1000 / bevm
 		label var r_pop_`var'_m "Ratio: approx. (MZ + Regionalstatistik); per thousand"
-		generate r_fert_`var'_m = `var'*1000 / fertm
+		generate r_fert_`var'_m = `var'_m*1000 / fertm
 		label var r_fert_`var'_m "Ratio using number of births (destatis); per thousand"
 	}
 	
