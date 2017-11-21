@@ -222,7 +222,7 @@ label var Delivery "Obstructed labor & problems during delivery"
 	replace MOB_ma = . if MOB_ma == 1 | MOB_ma == 2 | MOB_ma == 11 | MOB_ma == 12
 	
 	
-	save "$temp\KK_final_allreforms_incl_GDR", replace
+	save "$temp\KK_final_allreforms_incl_GDR_long", replace
 	
 ////////////////////////////////////////////////////////////////////////////////////////
 //5. IN REFORMEN ABSPEICHERN
