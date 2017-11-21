@@ -171,20 +171,7 @@
 	
 	
 	
-////
-*Koeffizienten, die sich nicht verändern
-DDRD a1 D_5 "i.MOB						  " "if $C2 & $M2" 
-DDRD a4 `1' "i.MOB i.year $controlvars" "if $C2 & $M2"
 
-
-*problem in den faktorvariablen
-
-forvalues i = 1(1)12 {
-	D_MOB = 1 if MOB == `i'
-}
-
-
-/////	
 	
 	
 	
