@@ -1,30 +1,43 @@
-/* Regression Analysis
+/*******************************************************************************
+* File name: 	mlch_KKH_analysis_regression_long
+* Author: 		Marc Fabel
+* Date: 		21.11.2017
+* Description:	Regression analysis 
+*				
+*				
+*				
+*
+* Inputs:  		$temp\KKH_final_R1_long
+*				
+* Outputs:		$graphs/
+*				$tables/
+*
+* Updates:		
+*
 
-	version 2: änderung der Variablennamen
-	version 3 fügt in der Tabelle auch ncoh verschiedene bandwidths ein			26.08.2017
-
-*/
-
-
-
-***********************************************
-	*** PREAMBLE ***
-***********************************************
+*******************************************************************************/
+// ***************************** PREAMBLE********************************
 	clear all
 	set more off
 	
-	global path "F:\KKH_Diagnosedaten\analyse_local"
-	global temp  "$path\temp"
-	//ENTSPRECHEN MOMENTAN NUR DUMMYDATEN
-	*global KKH "F:\KKH_Diagnosedaten\analyse_local\source" 
-	global graphs "$path\graphs"
-	global tables "$path\tables"
+	global path   "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	
+	global temp   "$path/temp"
+	global graphs "$path/graphs/KKH"
+	global tables "$path/tables/KKH"
+	
+	*magic numbers
+	global first_year = 2005
+	global last_year  = 2013
+	
+	*checkmark
+	global check "\checkmark" // können auch andere Zeichen benutzt werden, eg Latex \checkmark
+// ***********************************************************************
+
 	
 ////////////////////////////////////////////////////////////////////////////////
 						*** Regression Analysis ***
 ////////////////////////////////////////////////////////////////////////////////
 	use "$temp\KKH_final_R1", clear
-	drop if FRG == 0
 	
 	*rausgenommen: gender
 
@@ -34,15 +47,21 @@
 		agesq;
 	#delimit cr
 	
-	foreach x of numlist 2005 (1) 2013 {
-		capture drop Dy`x'
-		qui gen Dy`x' = 1 if year == `x'
-		qui replace Dy`x' = 0 if year != `x'
-	}
 
 	rename NumX Numx
 	rename NumX2 Numx2
 	rename NumX3 Numx3
+	
+	//Important globals
+	* List of control groups
+	global C2    = "(control == 2 | control == 4)"
+	global C1_C2 = "control != 3"
+	
+	* Bandwidths (sample selection)
+	global M2 = "(Numx >= -2 & Numx <= 2)"
+	global M4 = "(Numx >= -4 & Numx <= 4)"
+	global MD = "(Numx != -1 & Numx != 1)"
+
 
 
 ********************************************************************************
@@ -58,8 +77,13 @@
 
 	capture program drop DDRD
 	program define DDRD
+		qui eststo `1': reg `2' treat after TxA   `3'  `4', vce(cluster MxY) 
+	end
+	/* OLD VERSION 
+	program define DDRD
 		qui eststo: reg `1' treat after TxA Dmon*  `2'  `3', vce(cluster MxY) 
 	end
+	*/
 	
 	
 	

@@ -11,7 +11,7 @@
 *				
 * Outputs:		$temp\KKH_final_R1
 *
-* Updates:
+* Updates:		14.11.2017 Raw format für Moving averages
 *
 * Notes: For the moment I do everything for Daignosis number 5
 *				Variable MOB_altern muss in prepare geschoben werden
@@ -218,19 +218,7 @@ foreach var of varlist Diag_5 {
 }
 
 // semi new X variable - hat nur andere labels
-qui gen MOB_ma = MOB_al	
-#delimit ;
-	label define MOB_MA 
-	3 "11/12/01"
-	4 "12/01/02"
-	5 "01/02/03"
-	6 "02/03/04"
-	7 "05/06/07"
-	8 "06/07/08"
-	9 "07/08/09"
-	10 "08/09/10";
-#delimit cr
-label val MOB_ma MOB_MA
+
 
 
 *Ausgangsbasis: Code von RD_pooled
