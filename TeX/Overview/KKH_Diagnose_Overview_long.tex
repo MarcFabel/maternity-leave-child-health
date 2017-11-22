@@ -86,57 +86,70 @@ This document contains the results from the data in long format, i.e. per gender
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{temp}
-
-
-
-%\begin{table}[h]\centering
-%\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-%\begin{tabular}{l*{3}{c}|cccc}
-%\toprule
-%% &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)} \\ 
-%&\multicolumn{3}{c}{bandwidth of 6 months} & \multicolumn{4}{c}{different bandwidths} \\
-% \cmidrule(lr{1em}){2-4} \cmidrule(lr{1em}){5-8}
-% &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}& 1 Month & 2 Months & 4 Months & 6M \& Donut \\
-%\midrule 
-%\input{R1_Overvw_hospital_r}
-%\bottomrule
-%\end{tabular}
-%\end{table}
-%
-%
-%
-\newpage
-hu
-\newpage
-%=============================================
-
-\begin{table}[H] % table environment for caption and label
-\begin{threeparttable}
-\centering % center the tabular
-\caption{Robustness with respect to Inclusion of \texttt{fixed effects} and \texttt{covariates}} % caption
-\label{table 1} % label to refer to it in the text
-\input{temp}
-\begin{tablenotes}
-    \item \scriptsize 
-\emph{Notes:} Clustered standard errors in parentheses. ***/**/* indicate significance at the 1\%/5\%/10\% level. Personal covariates contain age, age squared and a gender dummy. Ratios indicate cases per thousand; either approximated population or original number of births.
-    \end{tablenotes}
-  \end{threeparttable}
-\end{table}
-%=============================================
-\begin{table}[H] % table environment for caption and label
-\begin{threeparttable}
-\centering % center the tabular
-\caption{Robustness with respect to the choice of \texttt{control group}} % caption
-\label{table 1} % label to refer to it in the text
-\input{D_5}
-\begin{tablenotes}
-    \item \scriptsize 
-\emph{Notes:} Clustered standard errors in parentheses. ***/**/* indicate significance at the 1\%/5\%/10\% level. All regressions contain Birthmonth FE. Ratios indicate cases per thousand; either approximated population or original number of births.
-    \end{tablenotes}
-  \end{threeparttable}
-\end{table}
-
+\section{Meta Daten}
+%=========================================
+\input{summ_stay}
+\input{summ_stay-cg}
+%=========================================
+\input{hospital}
+\input{hospital-cg}
+%=========================================
+\section{Hauptdiagnosekapitel}
+\input{d1}
+\input{d1-cg}
+%=========================================
+\input{d2}
+\input{d2-cg}
+%=========================================
+\input{d5}
+\input{d5-cg}
+%=========================================
+\input{d6}
+\input{d6-cg}
+%=========================================
+\input{d7}
+\input{d7-cg}
+%=========================================
+\input{d8}
+\input{d8-cg}
+%=========================================
+\input{d9}
+\input{d9-cg}
+%=========================================
+\input{d10}
+\input{d10-cg}
+%=========================================
+\input{d11}
+\input{d11-cg}
+%=========================================
+\input{d12}
+\input{d12-cg}
+%=========================================
+\input{d13}
+\input{d13-cg}
+%=========================================
+\input{d17}
+\input{d17-cg}
+%=========================================
+\input{d18}
+\input{d18-cg}
+%=========================================
+\section{Einzeldiagnosen}
+\input{injuries}
+\input{injuries-cg}
+%=========================================
+\input{neurosis}
+\input{neurosis-cg}
+%=========================================
+\input{joints}
+\input{joints-cg}
+%=========================================
+\input{kidneys}
+\input{kidneys-cg}
+%=========================================
+\input{bile_pancreas}
+\input{bile_pancreas-cg}
+%=========================================
 
 
 \end{document}
