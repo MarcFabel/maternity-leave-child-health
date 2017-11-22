@@ -1,0 +1,7 @@
+ \begin{table}[H] \begin{threeparttable} \centering \caption{Robustness with respect to the inclusion of \texttt{fixed effects} and \texttt{covariates}} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} \begin{tabular}{l*{7}{c}} \toprule & \multicolumn{6}{c}{Dependent variable: \textbf{Diseases of the nervous system}} \\ \cmidrule(lr){2-7}
+            &\multicolumn{4}{c}{Average Causal Effects}         &\multicolumn{2}{c}{Heterogeneous Causal Effects}\\\cmidrule(lr){2-5}\cmidrule(lr){6-7}
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+            &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Women}&\multicolumn{1}{c}{Men}\\
+\midrule
+ \multicolumn{7}{l}{\emph{Panel A. 2 Month bandwidth}} \\ \input{d62Ma} \input{d62Mb} \input{d62Mc} \midrule\multicolumn{7}{l}{\emph{Panel B. 4 Month bandwidth}} \\ \input{d64Ma} \input{d64Mb} \input{d64Mc} \midrule\multicolumn{7}{l}{\emph{Panel C. 6 Month bandwidth}} \\ \input{d66Ma} \input{d66Mb} \input{d66Mc} \midrule\multicolumn{7}{l}{\emph{Panel D. Donut specification}} \\ \input{d6DMa} \input{d6DMb} \input{d6DMc} \midrule \input{d6checks} 
+\bottomrule \end{tabular} } \begin{tablenotes} \item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. Personal covariates contain age and age squared. Ratios indicate cases per thousand; either approximated population or original number of births. \end{tablenotes} \end{threeparttable} \end{table} 
