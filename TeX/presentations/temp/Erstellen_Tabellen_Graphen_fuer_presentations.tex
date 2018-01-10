@@ -1,0 +1,89 @@
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass{scrartcl} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+%\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} % better control over placement of tables and figures in the text
+\usepackage{graphicx} % input of graphics
+\usepackage{xcolor} % advanced color package
+\usepackage{url, hyperref} % include (clickable) URLs
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} % better tables
+\usepackage{threeparttable} % add notes below tables
+
+\renewcommand\TPTrlap{}		% add margins on the side of the notes
+\renewcommand\TPTnoteSettings{%
+\setlength\leftmargin{5 pt}%
+\setlength\rightmargin{5 pt}%
+}
+\usepackage[center, format=plain, font=normalsize, nooneline, labelfont={bf}]{caption} % change format of captions of tables and graphs 
+
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts} % more math symbols and commands
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+
+
+\usepackage[left=1cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+%--------------------------------------------------------------------
+%	AUTHOR & TITLE
+%--------------------------------------------------------------------
+\author{Natalia Danzer \& Marc Fabel}
+\title{Erstellen von Tabellen und Co für Präsentationen}
+
+%--------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%--------------------------------------------------------------------
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+ \begin{table}[H]
+ \begin{threeparttable} \centering 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ 
+ %\sym{***}
+
+\begin{tabular}{lccc}
+\toprule
+&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+\textbf{Dependent variable} & Metabolic Syndrome & Respiratory System & Mental and behavioral disorders \\ 
+\midrule
+\\
+(1) {total} & 0.0308 & -0.0475\sym{**} & -0.219 \\ 
+  & (0.0180) & (0.0209) & (0.170) \\ 
+(2) {female} & 0.0152 & -0.0899\sym{***} & 0.292 \\  
+ & (0.0285) & (0.0307) & (0.172) \\ 
+(3) {male} & 0.0453 & -0.00710 & -0.703\sym{***} \\ 
+& (0.0339) & (0.0299) & (0.211) \\
+\midrule
+Dependent mean (sd)&	1.3797	& 0.8365 & 13.4485 \\
+& (0.5262) 		& (0.1761) & (3.5677) \\
+Number of diagnoses  \\
+(for total)& 35,203 & 31,925 & 434,292 \\
+\bottomrule
+\end{tabular}}
+\begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} \end{threeparttable} \end{table} 
+
+
+
+
+\end{document}
