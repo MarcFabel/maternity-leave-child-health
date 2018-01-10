@@ -1,0 +1,128 @@
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass[11pt, a4paper]{scrartcl} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+%\usepackage[left=3cm,right=3cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} 	% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} 			% better control over placement of tables and figures in the text
+\usepackage{graphicx} 		% input of graphics
+\usepackage{xcolor} 		% advanced color package
+\usepackage{url, hyperref} 	% include (clickable) URLs
+\usepackage{pdfpages}		% insert pages of external pdf documents
+\usepackage{rotating}		% rotating figures & tables
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{tabularx}		% modifies width of certain columns
+\usepackage{threeparttable}
+\renewcommand\TPTrlap{}
+        \renewcommand\TPTnoteSettings{%
+            \setlength\leftmargin{5pt}%  
+            \setlength\rightmargin{5pt}%
+          }
+
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis
+
+\usepackage[
+singlelinecheck=on
+]{subcaption}%both together help to have subfigures
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\lb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}
+% optional argument: b = bottom or t= top alignment
+
+\usepackage{wrapfig}				% wrap text around figure
+
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb} % more math symbols and commands
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/KKH/}}	%PATH TO TABLES
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/KKH/}}		% PATH TO GRAPHS
+
+%--------------------------------------------------------------------
+%	LAYOUT
+%--------------------------------------------------------------------
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+
+%--------------------------------------------------------------------
+%	TITLE INFORMATION
+%--------------------------------------------------------------------
+\author{Marc Fabel}
+\title{Summary of Overview}
+\date{Last revision of this document: \today} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN OF DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+This document contains overview of results for different variables. Long means here for the moment that the analysis is deeper than in the previous overview document.
+
+\begin{landscape}
+\input{summ_stay_ttest_overview.tex}
+\input{hospital_ttest_overview.tex}
+\input{d1_ttest_overview.tex}
+\input{d2_ttest_overview.tex}
+\input{d5_ttest_overview.tex}
+\input{d6_ttest_overview.tex}
+\input{d7_ttest_overview.tex}
+\input{d8_ttest_overview.tex}
+\input{d9_ttest_overview.tex}
+\input{d10_ttest_overview.tex}
+\input{d11_ttest_overview.tex}
+\input{d12_ttest_overview.tex}
+\input{d13_ttest_overview.tex}
+\input{d17_ttest_overview.tex}
+\input{d18_ttest_overview.tex}
+\input{metabolic_syndrome_ttest_overview.tex}
+\input{respiratory_index_ttest_overview.tex}
+\input{drug_abuse_ttest_overview.tex}
+\input{heart_ttest_overview.tex}
+\end{landscape}
+
+
+\end{document}
