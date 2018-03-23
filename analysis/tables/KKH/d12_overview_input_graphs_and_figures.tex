@@ -59,7 +59,33 @@
 	\includegraphics[width=.97\linewidth]{lc_d12_overview_panel5}
 	\includegraphics[width=.97\linewidth]{lc_d12_overview_panel6}
 \end{figure}
+% Life-course TABLE Format
+\input{d12_LC_agegroups.tex}
 %---------------------------------
+% PLACEBO EXERCISES
+\newpage
+\begin{landscape}
+\begin{figure}[H]
+	\centering
+    \begin{minipage}{.9\linewidth}
+	\includegraphics[width=\linewidth]{placebo_graph_d12.pdf}
+    {\scriptsize \emph{Notes:} The figures depict DDRD estimates and 95\% confidence intervals when the treatment cohort is shifted over time. The date on the abscissa indicates the starting date of the treated.  All regressions are carried out with month-of-birth FE and make use of clustered standard errors. Furthermore, we used a bandwidth of half a year. Ratios indicate cases per thousand; using in the denominator the approximated population (with weights coming from the original fertility distribution) or original number of births. \par}
+    \end{minipage}
+\end{figure}
+\end{landscape}
+\input{d12_placebo1.tex}
+\input{d12_placebo2.tex}
+\input{d12_placebo3.tex}
+%---------------------------------
+% CUMMULATIVE APPROACH
+\begin{landscape}
+\input{d12_DDRD_cummulapproach.tex}
+\end{landscape}
+\begin{landscape}
+\input{d12_DDRD_cummulapproach_boot.tex}
+\end{landscape}
+%---------------------------------
+\newpage
 FEBRUAR CASES:
 \input{d12_TG_cases_per_MOB_year.tex}
 \input{d12_differenced_cases_per_MOB_year.tex}
