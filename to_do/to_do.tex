@@ -25,42 +25,47 @@
 \hline 
 Event & deadline & time	& eingereicht \\ 
 \hline 
-Royal Economic Society (Sussex) &  08.10.     &26.03. - 28.03. & \checkmark \\
-%dggö health econometrics workshop & 15.10. & 07 \& 08 Dezember 2017 \\ 
-%IAB (Nürnberg) & 15.10. & 01-02 Februar 2018 \\
-SOLE (Toronto) & 31.10. & 04 \& 05 Mai 2018 & \checkmark \\
 IZA world labor (Berlin) & 15.11. & 28-29.06 & \checkmark\\
-dggö Tagung (Hamburg)& 15.11. & 05 \& 06 März 2018 & \checkmark \\ 
-RES Symposium of Junior Researchers & 19.01. & 29.03.18 \\
 \hline 
 \end{tabular} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newline
 
 \bigskip
-\textbf{Kleine To-Do Liste:}
+\section{Kleine To-Do Liste:}
 \begin{itemize}
-	\item[-] Letzte Dimension einfügen, bisher in Overview 4 Dimensionen (BW, different concepts of variable, FE, covariates) $\rightarrow$ choice of control group
-	\item[-] Do-files von generated variables reinigen $\rightarrow$ in prepare Teil auslagern
-	\item[-] Kein hard Coding (Life Course approach) $\rightarrow$ magic numbers
+	\item[-] \textbf{GWAP}
+	\begin{itemize}
+		\item[-] Motivation: 
+		\begin{itemize}
+		\item accumulated level: smaller diagnoses groups, other types of robutsness (GDR)
+		\item lower regional level: increased power, heterogeneity analysis (ML approach such as causal forests),heteterogeneity rural/urban (Zuordnung BBSR) , weighting according to population size, use regional FE
+		\end{itemize}
+		
+		\item[-] erst quick'n dirty irgendwie, dann auf AMR (2 files wichtig\footnote{siehe Email Natalia 22.03.2018, "G:\textbackslash Projekte\textbackslash Projekte\_ab2016\textbackslash EcUFam\textbackslash Daten\textbackslash Arbeitsmarktregionen"})
+		
+		\item[-] robustness: is the effect present for all AMR, states, und co. (i) for each or (ii) leave one out
+		
+		\item[-] development cases per thousand for different age groups over time, e.g. the number of cases for 17-21 year olds in 1995, 1996, ... $\rightarrow$ why does the differential increase?
+	\end{itemize}
+
+\item[-] \textbf{Local Files}
+\begin{itemize}
+	\item[-] think about \textbf{bootstrapping} of standard errors/ does it make sense? What is with se correction in the spirit of BDM (2004,QJE) oder CGM (2008,REStat)
+	\item[-] add line in life-course (graph \& table): how many cases per thousand, why does the differenital increase? Graph im Vergleich zum Verlauf des means zeigen
+	
+	\item[-] robustness: drop February
+	
+	\item[-] \textbf{FLFP:} MZ SUF/PUF/stat. Jahrbücher
+	
+	\item[-] Adapt Table with choice of CG, more columns that are associated with only C1 as C3 is per se unintersting (see comments Natalia made in pdf)
+\end{itemize}	
 \end{itemize}
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{More long-term things}
 \begin{enumerate}
-
 \item \textbf{Pooling}:\newline Ist das  überhaupt in Ordnung? Impliziert, dass die Effekte über die Jahre diesselben sind. Alternativ: für ausgewählte	Jahre zeigen
-
-
-\item \textbf{Outcomes: }\vspace{-1em}
-\begin{itemize}
-	\item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE 	Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
-\end{itemize}
 
 
 \item \textbf{Identification:}\vspace{-1em}
@@ -74,12 +79,11 @@ RD graphs:\vspace{-1em}
 \begin{enumerate}
 	\item treat und control in einem graph
 	\item pro Jahr
-	\item mit absoluten Zahlen
-	\item mit ratios, die im Nenner die ursprünglichen Geburtszahlen beinhalten
-	\item \hl{'moving averages'}
 	\item synthetic control groups
 	\item nonparametric ? 
 	\item with residuals ? 
+	\item in sd units 
+	\item for difference TG-CG
 \end{enumerate}
 
 
@@ -135,8 +139,7 @@ Unterschied pre/post cutoff, zumindest im descriptive teil
 
 \item \textbf{robustness section:}\vspace{-1em}
 \begin{itemize}
-	\item[-] ratios mit den approx. Bevölkerungszahlen aus dem MZ oder Zensus 2011 ( bisher applied: Gewichte aus der Geburtenstatistik - da mehr Jahres zur Verfügung stehen). fight potential threat of different migration or mortality around threshold.
-	\item[-] cummulativ fälle im Zähler (über alle jahre) und people born, 
+	\item[-] ratios mit den approx. Bevölkerungszahlen aus dem MZ oder Zensus 2011 ( bisher applied: Gewichte aus der Geburtenstatistik - da mehr Jahres zur Verfügung stehen). fight potential threat of different migration or mortality around threshold. 
 \end{itemize}
 
 
@@ -144,9 +147,6 @@ Unterschied pre/post cutoff, zumindest im descriptive teil
 \begin{itemize}
 	\item[-]andere Spezifikation: pooled lassen und nicht auf das Alter beschränken sondern 	vielmehr den ITT mit year dummies interagieren: \newline
 	$\gamma\  treat \times after \times yeardummy$
-	\item[-] nicht über survey jahr sondern Alter der patienten $\rightarrow$ treatment und control 	group sollten gleich alt sein
-	\item[-] in Gruppen zusammenfassen (e.g. 26-29 Jahre, 30-33, 33-36)
-	\item[-] bei mental \& behavioral disorders: Graph im Vergleich zum Verlauf des means zeigen; 	erst bei mehreren Diagnosen wird die ganze Sache wichtig und $Diag\_5 = f(t)$ [Anna Raute]
 \end{itemize}
 
 
@@ -246,7 +246,7 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 \bigskip
 
 \label{DONE}
-\textbf{List of things that were done already: }
+\section{List of things that were done already: }
 \begin{itemize}
 \item \textbf{Outcomes: }\vspace{-1em}
 	\begin{itemize}
@@ -270,7 +270,10 @@ Look up: does reform induce substitution for \textbf{formal/informal} care? [Ver
 
 
 
-
+%\item \textbf{Outcomes: }\vspace{-1em}
+%\begin{itemize}
+%	\item[-] HC index \newline read up in Bailey, Rossin-Slater, Walker and Hoynes (WIP) [EALE 	Keynote HH] enthält: complete schooling, professional degree, professional occupation,...
+%\end{itemize}
 
 
 
