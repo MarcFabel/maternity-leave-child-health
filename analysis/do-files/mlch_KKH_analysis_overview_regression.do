@@ -24,6 +24,8 @@
 	global temp   "$path/temp"
 	global graphs "$path/graphs/KKH"
 	global tables "$path/tables/KKH"
+	global auxiliary "$path/do-files/auxiliary_files"
+
 	
 	*magic numbers
 	global first_year = 1995
@@ -39,28 +41,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 	use "$temp\KKH_final_R1", clear
 	
-	*rausgenommen: gender
+	run "$auxiliary/varlists_varnames_sample-spcifications"
 
-	#delimit ;
-	global controlvars 
-		age
-		agesq;
-	#delimit cr
-	
-
-	rename NumX Numx
-	rename NumX2 Numx2
-	rename NumX3 Numx3
-	
-	//Important globals
-	* List of control groups
-	global C2    = "(control == 2 | control == 4)"
-	global C1_C2 = "control != 3"
-	
-	* Bandwidths (sample selection)
-	global M2 = "(Numx >= -2 & Numx <= 2)"
-	global M4 = "(Numx >= -4 & Numx <= 4)"
-	global MD = "(Numx != -1 & Numx != 1)"
 
 	
 
@@ -85,121 +67,6 @@
 		qui eststo: reg `1' treat after TxA Dmon*  `2'  `3', vce(cluster MxY) 
 	end
 	*/
-********************************************************************************	
-	// globals definieren für überschrift in den Tabellen
-	global length_of_stay		"Average length of stay"
-	global summ_stay			"Accumulated length of stay"
-	global share_surgery		"Share with surgery"
-	global hospital				"Hospital admission"
-	global d1					"Certain infectious and parasitic diseases"
-	global d2					"Neoplasms"
-	global d5					"Mental and behavioral disorders"
-	global d6 					"Diseases of the nervous system"
-	global d7 					"Diseases of the eye and ear"
-	global d8 					"Diseases of the circulatory system"
-	global d9 					"Diseases of the respiratory system"
-	global d10 					"Diseases of the digestive system"
-	global d11 					"Diseases of the skin and subcutaneous tissue"
-	global d12 					"Diseases of the musculoskeletal system and connective tissue"
-	global d13 					"Diseases of the genitourinary system"
-	global d17 					"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"
-	global d18 					"External causes of morbidity and mortality"
-	
-	global metabolic_syndrome 	"Incidence of metabolic Syndrome"	
-	global respiratory_index 	"Index respiratory system"
-	global drug_abuse 			"Psychoactive substance abuse"
-	global heart				"Non-ischemic heart diseases"
-		
-	global injuries 			"Injuries"
-	global neurosis 			"Neurosis"
-	global joints 				"Disease of the joints"
-	global kidneys 				"Diseases of the kidneys"
-	global bile_pancreas		"Diseases of the bile and pancreas"
-		
-	global d14 					"Pregnancy, childbirth and the puerperium"
-	global female_genital_tract	"Non-inflammatory diseases of the female genital tract"
-	global pregnancy			"Diseases of the mother, associated with the pregnancy"
-	global delivery 			"Obstructed labor \& problems during delivery"
-	
-	global stomach				"Diseases of the stomach"
-	global symp_dig_system		"Symptoms of the digestive system"
-	global mal_neoplasm			"Malignant neoplasm"
-	global ben_neoplasm			"Benign neoplasm"
-
-	global depression			"Depression"
-	global personality			"Personality and behavioral disorder"
-	global lymphoma				"Diseases of the blood \& lymphatic vessels"
-	global symp_resp_system		"Symptoms of the respiratory \& circulatory system"
-	global calculi				"Renal insufficiency (Calculi)"
-********************************************************************************
-// Liste erstellen; variablen die per gender sind und bei denen ratios existierenh
-#delimit ;
-global list_vars_mandf_ratios_available "
-	summ_stay		
-	hospital			
-	d1				
-	d2				
-	d5				
-	d6 				
-	d7 				
-	d8 				
-	d9 				
-	d10 					
-	d11 					
-	d12 					
-	d13 					
-	d17 					
-	d18
-	
-	metabolic_syndrome 
-	respiratory_index 
-	drug_abuse 
-	heart
-		
-	injuries 			
-	neurosis 			
-	joints 				
-	kidneys 				
-	bile_pancreas";
-#delimit cr
-*not contained:
-
-
-global list_vars_mandf_no_ratios "length_of_stay share_surgery"
-
-
-
-#delimit ;
-global list_vars_total_ratios_available "
-	d14 					
-	female_genital_tract	
-	pregnancy			
-	delivery 			
-	
-	stomach				
-	symp_dig_system		
-	mal_neoplasm			
-	ben_neoplasm				
-	depression			
-	personality			
-	lymphoma				
-	symp_resp_system		
-	calculi	";
-#delimit cr
-
-			
-////// to add in latex
-foreach var of varlist $list_vars_mandf_ratios_available {
-	display"\textbf{Variable: \color{darkblue}$`var' ($varname_`var')}"
-	display"\input{`var'_DDRD_overview_covars}"
-	display"\input{`var'_DDRD_overview_cg}"
-	display"%========================================="
-}
-//// generate table containing variable name and label
-foreach var of varlist $list_vars_total_ratios_available {
-	display"$varname_`var'	&	$`var' \\"
-}
-
 
 
 /*
@@ -207,19 +74,263 @@ INSGESAMMT 6 PROGRAMME
 */
 
 
+********************************************************************************	
 /// Accumulated variables
+rename fertm fert_m
+rename fertf fert_f
+
 *generate variable
-foreach 1 of varlist d5 {
-	capture drop `1'_cum r_cum_`1'
-	sort Datum year
-	by Datum: gen `1'_cum = sum(`1')
-	gen r_cum_`1' = `1'_cum*1000 / fert
-	
-	*graph for TG & CG
-	sort year Datum
+foreach 1 of varlist $list_vars_mandf_ratios_available {
+	capture drop cum_`1'* r_cum_`1'*
+	foreach j in "" "_f" "_m"{
+		sort Datum year
+		by Datum: gen cum_`1'`j' = sum(`1'`j')
+		gen r_cum_`1'`j' = cum_`1'`j'*1000 / fert`j'
+		
+		
+	}
  }
 	
-order Datum YOB MOB year fert d5 d5_cum r_cum_d5
+********************************************************************************	
+//graph for TG & CG
+	sort year Datum
+	*averages for cumulative numbers: 
+	capture drop av_cum_d5
+	bys year after control: egen av_cum_d5 = sum(cum_d5)
+	*differences post- pre
+	keep if control == 2 | control == 4
+	sort year control after MOB_alt
+	qui gen diff_av_cum_d5 = av_cum_d5[_n] - av_cum_d5[_n-1] if MOB[_n] == 5 
+	foreach 1 of varlist d5 {
+		twoway line av_cum_`1' year if control == 2 & after == 0, yaxis(1) lpattern(dash)  lcolor(cranberry%50) || ///
+		line av_cum_`1' year if control == 2 & after == 1, yaxis(1) lpattern(solid) lcolor(cranberry%50) || ///
+		line av_cum_`1' year if control == 4 & after == 0, yaxis(1) lpattern(dash) lcolor(black%80) || ///
+		line av_cum_`1' year if control == 4 & after == 1, yaxis(1) lcolor(black%80) || ///
+		line diff_av_cum_`1' year if control == 2, yaxis(2) lcolor(cranberry%20) || ///
+		line diff_av_cum_`1' year if control == 4, yaxis(2) lcolor(black%20) ///
+		scheme(s1mono) legend(label( 1 "CG pre") label(2 "CG post") label(3 "TG pre") label(4 "TG post") ///
+		label(5 "Δ CG") label(6 "Δ TG")) ///
+		legend(size(small)) legend(rows(1)) ///
+		ytitle("accumulated numbers of diagnoses", axis(1)) ytitle("Differences: post-pre", axis(2)) 
+	}
+
+order diff_av Datum YOB MOB year after control fert d5 cum_d5 av_cum r_cum_d5 fert_m cum_d5_m r_cum_d5_m
+********************************************************************************	
+* Februarfälle - Tabelle 
+/*	     MOB
+--------------
+year|*/
+
+*keep just two relevant cohorts!
+keep if control == 2 | control == 4 // crucial for sorting later on (step2)
+
+
+//1) just treatmentgroup
+mat A = J(20,12,.)
+
+foreach 1 of varlist $list_vars_mandf_ratios_available {
+	local j = 1
+	foreach y of numlist 1995/2014 {
+		foreach m of numlist 1/12 {
+			qui summ `1' if control == 2 & MOB_altern == `m' & year == `y'
+			mat A[`j',`m'] = r(mean)
+		} //end:loop over months
+		local j = `j' + 1
+	} // end:loopover years
+	matrix rownames A = 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014	
+	esttab m(A) using "$tables/`1'_TG_cases_per_MOB_year.tex",collabels(11 12 1 2 3 4 5 6 7 8 9 10 ) plain nomtitles replace ///
+		prehead( ///
+			\begin{table}[H]  ///
+				\begin{threeparttable} ///
+				\centering  ///
+				\caption{Dep. variable: \textbf{$`1'}} ///
+				{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} ///
+				\begin{tabular}{l*{@span}{c}} \toprule ///
+				year & \multicolumn{12}{c}{Month of birth} \\ \cmidrule(lr){2-13} ///
+		) ///
+		postfoot( \bottomrule \end{tabular} } ///
+			\begin{tablenotes} ///
+			\item \scriptsize ///
+			\emph{Notes:} Number of cases per year and MOB in treatment cohort.   ///
+			\end{tablenotes} ///
+			\end{threeparttable} ///
+			\end{table} ///
+		)
+} // end:loop varlist
+
+//2) difference control - treatment
+	sort year MOB control
+foreach 1 of varlist $list_vars_mandf_ratios_available {	
+	qui gen diff_TC_`1' = `1'[_n-1] - `1'[_n]   if control[_n] ==  4	// eingetragen bei der treatment gruppe
+}
+	
+foreach 1 of varlist $list_vars_mandf_ratios_available {
+	local j = 1
+	foreach y of numlist 1995/2014 {
+		foreach m of numlist 1/12 {
+			qui summ diff_TC_`1' if control == 4 & MOB_altern == `m' & year == `y'
+			mat A[`j',`m'] = r(mean)
+		} //end:loop over months
+		local j = `j' + 1
+	} // end:loopover years
+	matrix rownames A = 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014	
+	esttab m(A) using "$tables/`1'_differenced_cases_per_MOB_year.tex",collabels(11 12 1 2 3 4 5 6 7 8 9 10 ) plain nomtitles replace ///
+		prehead( ///
+			\begin{table}[H]  ///
+				\begin{threeparttable} ///
+				\centering  ///
+				\caption{Dep. variable: \textbf{$`1'}} ///
+				{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} ///
+				\begin{tabular}{l*{@span}{c}} \toprule ///
+				year & \multicolumn{12}{c}{Month of birth} \\ \cmidrule(lr){2-13} ///
+		) ///
+		postfoot( \bottomrule \end{tabular} } ///
+			\begin{tablenotes} ///
+			\item \scriptsize ///
+			\emph{Notes:} Difference of cases (control - treatment) per year and MOB in treatment cohort.   ///
+			\end{tablenotes} ///
+			\end{threeparttable} ///
+			\end{table} ///
+		)
+} // end:loop varlist
+
+********************************************************************************	
+// neues Program 
+foreach 1 of varlist $list_vars_mandf_ratios_available {
+	foreach j in "" "_f" "_m"{ // 
+		eststo clear 
+		*absolute numbers
+		DDRD a1 `1'`j'   	"i.MOB" "if $C2 & $M1"
+		DDRD a2 `1'`j'   	"i.MOB" "if $C2 & $M2"
+		DDRD a3 `1'`j'   	"i.MOB" "if $C2 & $M3"
+		DDRD a4 `1'`j'   	"i.MOB" "if $C2 & $M4"
+		DDRD a5 `1'`j'   	"i.MOB" "if $C2 & $M5"
+		DDRD a6 `1'`j'   	"i.MOB" "if $C2"
+		DDRD a7 `1'`j'   	"i.MOB" "if $C2 & $MD"
+		esttab a* using "$tables/`1'_a`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Abs. numbers") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline
+				
+		*ratio fertility
+		DDRD b1 r_fert_`1'`j'   "i.MOB" "if $C2 & $M1"
+		DDRD b2 r_fert_`1'`j'   "i.MOB" "if $C2 & $M2"
+		DDRD b3 r_fert_`1'`j'   "i.MOB" "if $C2 & $M3"
+		DDRD b4 r_fert_`1'`j'   "i.MOB" "if $C2 & $M4"
+		DDRD b5 r_fert_`1'`j'   "i.MOB" "if $C2 & $M5"
+		DDRD b6 r_fert_`1'`j'   "i.MOB" "if $C2"
+		DDRD b7 r_fert_`1'`j'   "i.MOB" "if $C2 & $MD"
+		esttab b* using "$tables/`1'_b`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Ratio fertility") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline		
+			
+		*ratio population
+		DDRD c1 r_popf_`1'`j'   "i.MOB" "if $C2 & $M1"
+		DDRD c2 r_popf_`1'`j'   "i.MOB" "if $C2 & $M2"
+		DDRD c3 r_popf_`1'`j'   "i.MOB" "if $C2 & $M3"
+		DDRD c4 r_popf_`1'`j'   "i.MOB" "if $C2 & $M4"
+		DDRD c5 r_popf_`1'`j'   "i.MOB" "if $C2 & $M5"
+		DDRD c6 r_popf_`1'`j'   "i.MOB" "if $C2"
+		DDRD c7 r_popf_`1'`j'   "i.MOB" "if $C2 & $MD"
+		esttab c* using "$tables/`1'_c`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Ratio population") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline
+			
+		*ratio fertility für 2003-2014
+		DDRD d1 r_fert_`1'`j'   "i.MOB" "if $C2 & $M1 & (year>=2003 & year<=2014)"
+		DDRD d2 r_fert_`1'`j'   "i.MOB" "if $C2 & $M2 & (year>=2003 & year<=2014)"
+		DDRD d3 r_fert_`1'`j'   "i.MOB" "if $C2 & $M3 & (year>=2003 & year<=2014)"
+		DDRD d4 r_fert_`1'`j'   "i.MOB" "if $C2 & $M4 & (year>=2003 & year<=2014)"
+		DDRD d5 r_fert_`1'`j'   "i.MOB" "if $C2 & $M5 & (year>=2003 & year<=2014)"
+		DDRD d6 r_fert_`1'`j'   "i.MOB" "if $C2 & (year>=2003 & year<=2014)"
+		DDRD d7 r_fert_`1'`j'   "i.MOB" "if $C2 & $MD & (year>=2003 & year<=2014)"
+		esttab d* using "$tables/`1'_d`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Ratio fert(03-14)") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline
+			
+		*cumulative numbers	
+		DDRD e1 cum_`1'`j'   	"i.MOB" "if $C2 & $M1"
+		DDRD e2 cum_`1'`j'   	"i.MOB" "if $C2 & $M2"
+		DDRD e3 cum_`1'`j'  	"i.MOB" "if $C2 & $M3"
+		DDRD e4 cum_`1'`j'   	"i.MOB" "if $C2 & $M4"
+		DDRD e5 cum_`1'`j'   	"i.MOB" "if $C2 & $M5"
+		DDRD e6 cum_`1'`j'   	"i.MOB" "if $C2"
+		DDRD e7 cum_`1'`j'  	"i.MOB" "if $C2 & $MD"
+		esttab e* using "$tables/`1'_e`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Cum. numbers") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline
+			
+		*cumulative ratio
+		DDRD f1 r_cum_`1'`j'   	"i.MOB" "if $C2 & $M1"
+		DDRD f2 r_cum_`1'`j'   	"i.MOB" "if $C2 & $M2"
+		DDRD f3 r_cum_`1'`j'  	"i.MOB" "if $C2 & $M3"
+		DDRD f4 r_cum_`1'`j'   	"i.MOB" "if $C2 & $M4"
+		DDRD f5 r_cum_`1'`j'   	"i.MOB" "if $C2 & $M5"
+		DDRD f6 r_cum_`1'`j'   	"i.MOB" "if $C2"
+		DDRD f7 r_cum_`1'`j'  	"i.MOB" "if $C2 & $MD"
+		esttab f* using "$tables/`1'_f`j'.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Cum. ratio") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline		
+			
+	} //end: loop over t,f,m
+	
+	// Panels zusammenfassen
+	esttab a* using "$tables/`1'_DDRD_overview_tfm.tex", replace booktabs ///
+		cells(none) nonote noobs ///
+		mtitles("1M" "2M" "3M" "4M" "5M" "6M" "Donut") ///
+		prehead( ///
+		\begin{table}[H]  ///
+			\begin{threeparttable} ///
+			\centering  ///
+			\caption{Dep. variable: \textbf{$`1'}} ///
+			{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} ///
+			\begin{tabular}{l*{@span}{c}} \toprule ///
+			& \multicolumn{@M}{c}{Estimation window} \\ \cmidrule(lr){2-8}) ///
+			prefoot( ///
+				\multicolumn{@span}{l}{\emph{Panel A. Average causal effects}} \\ ///
+				\input{`1'_a} ///
+				\input{`1'_b} ///
+				\input{`1'_c} ///
+				\input{`1'_d} ///
+				\input{`1'_e} ///
+				\input{`1'_f} ///
+				\midrule\multicolumn{@span}{l}{\emph{Panel B. Treatment effect heterogeneity - Women}} \\ ///
+				\input{`1'_a_f} ///
+				\input{`1'_b_f} ///
+				\input{`1'_c_f} ///
+				\input{`1'_d_f} ///
+				\input{`1'_e_f} ///
+				\input{`1'_f_f} ///
+				\midrule\multicolumn{@span}{l}{\emph{Panel C. Treatment effect heterogeneity - Men}} \\ ///
+				\input{`1'_a_m} ///
+				\input{`1'_b_m} ///
+				\input{`1'_c_m} ///
+				\input{`1'_d_m} ///
+				\input{`1'_e_m} ///
+				\input{`1'_f_m} ///
+				) ///
+			postfoot(\bottomrule \end{tabular} } ///
+			\begin{tablenotes} ///
+			\item \scriptsize ///
+			\emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. Ratios indicate cases per thousand; either approximated population (with weights coming from the original fertility distribution) or original number of births.   ///
+			\end{tablenotes} ///
+			\end{threeparttable} ///
+		\end{table} ///
+		) ///
+		substitute(\_ _)
+	
+	
+	
+} //end: loop over variables
+		
+		
+
+/*
 
 
 ////////////////////////////////////////////////////////////////////////////////

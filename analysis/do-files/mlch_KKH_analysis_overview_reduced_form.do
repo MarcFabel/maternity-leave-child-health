@@ -41,7 +41,8 @@ use "$temp/KKH_final_R1", clear
 #delimit ;
 global list_vars_mandf_ratios_available "
 	summ_stay		
-	hospital			
+	hospital
+	hospital2
 	d1				
 	d2				
 	d5				

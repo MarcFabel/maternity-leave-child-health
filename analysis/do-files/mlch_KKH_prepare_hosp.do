@@ -363,9 +363,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 	
 	*A) GEBURTENDATEN
-	qui merge m:1 YOB MOB GDR using "$temp/geburten_prepared"
+	qui merge m:1 YOB MOB GDR using "$temp/geburten_prepared_final"
 	qui count if _merge == 1
-	assert r(N) == 1188 // _merge 1 Fälle: 1188 Fälle (alle DDR)
+	drop if _merge == 2 // Löcher in der KKH Daten (wurde nicht abefragt)	
+	assert r(N) == 864 // _merge 1 Fälle: Geburten ab der Wiedervereinigung
 	qui drop _merge
 	
 	*B) REGIONALSTATISTIK 
@@ -415,9 +416,17 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 	*_f *_m
 ;
 #delimit cr 	
+
+********************************************************************************
+// Hospitalization w/o d14 (Pregnancy, childbirth and the puerperium)
+qui gen hospital2 = hospital - d14
+qui gen hospital2_m = hospital_m
+qui gen hospital2_f = hospital_f - d14
+
+
 	
 ////////////////////////////////////////////////////////////////////////////////////////
-//3. Generate ratios
+//3. Generate ratios 
 ////////////////////////////////////////////////////////////////////////////////////////	
 
 **********************
@@ -425,7 +434,7 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 **********************
 	#delimit;
 	global total 
-	hospital summ_stay
+	hospital hospital2 summ_stay
 	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
 	metabolic_syndrome respiratory_index drug_abuse heart
 	injuries neurosis joints kidneys bile_pancreas
@@ -452,7 +461,7 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 **********************	
 	#delimit;
 	global female
-	hospital summ_stay
+	hospital hospital2 summ_stay
 	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
 	metabolic_syndrome respiratory_index drug_abuse heart
 	injuries neurosis joints kidneys bile_pancreas
@@ -476,7 +485,7 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 	
 	#delimit;
 	global male
-	hospital summ_stay
+	hospital hospital2 summ_stay
 	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
 	metabolic_syndrome respiratory_index drug_abuse heart
 	injuries neurosis joints kidneys bile_pancreas
@@ -492,7 +501,6 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 		qui generate r_fert_`var'_m = `var'_m*1000 / fertm
 		qui label var r_fert_`var'_m "Ratio using number of births (destatis); per thousand"
 	}
-	
 	
 ////////////////////////////////////////////////////////////////////////////////////////
 //4. Notwendige Variablen generieren
@@ -560,6 +568,77 @@ order YOB MOB year GDR reform fert bev_mz bev_fert length_of_stay summ_stay shar
 		10 "08/09/10";
 	#delimit cr
 	label val MOB_ma MOB_MA
+	
+	
+	
+********************************************************************************
+//cummulatives	
+	
+
+**********************
+*a)totals
+**********************
+	#delimit;
+	global total 
+	hospital hospital2 summ_stay
+	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
+	metabolic_syndrome respiratory_index drug_abuse heart
+	injuries neurosis joints kidneys bile_pancreas
+	d14 female_genital_tract pregnancy delivery 
+	stomach symp_dig_system	mal_neoplasm ben_neoplasm depression personality
+	lymphoma symp_resp_system calculi	
+	;
+	#delimit cr
+	*rausgenommen, da averages: Share_OP, DurschnVerweildauer
+	
+	sort GDR Datum year
+	foreach var of varlist $total {
+		capture drop cum_`var' r_cum_`var'
+		by GDR Datum: gen cum_`var' = sum(`var')
+		qui gen r_cum_`var' = cum_`var' *1000 / fert		
+	}
+			
+		
+**********************
+*b) female
+**********************	
+	#delimit;
+	global female
+	hospital hospital2 summ_stay
+	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
+	metabolic_syndrome respiratory_index drug_abuse heart
+	injuries neurosis joints kidneys bile_pancreas
+	;
+	#delimit cr
+	*rausgenommen: Share_OP_f DurschnVerweildauer_f
+
+	sort GDR Datum year 
+	foreach var of varlist $female {
+		by GDR Datum: gen cum_`var'_f = sum(`var'_f)
+		qui gen r_cum_`var'_f = cum_`var'_f *1000 / fertf
+	}
+	
+	
+**********************
+*c) male
+**********************	
+	
+	#delimit;
+	global male
+	hospital hospital2 summ_stay
+	d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13  d17 d18
+	metabolic_syndrome respiratory_index drug_abuse heart
+	injuries neurosis joints kidneys bile_pancreas
+	;
+	#delimit cr
+	*rausgenommen: Share_OP_m DurschnVerweildauer_m
+	sort GDR Datum year 
+	foreach var of varlist $male {
+		by GDR Datum: gen cum_`var'_m = sum(`var'_m)
+		qui gen r_cum_`var'_m = cum_`var'_m *1000 / fertm
+	}
+	
+	
 	
 	
 	save "$temp\KK_final_allreforms_inclGDR", replace
@@ -644,6 +723,51 @@ keep if reform == 1
 	
 	sort Datum GDR year
 	*order year Datum QOB FRG GDR treat after TxA FxT FxTxA FxA  MxY control reform Dmon*
+	
+	
+	//Für lifecourse spezifikation : harmonise age across different cohorts
+	// Variablen, die noch ins prepare do-file ausgelagert werden müssen
+	*generate age_treat: age of the respective treatment cohort -> harmonisieren des Alters
+	qui gen year_treat = .
+	qui replace year_treat = year if treat == 1 
+	qui replace year_treat = year + 2 if control == 1
+	qui replace year_treat = year + 1 if control == 2
+	qui replace year_treat = year - 1 if control == 3
+	*label
+	#delim ;
+	label define YEAR_TREAT 
+		1995 "1995 [16]"
+		1996 "1996 [17]"
+		1997 "1997 [18]"
+		1998 "1998 [19]"
+		1999 "1999 [20]"
+		2000 "2000 [21]"
+		2001 "2001 [22]"
+		2002 "2002 [23]"
+		2003 "2003 [24]"
+		2004 "2004 [25]"
+		2005 "2005 [26]"
+		2006 "2006 [27]"
+		2007 "2007 [28]"
+		2008 "2008 [29]"
+		2009 "2009 [30]"
+		2010 "2010 [31]"
+		2011 "2011 [32]"
+		2012 "2012 [33]"
+		2013 "2013 [34]"
+		2014 "2014 [35]";
+	#delim cr
+	label values year_treat YEAR_TREAT
+	/*idea:  age(CG1_{t-2})=age(CG2_{t-1})=age(TG_{t})=age(CG_{t+1})
+	Die Variable enthält das Jahr in dem die treatment Kohorte so alt ist wie die
+	Control kohorte zu dem year x.
+	*/ 
+	
+	preserve
+		drop if GDR == 0 
+		save "$temp\KKH_final_R1_GDR", replace
+	restore
+	
 	
 	
 	drop if GDR == 1

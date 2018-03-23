@@ -72,7 +72,7 @@ forvalues i = $first_year (1) $last_year {
 	
 	
 	
-	/// ACHTUNG UNTERSCHIED ZU BEVOR; ICH GEHE UEBER DIE BUNDESLAENDER!!!! 
+	// ACHTUNG UNTERSCHIED ZU BEVOR; ICH GEHE UEBER DIE BUNDESLAENDER!!!! 
 	qui keep if lkrid >= 1 & lkrid <= 16
 	
 	

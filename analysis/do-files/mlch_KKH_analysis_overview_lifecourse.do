@@ -75,101 +75,14 @@ PANEL3 & 4 wie 1 &2 aber mit 2 Jahren zusammengefasst
 	global MD = "(Numx != -1 & Numx != 1)"
 // ***********************************************************************
 	use "$temp\KKH_final_R1", clear
-
+run "$auxiliary/varlists_varnames_sample-spcifications"
 	
-********************************************************************************
-// Liste erstellen; variablen die per gender sind und bei denen ratios existierenh
-#delimit ;
-global list_vars_mandf_ratios_available "
-	summ_stay		
-	hospital			
-	d1				
-	d2				
-	d5				
-	d6 				
-	d7 				
-	d8 				
-	d9 				
-	d10 					
-	d11 					
-	d12 					
-	d13 					
-	d17 					
-	d18
-	
-	metabolic_syndrome 
-	respiratory_index 
-	drug_abuse 
-	heart
-		
-	injuries 			
-	neurosis 			
-	joints 				
-	kidneys 				
-	bile_pancreas";
-#delimit cr
-*not contained:
 
-
-global list_vars_mandf_no_ratios "length_of_stay share_surgery"
-
-
-
-#delimit ;
-global list_vars_total_ratios_available "
-	d14 					
-	female_genital_tract	
-	pregnancy			
-	delivery 			
-	
-	stomach				
-	symp_dig_system		
-	mal_neoplasm			
-	ben_neoplasm				
-	depression			
-	personality			
-	lymphoma				
-	symp_resp_system		
-	calculi	";
-#delimit cr
 
 ********************************************************************************
 // Variablen, die noch ins prepare do-file ausgelagert werden müssen
 	*generate age_treat: age of the respective treatment cohort -> harmonisieren des Alters
-	qui gen year_treat = .
-	qui replace year_treat = year if treat == 1 
-	qui replace year_treat = year + 2 if control == 1
-	qui replace year_treat = year + 1 if control == 2
-	qui replace year_treat = year - 1 if control == 3
-	*label
-	#delim ;
-	label define YEAR_TREAT 
-		1995 "1995 [16]"
-		1996 "1996 [17]"
-		1997 "1997 [18]"
-		1998 "1998 [19]"
-		1999 "1999 [20]"
-		2000 "2000 [21]"
-		2001 "2001 [22]"
-		2002 "2002 [23]"
-		2003 "2003 [24]"
-		2004 "2004 [25]"
-		2005 "2005 [26]"
-		2006 "2006 [27]"
-		2007 "2007 [28]"
-		2008 "2008 [29]"
-		2009 "2009 [30]"
-		2010 "2010 [31]"
-		2011 "2011 [32]"
-		2012 "2012 [33]"
-		2013 "2013 [34]"
-		2014 "2014 [35]";
-	#delim cr
-	label values year_treat YEAR_TREAT
-	/*idea:  age(CG1_{t-2})=age(CG2_{t-1})=age(TG_{t})=age(CG_{t+1})
-	Die Variable enthält das Jahr in dem die treatment Kohorte so alt ist wie die
-	Control kohorte zu dem year x.
-	*/
+
 	
 	*generieren der Variablen um Jahre für den LC zusammenfassen - 2 & 4 steps
 	qui gen year_treat_2 = . 
