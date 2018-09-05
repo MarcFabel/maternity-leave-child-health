@@ -186,7 +186,7 @@ isbn=false % do not show ISBN, ISSN,...
 %	AUTHOR & TITLE
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. All errors are our own.}}
-\author{{\color{red}Preliminary and incomplete draft\newline Please do not cite or circulate without the authors' persmission.}\\ \\
+\author{{\color{red}Preliminary and incomplete draft\newline Please do not cite or circulate without the authors' permission.}\\ \\
 Natalia Danzer \& Marc Fabel \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: ifo Institute for Economic Research, University of Munich and IZA (email: \href{mailto:danzer@ifo.de }{danzer@ifo.de}).}}
 
 \date{\monthyeardate\today}
@@ -237,7 +237,7 @@ To which literature do we contribute to?
     \item The role of type of nurture at the beginning of life on later health outcomes
     \item Fetal origin hypotheses extended
   \end{itemize}
-  \item Spill-over of labour market policy on health outcomes
+  \item Spill-over of labor market policy on health outcomes
 \end{itemize}
 
 
@@ -246,7 +246,7 @@ To which literature do we contribute to?
 %--------------------------------------------------------------------
 % BACKGROUND
 %--------------------------------------------------------------------
-\section{Background}
+\section{Background on the 1979 maternity leave reform}
 \subsection{reform}
   \begin{itemize}
     \item description 
@@ -270,9 +270,32 @@ To which literature do we contribute to?
 \newpage
 \section{Empirical strategy}
 \subsection{Design}
+
+\begin{itemize}
+\item combination RD and DD
+\item local estimation 
+\item control cohort: one year prior to reform year
+\item intention-to-treat effect
+\end{itemize}
+
+
+In particular, our baseline approach to estimating the effect of the length of maternity leave 
+
+college football game days on the number of daily rape reports corresponds to the following equation
+We estimate
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
+where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who live in region $r$ at time period $t$. $Treat_{mr}$c is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the group [XXX other word for group, repetitive] is born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects. The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
+
+
+%clustering
+Sandwiched standard error estimates, allowing errors to be correlated over time within a month-of-birth cohort, and across 
+Diagnosis rates are serially correlated, cluster on month-of-birth and state level.
+
+
+$\varepsilon_{mrt}$
+
 
 \subsection{Threat}
 \subsection{validity}
@@ -280,7 +303,7 @@ Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_
 %--------------------------------------------------------------------
 % DATA & VARIABLES
 %--------------------------------------------------------------------
-\section{Data and variables}
+\section{Hospital registry data}
 
 %--------------------------------------------------------------------
 % RESULTS
@@ -288,7 +311,7 @@ Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_
 \section{Results}
 \subsection{pooled}
 \subsection{life-course approach}
-\subsection{subcatageories}
+\subsection{subcategories}
 \subsection{further results}
 show results for other outcomes, eventually include results from German Micro Census
 \subsection{Robustness}
@@ -333,7 +356,7 @@ show results for other outcomes, eventually include results from German Micro Ce
 \bottomrule % bottom thicker horizontal line (" rule ")
 \end{tabular}
 \begin{tablenotes}
-      \scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organisation. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organisation (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
+      \scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
     \end{tablenotes}
   \end{threeparttable}
 \end{table}
@@ -344,7 +367,7 @@ show results for other outcomes, eventually include results from German Micro Ce
 \newpage
 \subsection{Useful links for the paper}
 
-Which item shall I inlcude in the metabolic syndrome: 
+Which item shall I include in the metabolic syndrome: 
 \begin{enumerate}
 \item obesity
 \item hypertension
