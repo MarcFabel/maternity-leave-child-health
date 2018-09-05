@@ -132,7 +132,7 @@ isbn=false % do not show ISBN, ISSN,...
 
 % length of dash for entries of the same authors
 %\renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-\addbibresource{../Bib_Masterarbeit-new.bib}
+\addbibresource{mlch_bibliography.bib}
 
 %add bibliography to TOC
 %\usepackage[nottoc]{tocbibind}
@@ -240,7 +240,11 @@ To which literature do we contribute to?
   \item Spill-over of labor market policy on health outcomes
 \end{itemize}
 
-
+% Nice way of framing taken from ACD (2017) NBER 
+%  -AC(2011b) initial effects of something fade out in the beginning and reappear in adulthood 
+%  - "Broadly considered, there are two types of resources that can be expected to benefit children: Material resources (Y) and time inputs (It), which might be an argument in the production of child investment" 
+%  - Maternity Leave: "If childhood investments are an increasing function of parental time, then maternity leave policies may increase investments at key developmental stages. Such policies appear to be predicated on the belief that the elasticity of child investments in (1) with respect to parental time is large in very early childhood. The key policy question is when specifically maternal (or paternal) time is most important?" 
+% heterogenity in the effect (according to parental SES) not all parents can make use of their resouirfces in the same efficient way; implies different production functions 
 
 
 %--------------------------------------------------------------------
@@ -277,12 +281,14 @@ To which literature do we contribute to?
 \item control cohort: one year prior to reform year
 \item intention-to-treat effect
 \end{itemize}
+We use a difference-in-difference specification to estimate the effect of the length of maternity leave on children's health outcomes.
+
+In order to be \\
+\parencite{Dustmann2012}
 
 
-In particular, our baseline approach to estimating the effect of the length of maternity leave 
 
-college football game days on the number of daily rape reports corresponds to the following equation
-We estimate
+In particular, our baseline approach to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
@@ -328,8 +334,19 @@ show results for other outcomes, eventually include results from German Micro Ce
 
 
 
+%--------------------------------------------------------------------
+% BIBLIOGRAPHY
+%--------------------------------------------------------------------
+\newpage
+\section{References}
+\printbibliography
 
 
+%--------------------------------------------------------------------
+% FIGURES AND TABLES
+%--------------------------------------------------------------------
+\newpage
+\section{Figures and tables}
 
 
 %--------------------------------------------------------------------
