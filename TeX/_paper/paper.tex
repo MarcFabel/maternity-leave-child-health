@@ -76,71 +76,8 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \usepackage{csquotes} % language specific quotations
 \usepackage{etex}		% some more Tex functionality
-
-%\usepackage[
-%style=authoryear-comp,
-%backend=biber,
-%maxcitenames=2, % maximum number of names to appear in citations before switching to et al.
-%maxbibnames=10, % maximum number of names to appear in the bibliography before switching to et al.
-%block=space, % "Blocksatz" of the bibliography
-%url=false, % do not show URLs
-%doi=false, % do not show DOI
-%isbn=false % do not show ISBN, ISSN,...
-%]{biblatex}
-%
-%
-%\setlength{\bibitemsep}{0.5em} % set vertical space between entries
-%\setlength{\bibhang}{3em}  % set hanging indent after first line of an entry
-%%\setlength\bibhang{3\parindent}
-%%\setlength{\bibitemsep}{0.5\baselineskip}
-%
-%% no In: Journal appears
-%\renewbibmacro{in:}{}
-%
-%% comma after publication year
-%\renewcommand{\labelnamepunct}{\addcomma\space} 
-%
-%\finalandcomma % put a comma in front of the final and in a list of authors
-%
-%% issue in parentheses after number
-%\usepackage{xpatch}
-%
-%% no fullstop before number of articles
-%\xpatchbibmacro{volume+number+eid}{%
-%  \setunit*{\adddot}%
-%}{%
-%}{}{}
-%
-%
-%% line breaks for very long urls
-%\setcounter{biburllcpenalty}{7000}
-%\setcounter{biburlucpenalty}{8000}
-%
-%% number of articles in parentheses
-%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
-%
-%% no pp. in front of page numbers
-%\DeclareFieldFormat{pages}{{\nopp#1}}
-%\DefineBibliographyStrings{american}{pages={}}
-%
-%\AtBeginBibliography{% 
-%\renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}%
-%\renewcommand*{\mkbibnamefirst}[1]{\textsc{#1}}%
-%\renewcommand{\mkbibnameprefix}[1]{\textit{#1}}
-%\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
-%}
-%
-%% length of dash for entries of the same authors
-%\renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-
-% Bib file location
-%\addbibresource{mlch_bibliography.bib}
-
-%add bibliography to TOC
-\usepackage[nottoc]{tocbibind}
-
-\usepackage[authoryear, round, comma]{natbib}
-
+\usepackage[nottoc]{tocbibind} %add bibliography to TOC
+\usepackage[authoryear, round, comma]{natbib} %biblatex
 
 %--------------------------------------------------------------------
 %	PATHS
@@ -172,12 +109,12 @@ labelfont={bf}
 %\setlength\textwidth{6.3in} \setlength\oddsidemargin{0.1in}
 %\setlength\evensidemargin{0.1in}
 
- \hypersetup{
-      colorlinks   = true,
-     citecolor    = darkblue,
- 	linkcolor= darkblue,
-     urlcolor=darkblue } % macht die URLS blau
-     
+\hypersetup{
+  colorlinks  = true,
+  citecolor   = darkblue,
+ 	linkcolor   = darkblue,
+  urlcolor    = darkblue 
+} % macht die URLS blau   
      
 \usepackage{lettrine}	% First letter capitalized
 
