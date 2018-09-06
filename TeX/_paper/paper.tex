@@ -77,66 +77,69 @@ labelfont={bf}
 \usepackage{csquotes} % language specific quotations
 \usepackage{etex}		% some more Tex functionality
 
-\usepackage[
-style=authoryear-comp,
-backend=biber,
-maxcitenames=2, % maximum number of names to appear in citations before switching to et al.
-maxbibnames=10, % maximum number of names to appear in the bibliography before switching to et al.
-block=space, % "Blocksatz" of the bibliography
-url=false, % do not show URLs
-doi=false, % do not show DOI
-isbn=false % do not show ISBN, ISSN,...
-]{biblatex}
-
-
-\setlength{\bibitemsep}{0.5em} % set vertical space between entries
-\setlength{\bibhang}{3em}  % set hanging indent after first line of an entry
-%\setlength\bibhang{3\parindent}
-%\setlength{\bibitemsep}{0.5\baselineskip}
-
-% no In: Journal appears
-\renewbibmacro{in:}{}
-
-% comma after publication year
-\renewcommand{\labelnamepunct}{\addcomma\space} 
-
-\finalandcomma % put a comma in front of the final and in a list of authors
-
-% issue in parentheses after number
-\usepackage{xpatch}
-
-% no fullstop before number of articles
-\xpatchbibmacro{volume+number+eid}{%
-  \setunit*{\adddot}%
-}{%
-}{}{}
-
-
-% line breaks for very long urls
-\setcounter{biburllcpenalty}{7000}
-\setcounter{biburlucpenalty}{8000}
-
-% number of articles in parentheses
-\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
-
+%\usepackage[
+%style=authoryear-comp,
+%backend=biber,
+%maxcitenames=2, % maximum number of names to appear in citations before switching to et al.
+%maxbibnames=10, % maximum number of names to appear in the bibliography before switching to et al.
+%block=space, % "Blocksatz" of the bibliography
+%url=false, % do not show URLs
+%doi=false, % do not show DOI
+%isbn=false % do not show ISBN, ISSN,...
+%]{biblatex}
+%
+%
+%\setlength{\bibitemsep}{0.5em} % set vertical space between entries
+%\setlength{\bibhang}{3em}  % set hanging indent after first line of an entry
+%%\setlength\bibhang{3\parindent}
+%%\setlength{\bibitemsep}{0.5\baselineskip}
+%
+%% no In: Journal appears
+%\renewbibmacro{in:}{}
+%
+%% comma after publication year
+%\renewcommand{\labelnamepunct}{\addcomma\space} 
+%
+%\finalandcomma % put a comma in front of the final and in a list of authors
+%
+%% issue in parentheses after number
+%\usepackage{xpatch}
+%
+%% no fullstop before number of articles
+%\xpatchbibmacro{volume+number+eid}{%
+%  \setunit*{\adddot}%
+%}{%
+%}{}{}
+%
+%
+%% line breaks for very long urls
+%\setcounter{biburllcpenalty}{7000}
+%\setcounter{biburlucpenalty}{8000}
+%
+%% number of articles in parentheses
+%\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+%
 %% no pp. in front of page numbers
 %\DeclareFieldFormat{pages}{{\nopp#1}}
 %\DefineBibliographyStrings{american}{pages={}}
-
-\AtBeginBibliography{% 
-\renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}%
-\renewcommand*{\mkbibnamefirst}[1]{\textsc{#1}}%
-\renewcommand{\mkbibnameprefix}[1]{\textit{#1}}
-\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
-}
-
-% length of dash for entries of the same authors
+%
+%\AtBeginBibliography{% 
+%\renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}%
+%\renewcommand*{\mkbibnamefirst}[1]{\textsc{#1}}%
+%\renewcommand{\mkbibnameprefix}[1]{\textit{#1}}
+%\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+%}
+%
+%% length of dash for entries of the same authors
 %\renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-\addbibresource{mlch_bibliography.bib}
+
+% Bib file location
+%\addbibresource{mlch_bibliography.bib}
 
 %add bibliography to TOC
-%\usepackage[nottoc]{tocbibind}
+\usepackage[nottoc]{tocbibind}
 
+\usepackage[authoryear, round, comma]{natbib}
 
 
 %--------------------------------------------------------------------
@@ -221,7 +224,7 @@ Natalia Danzer \& Marc Fabel \thanks{Marc Fabel (corresponding author): Munich G
 %--------------------------------------------------------------------
 % INTRODUCTION
 %--------------------------------------------------------------------
-\section{Introduction}
+\section{Introduction}\label{sec:introduction}
 Intro –
 Health paper or PL paper?
 Why relevant?
@@ -250,7 +253,7 @@ To which literature do we contribute to?
 %--------------------------------------------------------------------
 % BACKGROUND
 %--------------------------------------------------------------------
-\section{Background on the 1979 maternity leave reform}
+\section{Background on the 1979 maternity leave reform}\label{sec:background}
 \subsection{reform}
   \begin{itemize}
     \item description 
@@ -272,22 +275,23 @@ To which literature do we contribute to?
 % IDENTIFICATION
 %--------------------------------------------------------------------
 \newpage
-\section{Empirical strategy}
+\section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}
 
 \begin{itemize}
-\item combination RD and DD
-\item local estimation 
-\item control cohort: one year prior to reform year
-\item intention-to-treat effect
+	\item combination RD and DD
+	\item local estimation 
+	\item control cohort: one year prior to reform year
+	\item intention-to-treat effect
 \end{itemize}
 We use a difference-in-difference specification to estimate the effect of the length of maternity leave on children's health outcomes.
 
 In order to be \\
-\parencite{Dustmann2012}
+%same strategy:  \textcite{Dustmann2012}, \textcite{Lalive2014}, \textcite{RafaelLaliveandJosefZweimuller2009}, \textcite{Ekberg2013}
 
-
-
+\cite{Dustmann2012}
+\cite{Lalive2014}
+\cite{RafaelLaliveandJosefZweimuller2009}, and \cite{Ekberg2013}
 In particular, our baseline approach to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
@@ -309,12 +313,12 @@ $\varepsilon_{mrt}$
 %--------------------------------------------------------------------
 % DATA & VARIABLES
 %--------------------------------------------------------------------
-\section{Hospital registry data}
+\section{Hospital registry data}\label{sec:data}
 
 %--------------------------------------------------------------------
 % RESULTS
 %--------------------------------------------------------------------
-\section{Results}
+\section{Results}\label{sec:results}
 \subsection{pooled}
 \subsection{life-course approach}
 \subsection{subcategories}
@@ -325,7 +329,7 @@ show results for other outcomes, eventually include results from German Micro Ce
 %--------------------------------------------------------------------
 % CONCLUSION
 %-------------------------------------------------------------------
-\section{Concluding remarks}
+\section{Concluding remarks}\label{sec:conclusion}
 
 
 
@@ -338,8 +342,12 @@ show results for other outcomes, eventually include results from German Micro Ce
 % BIBLIOGRAPHY
 %--------------------------------------------------------------------
 \newpage
-\section{References}
-\printbibliography
+
+
+\bibliographystyle{chicago}
+\bibliography{mlch_bibliography}
+
+%\printbibliography
 
 
 %--------------------------------------------------------------------
