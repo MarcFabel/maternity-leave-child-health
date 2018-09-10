@@ -140,3 +140,5 @@ analysis/source/
 analysis/do-files/GWAP_analyse/D_Ergebnisse/
 
 analysis/temp/
+
+*.gz(busy)
