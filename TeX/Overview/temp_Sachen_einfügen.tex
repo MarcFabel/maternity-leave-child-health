@@ -1,0 +1,239 @@
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass[11pt, a4paper]{scrartcl} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+%\usepackage[left=3cm,right=3cm,top=1.5cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} 	% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} 			% better control over placement of tables and figures in the text
+\usepackage{graphicx} 		% input of graphics
+\usepackage{xcolor} 		% advanced color package
+\usepackage{url, hyperref} 	% include (clickable) URLs
+\usepackage{pdfpages}		% insert pages of external pdf documents
+\usepackage{rotating}		% rotating figures & tables
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{tabularx}		% modifies width of certain columns
+\usepackage{threeparttable}
+\renewcommand\TPTrlap{}
+        \renewcommand\TPTnoteSettings{%
+            \setlength\leftmargin{5pt}%  
+            \setlength\rightmargin{5pt}%
+          }
+
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis
+
+\usepackage[
+singlelinecheck=on
+]{subcaption}%both together help to have subfigures
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\lb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}
+% optional argument: b = bottom or t= top alignment
+
+\usepackage{wrapfig}				% wrap text around figure
+
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb} % more math symbols and commands
+\let\vec\mathbf				 % make vector bold, with no arrow and not in italic
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/KKH/}}	%PATH TO TABLES
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/KKH/}}		% PATH TO GRAPHS
+
+%--------------------------------------------------------------------
+%	LAYOUT
+%--------------------------------------------------------------------
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+
+%--------------------------------------------------------------------
+%	TITLE INFORMATION
+%--------------------------------------------------------------------
+\author{Marc Fabel}
+\title{Overview of diagnoses outcomes}
+\date{Last revision of this document: \today} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN OF DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+This document contains overview of results for different variables. 
+
+
+
+\begin{table}[H]  
+	\centering  
+	\begin{threeparttable} 
+	\centering  
+	\caption{Dep. variable: \textbf{$`1'}} 
+	{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+	\begin{tabular}{l*{8}{c}} \toprule 
+		& \multicolumn{7}{c}{Estimation window} \\ \cmidrule(lr){2-8}) 
+		 &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}\\
+         &\multicolumn{1}{c}{1M}&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+	%------------------------------------------------------------------------------------------
+
+		\multicolumn{8}{l}{\emph{Panel A. Average causal effects}} \\
+		Ratiofertility             0.114***  &    -0.143    &      -0.804     &     -0.965**   &     -0.912**    &    -0.834**   &     -1.024***  \\
+		                       (6.95e-14)     &   (0.522)    &     (0.512)     &    (0.446)     &    (0.363)      &   (0.318)     &    (0.324)     \\
+		Observ                        160     &       320    &         480     &        640     &        800      &       960     &        800     \\
+		mean                        13.43     &     13.70    &       14.07     &      13.89     &      13.83      &     13.80     &      13.87     \\
+		\% sd                        1.830     &     2.180    &       11.84     &      14.29     &      13.62      &     12.53     &      15.18     \\
+		
+		Ratiopopulation           -1.064***  &    -1.067*   &      -0.832*    &     -0.877*    &     -1.086***   &    -1.045***  &     -1.042***  \\
+		                       (2.80e-15)     &   (0.563)    &     (0.461)     &    (0.428)     &    (0.358)      &   (0.341)     &    (0.350)     \\
+		Observ                         96     &       192    &         288     &        384     &        480      &       576     &        480     \\
+		mean                        16.03     &     16.19    &       16.63     &      16.36     &      16.24      &     16.13     &      16.15     \\
+		\% sd                        38.24     &     40.46    &       30.10     &      31.10     &      39.88      &     38.24     &      38.09     \\
+		
+	%------------------------------------------------------------------------------------------
+		\bottomrule 
+	\end{tabular} } 
+	\begin{tablenotes} 
+	\item \scriptsize 
+	\emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to t	reform) and with month-of-birth FEs. Ratios indicate cases per thousand; either approximated population (with weigh	coming from the original fertility distribution) or original number of births.   
+	\end{tablenotes} 
+	\end{threeparttable} 
+\end{table} 
+ 
+
+
+
+\input{d5_DDRD_overview_tfm_scalars.tex}
+\input{d5_DDRD_overview_tfm_scalars.tex}
+
+
+
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> total_rd_pooled.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> female_rd_pooled.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> male_rd_pooled.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> total_rd_peryear1995.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> female_rd_peryear1995.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> male_rd_peryear1995.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> total_rd_peryear1996.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> female_rd_peryear1996.pdf written in PDF format)
+%(file G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/graphs/KKH/RD/d5r_fert_
+%> male_rd_peryear1996.pdf written in PDF format)
+%-------------------------
+% POOLED
+\begin{figure}\centering
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\caption{Total}
+	\includegraphics[width=\linewidth]{RD/d5r_fert_total_rd_pooled.pdf}
+\end{subfigure}
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\caption{Female}
+	\includegraphics[width=\linewidth]{RD/d5r_fert_female_rd_pooled.pdf}
+\end{subfigure}
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\caption{Male}
+	\includegraphics[width=\linewidth]{RD/d5r_fert_male_rd_pooled.pdf}
+\end{subfigure}
+%-------------------------
+% PER YEAR
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\includegraphics[width=\linewidth]{RD/d5r_fert_total_rd_peryear1995.pdf}
+\end{subfigure}
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\includegraphics[width=\linewidth]{RD/d5r_fert_female_rd_peryear1995.pdf}
+\end{subfigure}
+\begin{subfigure}[h]{0.3\linewidth}\centering
+	\includegraphics[width=\linewidth]{RD/d5r_fert_male_rd_peryear1995.pdf}
+\end{subfigure}
+
+
+\end{figure}
+
+
+
+
+%
+%%____________________________
+%\begin{figure}
+%\centering
+%\begin{subfigure}[t]{\dimexpr0.30\textwidth+20pt\relax}
+%    \makebox[20pt]{\raisebox{40pt}{\rotatebox[origin=c]{90}{$R=1$}}}%
+%    \includegraphics[width=\dimexpr\linewidth-20pt\relax]
+%    {test1.png}
+%    \makebox[20pt]{\raisebox{40pt}{\rotatebox[origin=c]{90}{$R=2$}}}%
+%    \includegraphics[width=\dimexpr\linewidth-20pt\relax]
+%    {test2.png}
+%    \makebox[20pt]{\raisebox{40pt}{\rotatebox[origin=c]{90}{$R=3$}}}%
+%    \includegraphics[width=\dimexpr\linewidth-20pt\relax]
+%    {test3.png}
+%    \caption{model A}
+%\end{subfigure}\hfill
+%\begin{subfigure}[t]{0.30\textwidth}
+%    \includegraphics[width=\textwidth]  
+%    {test.png}
+%    \includegraphics[width=\textwidth]
+%    {test.png}
+%    \includegraphics[width=\textwidth]
+%    {test.png}
+%    \caption{model B}
+%\end{subfigure}\hfill
+%\begin{subfigure}[t]{0.30\textwidth}
+%    \includegraphics[width=\textwidth]  
+%    {test.png}
+%    \includegraphics[width=\textwidth]
+%    {test.png}
+%    \includegraphics[width=\textwidth]
+%    {test.png}
+%    \caption{model C}
+%\end{subfigure}
+%\caption{Grid test}
+%\end{figure}
+
+
+\end{document}
