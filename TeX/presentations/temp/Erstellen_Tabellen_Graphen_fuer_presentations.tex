@@ -18,15 +18,47 @@
 %--------------------------------------------------------------------
 %	TABLES, FIGURES, LISTS
 %--------------------------------------------------------------------
-\usepackage{booktabs} % better tables
-\usepackage{threeparttable} % add notes below tables
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{tabularx}		% modifies width of certain columns
+\usepackage{threeparttable}
+\renewcommand\TPTrlap{}
+        \renewcommand\TPTnoteSettings{%
+            \setlength\leftmargin{5pt}%  
+            \setlength\rightmargin{5pt}%
+          }
 
-\renewcommand\TPTrlap{}		% add margins on the side of the notes
-\renewcommand\TPTnoteSettings{%
-\setlength\leftmargin{5 pt}%
-\setlength\rightmargin{5 pt}%
-}
-\usepackage[center, format=plain, font=normalsize, nooneline, labelfont={bf}]{caption} % change format of captions of tables and graphs 
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis
+
+\usepackage{threeparttablex} % for "ThreePartTable" environment, helps to combine threepart and longtable
+
+\usepackage[
+singlelinecheck=on
+]{subcaption}%both together help to have subfigures
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\rlb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}
+% optional argument: b = bottom or t= top alignment
+
+\usepackage{wrapfig}				% wrap text around figure
+
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+
 
 %--------------------------------------------------------------------
 %	MATH
@@ -56,6 +88,307 @@
 \tableofcontents
 \newpage
 
+
+
+
+
+
+%-------------------------------------------------------------------------------------------
+%	Diff-in-Diff: Mental and behavioral disorders
+%-------------------------------------------------------------------------------------------
+% \begin{table}[htbp] \centering 
+% \begin{threeparttable} \centering 
+% \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+% {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+% \begin{tabular}{l*{4}{c}} \toprule & \multicolumn{4}{c}{Estimation window} \\ \cmidrule(lr){2-5}
+%	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+%    &\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+%	\midrule
+%\\
+%(1) {total} & 0.0829 		& -0.852\sym{**} & -0.634\sym{**}  & -0.809\sym{***}\\ 
+% 			& (0.353) 		& (0.340) 		 & (0.244)		   &(0.267)	\\ 
+%(2) {female} & 0.333 		& -0.163		 & 0.0599		   & 0.0560		\\ 
+% 			& (0.558) 		& (0.350) 		 & (0.260)		   &(0.289)	\\ 
+%(3) {male} & -0.873\sym{***}& -2.036\sym{***}& -1.554\sym{***} & -1.800\sym{***}\\ 
+% 			& (0.242) 		& (0.364) 		 & (0.293)		   &(0.324)	\\
+%\midrule
+%Dependent mean (sd)&	18.65	& 19.05 & 18.96 & 19.16 \\
+%& (0.5262) 		& (0.1761) & (3.5677) &  \\
+%Number of diagnoses  \\
+%(for total)& 35,203 & 31,925 & 434,292 \\
+%\bottomrule
+%\end{tabular}}
+%\begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} \end{threeparttable} \end{table} 
+
+\textbf{Y= per thousand people, AMR LEVEL}
+ \begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{4}{c}} \toprule & \multicolumn{4}{c}{Estimation window} \\ \cmidrule(lr){2-5}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+    &\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+	\midrule
+\\
+(1) {total} &   -0.551        &     -1.245\sym{***}    &      -0.831\sym{**}   &   -0.857\sym{**} \\
+                        &  (0.281)        &    (0.253)       &     (0.229)     &  (0.271)   \\ 
+(2) {female} &   -0.210        &     -0.442       &     -0.0724     &    0.120   \\
+                        &  (0.540)        &    (0.283)       &     (0.258)     &  (0.277)   \\ 
+(3) {male} &   -0.921\sym{***}     &     -2.074\sym{***}    &      -1.598\sym{***}  &   -1.848\sym{***}\\
+                        &  (0.244)        &    (0.356)       &     (0.286)     &  (0.314)   \\
+\midrule
+For total: \\
+Dependent mean &	17.74        &      17.99       &       17.65     &    17.72   \\
+Effect in SDs [\%] & 3.64        &      7.77       &       5.20     &    5.29 \\ 
+Observations & 19,583        &      39,167       &       58,751     &    48,960   \\
+\bottomrule
+\end{tabular}}
+%\begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} 
+\end{threeparttable} \end{table} 
+
+\textbf{Y= per thousand births, GDR LEVEL}
+ \begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{4}{c}} \toprule & \multicolumn{4}{c}{Estimation window} \\ \cmidrule(lr){2-5}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+    &\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+	\midrule
+\\
+(1) total	& 0.0829  &-0.852\sym{**} &-0.634\sym{**} & -0.809\sym{***} \\
+			& (0.353) & (0.340) 		&(0.244)		&  (0.267) \\
+(2) female	& 0.333   &	-0.163 & 0.0599 	 & 0.0560 \\
+			& (0.558) & (0.350) & (0.260) &  (0.289) \\
+(3) male & -0.140  & -1.498\sym{***} &  -1.267\sym{***} & -1.607\sym{***} \\
+ 		 & (0.273) &  (0.413)  & (0.286)    &  (0.283) \\
+\midrule
+For total: \\ 
+Dependent mean &   18.65 & 19.05 & 18.96 & 19.16	\\ 
+Effect in SDs [\%]  &  1.47 & 14.87 &  11.43 & 14.64 \\ 
+Observations & 160 & 320 & 480 & 400 \\ 
+\bottomrule
+\end{tabular}}
+%\begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} 
+\end{threeparttable} \end{table}
+
+\newpage
+\textbf{Y= per thousand people, GDR LEVEL}
+ \begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{4}{c}} \toprule & \multicolumn{4}{c}{Estimation window} \\ \cmidrule(lr){2-5}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+    &\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+	\midrule
+\\
+(1) total	& -0.551\sym{*} 	&  -1.246\sym{***} & 	-0.832\sym{***}  & 	-0.860\sym{***} \\
+			& (0.287) 	&  (0.259) 	 &	(0.234) 	& (0.277) \\
+(2) female	& -0.216 	&  -0.453	 &	-0.0853 	& 0.101 \\
+			& (0.551) 	&  (0.289) 	 &	(0.261)	 	& (0.281) \\
+(3) male 	& -0.873\sym{***}	&  -2.036\sym{***} & 	-1.554\sym{***} & 	-1.800\sym{***} \\
+ 		 	& (0.242) 	&  (0.364) 	 &	(0.293) 	& (0.324) \\
+\midrule
+For total: \\ 
+Dependent mean &    17.14 & 17.44 & 17.28 & 17.42 \\  
+Effect in SDs [\%]  &  29.61 & 59.45 &  41.92 & 43.81 \\ 
+Observations & 96 & 192 & 288 & 240 \\  
+\bottomrule
+\end{tabular}}
+%\begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} 
+\end{threeparttable} \end{table} 
+
+
+
+
+\begin{table}[h] % table environment for caption and label
+\begin{threeparttable}
+\centering % center the tabular
+\caption{Overview of outcome variables} % caption
+\label{tab:outcomes_coding_main_chapters} 
+\begin{tabular}{lrrr} % alignment and number of columns of actual table
+\toprule % top thicker horizontal line (" rule ")
+        &\multicolumn{1}{c}{(1)}& &\multicolumn{1}{c}{(2)}\\
+&\multicolumn{1}{c}{ICD-9} & & \multicolumn{1}{c}{ICD-10} \\ 
+\midrule
+%-------------------------------------------------------------------------
+\\
+			\textbf{Mental \& behavioral  disorders}                             	&	290-319		& &		F00-F99 \\
+\hspace{4pt} Mental and behavioural disorders due to psychoactive substance use & 291,303,304,305,980& & 	F10-F19 \\ 
+\hspace{4pt} Schizophrenia, schizotypal and delusional disorders			& 295			& & 	F20-F29 \\
+\hspace{4pt} Mood [affective] disorders										& 296			& & 	F30-F39 \\
+\hspace{4pt} Neurotic, stress-related and somatoform disorders				& 300			& & 	F40-F48 \\
+\hspace{4pt} Disorders of adult personality and behaviour 					& 301			& & 	F60-F69 \\		
+%-------------------------------------------------------------------------
+\bottomrule % bottom thicker horizontal line (" rule ")
+\end{tabular}
+\begin{tablenotes}
+      \scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organisation. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organisation (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+
+
+
+
+
+
+
+
+\begin{table}[H]\centering
+\caption{Life-course}
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+	\begin{tabular}{lcc}
+	\toprule
+	\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)} \\
+	Age bracket & estimate (sd) \\
+	\midrule
+	Age 17-21 & 0.174  \\ 
+	& (0.527) \\
+	Age 22-26 & -0.00769  \\ 
+	& (0.772) \\
+	Age 27-31 & -1.000  \\ 
+	& (0.708) \\ 
+	Age 32-35 &	-1.906\sym{***} \\
+	 & (0.712) \\
+	 \bottomrule
+	\end{tabular}} 
+\end{table} 
+
+
+
+
+
+
+%------------------------------		Robustness		-----------------------------------
+
+\newpage
+\textbf{ROBUSTNESS 1}
+ \begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{5}{c}} \toprule 
+
+& & \multicolumn{2}{c}{Alternative specifications} & \multicolumn{2}{c}{Placebos}\\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+    &\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{Federal\\level}}&\multicolumn{1}{c}{\clb{c}{per\\ births}}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}\\
+\midrule
+\\
+(1) {total} 		&   -0.831\sym{**}  	&	-0.832\sym{***}			&   -0.634\sym{**}	&	0.329			&	0.181		\\
+            		&   (0.229)     		&	(0.234)					&   (0.244)			&	(0.270)			&	(0.394)		\\
+(2) {female}		& 	-0.0724     		&	-0.0853					&   0.0599			&	0.355			&	-0.228		\\
+            		&   (0.258)     		&	(0.261)					&   (0.260)			&	(0.295)			&	(0.515)		\\
+(3) {male} 			&   -1.598\sym{***} 		&	-1.554\sym{***}		&   -1.267\sym{***}	&	0.294			&	0.515		\\
+            		&   (0.286)     		&	(0.293)					&   (0.286)			&	(0.320)			&	(0.361)		\\
+\midrule            		
+For total: \\											 
+Dependent mean 		&   17.65     			&	17.28					&   18.96			&	16.62			&	14.98		\\
+Effect in SDs [\%] 	&   5.20      			&	41.92					&   11.43			&	18.71			&	7.34		\\
+Observations 		&   58,751    			&	288						&   480				&	288				&	288			\\
+Federal level		&   $\times$			&	\checkmark				&   \checkmark		&	\checkmark		&  \checkmark	\\ 
+\bottomrule
+\end{tabular}}
+\end{threeparttable} \end{table} 
+
+
+\textbf{ROBUSTNESS 2}
+ \begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Dep. variable: \textbf{Mental and behavioral disorders}} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{5}{c}} \toprule 
+
+& & \multicolumn{2}{c}{\clb{c}{Alternative\\estimation}} & \multicolumn{2}{c}{Heterogeneity}\\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+    &\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{DDD}}&\multicolumn{1}{c}{\clb{c}{alt. DD}}&\multicolumn{1}{c}{\clb{c}{rural}}&\multicolumn{1}{c}{\clb{c}{urban}}\\
+\midrule
+\\
+(1) {total} 		&   -0.831\sym{**}   &	-1.045\sym{***} & 	-0.735\sym{***} &	-0.0987		&	-1.006\sym{***} 	\\ 	
+            		&   (0.229)     	 &	(0.341)			& 	(0.173)			&	(0.588)		&	(0.202)				\\ 	
+(2) {female}		& 	-0.0724     	 &	0.142			& 	-0.306			&	0.299		&	-0.161				\\ 	
+            		&   (0.258)     	 &	(0.346)			& 	(0.222)			&	(0.816)		&	(0.234)				\\ 	
+(3) {male} 			&   -1.598\sym{***}  &	-2.069\sym{***} & 	-1.440\sym{***} &	-0.414		&	-1.877\sym{***} 	\\ 	
+            		&   (0.286)     	 &	(0.456)			& 	(0.244)			&	(0.487)		&	(0.333)				\\ 	
+\midrule
+For total: \\							 	
+Dependent mean 		&   17.65     		 &	16.13			& 	16.13			&	16.76		&	18.38				\\	
+Effect in SDs [\%] 	&   5.20      		 &	38.24			& 	26.88			&	1.69		&	7,27				\\	
+Observations 		&   58,751    		 &	576				& 	288				&	26,495		&	32,256				\\	
+Federal level		&   $\times$		 & \checkmark		&	\checkmark		&	$\times$	&	$\times$			\\
+\bottomrule
+\end{tabular}}
+\end{threeparttable} \end{table}
+
+
+
+
+%------------------------------		Results> Main Diagnosis chapters		-----------------------------------
+\newpage
+\begin{table}[htbp] \centering 
+ \begin{threeparttable} \centering 
+ \caption{Results from other outcomes} 
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{7}{c}} \toprule 
+ &\multicolumn{1}{c}{(1)}& &\multicolumn{1}{c}{(2)} & &\multicolumn{1}{c}{(3)}& &\multicolumn{1}{c}{(4)}\\
+&\multicolumn{1}{c}{ICD-9} & & \multicolumn{1}{c}{ICD-10} & & \multicolumn{1}{c}{\clb{c}{ITT\\estimate}}& & \multicolumn{1}{c}{\clb{c}{se}} \\ 
+\midrule
+\rlb{l}{Hospital admission\\ \hspace{4pt} w/o pregnancy related diagnoses}							& && & & -1.581\sym{**} && (0.661)  \\
+\\
+\\
+\textit{Main diagnosis chapters}\\
+ \hspace{4pt} Infectious and parasitic diseases                           	&	001-139		& &		A00-B99 & & -0.0654\sym{**} 	& &	(0.0287)	\\
+ \hspace{4pt} Neoplasms                                                   	&	140-239		& &		C00-D48 & & 0.0455				& & (0.0566)	\\
+%\hspace{4pt} Diseases of the blood and blood-forming organs              	&	280-289		& &		D50-D90 & & 		\\
+% \hspace{4pt} IV Endocrine, nutritional and metabolic diseases				&	240-278		& &		E00-E90 & & 		\\
+ \hspace{4pt} Mental \& behavioral  disorders		                     	&	290-319		& &		F00-F99 & & -0.831\sym{**}		& & (0.229)		\\
+ \hspace{4pt} Diseases of the nervous system                              	&	320-359		& &		G00-G99 & & 0.0288				& & (0.0705)	\\
+ \hspace{4pt} Diseases of the sense organs                             		&	360-389		& &		H00-H95 & & -0.128\sym{***}		& & (0.0322)	\\
+ \hspace{4pt} Diseases of the circulatory system                          	&	390-459		& &		I00-I99 & & -0.0448				& & (0.0583)	\\
+ \hspace{4pt} Diseases of the respiratory system                          	&	460-519		& &		J00-J99 & & -0.0814				& & (0.0519)	\\
+ \hspace{4pt} Diseases of the digestive system                            	&	520-579		& &		K00-K93 & & -0.242				& & (0.146)		\\
+ \hspace{4pt} Diseases of the skin and subcutaneous tissue                	&	680-709		& &		L00-L99 & & 0.104\sym{**} 		& & (0.0446)	\\
+ \hspace{4pt} Diseases of the musculoskeletal system						&	710-739		& &		M00-M99 & & 0.00267 			& & (0.0480)	\\
+ \hspace{4pt} Diseases of the genitourinary system                        	&	580-629		& &		N00-N99 & & -0.00563 			& & (0.0834)	\\
+% \hspace{4pt} XV Pregnancy, childbirth, and the puerperium  				&	630-676		& &		O00-O99 & & 		\\
+%\hspace{4pt} Certain conditions originating in the perinatal period      	&	760-779		& &		P00-P96 & & 		\\
+%\hspace{4pt} Congenital anomalies                                        	&	740-759		& &		Q00-Q99 & & 		\\
+ \hspace{4pt} Symptoms, signs, and ill-defined conditions                 	&	780-799		& &		R00-R99 & & -0.0368 			& & (0.0395)	\\
+ \hspace{4pt} Injury and poisoning                                        	&	800-999		& &		S00-T98 & & -0.338\sym{***} 	& & (0.114)		\\
+
+\bottomrule
+\end{tabular}}
+\end{threeparttable} \end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%------------------------------		OLD		-----------------------------------
+\newpage \newpage
+\section{old}
  \begin{table}[H]
  \begin{threeparttable} \centering 
  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
@@ -82,8 +415,6 @@ Number of diagnoses  \\
 \bottomrule
 \end{tabular}}
 \begin{tablenotes} \item \scriptsize \emph{Notes:} This table reports various DD-RD estimates of the impact of the expansion of maternity leave from two to six months on different sets of health outcomes. The estimates are based on equation 1. The control group is comprised of children that are born in the same months but one year prior the reform (i.e. children born between November 1977 and October 1978). The outcomes are measured over the period 1995-2014. Clustered standard errors are reported in parentheses. Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline \emph{Source:} German hospital administrative data. \end{tablenotes} \end{threeparttable} \end{table} 
-
-
 
 
 \end{document}
