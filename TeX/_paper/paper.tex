@@ -214,6 +214,9 @@ To which literature do we contribute to?
 \newpage
 \section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}
+In order to estimate the causal effect of the duration of maternity leave on children's long-run health, we compare health outcomes of children whose mothers were entitled to different lengths of maternity leave. We do so by exploiting the eligibility rules that are contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. We augment this idea of a local identification by combining the regression discontinuity design with a difference-in-difference approach.  
+
+control for seasonality while still preserving local aspect
 
 \begin{itemize}
 	\item combination RD and DD
@@ -223,17 +226,21 @@ To which literature do we contribute to?
 \end{itemize}
 We use a difference-in-difference specification to estimate the effect of the length of maternity leave on children's health outcomes.
 
-In order to be \\
-%same strategy:  \textcite{Dustmann2012}, \textcite{Lalive2014}, \textcite{RafaelLaliveandJosefZweimuller2009}, \textcite{Ekberg2013}
+\footnote{Similar identification strategies can be found in \cite{Dustmann2012} \cite{Lalive2014}\cite{RafaelLaliveandJosefZweimuller2009}, and \cite{Ekberg2013} \cite{Huebener2017} \cite{danzer2017}.[XXX: neues paper (Chile), benutzt das auch RDDD?]}
 
-\cite{Dustmann2012}
-\cite{Lalive2014}
-\cite{RafaelLaliveandJosefZweimuller2009}, and \cite{Ekberg2013}
 In particular, our baseline approach to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
-where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who live in region $r$ at time period $t$. $Treat_{mr}$c is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the group [XXX other word for group, repetitive] is born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects. The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
+where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who live in region $r$ at time period $t$. $Treat_{mr}$c is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the group [XXX other word for group, repetitive] is born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects.
+
+
+The parameter of interest is $\gamma_3$
+The parameter is identified if
+identify if assumption are met.... 
+
+
+ The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
 
 
 %clustering
@@ -245,6 +252,7 @@ $\varepsilon_{mrt}$
 
 
 \subsection{Threat}
+timing of birth potenitally possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
 \subsection{validity}
 
 %--------------------------------------------------------------------
