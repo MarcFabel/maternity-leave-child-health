@@ -62,6 +62,20 @@
 	program define DDRD
 		qui eststo `1': reg `2' treat after TxA   `3'  `4', vce(cluster MxY) 
 	end
+	
+	capture program drop DDRD_sclrs
+	program define DDRD_sclrs
+		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxY) 
+		qui estadd scalar Nn = e(N)
+		qui sum `2' if e(sample) & treat== 1 & after == 0 
+		qui estadd scalar mean = round(`r(mean)',.01)		// pre-reform mean for treated group
+		qui estadd scalar sd = abs(round(_b[TxA]/`r(sd)'*100,.01))		
+		capture drop Dinregression sum_num_diag*
+		qui gen Dinregression = 1 if cond(e(sample),1,0)
+		bys Dinregression: egen sum_num_diagnoses = total(`2')
+		qui summ sum_num_diagnoses if e(sample)
+		qui estadd scalar num_diag = `r(mean)'
+	end	
 	/* OLD VERSION 
 	program define DDRD
 		qui eststo: reg `1' treat after TxA Dmon*  `2'  `3', vce(cluster MxY) 
@@ -70,9 +84,94 @@
 
 
 /*
-INSGESAMMT 6 PROGRAMME
+INSGESAMMT 7 PROGRAMME
 */
+********************************************************************************
+// overview with scalars but with out the absolute numbers
 
+
+foreach 1 of varlist $list_vars_mandf_ratios_available { // $list_vars_mandf_ratios_available
+	foreach j in "" "_f" "_m" { // "_f" "_m"
+	// TOTAL
+		eststo clear 
+		
+		*absolute numbers
+		DDRD_sclrs a1 `1'`j'   	"i.MOB" "if $C2 & $M1"
+		DDRD_sclrs a2 `1'`j'   	"i.MOB" "if $C2 & $M2"
+		DDRD_sclrs a3 `1'`j'   	"i.MOB" "if $C2 & $M3"
+		DDRD_sclrs a4 `1'`j'   	"i.MOB" "if $C2 & $M4"
+		DDRD_sclrs a5 `1'`j'   	"i.MOB" "if $C2 & $M5"
+		DDRD_sclrs a6 `1'`j'   	"i.MOB" "if $C2"
+		DDRD_sclrs a7 `1'`j'   	"i.MOB" "if $C2 & $MD"
+		esttab a* using "$tables/`1'_a`j'_DDscalars.tex", replace booktabs fragment  ///
+			cells(none) nonumbers ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label  nomtitles noobs nonote noline nogaps ///
+			scalars( "num_diag diagnoses")  
+					
+		*ratio fertility
+		DDRD_sclrs b1 r_fert_`1'`j'   "i.MOB" "if $C2 & $M1"
+		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB" "if $C2 & $M2"
+		DDRD_sclrs b3 r_fert_`1'`j'   "i.MOB" "if $C2 & $M3"
+		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB" "if $C2 & $M4"
+		DDRD_sclrs b5 r_fert_`1'`j'   "i.MOB" "if $C2 & $M5"
+		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB" "if $C2"
+		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB" "if $C2 & $MD"
+		esttab b* using "$tables/`1'_b`j'_DDscalars.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Ratio fertility") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline ///
+			scalars(  "mean Outcome mean" "sd \% sd" "Nn N")   
+			
+		*ratio population
+		DDRD_sclrs c1 r_popf_`1'`j'   "i.MOB" "if $C2 & $M1"
+		DDRD_sclrs c2 r_popf_`1'`j'   "i.MOB" "if $C2 & $M2"
+		DDRD_sclrs c3 r_popf_`1'`j'   "i.MOB" "if $C2 & $M3"
+		DDRD_sclrs c4 r_popf_`1'`j'   "i.MOB" "if $C2 & $M4"
+		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB" "if $C2 & $M5"
+		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB" "if $C2"
+		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB" "if $C2 & $MD"
+		esttab c* using "$tables/`1'_c`j'_DDscalars.tex", replace booktabs fragment ///
+			keep(TxA) coeflabels(TxA "Ratio population") ///
+			se star(* 0.10 ** 0.05 *** 0.01) ///
+			label nomtitles nonumbers noobs nonote nogaps noline ///
+			scalars( "mean mean" "sd \% sd" "Nn N")   
+	} // end: t f m 
+	
+	// Panels zusammenfassen
+	esttab b* using "$tables/`1'_DDRD_overview_tfm_scalars.tex", replace booktabs ///
+		cells(none) nonote noobs ///
+		mtitles("1M" "2M" "3M" "4M" "5M" "6M" "Donut") ///
+		prehead( ///
+		\begin{table}[htbp]  ///
+			\centering  ///
+			\begin{threeparttable} ///
+			\centering  ///
+			\caption{Dep. variable: \textbf{$`1'}} ///
+			{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} ///
+			\begin{tabular}{l*{@span}{c}} \toprule ///
+			& \multicolumn{@M}{c}{Estimation window} \\ \cmidrule(lr){2-8}) ///
+			prefoot( ///
+				\multicolumn{@span}{l}{\emph{Panel A. Average causal effects}} \\ ///
+				\input{`1'_b_DDscalars}\input{`1'_a`j'_DDscalars} \\ /// 
+				\input{`1'_c_DDscalars} ///
+				\midrule\multicolumn{@span}{l}{\emph{Panel B. Treatment effect heterogeneity - Women}} \\ ///
+				\input{`1'_b_f_DDscalars} \input{`1'_a_f_DDscalars} \\ ///
+				\input{`1'_c_f_DDscalars} ///
+				\midrule\multicolumn{@span}{l}{\emph{Panel C. Treatment effect heterogeneity - Men}} \\ ///
+				\input{`1'_b_m_DDscalars} \input{`1'_a_m_DDscalars} \\ ///
+				\input{`1'_c_m_DDscalars} ///
+				) ///
+			postfoot(\bottomrule \end{tabular} } ///
+			\begin{tablenotes} ///
+			\item \scriptsize ///
+			\emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. Ratios indicate cases per thousand; either approximated population (with weights coming from the original fertility distribution) or original number of births.   ///
+			\end{tablenotes} ///
+			\end{threeparttable} ///
+		\end{table} ///
+		) ///
+		substitute(\_ _)
+} // end:varlist
 
 ********************************************************************************	
 /// Accumulated variables

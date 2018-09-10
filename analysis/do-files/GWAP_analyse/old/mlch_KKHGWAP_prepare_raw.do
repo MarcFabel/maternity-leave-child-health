@@ -9,7 +9,7 @@
 *				
 * Outputs:		
 *
-* Updates:		
+* Updates:		NOTE!!! BEFORE I CHANGED THE CODING OF ICD 9 PART
 *
 *******************************************************************************/
 /*
@@ -42,106 +42,118 @@
 	
 	save "$temp/MZ_gewichte_prepared.dta", replace
 */
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////	1) Regionalstatistik vorbereiten		////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-
-********************************************************************************
-// recovered die ags_clean files (Regionalstatistik) aus den Anspieldaten von Herrn Dr Janisch
-
-use "$anspielen\kkh_mon_merged.dta", clear
-	qui drop if ags_clean == .
-	qui keep _014_emp* _002_pop* _001_ypop* _289_area* year ags_clean
-		
-	qui collapse (mean) _014_emp* _002_pop* _001_ypop* _289_area*, by(year ags_clean)
-	sort ags_clean year
-	
-	*auf ags level speichern 
-	qui save "$temp/exportfile_yearly_clean", replace
+	// "recovered" die ags_clean files (Regionalstatistik) aus den Anspieldaten von Herrn Dr Janisch
+	/*	
+		Entspricht zum Schluss dem Datenformat der Regionalstatistik
+	*/
+	use "$anspielen\kkh_mon_merged.dta", clear
+		qui drop if ags_clean == .
+		qui keep _014_emp* _002_pop* _001_ypop* _289_area* year ags_clean
 			
-	* auf AMR aggregieren
-	qui merge m:1 ags_clean using "$AMR/ags_clean_amr_ror_umsteiger.dta"  
+		qui collapse (mean) _014_emp* _002_pop* _001_ypop* _289_area*, by(year ags_clean)
+		sort ags_clean year
+		
+		*auf ags level speichern 
+		qui save "$temp/exportfile_yearly_clean", replace
+				
+		* auf AMR aggregieren
+		qui merge m:1 ags_clean using "$AMR/ags_clean_amr_ror_umsteiger.dta"  
+		
+		
+		collapse (sum) _014_emp* _002_pop* _001_ypop* _289_area*, by(year amr_clean)
+		foreach var of varlist _014_emp* _002_pop* _001_ypop* _289_area* {
+			qui replace `var'= . if `var' == 0
+		}
+		sort amr_clean year
+		qui save "$temp/exportfile_yearly_clean_AMR", replace
 	
 	
-	collapse (sum) _014_emp* _002_pop* _001_ypop* _289_area*, by(year amr_clean)
-	foreach var of varlist _014_emp* _002_pop* _001_ypop* _289_area* {
-		qui replace `var'= . if `var' == 0
-	}
-	sort amr_clean year
-	qui save "$temp/exportfile_yearly_clean_AMR", replace
-
-
-********************************************************************************
-******* Bevölkerung einlesen
-	use ${temp}\exportfile_yearly_clean.dta, clear
-	keep ags_clean year _001_ypop_*
-	drop _001_ypop_m _001_ypop_f
-	reshape long _001_ypop_ _001_ypop_m _001_ypop_f, i(year ags_clean) j(age)
-	qui gen YOB = year - age
-	qui keep if YOB >= 1975 & YOB <= 1980
-	drop age
-	qui save "$temp/RS_population_ags", replace
+	********************************************************************************
+	******* Bevölkerung einlesen
+		use ${temp}\exportfile_yearly_clean.dta, clear
+		keep ags_clean year _001_ypop_*
+		drop _001_ypop_m _001_ypop_f
+		reshape long _001_ypop_ _001_ypop_m _001_ypop_f, i(year ags_clean) j(age)
+		qui gen YOB = year - age
+		qui keep if YOB >= 1975 & YOB <= 1980
+		drop age
+		qui save "$temp/RS_population_ags", replace
+		
+		use ${temp}\exportfile_yearly_clean_AMR.dta, clear
+		keep amr_clean year _001_ypop_*
+		drop _001_ypop_m _001_ypop_f
+		reshape long _001_ypop_ _001_ypop_m _001_ypop_f, i(year amr_clean) j(age)
+		qui gen YOB = year - age
+		qui keep if YOB >= 1975 & YOB <= 1980
+		drop age
+		qui save "$temp/RS_population_amr", replace
+		
+		*population GDR/FRG
+		use "$temp/RS_population_ags", clear
+		qui gen bula = floor(ags_clean/1000)
+		qui gen GDR = cond(bula>=11 & bula<=16,1,0)
+		drop if bula == 11
+		collapse (sum)  _001_ypop* ,by(year YOB GDR)
+		qui save "$temp/RS_population_gdr", replace  
 	
-	use ${temp}\exportfile_yearly_clean_AMR.dta, clear
-	keep amr_clean year _001_ypop_*
-	drop _001_ypop_m _001_ypop_f
-	reshape long _001_ypop_ _001_ypop_m _001_ypop_f, i(year amr_clean) j(age)
-	qui gen YOB = year - age
-	qui keep if YOB >= 1975 & YOB <= 1980
-	drop age
-	qui save "$temp/RS_population_amr", replace
+	// Klassifikation: welche AMR fällt in  Ost/West
+		use "$AMR/ags_clean_amr_ror_umsteiger.dta", clear
+		qui gen bula = floor(ags_clean/1000)
+		qui gen GDR = cond(bula>=11 & bula<=16,1,0)
+		drop if bula == 11
+		qui collapse (mean) GDR , by(amr_clean) 
+		qui save "$temp/amr_gdr_classification", replace
 	
-	*population GDR/FRG
-	use "$temp/RS_population_ags", clear
-	qui gen bula = floor(ags_clean/1000)
-	qui gen GDR = cond(bula>=11 & bula<=16,1,0)
-	drop if bula == 11
-	collapse (sum)  _001_ypop* ,by(year YOB GDR)
-	qui save "$temp/RS_population_gdr", replace  
- 
- // Klassifikation: welche AMR fällt in  Ost/West
-	use "$AMR/ags_clean_amr_ror_umsteiger.dta", clear
-	qui gen bula = floor(ags_clean/1000)
-	qui gen GDR = cond(bula>=11 & bula<=16,1,0)
-	drop if bula == 11
-	qui collapse (mean) GDR , by(amr_clean) 
-	qui save "$temp/amr_gdr_classification", replace
- 
-// Geburten vorbereiten 
-	run mlch_KKHGWAP_fertility_data.do
- 
-***********************************************************************	
- 
- // Heterogenitätsvariablen
-	use ${temp}\exportfile_yearly_clean_AMR.dta, clear
+	// Geburten vorbereiten 
+		*run mlch_KKHGWAP_fertility_data.do
 	
-// 1) FLFP 	
-	*Zähler - 014: SVP Beschäftigte nach Altersgruppen (ab 2001 nach Geschlecht) - IM TYPISCHEN eRWERBSALTER
-	qui egen svp_f = rowtotal(_014_emp_20u_f _014_emp_2025_f _014_emp_2530_f _014_emp_3050_f _014_emp_5060_f _014_emp_6065_f), m
-	* Nenner 
-	qui egen pop_f = rowtotal(_002_pop_f1518 _002_pop_f1820 _002_pop_f2025 ///
-		_002_pop_f2530 _002_pop_f3035 _002_pop_f3540 _002_pop_f4045 _002_pop_f4550 ///
-		_002_pop_f5055 _002_pop_f5560 _002_pop_f6065), m
-	*Bruch: 
-	qui gen FLFP = svp_f / pop_f
-	 *sample split at median
-	capture drop high_FLFP
-	qui summ FLFP if year == 2001, d
-	qui gen temp = cond(FLFP > r(p50),1,0) if year == 2001
-	by amr_clean: egen high_FLFP = min(temp) 
-	drop temp
-	label variable high_FLFP "sample split: high FLFP in year 2001"
+	***********************************************************************	
 	
-// 2) Siedlungsstruktureller typ	
-	qui gen density = _002_pop / _289_area		// population/area
-	qui summ density if year == 1996, d 
-	qui gen temp = cond(density > r(p50),1,0) if year == 1996
-	by amr_clean: egen high_density = min(temp)
-	drop temp
-	order year amr_clean density high_density
-	label var high_density "sample split: high density in year 1996 (pop/hectar)"
-qui save ${temp}\exportfile_yearly_clean_AMR_heterogen.dta, replace
-
-***********************************************************************	
-//einzelne Wellen vorbereiten
+	// Heterogenitätsvariablen
+		use ${temp}\exportfile_yearly_clean_AMR.dta, clear
+		
+	// 1) FLFP 	
+		*Zähler - 014: SVP Beschäftigte nach Altersgruppen (ab 2001 nach Geschlecht) - IM TYPISCHEN eRWERBSALTER
+		qui egen svp_f = rowtotal(_014_emp_20u_f _014_emp_2025_f _014_emp_2530_f _014_emp_3050_f _014_emp_5060_f _014_emp_6065_f), m
+		* Nenner 
+		qui egen pop_f = rowtotal(_002_pop_f1518 _002_pop_f1820 _002_pop_f2025 ///
+			_002_pop_f2530 _002_pop_f3035 _002_pop_f3540 _002_pop_f4045 _002_pop_f4550 ///
+			_002_pop_f5055 _002_pop_f5560 _002_pop_f6065), m
+		*Bruch: 
+		qui gen FLFP = svp_f / pop_f
+		*sample split at median
+		capture drop high_FLFP
+		qui summ FLFP if year == 2001, d
+		qui gen temp = cond(FLFP > r(p50),1,0) if year == 2001
+		by amr_clean: egen high_FLFP = min(temp) 
+		drop temp
+		label variable high_FLFP "sample split: high FLFP in year 2001"
+		
+	// 2) Siedlungsstruktureller typ	
+		qui gen density = _002_pop / _289_area		// population/area
+		qui summ density if year == 1996, d 
+		qui gen temp = cond(density > r(p50),1,0) if year == 1996
+		by amr_clean: egen high_density = min(temp)
+		drop temp
+		order year amr_clean density high_density
+		label var high_density "sample split: high density in year 1996 (pop/hectar)"
+	qui save ${temp}\exportfile_yearly_clean_AMR_heterogen.dta, replace
+	
+	
+	
+	
+	
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////	2) Einzelne Wellen vorbereiten		////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // 1995-1999
 foreach wave of numlist 1995(1)1999 {
 
@@ -478,13 +490,13 @@ foreach wave of numlist 2000(1)2014 {
 	qui gen Diag_asthma = 1 if (diagX == "J" & (diag00 >= 45 & diag00 <= 46)) 
 	qui gen Diag_infec_intestine = 1 if (diagX == "A" & (diag00 >= 00 & diag00 <= 09))
 	qui gen Diag_leukemia = 1 if (diagX == "C" & (diag00 == 91 | diag00 == 92)) // AML & ALL
-	qui gen Diag_shizophrenia = 1 if (diagX == "F" & (diag00 >= 20 | diag00 <= 29))
-	qui gen Diag_affective = 1 if (diagX == "F" & (diag00 >= 30 | diag00 <= 39))
-	qui gen Diag_neurosis = 1 if (diagX == "F" & (diag00 >= 40 | diag00 <= 48))
-	qui gen Diag_personality =1 if (diagX == "F" & (diag00 >= 60 | diag00 <= 69))
-	qui gen Diag_childhood = 1 if (diagX == "F" & (diag00 >= 90 | diag00 <= 98))
-	qui gen Diag_ear = 1 if (diagX == "H" & (diag00 >= 60 | diag00 <= 95))
-	qui gen Diag_otitis_media = 1 if (diagX == "H" & (diag00 >= 65 | diag00 <= 75))
+	qui gen Diag_shizophrenia = 1 if (diagX == "F" & (diag00 >= 20 & diag00 <= 29))
+	qui gen Diag_affective = 1 if (diagX == "F" & (diag00 >= 30 & diag00 <= 39))
+	qui gen Diag_neurosis = 1 if (diagX == "F" & (diag00 >= 40 & diag00 <= 48))
+	qui gen Diag_personality =1 if (diagX == "F" & (diag00 >= 60 & diag00 <= 69))
+	qui gen Diag_childhood = 1 if (diagX == "F" & (diag00 >= 90 & diag00 <= 98))
+	qui gen Diag_ear = 1 if (diagX == "H" & (diag00 >= 60 & diag00 <= 95))
+	qui gen Diag_otitis_media = 1 if (diagX == "H" & (diag00 >= 65 & diag00 <= 75))
 	
 	
 	*Metadaten:

@@ -1,25 +1,12 @@
-﻿/*******************************************************************************
-* File name: 	mlch_KKHGWAP_prepare_amr_level
-* Author: 		Marc Fabel
-* Date: 		28.02.2018
-* Description:	
-*				1) 
-*
-* Inputs:  		
-*				
-* Outputs:		
-*
-* Updates:		
-*
-*******************************************************************************/
+clear all
 
  use "$temp/KKH_amr_level_raw", clear
 
  ***** Bevölkerung auf MOB runterrechenn
 	//mit MZ Gewichte
-	*qui gen bev_mz = round(ratio_GDR * ypop_)
-	*qui gen bev_mzf = round(ratio_GDR_female * ypop_f)
-	*qui gen bev_mzm = round(ratio_GDR_male * ypop_m)
+	qui gen bev_mz = round(ratio_GDR * _001_ypop_)
+	qui gen bev_mzf = round(ratio_GDR_female * _001_ypop_f)
+	qui gen bev_mzm = round(ratio_GDR_male * _001_ypop_m)
 	//mit Geburtengewichte
 	qui gen bev_fert = round(ratio_pop * _001_ypop_)
 	qui gen bev_fertf = round(ratio_popf * _001_ypop_f)
@@ -43,6 +30,7 @@ local totals
 	diabetis hypertension ischemic adipositas
 	lung_infect lung_chron pneumonia asthma 
 	shizophrenia affective neurosis personality
+	organic phys_factors retardation development
 	intestine_infec leukemia  
 	childhood ear otitis_media 
 	symp_circ_resp symp_digest heart 
@@ -54,6 +42,10 @@ foreach var of varlist `totals' {
 	qui gen r_popf_`var'   = `var'   *1000/bev_fert
 	qui gen r_popf_`var'_f = `var'_f *1000/bev_fertf
 	qui gen r_popf_`var'_m = `var'_m *1000/bev_fertm
+	
+	qui gen r_popmz_`var'  = `var' 	 *1000/bev_mz
+	qui gen r_popmz_`var'_f= `var'_f *1000/bev_mzf
+	qui gen r_popmz_`var'_m= `var'_m *1000/bev_mzm
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 //4. Notwendige Variablen generieren
@@ -131,6 +123,16 @@ foreach var of varlist `totals' {
 	qui gen treat = cond((Datum>threshold-`binw'-1 & Datum<threshold + `binw' ),1,0)	//Nov78-Oct79
 	qui gen after = cond((MOB>= `threshm' & MOB< `threshm'+`binw' ),1,0)		// Months after reform
 	qui gen TxA = treat*after
+	
+	//generate dummy variables for placebo regression
+	qui gen p_threshold = monthly("1978m5", "YM") 
+	format p_threshold %tm
+	local threshm 5
+	local binw 6
+	qui gen p_treat = cond((Datum>p_threshold-`binw'-1 & Datum<p_threshold + `binw' ),1,0)	//Nov77-Oct78
+	qui gen p_after = cond((MOB>= `threshm' & MOB< `threshm'+`binw' ),1,0)		// Months after reform
+	qui gen p_TxA = p_treat*p_after
+	
 	//construct interaction terms for DDD analysis
 	qui gen FxT= FRG*treat
 	qui gen FxTxA = FRG*treat*after
@@ -146,6 +148,8 @@ foreach var of varlist `totals' {
 	
 	//generate cluster variable (for each month of each birth cohort, #clusters= #CGs+TG)*12 )
 	qui gen MxY = YOB * MOB
+	qui gen MxYxFRG = MxY * FRG
+	qui gen MxYxbula = MxY * bula
 	
 	
 	// Control variables
@@ -236,8 +240,48 @@ foreach var of varlist `totals' {
 	*/ 
 	
 	order amr_clean GDR Datum YOB MOB year *_f
-
 	
+	
+	
+********************************************************************************
+	* Variable for distinction high low FLFP
+	capture drop FLFP_2001
+	qui gen temp = FLFP if year == 2001 
+	qui bys amr_clean: egen FLFP_2001 = min(temp)
+	
+	* Variables for DDD with FLFP intensity 
+	qui gen TxFLFP = treat * FLFP_2001
+	qui gen AxFLFP = after * FLFP_2001
+	qui gen TxAxFLFP = TxA * FLFP_2001
+********************************************************************************
+// Construct population weights for regression 
+	/*
+	construct appropriate weights (number of people in respsective age cohort)
+		depends on in which age group the TG falls in respective year
+		e.g.: 1995: TG turns 16 -> popweights take the value of _002_pop_1518
+	*/
+	qui gen popweights = . 
+	qui replace popweights = _002_pop_1518 if year == 1995 // treatment group turns 16 that year, groups are: aged X until below Y
+	qui replace popweights = _002_pop_1518 if year == 1996 // 17
+	qui replace popweights = _002_pop_1820 if year == 1997 // 18
+	qui replace popweights = _002_pop_1820 if year == 1998 // 19
+	qui replace popweights = _002_pop_2025 if year == 1999 // 20
+	qui replace popweights = _002_pop_2025 if year == 2000 // 21
+	qui replace popweights = _002_pop_2025 if year == 2001 // 22
+	qui replace popweights = _002_pop_2025 if year == 2002 // 23
+	qui replace popweights = _002_pop_2025 if year == 2003 // 24
+	qui replace popweights = _002_pop_2530 if year == 2004 // 25
+	qui replace popweights = _002_pop_2530 if year == 2005 // 26
+	qui replace popweights = _002_pop_2530 if year == 2006 // 27
+	qui replace popweights = _002_pop_2530 if year == 2007 // 28
+	qui replace popweights = _002_pop_2530 if year == 2008 // 29
+	qui replace popweights = _002_pop_3035 if year == 2009 // 30
+	qui replace popweights = _002_pop_3035 if year == 2010 // 31
+	qui replace popweights = _002_pop_3035 if year == 2011 // 32
+	qui replace popweights = _002_pop_3035 if year == 2012 // 33
+	qui replace popweights = _002_pop_3035 if year == 2013 // 34
+	qui replace popweights = _002_pop_3540 if year == 2014 // 35
+
 	
 ********************************************************************************	
 // Saving

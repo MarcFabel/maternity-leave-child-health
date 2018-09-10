@@ -19,7 +19,7 @@
 
 ********************************************************************************
 // 1) Männlich - Frühere BRD
-	import excel "$population\DESTATIS_ANFRAGE\8.3 Lebendgeb. insgesamt männlich nach  Monaten 1946-1989.xls", ///
+	import excel "$population\DESTATIS_ANFRAGE\BRD_Maenner_1946-1989.xls", ///
 		sheet("1975 - 1989 ") cellrange(A7:N24) firstrow clear
 	qui gen temp =_n
 	qui drop B 
@@ -46,7 +46,7 @@
 	qui save "$temp/geburten_prepare", replace
 ********************************************************************************
 // 2) Männlich - Gesammtdeutschland
-	import excel "$population\DESTATIS_ANFRAGE\8.3 LG_männlich_Monate_1946_1989.xls", ///
+	import excel "$population\DESTATIS_ANFRAGE\GER_Maenner_1946_1989.xls", ///
 		sheet("1975 - 1989 ") cellrange(A7:N24) firstrow clear
 	qui gen temp =_n
 	qui drop B 
@@ -79,7 +79,7 @@
 ********************************************************************************
 	
 // 3) Weiblich - Frühere BRD
-	import excel "$population\DESTATIS_ANFRAGE\9.2 Lebendgeb. insgesamt weiblich nach  Monaten 1946-1989.xls", ///
+	import excel "$population\DESTATIS_ANFRAGE\BRD_Frauen_1946-1989.xls", ///
 		sheet("1975 - 1989 ") cellrange(A7:N24) firstrow clear
 	qui gen temp =_n
 	qui drop B 
@@ -108,7 +108,7 @@
 	qui save "$temp/geburten_prepare", replace
 ********************************************************************************
 // 4) Weiblich - Gesammtdeutschland
-	import excel "$population\DESTATIS_ANFRAGE\9.2 LG_weiblich_Monate_1946_1989.xls", ///
+	import excel "$population\DESTATIS_ANFRAGE\GER_Frauen_1946_1989.xls", ///
 		sheet("1975 - 1989 ") cellrange(A7:N24) firstrow clear
 	qui gen temp =_n
 	qui drop B 
@@ -157,6 +157,6 @@
 	qui erase "$temp/geburten_prepare.dta"
 	
 	
-	
+
 	
 

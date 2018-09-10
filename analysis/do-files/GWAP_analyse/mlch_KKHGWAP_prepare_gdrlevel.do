@@ -17,9 +17,9 @@
 
  ***** Bevölkerung auf MOB runterrechenn
 	//mit MZ Gewichte
-	*qui gen bev_mz = round(ratio_GDR * ypop_)
-	*qui gen bev_mzf = round(ratio_GDR_female * ypop_f)
-	*qui gen bev_mzm = round(ratio_GDR_male * ypop_m)
+	qui gen bev_mz = round(ratio_GDR * _001_ypop_)
+	qui gen bev_mzf = round(ratio_GDR_female * _001_ypop_f)
+	qui gen bev_mzm = round(ratio_GDR_male *_001_ypop_m)
 	//mit Geburtengewichte
 	qui gen bev_fert = round(ratio_pop * _001_ypop_)
 	qui gen bev_fertf = round(ratio_popf * _001_ypop_f)
@@ -43,6 +43,7 @@ local totals
 	diabetis hypertension ischemic adipositas
 	lung_infect lung_chron pneumonia asthma 
 	shizophrenia affective neurosis personality
+	organic phys_factors retardation development
 	intestine_infec leukemia  
 	childhood ear otitis_media 
 	symp_circ_resp symp_digest heart 
@@ -54,6 +55,10 @@ foreach var of varlist `totals' {
 	qui gen r_popf_`var'   = `var'   *1000/bev_fert
 	qui gen r_popf_`var'_f = `var'_f *1000/bev_fertf
 	qui gen r_popf_`var'_m = `var'_m *1000/bev_fertm
+	
+	qui gen r_popmz_`var'  = `var' 	 *1000/bev_mz
+	qui gen r_popmz_`var'_f= `var'_f *1000/bev_mzf
+	qui gen r_popmz_`var'_m= `var'_m *1000/bev_mzm
 	
 	qui generate r_fert_`var' = `var'*1000 / fert_GDR
 	qui generate r_fert_`var'_f = `var'_f*1000 / fertf_GDR
@@ -135,6 +140,16 @@ foreach var of varlist `totals' {
 	qui gen treat = cond((Datum>threshold-`binw'-1 & Datum<threshold + `binw' ),1,0)	//Nov78-Oct79
 	qui gen after = cond((MOB>= `threshm' & MOB< `threshm'+`binw' ),1,0)		// Months after reform
 	qui gen TxA = treat*after
+	
+	//generate dummy variables for placebo regression
+	qui gen p_threshold = monthly("1978m5", "YM") 
+	format p_threshold %tm
+	local threshm 5
+	local binw 6
+	qui gen p_treat = cond((Datum>p_threshold-`binw'-1 & Datum<p_threshold + `binw' ),1,0)	//Nov77-Oct78
+	qui gen p_after = cond((MOB>= `threshm' & MOB< `threshm'+`binw' ),1,0)		// Months after reform
+	qui gen p_TxA = p_treat*p_after
+	
 	//construct interaction terms for DDD analysis
 	qui gen FxT= FRG*treat
 	qui gen FxTxA = FRG*treat*after

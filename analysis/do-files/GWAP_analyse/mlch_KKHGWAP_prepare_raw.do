@@ -12,36 +12,19 @@
 * Updates:		
 *
 *******************************************************************************/
-/*
-*MZ Gewichte vorbereiten
-	import delim using "$population/MOB_Distr_GDRFRG.csv", clear
-	qui rename v1 MOB
-	qui rename v2 year
-	qui rename v3 YOB
-	qui rename v4 GDR
-	qui rename v5 ratio_GDR
-	qui rename v6 ratio_GDR_male
-	qui rename v7 ratio_GDR_female
-	qui drop v8 v9 v10
-	qui gen temp = _n	// Hilfsvariable, die das lÃ¶schen der Variablennamen in den EintrÃ¤gen ermÃ¶glicht
-	qui drop if temp <= 2
-	qui drop temp
-	qui destring, replace
-	*auf relevantes sample beschrÃ¤nken
-	qui keep if (YOB >=1976 & YOB<=1980) | (YOB>=1985 & YOB<=1995)	
-	qui drop if (MOB < 11 & YOB == 1976) | (MOB > 10 & YOB == 1980)	
-	qui drop if (MOB <  7 & YOB == 1985) | (MOB >  6 & YOB == 1987)
-	qui drop if (MOB <  7 & YOB == 1988) | (MOB >  6 & YOB == 1989)
-	qui drop if (MOB <  7 & YOB == 1990) | (MOB >  6 & YOB == 1992) 
-	qui drop if (MOB <  7 & YOB == 1993) | (MOB >  6 & YOB == 1995)
-	
-	*ratios durch 100 teilen
-	foreach var of varlist ratio* {
-		qui replace `var' = `var' /100
-	}
-	
-	save "$temp/MZ_gewichte_prepared.dta", replace
-*/
+// Population with MZ weights 
+	qui use "$MZ_anspielen/MZ_merge.dta", clear
+	collapse (mean) ratio_GDR = _317_ratio_GDR ratio_GDR_female = _317_ratio_GDR_female ///
+		ratio_GDR_male = _317_ratio_GDR_male, by(MOB YOB year GDR)
+	*qui drop if female == 1	// data is somehow long and wide format, one dimension redundant
+	*qui keep MOB YOB year GDR  _317*
+	*qui rename _317_ratio_GDR 			ratio_GDR
+	*qui rename _317_ratio_GDR_female	ratio_GDR_female
+	*qui rename _317_ratio_GDR_male 		ratio_GDR_male
+	qui keep if (YOB >= 1975 & YOB <= 1980)
+	sort YOB MOB year
+	qui save "$temp/MZ_gewichte_prepared", replace
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////	1) Regionalstatistik vorbereiten		////////////////
@@ -102,13 +85,28 @@
 		collapse (sum)  _001_ypop* ,by(year YOB GDR)
 		qui save "$temp/RS_population_gdr", replace  
 	
+	/* OLD
 	// Klassifikation: welche AMR fällt in  Ost/West
 		use "$AMR/ags_clean_amr_ror_umsteiger.dta", clear
 		qui gen bula = floor(ags_clean/1000)
-		qui gen GDR = cond(bula>=11 & bula<=16,1,0)
-		drop if bula == 11
+		qui gen GDR = cond(bula>=11 & bula<=16,1,0)		
 		qui collapse (mean) GDR , by(amr_clean) 
 		qui save "$temp/amr_gdr_classification", replace
+	*/
+		
+	// Klassifikation: welche AMR fällt in welches Bula
+		use "$AMR/ags_clean_amr_ror_umsteiger.dta", clear
+		qui gen bula = floor(ags_clean/1000)
+		qui collapse (mean) bula , by(amr_clean)
+		* Korrigieren von 5 AMR codes (5 AMR sind mehr als einem bula zuzuschreiben: amr 8, 42, 43, 130, 145 - werden einem Bundesland zugeschreiben, je nachdem wo mehr bev"lkerung wohnt) 
+		qui replace bula = 2 if amr_clean == 8		// Hamburg -> Land Hamburg
+		qui replace bula = 4 if amr_clean == 42		// Bremen -> Land Bremen
+		qui replace bula = 3 if amr_clean == 43		// Bremerhaven -> Niedersachsen (Cuxhaven ist deutlich groesser und es wohnen mehr leute als in bremerhaven)
+		qui replace bula = 8 if amr_clean == 130	// Mannheim -> Bawue (Hessen ausgetochen)  
+		qui replace bula = 8 if amr_clean == 145	// Ulm -> Bawu (Bayern ausgestochen)
+		qui gen GDR = cond(bula>=11 & bula<=16,1,0)
+		qui save "$temp/amr_bula_gdr_classification", replace
+		
 	
 	// Geburten vorbereiten 
 		*run mlch_KKHGWAP_fertility_data.do
@@ -234,7 +232,6 @@ foreach wave of numlist 1995(1)1999 {
 	qui gen Diag_symp_circ_resp = 1 if (diag000 == 785 | diag000 == 786)
 	qui gen Diag_symp_verdauung = 1 if diag000 == 787	// Syptmoe des Verdauungssytems
 	qui gen Diag_sonst_herzkrank = 1 if (diag000 >= 420 & diag000 <= 429 & diag000 != 424)
-	qui gen Diag_psych_drogen = 1 if (diag000 == 291 | diag000 ==303 | diag000 == 980 | diag000 == 304 | diag000 == 305)
 	qui gen Diag_diabetis = 1 if (diag000 == 250) 
 	qui gen Diag_hypertension = 1 if (diag000 == 401 | diag000 == 402 | diag000 == 404 | diag000 == 405)
 	qui gen Diag_ischemic = 1 if (diag000 >= 410 & diag000 <= 414)
@@ -245,13 +242,21 @@ foreach wave of numlist 1995(1)1999 {
 	qui gen Diag_asthma = 1 if (diag000 == 493) 
 	qui gen Diag_infec_intestine = 1 if (diag000 >=001 & diag000 <=009)
 	qui gen Diag_leukemia = 1 if (diag000 == 204 | diag000 == 205)
-	qui gen Diag_shizophrenia = 1 if  (diag000 == 295)
-	qui gen Diag_affective = 1 if (diag000 == 296)
-	qui gen Diag_neurosis = 1 if (diag000 == 300)
-	qui gen Diag_personality =1 if (diag000 == 301)
-	qui gen Diag_childhood = 1 if (diag000 >=312 & diag000 <=316)
 	qui gen Diag_ear = 1 if (diag000 >= 380 & diag000 <=389)
 	qui gen Diag_otitis_media = 1 if (diag000 >= 381 & diag000 <=385)
+	* mental (order according to ICD-10 order)																					// corresponding ICD-10 Code
+	qui gen Diag_organic = 1 if (diag000 == 290 | diag000 == 293 | diag000 == 294 | diag000 == 310) 							// F00-F09
+	qui gen Diag_psych_drogen = 1 if (diag000 == 291 | diag000 == 292 | diag000 ==303 | diag000 == 304 | diag000 == 305)		// F10-F19
+	qui gen Diag_shizophrenia = 1 if  (diag000 == 295 | diag000 == 297 | diag000 == 298)										// F20-F29
+	qui gen Diag_affective = 1 if (diag000 == 296 | diag000 == 311)																// F30-F39
+	qui gen Diag_neurosis = 1 if (diag000 == 300 | diag000 == 306 | diag000 == 308 | diag000 == 309)							// F40-F48
+	qui gen Diag_phys_factors = 1 if (diag000 == 316)																			// F50-F59
+	qui gen Diag_personality = 1 if (diag000 == 301 | diag000 == 302)															// F60-F69
+	qui gen Diag_retardation = 1 if (diag000 == 317 | diag000 == 318 | diag000 == 319)											// F70-F79
+	qui gen Diag_development = 1 if (diag000 == 299 | diag000 == 315)															// F80-F89
+	qui gen Diag_childhood = 1 if (diag000 == 312 | diag000 == 313 | diag000 == 314 | diag000 == 307)							// F90-F98
+	
+	
 	
 	*Metadaten:
 	qui gen patients = 1
@@ -478,8 +483,6 @@ foreach wave of numlist 2000(1)2014 {
 	qui gen Diag_symp_circ_resp = 1 if (diagX == "R" & (diag00 >= 00 & diag00 <= 09))
 	qui gen Diag_symp_verdauung = 1 if (diagX == "R" & (diag00 >= 10 & diag00 <= 19))
 	qui gen Diag_sonst_herzkrank = 1 if diagX == "I" & ((diag00>=30 & diag00<=33) | (diag00>=39 & diag00<=52))  
-	qui gen Diag_psych_drogen = 1 if (diagX == "F" & diag00==10) | (diagX == "T" & diag00==51) 
-	qui replace Diag_psych_drogen = 1 if (diagX == "F" & (diag00>= 11 & diag00<=19 & diag00 !=17) )
 	qui gen Diag_diabetis = 1 if (diagX == "E" & (diag00 ==11 | diag00 ==12)) 
 	qui gen Diag_hypertension = 1 if (diagX == "I" & (diag00 == 10 | diag00 == 11 | diag00 == 13 | diag00 == 15))
 	qui gen Diag_ischemic = 1 if (diagX == "I" & (diag00 >= 20 & diag00 <= 25))
@@ -490,13 +493,21 @@ foreach wave of numlist 2000(1)2014 {
 	qui gen Diag_asthma = 1 if (diagX == "J" & (diag00 >= 45 & diag00 <= 46)) 
 	qui gen Diag_infec_intestine = 1 if (diagX == "A" & (diag00 >= 00 & diag00 <= 09))
 	qui gen Diag_leukemia = 1 if (diagX == "C" & (diag00 == 91 | diag00 == 92)) // AML & ALL
+	qui gen Diag_ear = 1 if (diagX == "H" & (diag00 >= 60 & diag00 <= 95))
+	qui gen Diag_otitis_media = 1 if (diagX == "H" & (diag00 >= 65 & diag00 <= 75))
+	*mental 
+	qui gen Diag_organic = 1 if (diagX == "F" & (diag00>= 00 & diag00 <= 09))
+	qui gen Diag_psych_drogen = 1 if (diagX == "F" & (diag00>= 10 & diag00<=19))
 	qui gen Diag_shizophrenia = 1 if (diagX == "F" & (diag00 >= 20 & diag00 <= 29))
 	qui gen Diag_affective = 1 if (diagX == "F" & (diag00 >= 30 & diag00 <= 39))
 	qui gen Diag_neurosis = 1 if (diagX == "F" & (diag00 >= 40 & diag00 <= 48))
-	qui gen Diag_personality =1 if (diagX == "F" & (diag00 >= 60 & diag00 <= 69))
+	qui gen Diag_phys_factors = 1 if (diagX == "F" & (diag00 >= 50 & diag00 <= 59))
+	qui gen Diag_personality = 1 if (diagX == "F" & (diag00 >= 60 & diag00 <= 69))
+	qui gen Diag_retardation = 1 if (diagX == "F" & (diag00 >= 70 & diag00 <= 79))
+	qui gen Diag_development = 1 if (diagX == "F" & (diag00 >= 80 & diag00 <= 89))
 	qui gen Diag_childhood = 1 if (diagX == "F" & (diag00 >= 90 & diag00 <= 98))
-	qui gen Diag_ear = 1 if (diagX == "H" & (diag00 >= 60 & diag00 <= 95))
-	qui gen Diag_otitis_media = 1 if (diagX == "H" & (diag00 >= 65 & diag00 <= 75))
+	
+
 	
 	
 	*Metadaten:
@@ -628,24 +639,24 @@ foreach x of numlist 1996(1)2014 {
 	qui erase "$temp\prepared_1995.dta"
 
 	
-	order year YOB MOB  lkrid ags 
+	qui order year YOB MOB  lkrid ags 
 
 
-	drop if ags_clean == .
-	drop if ags_clean == 11000 // Berlin
+	qui drop if ags_clean == .
+	qui drop if ags_clean == 11000 // Berlin
 	
 	qui save "$temp/einzeldaten_repeatedcs_prepared", replace
 
 // Aggregieren auf Kreisregion
-collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
+qui collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
 		Length_of_stay=Verweildauer, by(year YOB MOB female ags_clean)
 
 *reshape
 	qui gen j = "_f" if female == 1
 	qui replace j = "_m" if female == 0
-	drop female
+	qui drop female
 	reshape wide Diag_death - Length_of_stay , i(YOB MOB year ags_clean) j(j) strin
-	sort ags YOB year MOB
+	qui sort ags YOB year MOB
 	
 *totals
 #delim ;
@@ -654,6 +665,7 @@ local totals
 	Diag_metabolic_syndrome Diag_Index_respiratory Diag_symp_circ_resp Diag_symp_verdauung Diag_sonst_herzkrank
 	Diag_psych_drogen Diag_diabetis Diag_hypertension Diag_ischemic Diag_adipositas Diag_infect_lung Diag_pneumonia
 	Diag_chron_lung Diag_asthma Diag_infec_intestine Diag_leukemia Diag_shizophrenia Diag_affective
+	Diag_organic Diag_phys_factors Diag_retardation Diag_development
 	Diag_neurosis Diag_personality Diag_childhood Diag_ear Diag_otitis_media 
 	Diag_death
 	hospital patients Summ_stay Sum_surgery;
@@ -665,65 +677,65 @@ foreach var in `totals' {
  order ags  YOB MOB year  *_f *_m
  
  // renameing
-	rename Diag1			d1
-	rename Diag1_f			d1_f
-	rename Diag1_m			d1_m
-	rename Diag2 	 		d2
-	rename Diag2_f 			d2_f
-	rename Diag2_m 			d2_m
-	rename Diag3 	 		d3
-	rename Diag3_f 			d3_f
-	rename Diag3_m 			d3_m
-	rename Diag4 	 		d4
-	rename Diag4_f 			d4_f
-	rename Diag4_m 			d4_m
-	rename Diag5			d5
-	rename Diag5_f			d5_f
-	rename Diag5_m			d5_m
-	rename Diag6			d6
-	rename Diag6_f			d6_f
-	rename Diag6_m			d6_m
-	rename Diag7 			d7	
-	rename Diag7_f 			d7_f
-	rename Diag7_m 			d7_m
-	rename Diag8 			d8 
-	rename Diag8_f 			d8_f 
-	rename Diag8_m 			d8_m 
-	rename Diag9 			d9 		
-	rename Diag9_f 			d9_f 			
-	rename Diag9_m 			d9_m 		
-	rename Diag10 			d10
-	rename Diag10_f 		d10_f
-	rename Diag10_m 		d10_m
-	rename Diag11  			d11
-	rename Diag11_f 		d11_f
-	rename Diag11_m 		d11_m
-	rename Diag12 			d12
-	rename Diag12_f 		d12_f
-	rename Diag12_m 		d12_m
-	rename Diag13  			d13
-	rename Diag13_f 		d13_f
-	rename Diag13_m 		d13_m	
-	rename Diag14			d14
-	rename Diag17 			d17
-	rename Diag17_f 		d17_f
-	rename Diag17_m 		d17_m
-	rename Diag18 			d18
-	rename Diag18_f 		d18_f
-	rename Diag18_m 		d18_m	
+	qui rename Diag1			d1
+	qui rename Diag1_f			d1_f
+	qui rename Diag1_m			d1_m
+	qui rename Diag2 	 		d2
+	qui rename Diag2_f 			d2_f
+	qui rename Diag2_m 			d2_m
+	qui rename Diag3 	 		d3
+	qui rename Diag3_f 			d3_f
+	qui rename Diag3_m 			d3_m
+	qui rename Diag4 	 		d4
+	qui rename Diag4_f 			d4_f
+	qui rename Diag4_m 			d4_m
+	qui rename Diag5			d5
+	qui rename Diag5_f			d5_f
+	qui rename Diag5_m			d5_m
+	qui rename Diag6			d6
+	qui rename Diag6_f			d6_f
+	qui rename Diag6_m			d6_m
+	qui rename Diag7 			d7	
+	qui rename Diag7_f 			d7_f
+	qui rename Diag7_m 			d7_m
+	qui rename Diag8 			d8 
+	qui rename Diag8_f 			d8_f 
+	qui rename Diag8_m 			d8_m 
+	qui rename Diag9 			d9 		
+	qui rename Diag9_f 			d9_f 			
+	qui rename Diag9_m 			d9_m 		
+	qui rename Diag10 			d10
+	qui rename Diag10_f 		d10_f
+	qui rename Diag10_m 		d10_m
+	qui rename Diag11  			d11
+	qui rename Diag11_f 		d11_f
+	qui rename Diag11_m 		d11_m
+	qui rename Diag12 			d12
+	qui rename Diag12_f 		d12_f
+	qui rename Diag12_m 		d12_m
+	qui rename Diag13  			d13
+	qui rename Diag13_f 		d13_f
+	qui rename Diag13_m 		d13_m	
+	qui rename Diag14			d14
+	qui rename Diag17 			d17
+	qui rename Diag17_f 		d17_f
+	qui rename Diag17_m 		d17_m
+	qui rename Diag18 			d18
+	qui rename Diag18_f 		d18_f
+	qui rename Diag18_m 		d18_m	
 	
-	rename Diag_metabolic_syndrome		metabolic_syndrome
-	rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
-	rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
-	rename Diag_Index_respiratory 		respiratory_index
-	rename Diag_Index_respiratory_f 	respiratory_index_f
-	rename Diag_Index_respiratory_m 	respiratory_index_m
-	rename Diag_sonst_herzkrank 		heart
-	rename Diag_sonst_herzkrank_f 		heart_f
-	rename Diag_sonst_herzkrank_m 		heart_m
-	rename Diag_psych_drogen 			drug_abuse
-	rename Diag_psych_drogen_f 			drug_abuse_f
-	rename Diag_psych_drogen_m 			drug_abuse_m
+	qui rename Diag_metabolic_syndrome		metabolic_syndrome
+	qui rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
+	qui rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
+	qui rename Diag_Index_respiratory 		respiratory_index
+	qui rename Diag_Index_respiratory_f 	respiratory_index_f
+	qui rename Diag_Index_respiratory_m 	respiratory_index_m
+	qui rename Diag_sonst_herzkrank 		heart
+	qui rename Diag_sonst_herzkrank_f 		heart_f
+	qui rename Diag_sonst_herzkrank_m 		heart_m
+	qui rename Diag_psych_drogen 			drug_abuse
+	qui rename Diag_psych_drogen_f 			drug_abuse_f
+	qui rename Diag_psych_drogen_m 			drug_abuse_m
 	
 	qui rename Diag_symp_circ_resp			symp_circ_resp
 	qui rename Diag_symp_circ_resp_f		symp_circ_resp_f	
@@ -775,7 +787,19 @@ foreach var in `totals' {
 	qui rename Diag_personality_m			personality_m				
 	qui rename Diag_childhood				childhood			
 	qui rename Diag_childhood_f				childhood_f			
-	qui rename Diag_childhood_m				childhood_m			
+	qui rename Diag_childhood_m				childhood_m	
+	qui rename Diag_organic					organic
+	qui rename Diag_organic_f				organic_f
+	qui rename Diag_organic_m				organic_m
+	qui rename Diag_phys_factors			phys_factors
+	qui rename Diag_phys_factors_f			phys_factors_f
+	qui rename Diag_phys_factors_m			phys_factors_m
+	qui rename Diag_retardation				retardation
+	qui rename Diag_retardation_f			retardation_f
+	qui rename Diag_retardation_m			retardation_m
+	qui rename Diag_development				development
+	qui rename Diag_development_f			development_f
+	qui rename Diag_development_m			development_m
 	qui rename Diag_ear						ear	
 	qui rename Diag_ear_f					ear_f		
 	qui rename Diag_ear_m					ear_m		
@@ -805,7 +829,7 @@ foreach var in `totals' {
 
 // a)Regionaldaten
 	merge m:1 ags_clean year using ${temp}\exportfile_yearly_clean.dta, gen(merge_regionaldaten) // Jahresebene wird vervielfacht
-	drop _001_ypop_*
+	qui drop _001_ypop_*
 	/*
 
     Result                           # of obs.
@@ -823,15 +847,17 @@ foreach var in `totals' {
 	keep if merge_regionaldaten == 3
 	merge m:1 ags_clean year YOB using "$temp/RS_population_ags"
 	keep if _merge == 3
-	drop _merge
+	qui drop _merge
 	
 	
 // b) Geburtsgewichte 
 	qui gen bula = floor(ags_clean/1000)
 	qui gen GDR = cond(bula>=11 & bula<=16,1,0)
-	drop if bula == 11
-	order ags_clean bula GDR YOB MOB year 
-	*merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui drop if bula == 11
+	qui order ags_clean bula GDR YOB MOB year 
+	merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui drop _merge 
+	*merge 1 Fälle (nur master) noch uebrig, wie ist das bei den richtigen Daten
 	merge m:1 YOB MOB GDR using "$temp/geburten_GDR"	//gender specific weights
 	drop _merge
 	
@@ -849,7 +875,8 @@ qui save "$temp/KKH_ags_level_raw", replace
 
 
 
-
+capture log close
+log using "$logfiles\KKH_prepare_${date}_merging" , text replace
 
 ********************************************************************************
 ********************************************************************************
@@ -866,18 +893,18 @@ use "$temp/einzeldaten_repeatedcs_prepared", clear
 merge m:1 ags_clean using "$AMR/ags_clean_amr_ror_umsteiger.dta" 
 // merge 2 Fälle should not be existent in reality
 drop if amr_clean == 205 // Berlin
-order ags_clean amr_clean YOB MOB year 
+qui order ags_clean amr_clean YOB MOB year 
 
 // Aggregieren auf AMR Region
-collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
+qui collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
 		Length_of_stay=Verweildauer, by(year YOB MOB female amr_clean)
 
 *reshape
 	qui gen j = "_f" if female == 1
 	qui replace j = "_m" if female == 0
-	drop female
-	reshape wide Diag_death - Length_of_stay , i(YOB MOB year amr_clean) j(j) strin
-	sort amr YOB year MOB
+	qui drop female
+	qui reshape wide Diag_death - Length_of_stay , i(YOB MOB year amr_clean) j(j) strin
+	qui sort amr YOB year MOB
 	
 *totals
 #delim ;
@@ -886,6 +913,7 @@ local totals
 	Diag_metabolic_syndrome Diag_Index_respiratory Diag_symp_circ_resp Diag_symp_verdauung Diag_sonst_herzkrank
 	Diag_psych_drogen Diag_diabetis Diag_hypertension Diag_ischemic Diag_adipositas Diag_infect_lung Diag_pneumonia
 	Diag_chron_lung Diag_asthma Diag_infec_intestine Diag_leukemia Diag_shizophrenia Diag_affective
+	Diag_organic Diag_phys_factors Diag_retardation Diag_development
 	Diag_neurosis Diag_personality Diag_childhood Diag_ear Diag_otitis_media 
 	Diag_death
 	hospital patients Summ_stay Sum_surgery;
@@ -896,65 +924,65 @@ foreach var in `totals' {
 }
  
  // renameing
-	rename Diag1			d1
-	rename Diag1_f			d1_f
-	rename Diag1_m			d1_m
-	rename Diag2 	 		d2
-	rename Diag2_f 			d2_f
-	rename Diag2_m 			d2_m
-	rename Diag3 	 		d3
-	rename Diag3_f 			d3_f
-	rename Diag3_m 			d3_m
-	rename Diag4 	 		d4
-	rename Diag4_f 			d4_f
-	rename Diag4_m 			d4_m
-	rename Diag5			d5
-	rename Diag5_f			d5_f
-	rename Diag5_m			d5_m
-	rename Diag6			d6
-	rename Diag6_f			d6_f
-	rename Diag6_m			d6_m
-	rename Diag7 			d7	
-	rename Diag7_f 			d7_f
-	rename Diag7_m 			d7_m
-	rename Diag8 			d8 
-	rename Diag8_f 			d8_f 
-	rename Diag8_m 			d8_m 
-	rename Diag9 			d9 		
-	rename Diag9_f 			d9_f 			
-	rename Diag9_m 			d9_m 		
-	rename Diag10 			d10
-	rename Diag10_f 		d10_f
-	rename Diag10_m 		d10_m
-	rename Diag11  			d11
-	rename Diag11_f 		d11_f
-	rename Diag11_m 		d11_m
-	rename Diag12 			d12
-	rename Diag12_f 		d12_f
-	rename Diag12_m 		d12_m
-	rename Diag13  			d13
-	rename Diag13_f 		d13_f
-	rename Diag13_m 		d13_m	
-	rename Diag14			d14
-	rename Diag17 			d17
-	rename Diag17_f 		d17_f
-	rename Diag17_m 		d17_m
-	rename Diag18 			d18
-	rename Diag18_f 		d18_f
-	rename Diag18_m 		d18_m	
+	qui rename Diag1			d1
+	qui rename Diag1_f			d1_f
+	qui rename Diag1_m			d1_m
+	qui rename Diag2 	 		d2
+	qui rename Diag2_f 			d2_f
+	qui rename Diag2_m 			d2_m
+	qui rename Diag3 	 		d3
+	qui rename Diag3_f 			d3_f
+	qui rename Diag3_m 			d3_m
+	qui rename Diag4 	 		d4
+	qui rename Diag4_f 			d4_f
+	qui rename Diag4_m 			d4_m
+	qui rename Diag5			d5
+	qui rename Diag5_f			d5_f
+	qui rename Diag5_m			d5_m
+	qui rename Diag6			d6
+	qui rename Diag6_f			d6_f
+	qui rename Diag6_m			d6_m
+	qui rename Diag7 			d7	
+	qui rename Diag7_f 			d7_f
+	qui rename Diag7_m 			d7_m
+	qui rename Diag8 			d8 
+	qui rename Diag8_f 			d8_f 
+	qui rename Diag8_m 			d8_m 
+	qui rename Diag9 			d9 		
+	qui rename Diag9_f 			d9_f 			
+	qui rename Diag9_m 			d9_m 		
+	qui rename Diag10 			d10
+	qui rename Diag10_f 		d10_f
+	qui rename Diag10_m 		d10_m
+	qui rename Diag11  			d11
+	qui rename Diag11_f 		d11_f
+	qui rename Diag11_m 		d11_m
+	qui rename Diag12 			d12
+	qui rename Diag12_f 		d12_f
+	qui rename Diag12_m 		d12_m
+	qui rename Diag13  			d13
+	qui rename Diag13_f 		d13_f
+	qui rename Diag13_m 		d13_m	
+	qui rename Diag14			d14
+	qui rename Diag17 			d17
+	qui rename Diag17_f 		d17_f
+	qui rename Diag17_m 		d17_m
+	qui rename Diag18 			d18
+	qui rename Diag18_f 		d18_f
+	qui rename Diag18_m 		d18_m	
 	
-	rename Diag_metabolic_syndrome		metabolic_syndrome
-	rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
-	rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
-	rename Diag_Index_respiratory 		respiratory_index
-	rename Diag_Index_respiratory_f 	respiratory_index_f
-	rename Diag_Index_respiratory_m 	respiratory_index_m
-	rename Diag_sonst_herzkrank 		heart
-	rename Diag_sonst_herzkrank_f 		heart_f
-	rename Diag_sonst_herzkrank_m 		heart_m
-	rename Diag_psych_drogen 			drug_abuse
-	rename Diag_psych_drogen_f 			drug_abuse_f
-	rename Diag_psych_drogen_m 			drug_abuse_m
+	qui rename Diag_metabolic_syndrome		metabolic_syndrome
+	qui rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
+	qui rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
+	qui rename Diag_Index_respiratory 		respiratory_index
+	qui rename Diag_Index_respiratory_f 	respiratory_index_f
+	qui rename Diag_Index_respiratory_m 	respiratory_index_m
+	qui rename Diag_sonst_herzkrank 		heart
+	qui rename Diag_sonst_herzkrank_f 		heart_f
+	qui rename Diag_sonst_herzkrank_m 		heart_m
+	qui rename Diag_psych_drogen 			drug_abuse
+	qui rename Diag_psych_drogen_f 			drug_abuse_f
+	qui rename Diag_psych_drogen_m 			drug_abuse_m
 	
 	qui rename Diag_symp_circ_resp			symp_circ_resp
 	qui rename Diag_symp_circ_resp_f		symp_circ_resp_f	
@@ -1007,6 +1035,18 @@ foreach var in `totals' {
 	qui rename Diag_childhood				childhood			
 	qui rename Diag_childhood_f				childhood_f			
 	qui rename Diag_childhood_m				childhood_m			
+	qui rename Diag_organic					organic
+	qui rename Diag_organic_f				organic_f
+	qui rename Diag_organic_m				organic_m
+	qui rename Diag_phys_factors			phys_factors
+	qui rename Diag_phys_factors_f			phys_factors_f
+	qui rename Diag_phys_factors_m			phys_factors_m
+	qui rename Diag_retardation				retardation
+	qui rename Diag_retardation_f			retardation_f
+	qui rename Diag_retardation_m			retardation_m
+	qui rename Diag_development				development
+	qui rename Diag_development_f			development_f
+	qui rename Diag_development_m			development_m
 	qui rename Diag_ear						ear	
 	qui rename Diag_ear_f					ear_f		
 	qui rename Diag_ear_m					ear_m		
@@ -1022,7 +1062,7 @@ foreach var in `totals' {
 
 // a)Regionaldaten
 	merge m:1 amr_clean year using ${temp}\exportfile_yearly_clean_AMR_heterogen.dta, gen(merge_regionaldaten) // Jahresebene wird vervielfacht
-	drop _001_ypop_*
+	qui drop _001_ypop_*
 	/*
     Result                           # of obs.
     -----------------------------------------
@@ -1039,21 +1079,23 @@ foreach var in `totals' {
 	*/
 	keep if merge_regionaldaten == 3
 	merge m:1 amr_clean year YOB using "$temp/RS_population_amr"
-	keep if _merge == 3
-	drop _merge
+	qui keep if _merge == 3
+	qui drop _merge
 	
 	
 // b) Geburtsgewichte 
-	merge m:1 amr_clean using "$temp/amr_gdr_classification"
-	drop _merge
+	merge m:1 amr_clean using "$temp/amr_bula_gdr_classification"
+	qui keep if _merge ==3
+	qui drop _merge
 	/* Merge 2 Fälle sollte es nicht geben
 	   Merge 1 Fälle???
 	*/
 
-	order amr_clean GDR YOB MOB year 
-	*merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui order amr_clean bula GDR YOB MOB year 
+	merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui drop _merge
 	merge m:1 YOB MOB GDR using "$temp/geburten_GDR"	//gender specific weights
-	drop _merge
+	qui drop _merge
 	
 	
 	
@@ -1080,20 +1122,20 @@ qui save "$temp/KKH_amr_level_raw", replace
 use "$temp/einzeldaten_repeatedcs_prepared", clear
 qui gen bula = floor(ags_clean/1000)
 qui gen GDR = cond(bula>=11 & bula<=16,1,0)
-drop if bula == 11
+qui drop if bula == 11
 
 
 
 // Aggregieren auf GDR Region
-collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
+qui collapse (sum) Diag* hospital patients Summ_stay=Verweildauer Sum_surgery=Op (mean) Share_surgery=Op ///
 		Length_of_stay=Verweildauer, by(year YOB MOB female GDR)
 
 *reshape
 	qui gen j = "_f" if female == 1
 	qui replace j = "_m" if female == 0
-	drop female
-	reshape wide Diag_death - Length_of_stay , i(YOB MOB year GDR) j(j) strin
-	sort GDR YOB year MOB
+	qui drop female
+	qui reshape wide Diag_death - Length_of_stay , i(YOB MOB year GDR) j(j) strin
+	qui sort GDR YOB year MOB
 	
 *totals
 #delim ;
@@ -1102,6 +1144,7 @@ local totals
 	Diag_metabolic_syndrome Diag_Index_respiratory Diag_symp_circ_resp Diag_symp_verdauung Diag_sonst_herzkrank
 	Diag_psych_drogen Diag_diabetis Diag_hypertension Diag_ischemic Diag_adipositas Diag_infect_lung Diag_pneumonia
 	Diag_chron_lung Diag_asthma Diag_infec_intestine Diag_leukemia Diag_shizophrenia Diag_affective
+	Diag_organic Diag_phys_factors Diag_retardation Diag_development
 	Diag_neurosis Diag_personality Diag_childhood Diag_ear Diag_otitis_media 
 	Diag_death
 	hospital patients Summ_stay Sum_surgery;
@@ -1112,65 +1155,65 @@ foreach var in `totals' {
 }
  
  // renameing
-	rename Diag1			d1
-	rename Diag1_f			d1_f
-	rename Diag1_m			d1_m
-	rename Diag2 	 		d2
-	rename Diag2_f 			d2_f
-	rename Diag2_m 			d2_m
-	rename Diag3 	 		d3
-	rename Diag3_f 			d3_f
-	rename Diag3_m 			d3_m
-	rename Diag4 	 		d4
-	rename Diag4_f 			d4_f
-	rename Diag4_m 			d4_m
-	rename Diag5			d5
-	rename Diag5_f			d5_f
-	rename Diag5_m			d5_m
-	rename Diag6			d6
-	rename Diag6_f			d6_f
-	rename Diag6_m			d6_m
-	rename Diag7 			d7	
-	rename Diag7_f 			d7_f
-	rename Diag7_m 			d7_m
-	rename Diag8 			d8 
-	rename Diag8_f 			d8_f 
-	rename Diag8_m 			d8_m 
-	rename Diag9 			d9 		
-	rename Diag9_f 			d9_f 			
-	rename Diag9_m 			d9_m 		
-	rename Diag10 			d10
-	rename Diag10_f 		d10_f
-	rename Diag10_m 		d10_m
-	rename Diag11  			d11
-	rename Diag11_f 		d11_f
-	rename Diag11_m 		d11_m
-	rename Diag12 			d12
-	rename Diag12_f 		d12_f
-	rename Diag12_m 		d12_m
-	rename Diag13  			d13
-	rename Diag13_f 		d13_f
-	rename Diag13_m 		d13_m	
-	rename Diag14			d14
-	rename Diag17 			d17
-	rename Diag17_f 		d17_f
-	rename Diag17_m 		d17_m
-	rename Diag18 			d18
-	rename Diag18_f 		d18_f
-	rename Diag18_m 		d18_m	
+	qui rename Diag1			d1
+	qui rename Diag1_f			d1_f
+	qui rename Diag1_m			d1_m
+	qui rename Diag2 	 		d2
+	qui rename Diag2_f 			d2_f
+	qui rename Diag2_m 			d2_m
+	qui rename Diag3 	 		d3
+	qui rename Diag3_f 			d3_f
+	qui rename Diag3_m 			d3_m
+	qui rename Diag4 	 		d4
+	qui rename Diag4_f 			d4_f
+	qui rename Diag4_m 			d4_m
+	qui rename Diag5			d5
+	qui rename Diag5_f			d5_f
+	qui rename Diag5_m			d5_m
+	qui rename Diag6			d6
+	qui rename Diag6_f			d6_f
+	qui rename Diag6_m			d6_m
+	qui rename Diag7 			d7	
+	qui rename Diag7_f 			d7_f
+	qui rename Diag7_m 			d7_m
+	qui rename Diag8 			d8 
+	qui rename Diag8_f 			d8_f 
+	qui rename Diag8_m 			d8_m 
+	qui rename Diag9 			d9 		
+	qui rename Diag9_f 			d9_f 			
+	qui rename Diag9_m 			d9_m 		
+	qui rename Diag10 			d10
+	qui rename Diag10_f 		d10_f
+	qui rename Diag10_m 		d10_m
+	qui rename Diag11  			d11
+	qui rename Diag11_f 		d11_f
+	qui rename Diag11_m 		d11_m
+	qui rename Diag12 			d12
+	qui rename Diag12_f 		d12_f
+	qui rename Diag12_m 		d12_m
+	qui rename Diag13  			d13
+	qui rename Diag13_f 		d13_f
+	qui rename Diag13_m 		d13_m	
+	qui rename Diag14			d14
+	qui rename Diag17 			d17
+	qui rename Diag17_f 		d17_f
+	qui rename Diag17_m 		d17_m
+	qui rename Diag18 			d18
+	qui rename Diag18_f 		d18_f
+	qui rename Diag18_m 		d18_m	
 	
-	rename Diag_metabolic_syndrome		metabolic_syndrome
-	rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
-	rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
-	rename Diag_Index_respiratory 		respiratory_index
-	rename Diag_Index_respiratory_f 	respiratory_index_f
-	rename Diag_Index_respiratory_m 	respiratory_index_m
-	rename Diag_sonst_herzkrank 		heart
-	rename Diag_sonst_herzkrank_f 		heart_f
-	rename Diag_sonst_herzkrank_m 		heart_m
-	rename Diag_psych_drogen 			drug_abuse
-	rename Diag_psych_drogen_f 			drug_abuse_f
-	rename Diag_psych_drogen_m 			drug_abuse_m
+	qui rename Diag_metabolic_syndrome		metabolic_syndrome
+	qui rename Diag_metabolic_syndrome_f	metabolic_syndrome_f
+	qui rename Diag_metabolic_syndrome_m	metabolic_syndrome_m
+	qui rename Diag_Index_respiratory 		respiratory_index
+	qui rename Diag_Index_respiratory_f 	respiratory_index_f
+	qui rename Diag_Index_respiratory_m 	respiratory_index_m
+	qui rename Diag_sonst_herzkrank 		heart
+	qui rename Diag_sonst_herzkrank_f 		heart_f
+	qui rename Diag_sonst_herzkrank_m 		heart_m
+	qui rename Diag_psych_drogen 			drug_abuse
+	qui rename Diag_psych_drogen_f 			drug_abuse_f
+	qui rename Diag_psych_drogen_m 			drug_abuse_m
 	
 	qui rename Diag_symp_circ_resp			symp_circ_resp
 	qui rename Diag_symp_circ_resp_f		symp_circ_resp_f	
@@ -1223,6 +1266,18 @@ foreach var in `totals' {
 	qui rename Diag_childhood				childhood			
 	qui rename Diag_childhood_f				childhood_f			
 	qui rename Diag_childhood_m				childhood_m			
+	qui rename Diag_organic					organic
+	qui rename Diag_organic_f				organic_f
+	qui rename Diag_organic_m				organic_m
+	qui rename Diag_phys_factors			phys_factors
+	qui rename Diag_phys_factors_f			phys_factors_f
+	qui rename Diag_phys_factors_m			phys_factors_m
+	qui rename Diag_retardation				retardation
+	qui rename Diag_retardation_f			retardation_f
+	qui rename Diag_retardation_m			retardation_m
+	qui rename Diag_development				development
+	qui rename Diag_development_f			development_f
+	qui rename Diag_development_m			development_m
 	qui rename Diag_ear						ear	
 	qui rename Diag_ear_f					ear_f		
 	qui rename Diag_ear_m					ear_m		
@@ -1262,14 +1317,15 @@ foreach var in `totals' {
 */
 	merge m:1 GDR year YOB using "$temp/RS_population_gdr"
 	keep if _merge == 3
-	drop _merge
+	qui drop _merge
 	
 	
 // b) Geburtsgewichte 
-		order GDR YOB MOB year 
-	*merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui order GDR YOB MOB year 
+	merge m:1 YOB MOB GDR year using "$temp/MZ_gewichte_prepared.dta"
+	qui drop _merge
 	merge m:1 YOB MOB GDR using "$temp/geburten_GDR"	//gender specific weights
-	drop _merge
+	qui drop _merge
 	
 	
 * averages	
@@ -1281,7 +1337,7 @@ qui save "$temp/KKH_gdr_level_raw", replace
 
 
 
-
+log close
 
 
 

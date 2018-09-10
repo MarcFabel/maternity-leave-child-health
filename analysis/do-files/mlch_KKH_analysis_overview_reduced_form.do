@@ -20,6 +20,7 @@
 // ***************************** PREAMBLE********************************
 	clear all
 	set more off
+	set processors 4
 	
 	*global path  "F:\econ\m-l-c-h\analysis"					//Work
 	global path  "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	//MAC
@@ -27,6 +28,9 @@
 	global temp  "$path/temp"
 	global KKH   "$path/source" 
 	global graph "$path/graphs/KKH" 
+	global tables "$path/tables/KKH"
+	global auxiliary "$path/do-files/auxiliary_files"
+	
 	
 	*magic numbers
 	global first_year = 1995
@@ -35,63 +39,7 @@
 
 * *************open data  *************
 use "$temp/KKH_final_R1", clear
-
-********************************************************************************
-// Liste erstellen; variablen die per gender sind und bei denen ratios existierenh
-#delimit ;
-global list_vars_mandf_ratios_available "
-	summ_stay		
-	hospital
-	hospital2
-	d1				
-	d2				
-	d5				
-	d6 				
-	d7 				
-	d8 				
-	d9 				
-	d10 					
-	d11 					
-	d12 					
-	d13 					
-	d17 					
-	d18
-	
-	metabolic_syndrome 
-	respiratory_index 
-	drug_abuse 
-	heart
-		
-	injuries 			
-	neurosis 			
-	joints 				
-	kidneys 				
-	bile_pancreas";
-#delimit cr
-*not contained:
-
-
-global list_vars_mandf_no_ratios "length_of_stay share_surgery"
-
-
-
-#delimit ;
-global list_vars_total_ratios_available "
-	d14 					
-	female_genital_tract	
-	pregnancy			
-	delivery 			
-	
-	stomach				
-	symp_dig_system		
-	mal_neoplasm			
-	ben_neoplasm				
-	depression			
-	personality			
-	lymphoma				
-	symp_resp_system		
-	calculi	";
-#delimit cr
+run "$auxiliary/varlists_varnames_sample-spcifications"
 
 
 

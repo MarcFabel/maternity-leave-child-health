@@ -11,7 +11,7 @@
 * Outputs:		$temp\bevoelkerung_final.dta
 *
 * Updates:		14.11.2017 Long format im letzten Schritt noch hinzugefÃ¼gt (Ohne DDR)
-*
+*				22.06.2018: Add time invariant ratios in MZ weights (averages over time per Datum)
 *******************************************************************************/
 
 
@@ -171,6 +171,19 @@ forvalues i = $first_year (1) $last_year {
 	}
 	
 	save "$temp/MZ_gewichte_prepared.dta", replace
+	
+	
+	**
+	*average weights over time 
+	collapse (mean) const_ratio_GDR = ratio_GDR const_ratio_GDR_male = ratio_GDR_male ///
+		const_ratio_GDR_female = ratio_GDR_female, by(YOB MOB GDR)
+	
+	label var const_ratio_GDR "Average (over time) MZ weights" 
+	label var const_ratio_GDR_male "Average (over time) MZ weights - men" 
+	label var const_ratio_GDR_female "Average (over time) MZ weight- womens" 
+	
+	save "$temp/MZ_gewichte_prepared_time-invariat_weights.dta", replace
+	
 	
 
 	

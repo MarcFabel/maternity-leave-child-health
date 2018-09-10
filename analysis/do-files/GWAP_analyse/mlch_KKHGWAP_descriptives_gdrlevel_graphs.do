@@ -2,7 +2,6 @@
 // Composition of F Diagnoses
 
 use "$temp/KKH_final_gdr_level", clear
-qui gen MxYxFRG = MxY * FRG
 
 run "auxiliary_varlists_varnames_sample-spcifications"
 

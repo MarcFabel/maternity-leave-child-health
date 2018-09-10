@@ -13,13 +13,14 @@
 *
 * Updates:		21.11.2017: Verbesserungen aus dem long-format übernommen
 *				28.11.2017: Neue Datensätze eingearbeitet
+*				22.06.2018: Neue Ratio Definition: weights kommen von MZ, werden aber ueber die Zeit geaveraged, sind somit time invariant
 *
 * Notes:		Eigentlich alle Variablennamen klein geschrieben - großgeschrieben
 *				bedeuted selbe Variablen für einen kürzeren Zeitraum, aber auch für 
 *				DDR.
 *******************************************************************************/
 
-
+version 14
 // ***************************** PREAMBLE********************************
 	clear all
 	set more off
@@ -365,7 +366,7 @@
 	*A) GEBURTENDATEN
 	qui merge m:1 YOB MOB GDR using "$temp/geburten_prepared_final"
 	qui count if _merge == 1
-	drop if _merge == 2 // Löcher in der KKH Daten (wurde nicht abefragt)	
+	qui drop if _merge == 2 // Löcher in der KKH Daten (wurde nicht abefragt)	
 	assert r(N) == 864 // _merge 1 Fälle: Geburten ab der Wiedervereinigung
 	qui drop _merge
 	
@@ -380,10 +381,14 @@
 	qui drop if _merge ==2 
 	qui drop _merge
 	
-	*C) MZ WEIGHTS
+	*C) MZ WEIGHTS (normal ones)
 	qui merge 1:1 year YOB MOB GDR using "$temp/MZ_gewichte_prepared.dta"
 	qui count if _merge == 1 // years 95-2004,2014
 	assert r(N) == 528
+	qui drop _merge
+	
+	*D) TIME-INVARIANT MZ WEIGHTS
+	merge m:1 YOB MOB GDR using "$temp/MZ_gewichte_prepared_time-invariat_weights.dta"
 	qui drop _merge
 	
 	
@@ -392,6 +397,10 @@
 	qui gen bev_mz = round(ratio_GDR * ypop_)
 	qui gen bev_mzf = round(ratio_GDR_female * ypop_f)
 	qui gen bev_mzm = round(ratio_GDR_male * ypop_m)
+	//mit durchschnittlichen MZ Gewichten 
+	qui gen bev_constw_mz = round(const_ratio_GDR * ypop_)
+	qui gen bev_constw_mzf = round(const_ratio_GDR_female * ypop_f)
+	qui gen bev_constw_mzm = round(const_ratio_GDR_male * ypop_m)
 	//mit Geburtengewichte
 	qui gen bev_fert = round(ratio_pop * ypop_)
 	qui gen bev_fertf = round(ratio_popf * ypop_f)
@@ -453,6 +462,8 @@ qui gen hospital2_f = hospital_f - d14
 		qui label var r_popmz_`var' "Ratio: approx. (Regionalstatistik + MZ weights); per thousand"
 		qui generate r_fert_`var' = `var'*1000 / fert
 		qui label var r_fert_`var' "Ratio using number of births (destatis); per thousand"
+		qui generate r_popmzcw_`var' = `var'*1000 / bev_constw_mz
+		qui label var r_popmzcw_`var' "Ratio: apprx. (Regionalstatistik + average MZ weights), per thousand"
 	}
 		
 
@@ -476,6 +487,8 @@ qui gen hospital2_f = hospital_f - d14
 		qui label var r_popmz_`var'_f "Ratio: approx. (Regionalstatistik + MZ weights); per thousand"
 		qui generate r_fert_`var'_f = `var'_f*1000 / fertf
 		qui label var r_fert_`var'_f "Ratio using number of births (destatis); per thousand"
+		qui generate r_popmzcw_`var'_f = `var'_f*1000 / bev_constw_mzf
+		qui label var r_popmzcw_`var'_f "Ratio: apprx. (Regionalstatistik + average MZ weights), per thousand"
 	}
 	
 	
@@ -500,6 +513,8 @@ qui gen hospital2_f = hospital_f - d14
 		qui label var r_popmz_`var'_m "Ratio: approx. (Regionalstatistik + MZ weights); per thousand"
 		qui generate r_fert_`var'_m = `var'_m*1000 / fertm
 		qui label var r_fert_`var'_m "Ratio using number of births (destatis); per thousand"
+		qui generate r_popmzcw_`var'_m = `var'_m*1000 / bev_constw_mzm
+		qui label var r_popmzcw_`var'_m "Ratio: apprx. (Regionalstatistik + average MZ weights), per thousand"
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////

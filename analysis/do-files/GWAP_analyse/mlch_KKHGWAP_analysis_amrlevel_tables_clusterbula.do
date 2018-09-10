@@ -13,12 +13,12 @@ Update: 12.06.2018 Population weights beziehen sich jetzt nur auf die jeweilige
 ********************************************************************************
 capture program drop DDRD
 	program define DDRD
-		qui eststo `1': reg `2' treat after TxA   `3'  `4', vce(cluster MxY) 
+		qui eststo `1': reg `2' treat after TxA   `3'  `4', vce(cluster MxYxbula) 
 	end
 	
 capture program drop DDRD_sclrs
 	program define DDRD_sclrs
-		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxY) //MxYxAMR
+		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxYxbula) //MxYxAMR
 		qui estadd scalar Nn = e(N)
 		qui sum `2' if e(sample) & treat== 1 & after == 0 
 		qui estadd scalar mean = round(`r(mean)',.01)
@@ -32,7 +32,7 @@ capture program drop DDRD_sclrs
 	
 capture program drop DDRD_p
 	program define DDRD_p
-		qui eststo `1': reg `2' p_treat p_after p_TxA   `3'  `4', vce(cluster MxY) 
+		qui eststo `1': reg `2' p_treat p_after p_TxA   `3'  `4', vce(cluster MxYxbula) 
 		qui estadd scalar Nn = e(N)
 		qui sum `2' if e(sample) & p_treat== 1 & p_after == 0 
 		qui estadd scalar mean = round(`r(mean)',.01)
@@ -46,7 +46,7 @@ capture program drop DDRD_p
 	
 capture program drop DDalt
 	program define DDalt
-		qui eststo `1': reg `2' after FRG FxA   `3'  `4', vce(cluster MxYxFRG)
+		qui eststo `1': reg `2' after FRG FxA   `3'  `4', vce(cluster MxYxbula)
 		qui estadd scalar Nn = e(N)
 		qui sum `2' if e(sample) & treat == 1 & after == 0
 		qui estadd scalar mean = round(`r(mean)',.01)
@@ -60,19 +60,19 @@ capture program drop DDalt
 	
 capture program drop DDxLFP
 	program define DDxLFP
-	qui  eststo `1': reg `2' treat after FLFP_2001 TxA TxFLFP AxFLFP TxAxFLFP `3'  `4', vce(cluster MxY) 
+	qui  eststo `1': reg `2' treat after FLFP_2001 TxA TxFLFP AxFLFP TxAxFLFP `3'  `4', vce(cluster MxYxbula) 
 	end
 	
 capture program drop DDD
 	program define DDD
-		qui eststo `1': reg `2' treat after FRG TxA FxT FxA FxTxA `3' `4', vce(cluster MxYxFRG)
+		qui eststo `1': reg `2' treat after FRG TxA FxT FxA FxTxA `3' `4', vce(cluster MxYxbula)
 	end
 	
 	
 
 capture program drop DDD_sclrs
 	program define DDD_sclrs
-		qui eststo `1': reg `2' treat after FRG TxA FxT FxA FxTxA `3' `4', vce(cluster MxYxFRG)
+		qui eststo `1': reg `2' treat after FRG TxA FxT FxA FxTxA `3' `4', vce(cluster MxYxbula)
 		qui estadd scalar Nn = e(N)
 		qui sum `2' if e(sample) & treat == 1 & after == 0
 		qui estadd scalar mean = round(`r(mean)',.01)
@@ -113,13 +113,6 @@ possible extensions:
 
 ********************************************************************************
 
-/*
-
-
-
-
-*/
-
 
 	
 use ${temp}/KKH_final_amr_level, clear
@@ -129,7 +122,7 @@ sort amr_clean Datum year
 *initiate file
 	eststo clear 
 	DDD a d5   	"i.MOB i.amr_clean" "if $C2 & $M1"
-	esttab a* using "$tables/amr_level_tables_$date.txt", replace cells(none) nonumbers noobs nonote noline nogaps nomtitles ///
+	esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", replace cells(none) nonumbers noobs nonote noline nogaps nomtitles ///
 		prehead("START Document - AMR LEVEL"  "") 
 
 ********************************************************************************
@@ -151,7 +144,7 @@ keep if GDR == 0
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps ///
@@ -167,7 +160,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul - mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -181,7 +174,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -200,7 +193,7 @@ keep if GDR == 0
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -214,7 +207,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul - mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -229,7 +222,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -248,7 +241,7 @@ keep if GDR == 0
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline ///
@@ -262,7 +255,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -276,7 +269,7 @@ keep if GDR == 0
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -299,7 +292,7 @@ keep if GDR == 0
 		DDRD_p a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(p_TxA) coeflabels(p_TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps ///
@@ -315,7 +308,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul - mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -329,7 +322,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -348,7 +341,7 @@ keep if GDR == 0
 		DDRD_p a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(p_TxA) coeflabels(p_TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -362,7 +355,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul - mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -377,7 +370,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -396,7 +389,7 @@ keep if GDR == 0
 		DDRD_p a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(p_TxA) coeflabels(p_TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline ///
@@ -410,7 +403,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -424,7 +417,7 @@ keep if GDR == 0
 		DDRD_p c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_p c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_p c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(p_TxA) coeflabels(p_TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -448,7 +441,7 @@ keep if GDR == 0
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote nogaps noline ///
@@ -466,7 +459,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -481,7 +474,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -501,7 +494,7 @@ keep if GDR == 0
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -516,7 +509,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -531,7 +524,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -551,7 +544,7 @@ keep if GDR == 0
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -566,7 +559,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popmz_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -581,7 +574,7 @@ keep if GDR == 0
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_density == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -601,7 +594,7 @@ keep if GDR == 0
 		DDRD_sclrs a2 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs a3 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs a4 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nonumbers noobs nonote nogaps noline ///
@@ -614,7 +607,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -625,7 +618,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -641,7 +634,7 @@ keep if GDR == 0
 		DDRD_sclrs a2 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs a3 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs a4 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nonumbers noobs nonote nogaps noline ///
@@ -652,7 +645,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -663,7 +656,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -679,7 +672,7 @@ keep if GDR == 0
 		DDRD_sclrs a2 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs a3 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs a4 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nonumbers noobs nonote nogaps noline ///
@@ -690,7 +683,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -701,7 +694,7 @@ keep if GDR == 0
 		DDRD_sclrs c2 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_22_26 [w = popweights]"
 		DDRD_sclrs c3 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_27_31 [w = popweights]"
 		DDRD_sclrs c4 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $age_32_35 [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -731,7 +724,7 @@ keep if treat == 1
 		DDalt a5 `1'`j'   	"i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt a6 `1'`j'   	"i.MOB i.amr_clean" "	    [w = popweights]"
 		DDalt a7 `1'`j'   	"i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxA) coeflabels(FxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps ///
@@ -747,7 +740,7 @@ keep if treat == 1
 		DDalt c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if  $M5 [w = popweights]"
 		DDalt c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "  	  [w = popweights]"
 		DDalt c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if  $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -761,7 +754,7 @@ keep if treat == 1
 		DDalt c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if  $M5 [w = popweights]"
 		DDalt c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "  	  [w = popweights]"
 		DDalt c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if  $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -780,7 +773,7 @@ keep if treat == 1
 		DDalt a5 `1'`j'   	"i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt a6 `1'`j'   	"i.MOB i.amr_clean" "		[w = popweights]"
 		DDalt a7 `1'`j'   	"i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxA) coeflabels(FxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -795,7 +788,7 @@ keep if treat == 1
 		DDalt c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "		 [w = popweights]"
 		DDalt c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -809,7 +802,7 @@ keep if treat == 1
 		DDalt c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "		 [w = popweights]"
 		DDalt c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -828,7 +821,7 @@ keep if treat == 1
 		DDalt a5 `1'`j'   	"i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt a6 `1'`j'   	"i.MOB i.amr_clean" "		[w = popweights]"
 		DDalt a7 `1'`j'   	"i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxA) coeflabels(FxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline ///
@@ -842,7 +835,7 @@ keep if treat == 1
 		DDalt c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "		[w = popweights]"
 		DDalt c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -856,7 +849,7 @@ keep if treat == 1
 		DDalt c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $M5 [w = popweights]"
 		DDalt c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "		[w = popweights]"
 		DDalt c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxA) coeflabels(FxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -884,7 +877,7 @@ keep if GDR == 1
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps ///
@@ -900,7 +893,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -914,7 +907,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -933,7 +926,7 @@ keep if GDR == 1
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -948,7 +941,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -962,7 +955,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -981,7 +974,7 @@ keep if GDR == 1
 		DDRD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline ///
@@ -995,7 +988,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1009,7 +1002,7 @@ keep if GDR == 1
 		DDRD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDRD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1036,7 +1029,7 @@ restore // end: keep only GDR
 		DDD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxTxA) coeflabels(FxTxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps ///
@@ -1052,7 +1045,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1067,7 +1060,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1086,7 +1079,7 @@ restore // end: keep only GDR
 		DDD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxTxA) coeflabels(FxTxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -1101,7 +1094,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1115,7 +1108,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1134,7 +1127,7 @@ restore // end: keep only GDR
 		DDD_sclrs a5 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(FxTxA) coeflabels(FxTxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline ///
@@ -1148,7 +1141,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popmz_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-mz") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1162,7 +1155,7 @@ restore // end: keep only GDR
 		DDD_sclrs c5 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $M5 [w = popweights]"
 		DDD_sclrs c6 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 [w = popweights]"
 		DDD_sclrs c7 r_popf_`1'`j'   "i.MOB i.amr_clean" "if $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(FxTxA) coeflabels(FxTxA "Ratio popul-fert") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1171,7 +1164,7 @@ restore // end: keep only GDR
 			addnotes(--------------------------------------------------------------------------------------------------------------------------------------)				
 	}
 	//Observations
-	esttab c* using "$tables/amr_level_tables_$date.txt", append  ///
+	esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			cells(none) nonote  noobs noline nomtitles nonumbers nogaps  ///
 			addnotes("" "" "END: `1'" "MWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMW")									
 	
@@ -1218,7 +1211,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote nogaps noline ///
@@ -1236,7 +1229,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio population") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1256,7 +1249,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -1272,7 +1265,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio population") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -1292,7 +1285,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs a6 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs a7 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs a8 `1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab a* using "$tables/amr_level_tables_$date.txt", append  ///
+		esttab a* using "$tables/amr_level_tables_clusterbula_$date.txt", append  ///
 			keep(TxA) coeflabels(TxA "Abs. numbers") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label noobs nonote noline nogaps nonumbers ///
@@ -1308,7 +1301,7 @@ esttab c*, keep(TxA) se star(* 0.10 ** 0.05 *** 0.01)
 		DDRD_sclrs c6 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $M4 [w = popweights]"
 		DDRD_sclrs c7 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 [w = popweights]"
 		DDRD_sclrs c8 r_popf_`1'`j'   	"i.MOB i.amr_clean" "if high_FLFP == 1 & $C2 & $MD [w = popweights]"
-		esttab c* using "$tables/amr_level_tables_$date.txt", append ///
+		esttab c* using "$tables/amr_level_tables_clusterbula_$date.txt", append ///
 			keep(TxA) coeflabels(TxA "Ratio population") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///

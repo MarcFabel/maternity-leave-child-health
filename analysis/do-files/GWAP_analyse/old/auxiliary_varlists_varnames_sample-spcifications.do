@@ -24,8 +24,6 @@
 	global M4 = "(Numx >= -4 & Numx <= 4)"
 	global M5 = "(Numx >= -5 & Numx <= 5)"
 	global MD = "(Numx != -1 & Numx != 1)"
-	qui gen bw6 = 1
-	global M6 = "bw6 == 1"
 	
 	* globals for age range 5 years taken together (age refers to year in which TG is that old)
 	global age_17_21 = "(year_treat >= 1996 & year_treat<=2000)"
@@ -109,8 +107,10 @@
 #delimit ;
 global list_outcomes "
 	d5
+	
 	metabolic_syndrome 
 	respiratory_index 
+	
 	drug_abuse 
 	heart
 	
@@ -157,7 +157,6 @@ global list_outcomes "
 	";
 #delimit cr
 
-********************************************************************************************	
 
 *list der detailed variables (subset - was not yet part of local analysis)
 	#delimit ;
@@ -184,24 +183,64 @@ global list_outcomes "
 		symp_digest";
 	#delimit cr
 	
-********************************************************************************************	
-// neue Liste mit Subkategorien des fünften DIagnosekapitels
 	
-#delimit ; 
-global fifth_chapter "
+	// Ausgabeliste
+	
+	#delimit ;
+global list_outcomes_ausgabe "
 	d5
-	organic
 	drug_abuse
-	shizophrenia
+	shizophrenia 
 	affective
-	neurosis
-	phys_factors
-	personality
-	retardation
-	development
-	childhood";
+	neurosis 
+	personality 
+	childhood 
+	
+	respiratory_index
+	lung_infect
+	pneumonia
+	lung_chron 
+	asthma 
+	
+	metabolic_syndrome 
+	diabetis 
+	hypertension
+	ischemic 
+	adipositas
+	 
+	intestine_infec
+	symp_digest
+	
+	 
+	heart
+	
+	
+	leukemia 
+	
+	ear
+	otitis_media
+	
+	symp_circ_resp
+	
+	
+	Summ_stay	
+	Sum_surgery
+	hospital
+	hospital2
+	patients
+	d1				
+	d2
+	d3
+	d4				
+	d6 				
+	d7 				
+	d8 				
+	d9 				
+	d10 					
+	d11 					
+	d12 					
+	d13 					
+	d17 					
+	d18
+	";
 #delimit cr
-********************************************************************************************	
-	
-	
-	
