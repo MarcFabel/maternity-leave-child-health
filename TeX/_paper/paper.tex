@@ -214,19 +214,20 @@ To which literature do we contribute to?
 \newpage
 \section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}
-In order to estimate the causal effect of the duration of maternity leave on children's long-run health, we compare health outcomes of children whose mothers were entitled to different lengths of maternity leave. We do so by exploiting the eligibility rules that are contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. We augment this idea of a local identification by combining the regression discontinuity design with a difference-in-difference approach.  
+In order to estimate the causal effect of maternity leave at the intensive margin, we compare health outcomes of children which are quite similar with the exception that their mothers were entitled to different lengths of maternity leave. We do so by exploiting the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. We augment this idea of a local identification by combining the regression discontinuity design with a difference-in-difference approach. A large body of literature suggests that there is a strong relationship between season of birth, health and socioeconomic outcomes. The seasonality may come about due to reasons that are assoiated to either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later life outcomes.} Last, the seasonality aspect could be also a result of social postnatal factors such as age at school-entry effects \citep{black2011too}. \newline
+If one would not take these season-of-birth effects into consideration, it could be the case that the the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. But by matching up the difference in health outcomes of children born within a distance to the the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold, but in a year in which no reform occured (control group).\footnote{In our widest specification we use a bandwidth of half a year on either side, i.e. the treatment groups consists of people that were born between November 1978 and October 1979.}
+The implicit identifiying assumption is that the seasonality effects are time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group. Unlike \cite{Dustmann2012} we only use the cohort born in the year prior to the reform as control group. The more cohorts are used as potential control groups, the less likely it is that the identifying assumption is met. Additionally, having a control cohort in the year after the policy change took place might enable parents to react to the reform and adjust fertility patterns. 
 
-control for seasonality while still preserving local aspect
 
-\begin{itemize}
-	\item combination RD and DD
-	\item local estimation 
-	\item control cohort: one year prior to reform year
-	\item intention-to-treat effect
-\end{itemize}
+
+
+% intention-to-treat
+% In this way we can eradicate any season-of-birth effects. 
+% control for seasonality while still preserving local aspect
+
 We use a difference-in-difference specification to estimate the effect of the length of maternity leave on children's health outcomes.
 
-\footnote{Similar identification strategies can be found in \cite{Dustmann2012} \cite{Lalive2014}\cite{RafaelLaliveandJosefZweimuller2009}, and \cite{Ekberg2013} \cite{Huebener2017} \cite{danzer2017}.[XXX: neues paper (Chile), benutzt das auch RDDD?]}
+\footnote{The estimation procedure can also be found in similar contexts in in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, and \cite{danzer2017}.[XXX: neues paper (Chile), benutzt das auch RDDD?]}
 
 In particular, our baseline approach to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation
 \begin{align}
