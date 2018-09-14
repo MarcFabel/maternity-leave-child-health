@@ -197,6 +197,8 @@ To which literature do we contribute to?
     \item eligibility
     \item take-up
     \item first stage
+    
+    reform effect is twofold: adjustment of labor supply and changes in disposable income, in particular for mothers at the bottom of the income distribution
     \begin{itemize}
       \item D+S 2012
       \item L+S
@@ -214,60 +216,74 @@ To which literature do we contribute to?
 \newpage
 \section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}
-In order to estimate the causal effect of maternity leave at the intensive margin, we compare health outcomes of children which are quite similar with the exception that their mothers were entitled to different lengths of maternity leave. We do so by exploiting the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. We augment this idea of a local identification by combining the regression discontinuity design with a difference-in-difference approach. A large body of literature suggests that there is a strong relationship between season of birth, health and socioeconomic outcomes. The seasonality may come about due to reasons that are assoiated to either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later life outcomes.} Last, the seasonality aspect could be also a result of social postnatal factors such as age at school-entry effects \citep{black2011too}. \newline
-If one would not take these season-of-birth effects into consideration, it could be the case that the the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. But by matching up the difference in health outcomes of children born within a distance to the the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold, but in a year in which no reform occured (control group).\footnote{In our widest specification we use a bandwidth of half a year on either side, i.e. the treatment groups consists of people that were born between November 1978 and October 1979.}
-The implicit identifiying assumption is that the seasonality effects are time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group. Unlike \cite{Dustmann2012} we only use the cohort born in the year prior to the reform as control group. The more cohorts are used as potential control groups, the less likely it is that the identifying assumption is met. Additionally, having a control cohort in the year after the policy change took place might enable parents to react to the reform and adjust fertility patterns. 
+In order to estimate the causal effect of maternity leave at the intensive margin, we exploit the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. A regression discontinuity design (RDD) might constitute a first potential identification strategy, in which one compares health outcomes of children which are quite similar with the only notable exception that their mothers were entitled to different lengths of maternity leave.\newline 
+We augment this idea of a local identification by combining the RDD with a difference-in-differences (DD) approach. A large body of literature suggests that there is a strong relationship between season of birth, health and other socioeconomic outcomes. The seasonality may come about due to reasons that are associated with either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of in-utero disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later outcomes.} Last, the seasonality aspect may also be the result of social postnatal factors such as age at school-entry \citep{black2011too}. \newline If one would not take these season-of-birth effects into consideration, it could be the case that the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. Yet, by matching up the difference in health outcomes of children born within a distance to the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold, but in a year in which no reform occurred (control group) we can eliminate the seasonality component while preserving the local identification aspect.\footnote{In our widest specification we use a bandwidth of half a year on either side, i.e. the treatment groups consists of people that were born between November 1978 and October 1979.}
+The implicit identifying assumption is that seasonality is time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group.\newline
 
-
-
-
-% intention-to-treat
-% In this way we can eradicate any season-of-birth effects. 
-% control for seasonality while still preserving local aspect
-
-We use a difference-in-difference specification to estimate the effect of the length of maternity leave on children's health outcomes.
-
-\footnote{The estimation procedure can also be found in similar contexts in in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, and \cite{danzer2017}.[XXX: neues paper (Chile), benutzt das auch RDDD?]}
-
-In particular, our baseline approach to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation
+Our main specification to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation: \footnote{The estimation procedure can also be found in similar contexts in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, and \cite{danzer2017}.[XXX: neues paper (Chile), benutzt das auch RDDD?]}
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
-where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who live in region $r$ at time period $t$. $Treat_{mr}$c is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the group [XXX other word for group, repetitive] is born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects.
+where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results-lifecourse}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
 
 
-The parameter of interest is $\gamma_3$
-The parameter is identified if
-identify if assumption are met.... 
+The parameter of interest is $\gamma_3$ which captures the effect of the policy change on health outcomes. As we don't have any information on the fact whether the individuals' mothers were on leave, the identified parameter is an intention-to-treat effect. \newline
+ %The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
 
 
- The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
+%control group
+Unlike \cite{Dustmann2012} we only use the cohort born in the year prior to the reform as control group.\footnote{\cite{Dustmann2012} use in total three birth cohorts as control group, two cohorts before and one cohort after the treatment cohort: group 1 born 11/1976-10/1976; group 2 born 11/1977-10/1978; and group 3 born 11/1979-10/1980 compromise the control group.} The more cohorts are used as potential control groups, the less likely it is that the identifying assumption is met. Additionally, taking a birth cohort in the year after the policy change as control group might invalidate the comparability between the treatment and control group as parents might have enough time to react to the reform and adjust fertility patterns. For these reasons, we have just the one cohort prior to the treatment cohort as control group in our main specifications and in the robustness section we show the results of estimations which are in line with the approach chosen by \cite{Dustmann2012}.\newline
 
 
 %clustering
-Sandwiched standard error estimates, allowing errors to be correlated over time within a month-of-birth cohort, and across 
-Diagnosis rates are serially correlated, cluster on month-of-birth and state level.
+Standard errors are clustered on the interaction of birth month and state level in order to account for likely correlation of the error $\varepsilon_{mrt}$ over time for a given month of birth cohort and across cohorts for a given state.
+%We use sandwiched standard error estimates
+%, allowing errors to be correlated over time within a month-of-birth cohort, and across 
+%Diagnosis rates are serially correlated, cluster on month-of-birth and state level.
 
 
-$\varepsilon_{mrt}$
+
+
+
+
 
 
 \subsection{Threat}
-timing of birth potenitally possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
+timing of birth potentially possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
 \subsection{validity}
 
 %--------------------------------------------------------------------
 % DATA & VARIABLES
 %--------------------------------------------------------------------
-\section{Hospital registry data}\label{sec:data}
+\section{Data}\label{sec:data}
 
+We use for this research the hospital register, provided by the Research Data Centers of the Federal Statistical Office and the statistical offices of the Länder, which contains information on the universe of German in-patient cases ($\sim$ 18 million cases per year). 
+ spanning the period from 1995 to 2014.
+
+\begin{itemize}
+	\item Hospital registry data
+	
+	- Region: We use labor market regions as defined  \footnote{The regions are defined by the \href{https://www.bbsr.bund.de/BBSR/DE/Raumbeobachtung/Raumabgrenzungen/AMR/amr_node.html}{Federal Institute for Research on Building, Urban Affairs and Spatial Development}.}
+		- aggregation of districts (kreise)
+		- not each distract has its own hospital 
+		%how many regions 
+	-only from regions of former FRG (discussion migration)
+	% denominator per 1000 individuals
+	% we know number of people who live in certain region from The Regional Database Germany, we use either weights coming from German Micro Census or from the original birth statistic to approximate the number of people per month.
+
+	
+	\item Regional Database Germany
+	\item German Micro Census
+	\item Region classification (Federal Institute for Research on Building-BBSR)
+\end{itemize}
 %--------------------------------------------------------------------
 % RESULTS
 %--------------------------------------------------------------------
 \section{Results}\label{sec:results}
-\subsection{pooled}
-\subsection{life-course approach}
-\subsection{subcategories}
+\subsection{pooled}\label{sec:results-pooled}
+\subsection{life-course approach}\label{sec:results-lifecourse}
+correction for age difference -> create pseudo years
+\subsection{subcategories}\label{sec:results-subcategories}
 \subsection{further results}
 show results for other outcomes, eventually include results from German Micro Census
 \subsection{Robustness}
