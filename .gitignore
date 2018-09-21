@@ -144,3 +144,5 @@ analysis/temp/
 *.gz(busy)
 
 TeX/d5_overMOBand YEAR/
+
+maps/
