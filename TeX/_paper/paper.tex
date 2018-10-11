@@ -17,6 +17,12 @@
 \usepackage{pdfpages}		% insert pages of external pdf documents
 \setlength{\parskip}{0em}	% vertical spacing for paragraphs
 \setlength{\parindent}{0em}	% horizonzal spacing for paragraphs
+\usepackage{tikz}
+\usepackage{tikzscale}		% helps to adjust tikz pictures to textwidth/linewidth
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+
 %
 %--------------------------------------------------------------------
 %	TABLES, FIGURES, LISTS
@@ -98,9 +104,9 @@ labelfont={bf}
 
 % CAPTIAL LETTERS FOR SECTION CAPTIONS
 %\usepackage{sectsty}
-%\sectionfont{\normalfont\scshape\centering}
+%\sectionfont{\normalfont\scshape\centering\textbf}
 %\renewcommand{\thesection}{\Roman{section}.}
-%\renewcommand{\thesubsection}{\thesection\Alph{subsection}.}
+%\renewcommand{\thesubsection}{\Alph{subsection}.}%\thesection\Alph{subsection}.
 %\subsectionfont{\itshape}
 %\subsubsectionfont{\scshape}
 %\newcommand\relphantom[1]{\mathrel{\phantom{#1}}}
@@ -144,17 +150,18 @@ labelfont={bf}
 %	BEGIN DOCUMENT
 %--------------------------------------------------------------------
 \begin{document}
-
+\setcounter{page}{0}  
 \tableofcontents
 \newpage
+\setcounter{page}{1}    
 \maketitle
 
 \textbf{\color{red} Preliminary and incomplete draft\newline Please do not cite or circulate without the authors' permission}
 \renewcommand{\abstractname}{\vspace{-\baselineskip}} % GET RID OF ABSTRACT TITLE
 
   \begin{abstract}\noindent 
-   \footnotesize{\begin{center}\textbf{Abstract}\end{center} text here
-   \\\newline \textbf{Keywords:} Early childhood development, health, paid maternity leave, life-cycle approach \newline \textbf{JEL codes:} I10, J13, J18}
+   \footnotesize{\begin{center}\textbf{Abstract}\end{center} This paper assesses the impact of the length of maternity leave on children’s long-run health outcomes. Our quasi-experimental design evaluates an expansion in maternity leave coverage from two to six months, which occurred in the Federal Republic of Germany in 1979. The expansion came into effect after a sharp cutoff date and significantly increased the time working mothers stayed at home with their newborns. In our analysis, we exploit the German Micro Census and hospital registry data, containing detailed information about the universe of inpatients' diagnoses and treatment for the years 1995 to 2014. By tracking the health of treated and control children from age 16 up to age 35, we provide new insights into the trajectory of health differentials over the life-cycle.
+   	We find a positive effect of the legislative change on several measures of long-term child health. Our intention-to-treat estimates suggest that children who were born shortly after the implementation of the reform experience fewer hospital admissions and are less likely to be diagnosed with mental and behavioral disorders.\\\newline \textbf{Keywords:} Early childhood development, health, paid maternity leave, life-cycle approach \newline \textbf{JEL codes:} I10, J13, J18}
     \end{abstract}
 
 \newpage
@@ -201,25 +208,36 @@ What is long-term health??( evtl auch in die background section?)
 % BACKGROUND
 %--------------------------------------------------------------------
 \newpage
-\section{Background on the 1979 maternity leave reform}\label{sec:background}
-\subsection{reform}
+\section{Background}\label{sec:background}
+\subsection{Institutional set-up}
+%reform
+In contrast to the United States, parental leave laws have been established much longer in Germany.\footnote{The following facts about maternity leave and benefit legislation are based on information in \cite{DIW2002}, \cite{schonberg2014expansions} and  \cite{zmarzlik1999mutterschutzgesetz}.} Before another reform took place in 1986, only mothers were eligible for job-protected leave.\footnote{The leave scheme described here does not correspond to the system, which is in place at the moment. After a series of reforms in the 1980s and 1990s that prolonged the job protection and/or benefit period, the current system was installed with the reform in 2007. \cite{Kluve2013} give a good overview about the current parental leave regulation in place.} Since the mid 1950s employed mothers hold the right to a paid protection period of six weeks before and eight weeks after child birth.\footnote{Compare with: "Gesetz zum Schutze der erwerbstätigen Mutter" (Mother-protection law), Bundesgesetzblatt (Federal law gazette), Part I, Nr. 5, p. 69-74, 30.01.1952.} 
+ \newline During that 'mother protection period' women must not work, but they are protected from being dismissed and upon their return to work they hold the right to be placed to a job, which is comparable with their prior assignment. The benefits in this period correspond to a 100\% replacement rate and equal women's average income over the three months before the birth of the child. They are co-funded by the public health insurance funds (750 DM per month), the federal government (400 DM, one-time payment) and the employer (the remainder). This pre-reform setting is quite comparable to the current maximum of 12 weeks of unpaid, job-protected leave in the US and the kminimum of 14 weeks of paid, job-protected leave in the EU \citep{guertzgen2018}.\footnote{Since the Family and Medical Leave Act of 1993 (FMLA), mothers in the US are entitled to leave if they have been working for at least one year with their employer, have accumulated a minimum of 1250 working hours during that year, and if they have been working for an employer with at least 50 employees \citep{baum2003effect}.} \newline
+
+The socio-liberal coalition of chancellor Helmut Schmidt passed a reform bill in 1979, which introduced four extra months after the mother protection period ended up to the point when the child is six months old. In other words, the total length of maternity leave (job protection and benefits) was increased from eight weeks to six months after childbirth (see Figure \ref{fig: MLreform}).\footnote{Compare with: "Gesetz zur Einführung eines Mutterschutzurlaubes" (Maternity leave law), Bundesgesetzblatt (Federal law gazette), Part I, Nr. 32, p.797-802, 30.06.1979.} The federal government primarily wanted to safeguard maternal health after childbirth with this reform. However, positive spill-over effects on the child were pleasantly acknowledged.\footnote{Gesetzesentwurf der Bundesregierung (Draft bill), Drucksache 8/2613.} While the initial benefits of the period from six weeks before and eight weeks after childbirth were not changed, the payments were equal to 750 DM from the third month after delivery.\footnote{This amount corresponds to approximately 44\% of average prebirth earnings in 1979 \citep{schonberg2014expansions}.} Although eligibility for maternity leave was universal among working women, take-up rates were not. The approximated maternity leave take-up rate is slightly below 40\% in 1979 \citep{Dustmann2012}. Yet, it is very likely that the true share of mothers who was on leave, is considerably higher. 
+%It should last until the 1986 reform until all mothers (irrespective of their employment status) and fathers became eligibile for parental leave.
+\newline
+
+The reform was initiated by a draft bill on January 05, 1979. The final law was ratified by the German Bundesrat (the Upper House of the German Parliament) on May 19 and by the German Bundestag (the Lower House) on June 22, 1979.  All previously employed women, who gave birth on/after May 01, 1979, were eligible for a total maternity leave of six months after childbirth, whereas all previously employed mothers, who delivered their baby before the cutoff date were only entitled to the 'common' 2 months of job-protected maternity leave. Note -- in relation to behavioral responses -- that the conception period for births when the reform took effect was way earlier than when the draft bill was proposed. This implies that families were not able to anticipate the legislation change and the 1979 reform in maternity leave can be seen as a quasi-experiment. This issue is discussed in more detail in Section (\ref{sec:empirical_strategy_2threats}).
+
+
+
+
+\cite{federalstatisticaloffice1981yearbook} female labor force participation
+
   \begin{itemize}
-    \item description of the reform \footnote{Es gab noch andere Reformen, dies ist nicht der aktuelle Stand, weitere Reformen 1986,..., 2007 current system was installed}\newline reform has already been investigated in two seminal papars by \cite{Dustmann2012} and \cite{schonberg2014expansions}....
-    \item eligibility
-    \item take-up
+    \item Counterfactual mode of care \newline describe  and childcare - type (informal, what was coverage of formal care in 1979) and quality 
+    %between year1 and year 2, maternal labor market attachment increased from..x to y 
   \end{itemize}
     
-\textit{"pre-reform setting: close to current maximum of 12 weeks of unpaid, job-protected keave in the US and the minimum of 14 weeks of paid, job-protected leave in the EU"}\citep{guertzgen2018}
 
 
 
 
-\subsection{Counterfactual mode of care}
-describe female labor force participation and childcare - type (informal, what was coverage of formal care in 1979) and quality 
-%between year1 and year 2, maternal labor market attachment increased from..x to y 
-    
-\newpage
-\textbf{First stage - effects of this particular reform in maternity leave}\newline 
+
+%--------------------------------------------------------------------    
+\bigskip
+\subsection{First stage - effects of this particular reform in maternity leave}
 %[XXX Ich habe jetzt pro Aspekt die beiden Zusammengeworfen und nicht jedes paper für sich behandelt, notwendig da SL zB mehr in die Tiefe geht bei maternal outcomes]
 The effects of the 1979 maternity leave reform has been investigated by the three studies of \cite{Dustmann2012}, \cite{schonberg2014expansions}, and \cite{guertzgen2018}.\footnote{Both, \cite{Dustmann2012} and \cite{schonberg2014expansions} analyze the impact of the expansion in maternity leave on maternal labor market outcomes. While the former study augments this aspect by evaluating potential changes in child outcomes due to the reform, the latter study focuses on maternal labor market outcomes but elicits more in depth results.} The first two studies show that the reform had a large impact on mothers' short-run labor market outcomes. \newline First, many mothers strongly adjust their labor supply downwards during the four months of extra leave, and return to the labor market as soon as the leave period terminates. Yet, it seems that there is only a small effect on long-run maternal labor supply (i.e. for the time period beyond six months after childbirth). For instance, while the reform decreased the share of mothers who had returned to the labor market by the third month after childbirth by 30.5 percentage points, the reduction in the share of returned mothers by the 52nd/76th month after childbirth is only around one percentage point.\footnote{When looking at long-run maternal labor force participation rates (i.e. at the child's sixth birthday), one can see that the reform leads to a modest increase in the probability a mother is working. The implication is that the mothers who abstain from the labor market in the long-run, would have only returned to work temporarily in absence of the reform.}
 In total, the change of postnatal maternity leave from two to six months caused mothers to postpone their return to work by, on average, 0.835 months.\footnote{This number corresponds to the number of months away from work in the first 40 months since childbirth.} Furthermore, approximately two-third of the decline in short-run female labor force participation is the result from a contraction in full-time work. Most of the mothers who postponed their labor market return, would have returned to their previous employers in absence of the reform. \newline
@@ -240,7 +258,7 @@ from MA:
 	\item long-run domain
 	\begin{itemize}
 		\item intro \cite{currie2011human} \& \cite{almond2017childhood}
-		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
+		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood (mention effect on breastfeeding)  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
 		\item find null effect \cite{Dahl2016Case}, \cite{rasmussen2010increasing} (parental access to birth-related leave)
 	\end{itemize}
 	\item health domain
@@ -256,27 +274,73 @@ from MA:
 
 
 
+noch irgendwo unterbringen: 
+ \cite{Barker1990origins} postulated the idea that conditions in-utero and during infancy have long-lasting effects on later life health, even though they may be latent at first until the onset of a particular condition \citep{almond2011fetalorigins}. reform might affect early life conditions 
 
 
-
-
-
+%--------------------------------------------------------------------
 \subsection{potential channels and implied prior on health effects}
+How is it possible that the length of maternity leave has an impact on long-run health outcomes of children? Before proceeding with the analysis, we provide a short discussion about potential mechanisms through which the reform could affect child health outcomes. In particular, we consider differences in care quality, changes in family income, parental health differentials and higher order fertility as potential pathways how the reform may affect long-run child health outcomes.  \newline
+
+% more maternal time - higher quality of care
+First, the reform induced mothers to postpone their return to the labor market and allowed for more maternal time during a crucial time period for child development. With more time at home, mothers are more likely to breastfeed - both on the extensive and intensive (duration) margin \citep{baker2008maternal,berger2005earlymaternal}.\footnote{The German Health Interview and Examination Survey for Children and Adolescents (KiGGS) presents representative data on breastfeeding rates from 1986 onwards \citep{lange2007breastfeeding}. From the 1986 cohort born in West Germany, less than 75\% of children were ever breastfed and the share of children who was breastfed exclusively for half a year is roughly 38\%.} Breastfeeding is known to have a wide array of medical benefits.\footnote{The World Health Organization recommends that \textit{"infants should be exclusively breastfed for the first six months of life to achieve optimal growth, development and health"} (\href{http://www.who.int/features/factfiles/breastfeeding/en/}{http://www.who.int/features/factfiles/breastfeeding/en/}).} The advantages for children that were breastfed range from reduced incidence or severity of asthma, allergies, diarrhea, mortality, morbidity and chronic conditions in the short run, to lower prevalence rates of obesity and overweight, and type II diabetes in adulthood \citep{ruhm2000parental, victora2016breastfeeding}. Moreover, there is correlational evidence that the length of breastfeeding is negatively associated with mental health problems and adverse health behavior (drinking) \citep{oddy2010longterm,falk2016early}. Yet, there are not only direct health effects, but also indirect effects via the effect of breastfeeding on other third outcomes that in turn affect health outcomes. For example, breastfeeding affects positively cognitive development \citep{albagli2018}, educational attainment and income \citep{victoria2015association}, the formation of preferences \citep{falk2016early}, and the quality of mother-child interactions \citep{papp2014longitudinal}. \newline 
+In addition to reduced breastfeeding, early maternal employment impedes the monitoring of children's health status. \cite{berger2005earlymaternal} present associations of maternal employment and a decrease in the use of preventive health care services (immunizations and 'well-baby' visits), while at the same time problems with externalizing behavior exacerbate. \cite{morrill2011} presents instrumental variable estimates, which suggest that maternal employment leads to a higher likelihood that the child suffers from an adverse health event (overnight hospitalization, asthma episode, or injury/poisoning).\newline 
+
+
+
+
+
+%attachment theory and neurobiological changes
+Second, Attachment theory, mother child separation
+
+he effect that this separation from the primary caregiver can have on a very young child depends on the quality
+of care and stimulation the child receives from the alternative caregiver
+(Belsky et al. 2007: Are There Long-Term Effects of Early Child Car)
+
+
+\cite{raikkonen2012early} life cycle model of stress:adversities occurring at different stages in life depend on area of the brain that undergo change; timing and type of early environment adversity matters, adversity at sensitive period may result in different effects during life cycle, shocks postnatal/during infancy affect hippocampus (regulation of physiological stress response); sensitive periods for brain development (peak first years of life)
+
+%links to papers that are important for the attachment tehory section
+%https://onlinelibrary.wiley.com/doi/abs/10.1002/1097-0355%28200101/04%2922%3A1%3C201%3A%3AAID-IMHJ8%3E3.0.CO%3B2-9 (The effects of early relational trauma on right brain development, affect regulation, and infant mental health)
+% https://www.tandfonline.com/doi/abs/10.1080/03004430701292988 (The socio‐emotional effects of non‐maternal childcare on children in the USA: a critical review of recent studies)
+% https://developingchild.harvard.edu/science/deep-dives (Havard group on developing children)
+% https://www.ncbi.nlm.nih.gov/pubmed/19401723 (Effects of stress throughout the lifespan on the brain, behaviour and cognition)
+% http://psycnet.apa.org/buy/2003-01660-002 (Trajectories leading to school-age conduct problems.)
+%https://www-sciencedirect-com.emedien.ub.uni-muenchen.de/science/article/pii/S0014292118300953?via%3Dihub (Gender differences in the benefits of an influential early childhood program)
+
+
+
+
+
+
+% Parental/ maternal health outcomes
+Third, changes in maternal health outcomes, which in turn might affect the ability to nurture, are other mechanisms of how the reform might impact child health outcomes.\footnote{See for instance \cite{patel2004} or \cite{frech2011maternal}.} There is correlational evidence indicating that more maternal employment is related to lower levels of mental well-being as well as self-rated overall health, and higher frequency of depressive symptoms and problems with parenting stress \citep{chatterji2005does,Chatterji2013}. In addition to the correlational evidence, there exists a large body of the quasi-experimental literature. \cite{beuchert2016} exploit a reform of the parental leave scheme in Denmark and find effects on maternal and siblings health outcomes. Additionally they detect larger gains for low-resource families. \cite{butikofer2018impact} exploit the 1977 maternity leave reform in Norway in order to demonstrate how the legislation change enhanced a battery of mid- and long-term maternal health outcomes, such as BMI, blood pressure, pain and mental health and it lead to more favorable health behavior (physical exercise and smoking abstinence). \cite{albagli2018} show that mothers who gave birth under a more generous leave regime have lower stress indices as compared to mothers who were shorter on leave. \newline 
+Summing up, if there are effects of extending maternity leave on parental health outcomes, they are positive, which in turn would enhance parents' ability to nurture.\footnote{ For that one has to assume that more time is devoted to child rearing due to less medical complications.}\newline 
+%  \cite{avendano2015long}
+
+
+
+% Income & other outcomes (fertility)
+Fourth, 
+ income (depreciation of human capital, change selection of mothers into work, change in labor market attachment see SL2014)
+transitional changes might not matter; hardly the case for families at the bottom of the SES distrbution $\rightarrow$	 
+experiment led by Greg Duncan: "RCT to evaluate the role of economic resources in early development. Is there a causal effect of unconditional cash transfers on cognitive, socio-emotional and brain development of infants in low-income US families. Brain circuitry may be sensitive to the effects of early experience even before early behavioral differences can be detected. In order to understand the impacts of added income on children's brain functioning at age 3, we will assess, during a lab visit, treatment/control group differences in measures of brain activity" (offocial title: Household Income and Child Development in the First Three Years of Life)
+
+% https://onlinelibrary-wiley-com.emedien.ub.uni-muenchen.de/doi/epdf/10.1111/desc.12079 (Socioeconomic status and functional braindevelopment )
+
+
+
+%other outcomes (fertility) 
+
+
+
+
+
+
+
 \begin{itemize}
-	\item breastfeeding, what was situation in 1979 \cite{baker2008maternal}
-	\begin{itemize}
-		\item nutrition channel 
-		\item quality of moth-child interactions
-		\item \cite{albagli2018} reform has positive effect on breastfeeding (duration and probability)
-	\end{itemize}
 	\item attachment theory/Fetal origin hypothesis/neurobiological literature (talk to Prof. Sulz)
-	\item income (depreciation of human capital, change selection of mothers into work, change in labor market attachment see SL2014)
-	 transitional changes might not matter; hardly the case for families at the bottom of the SES distrbution $\rightarrow$	 
-	 experiment led by Greg Duncan: "RCT to evaluate the role of economic resources in early development. Is there a causal effect of unconditional cash transfers on cognitive, socio-emotional and brain development of infants in low-income US families. Brain circuitry may be sensitive to the effects of early experience even before early behavioral differences can be detected. In order to understand the impacts of added income on children's brain functioning at age 3, we will assess, during a lab visit, treatment/control group differences in measures of brain activity" (offocial title: Household Income and Child Development in the First Three Years of Life)
-	
-	\item other outcomes (fertility) 
-	\item reduced stress/mental health problem for family \cite{chatterji2005does},  \cite{avendano2015long}, \cite{albagli2018} \cite{butikofer2018impact}
-	\cite{Chatterji2013}: more hrs of working, more depression, parental stress, worse self-rated overall health
+
 	\item LR labor market effect: pos effect on probability of being employed one year after birth; \cite{albagli2018}
 \end{itemize} 
 
@@ -287,7 +351,7 @@ from MA:
 %--------------------------------------------------------------------
 \newpage
 \section{Empirical strategy}\label{sec:empirical_strategy}
-\subsection{Design}
+\subsection{Design}\label{sec:empirical_strategy_1design}
 In order to estimate the causal effect of maternity leave at the intensive margin, we exploit the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. A regression discontinuity design (RDD) might constitute a first potential identification strategy, in which one compares health outcomes of children which are quite similar with the only notable exception that their mothers were entitled to different lengths of maternity leave.\newline 
 We augment this idea of a local identification by combining the RDD with a difference-in-differences (DD) approach. A large body of literature suggests that there is a strong relationship between season of birth, health and other socioeconomic outcomes. The seasonality may come about due to reasons that are associated with either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of in-utero disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later outcomes.} Last, the seasonality aspect may also be the result of social postnatal factors such as age at school-entry \citep{black2011too}. \newline If one would not take these season-of-birth effects into consideration, it could be the case that the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. Yet, by matching up the difference in health outcomes of children born within a distance to the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold one year prior the reform (control group) we can eliminate the seasonality component while preserving the local identification aspect.\footnote{In our widest specification we use a bandwidth of half a year on either side, i.e. the treatment groups consists of people that were born between November 1978 and October 1979.}
 The implicit identifying assumption is that seasonality is time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group.\newline
@@ -320,9 +384,16 @@ Standard errors are clustered on the interaction of birth month and state level 
 
 
 \newpage
-\subsection{Threat}
-timing of birth potentially possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
-\subsection{validity}
+\subsection{Threat}\label{sec:empirical_strategy_2threats}
+\begin{itemize}
+	\item timing of birth potentially possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
+	\item selective migration
+\end{itemize}
+
+
+
+
+\subsection{validity}\label{sec:empirical_strategy_3validity}
 \begin{itemize}
 	\item MZ (problem of selected sample, but large (enough?) number of obs) -> balancing table of parental predetermined covariates
 	\item Fertility distribution  -> histograms
@@ -350,7 +421,7 @@ We use for this research the hospital register, provided by the Research Data Ce
 	% denominator per 1000 individuals
 	% we know number of people who live in certain region from The Regional Database Germany, we use either weights coming from German Micro Census or from the original birth statistic to approximate the number of people per month.
 
-	-as compared to survey data, probably less measurement error
+	-as compared to survey data, probably less measurement error (also compared to DS we have exact MOB)
 	
 	\item Regional Database Germany
 	\item German Micro Census
@@ -409,6 +480,21 @@ We use for this research the hospital register, provided by the Research Data Ce
 %--------------------------------------------------------------------
 \newpage
 \section{Figures and tables}
+
+%--------------------------------------------
+% figure: reform 
+\begin{figure}[H]\centering
+	\caption{1979 reform in maternity leave legislation in the Federal Republic of Germany}\label{fig: MLreform}
+	%\input{../../analysis/graphs/paper/tikz_reform_extended_pre_and_post_birth.tex}
+	%\includegraphics[width=\linewidth]{../../analysis/graphs/paper/tikz_reform_extended_pre_and_post_birth.tikz}
+	%\includegraphics[width=0.9\linewidth]{../../analysis/graphs/paper/tikz_reform_short_post_birth.tikz}
+	\includegraphics[width=0.9\linewidth]{SOEP/Reform_shortened}
+	\begin{minipage}{0.9\linewidth}
+		\emph{Notes:} The figure describes the legislative change in the length of job protection and maternity leave, which took place in the Federal Republic of Germany in 1979. The reform increased post-birth maternity leave from eight weeks to six months, while keeping the initial structure of the period from six weeks before until eight weeks after childbirth unchanged (mother protection period).\newline \textit{Source: }The figure is based on information from \cite{Dustmann2012}, \cite{DIW2002}, \cite{schonberg2014expansions} as well as \cite{zmarzlik1999mutterschutzgesetz}.
+	\end{minipage}
+\end{figure}
+%--------------------------------------------
+% map: AMR of Germany
 \begin{figure}[H]\centering
 	\caption{The regions in Germany}\label{fig: AMR_regions_Germany}
 	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
@@ -417,9 +503,8 @@ We use for this research the hospital register, provided by the Research Data Ce
 		\emph{Notes:} This map shows the regions used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany ("West Germany"), while the white areas indicate the area of the former German Democratic Republic ("East Germany"). The districts of West Germany are used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals.\newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
 	\end{minipage}
 \end{figure}
-
-
-
+%--------------------------------------------
+% map: population density per AMR in Germany
 \newpage
 \begin{figure}[H]\centering
 	\caption{Region-level population density}\label{fig: AMR_regions_population_density}
