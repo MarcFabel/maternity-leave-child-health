@@ -873,11 +873,6 @@ qui save "$temp/KKH_ags_level_raw", replace
 
 
 
-
-
-capture log close
-log using "$logfiles\KKH_prepare_${date}_merging" , text replace
-
 ********************************************************************************
 ********************************************************************************
 ********************************************************************************
@@ -1337,7 +1332,6 @@ qui save "$temp/KKH_gdr_level_raw", replace
 
 
 
-log close
 
 
 

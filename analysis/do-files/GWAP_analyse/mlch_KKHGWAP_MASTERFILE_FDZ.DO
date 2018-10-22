@@ -120,7 +120,7 @@ Verwendete Variablen:
 // ***************************** PREAMBLE********************************
 	clear all
 	set more off
-	
+/*	
 * GWAP LANDESAMT (FÜR HERR BERGMANN)
 	global path 		"B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
 	*global path 		"D:\Data\Gast\GWA22_3053_MF_KH"
@@ -136,7 +136,7 @@ Verwendete Variablen:
 	global MZ_anspielen	"$path/A_Mikrodaten"		// verweist auf die Datei MZ_merge (von Hrrn. Janisch erhalten) 
 	global file			"kdfv_sa95"
 	*global file 		"gwap_sa95_"
-
+*/
 
 /*	
 * Landesamt (Für mich)
@@ -149,7 +149,7 @@ Verwendete Variablen:
 	global dofiles		"$path\C_Programm"
 */
 	
-/*
+
 * Lokale Maschine
 	global path 		"G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\GWAP_analyse"
 	global KKH	 		"G:\Projekte\Projekte_ab2016\EcUFam\Daten\Krankenhaus-Diagnose-Daten\strukturfiles\" 
@@ -165,7 +165,7 @@ Verwendete Variablen:
 	*global regionalst 	"G:\Projekte\Projekte_ab2016\EcUFam\Daten\Regionaldatenbank\Data\Final\output"
 	*global kreisreform 	"G:\Projekte\Projekte_ab2016\EcUFam\Daten\Gebietsreformen\finaldata\"
 	*global population 	"G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis/source/population"
-*/
+
 	
 * directory
 	cd "$dofiles"	
@@ -191,16 +191,22 @@ Verwendete Variablen:
 	*disp "check: mlch_KKHGWAP_prepare_raw "
 
 * 2) prepare dataset on different regional levels ( aggreagate and generate analysis relevant variables) 
-	do mlch_KKHGWAP_prepare_agslevel
+	*do mlch_KKHGWAP_prepare_agslevel
 	do mlch_KKHGWAP_prepare_amrlevel
 	do mlch_KKHGWAP_prepare_gdrlevel
 	*disp "check: mlch_KKHGWAP_prepare_REGIONALLEVELS"
 	
+	do mlch_KKHGWAP_descriptives_gdrlevel_graphs_d5partition
+	do mlch_KKHGWAP_analysis_gdr_lc_subcatgeories
+	
+	
+	
+	
 * 3) analysis - tables
-	do mlch_KKHGWAP_analysis_gdrlevel_tables
-	do mlch_KKHGWAP_analysis_amrlevel_tables
-	do mlch_KKHGWAP_analysis_amrlevel_tables_clusterbula
-	do mlch_KKHGWAP_analysis_amr_lc_subcatgeories_mz
+	*do mlch_KKHGWAP_analysis_gdrlevel_tables
+	*do mlch_KKHGWAP_analysis_amrlevel_tables
+	*do mlch_KKHGWAP_analysis_amrlevel_tables_clusterbula
+	*do mlch_KKHGWAP_analysis_amr_lc_subcatgeories_mz
 	
 		*disp "check: mlch_KKHGWAP_analysis_tables"
 		

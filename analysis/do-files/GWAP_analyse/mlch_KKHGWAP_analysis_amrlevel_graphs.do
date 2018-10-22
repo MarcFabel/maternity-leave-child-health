@@ -42,12 +42,15 @@ capture program drop DDD
 use ${temp}/KKH_final_amr_level, clear
 run "auxiliary_varlists_varnames_sample-spcifications"
 sort amr_clean Datum year
+*qui gen MxYxFRG = MxY * FRG
 
 
 drop if GDR == 1
 ********************************************************************************
-	
-	
+/* 
+ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN: 
+	DIE NENNER MÜSTTEN AUCH NACH GESCHLECHT SEIN
+*/	
 ********************************************************************************
 
 	
@@ -65,7 +68,7 @@ drop if GDR == 1
 	bys Datum year: egen denominatoryear = total(bev_fert)
 
 	
-	foreach 1 of varlist $list_outcomes {
+	foreach 1 of varlist hospital2 { //  $list_outcomes
 	capture drop W_AVRG* nominator*
 	foreach var in  "r_popf_"  { // rows: 
 		foreach j in "" "_f" "_m"  { // columns:  
@@ -286,7 +289,7 @@ WHATS WIHT WEIGHTS????
 				local ende = r(max)
 				
 				forvalues X = `start' (1) `ende' {
-					DDRD x `var'`1'`j' "i.MOB i.amr_clean"  " if year_treat == `X' & $C2"
+					DDRD x `var'`1'`j' "i.MOB"  " if year_treat == `X' & $C2"
 					qui replace b`j' = _b[TxA] if year_treat == `X'
 					qui replace CIL`j' = (_b[TxA]- $t_90 *_se[TxA]) if year_treat == `X'
 					qui replace CIR`j' = (_b[TxA]+ $t_90 *_se[TxA]) if year_treat == `X'
