@@ -83,15 +83,15 @@ twoway area t6 year, color(navy) || ///
 	area t3 year, color(dkorange) || ///
 	area t2 year, color(emerald) || ///
 	area t1 year, color(gs12) ///
-	scheme(s1mono) ///
+	scheme(s1mono) plotregion(color(white)) ///
 	ytitle("All mental and behavioral disorders") ///
 	legend(c(3) lab(1 "psychoactive substances") lab(2 "schizophrenia") lab(3 "affective") ///
 	lab(4 "neurosis") lab(5 "personality") lab(6 "other")) ///
 	legend(size(small)) ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
-	ylabel(, format(%9.0f))
-graph export "$graphs/d5partition_top5_$date.pdf", as(pdf) replace	
+	ylabel(, format(%9.0f)) ///
+	saving($graphs/d5partition_top5_$date,replace)
 
 
 	
@@ -104,15 +104,15 @@ twoway area s6 year, color(navy) || ///
 	area s2 year, color(emerald) || ///
 	area s1 year, color(cranberry) || ///
 	area s0 year, color(gs12) ///
-	scheme(s1mono) ///
+	scheme(s1mono) plotregion(color(white)) ///
 	ytitle("All mental and behavioral disorders") ///
 	legend(c(3) lab(1 "psychoactive substances") lab(2 "schizophrenia") lab(3 "affective") ///
 	lab(4 "neurosis") lab(5 "personality") lab(6 "childhood") lab(7 "other")) ///
 	legend(size(small)) ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
-	ylabel(, format(%9.0f))	
-graph export "$graphs/d5partition_top6_$date.pdf", as(pdf) replace
+	ylabel(, format(%9.0f))	///
+	saving($graphs/d5partition_top6_$date,replace)
 	
 
 	 

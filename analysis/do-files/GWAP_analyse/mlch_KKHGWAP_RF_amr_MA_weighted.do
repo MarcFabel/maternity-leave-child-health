@@ -1,3 +1,12 @@
+/*
+Dieses Do-File generiert drei Graphen, die die reltive Häufigkeit einer Krankenhaus-
+einlieferung von Personen einer Geburtskohorte darstellt. Dies wird für alle Personen,
+Frauen und Männer gemacht. 
+
+Das besondere ist, dass die Darstellung ein moving average Verfahren mit 
+einer Gewichtung (nach Bevölkerungsgröße) kombiniert. 
+*/
+
 ********************************************************************************
 use ${temp}/KKH_final_amr_level, clear
 run "auxiliary_varlists_varnames_sample-spcifications"
@@ -127,25 +136,25 @@ foreach 1 of varlist hospital2 {
 	foreach X in 2014 {				
 		// for single years		
 			*total		
-			twoway scatter W_AVRGyear MOB_altern if treat == 1  & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(black)  ///
+			twoway scatter W_AVRGyear MOB_ma if treat == 1  & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(black)  ///
 				scheme(s1mono )  ///
 				xtitle("")  ytitle("") ///
 				ylabel(#5,grid) ///
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
 				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_total_`X', replace)
+				saving($graphs/AMR_`1'_total_`X'_$date, replace)
 				*saving($graphs/AMRtotal_`var'`X', replace)
 	
 			*female 
-			twoway scatter W_AVRGyear_f MOB_ma if treat == 1& year == `X' & MOB_ma>=2 & MOB_ma<=11, color(red)  ///
+			twoway scatter W_AVRGyear_f MOB_ma if treat == 1& year == `X'& MOB_ma>=2 & MOB_ma<=11, color(red)  ///
 				scheme(s1mono )  ///
 				xtitle("")  ytitle("") ///
 				ylabel(#5,grid) ///
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
 				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_female_`X', replace)
+				saving($graphs/AMR_`1'_female_`X'_$date, replace)
 				*saving($graphs/AMRfemale_`var'`X', replace)
 				
 			*male	
@@ -156,28 +165,14 @@ foreach 1 of varlist hospital2 {
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
 				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_male_`X', replace)
+				saving($graphs/AMR_`1'_male_`X'_$date, replace)
 				*	saving($graphs/AMRmale_`var'`X', replace)
 		} // end: list 2003 and 2014
-		graph combine   "$graphs/AMR_hospital2_total_2014.gph"	"$graphs/AMR_hospital2_female_2014.gph"	"$graphs/AMR_hospital2_male_2014.gph", altshrink ///
-				  title(LC: per gender) subtitle("$`1'")   ///
-				  t1title("total              		female              		male") ///
-				  scheme(s1mono)
 		/*graph combine   "$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
 				  title(LC: per gender) subtitle("$`1'")   ///
 				  t1title("total              		female              		male") ///
 				  scheme(s1mono)*/
 } // end: varlist
 ********************************************************
-/*
-// control
-order amr Datum year bev_fert ma_bev_fert denominatoryear hospital2 mat_hospital2  ma_r_popf_hospital2 nominatoryear W_AVRGyear t2 t3 r_popf_hospital2
-sort amr year Datum
-sort Datum year amr
-
-****** IST EQUIVALENT ZU : (erst aggregieren und dann den ratio bilden)
-bys Datum year: egen t1 = total(mat_hospital2*1000 )
-gen t2 = t1/ denominatoryear
-
 
  

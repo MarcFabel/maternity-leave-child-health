@@ -27,7 +27,11 @@
 	global M5 = "(Numx >= -5 & Numx <= 5)"
 	global MD = "(Numx != -1 & Numx != 1)"
 	
-	
+	* globals for age range 5 years taken together (age refers to year in which TG is that old)
+	global age_17_21 = "(year_treat >= 1996 & year_treat<=2000)"
+	global age_22_26 = "(year_treat >= 2001 & year_treat<=2005)"
+	global age_27_31 = "(year_treat >= 2006 & year_treat<=2010)"
+	global age_32_35 = "(year_treat >= 2011 & year_treat<=2014)"
 	
 	
 	
