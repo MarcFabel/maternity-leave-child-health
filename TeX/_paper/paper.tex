@@ -611,6 +611,19 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
+
+
+%--------------------------------------------
+% Figure: effect sizes and frequency across chapters
+\vspace*{\fill}
+\begin{figure}[H]\centering
+	\includegraphics[width = 0.9 \linewidth]{paper/effect_chapters_frequency.pdf}
+	\begin{minipage}
+		{\linewidth}
+		\emph{Notes:} %The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978.)
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
 %--------------------------------------------
 % map: population density per AMR in Germany
 \newpage
@@ -632,6 +645,85 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------------------------------
 \input{KKH/paper_hospital2_DD_maintable.tex}
 
+\newpage
+
+%total 
+\begin{table}[H] \centering 
+\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (total)}}\label{tab: DD_hopsital2_total}
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+	\begin{tabular}{l*{5}{c}}
+		\toprule 
+		%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+		& \multicolumn{4}{c}{Estimation window} \\ 
+		\cmidrule(lr){2-5}
+		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+		&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+		\midrule
+		\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+		\input{KKH/paper_hospital2_DD_overall} \\ \\
+		\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+		\input{KKH/paper_hospital2_DD_17-21} \input{KKH/paper_hospital2_DD_22-26} \input{KKH/paper_hospital2_DD_27-31} \input{KKH/paper_hospital2_DD_32-35} 
+		\bottomrule 
+	\end{tabular}}
+	\begin{tablenotes} 
+		\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+	\end{tablenotes} 
+\end{threeparttable} 
+\end{table} 
+
+% female
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (women)}}\label{tab: DD_hopsital2_female} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{4}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-5}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A.Over entire length of the life-course}} \\
+				\input{KKH/paper_hospital2_f_DD_overall} \\ \\
+				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+				\input{KKH/paper_hospital2_f_DD_17-21} \input{KKH/paper_hospital2_f_DD_22-26} \input{KKH/paper_hospital2_f_DD_27-31} \input{KKH/paper_hospital2_f_DD_32-35} 
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table} 
+
+% male
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (men)}}\label{tab: DD_hopsital2_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{4}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-5}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+				\input{KKH/paper_hospital2_m_DD_overall} \\ \\
+				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+				\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table} 
+
+
+
+%For women and men
+%\midrule\multicolumn{5}{l}{\emph{Panel B. Women}} \\ 
+%  \midrule\multicolumn{5}{l}{\emph{Panel C. Men}} \\ 
+%\input{KKH/paper_hospital2_m_DD_overall} 
+%\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
 
 
 %--------------------------------------------------------------------
