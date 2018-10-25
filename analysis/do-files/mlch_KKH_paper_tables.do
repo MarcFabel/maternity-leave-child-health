@@ -5,21 +5,35 @@ capture program drop DDRD
 	program define DDRD
 		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxY) 
 	end
+capture program drop DDRD_sclrs
+	program define DDRD_sclrs
+		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxY) 
+		qui estadd scalar Nn = e(N)
+		qui sum `2' if e(sample) & treat== 1 & after == 0 
+		qui estadd scalar mean = round(`r(mean)',.01)		// pre-reform mean for treated group
+		qui estadd scalar sd = abs(round(_b[TxA]/`r(sd)'*100,.01))		
+		capture drop Dinregression sum_num_diag*
+		qui gen Dinregression = 1 if cond(e(sample),1,0)
+		bys Dinregression: egen sum_num_diagnoses = total(`2')
+		qui summ sum_num_diagnoses if e(sample)
+		qui estadd scalar num_diag = `r(mean)'
+	end		
 	
 	
 
-foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
+foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 	foreach j in "" "_f" "_m" { // "_f" "_m"
 		eststo clear 	
 		*overall effect
-		DDRD b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M2"
-		DDRD b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4"
-		DDRD b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
-		DDRD b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD"
+		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M2"
+		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4"
+		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
+		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD"
 		esttab b* using "$tables/paper_`1'`j'_DD_overall.tex", replace booktabs fragment ///
-			keep(TxA) coeflabels(TxA "Overall") ///
+			keep(TxA) coeflabels(TxA "\hspace*{10pt}Overall") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
-			label nomtitles nonumbers noobs nonote nogaps noline 
+			label nomtitles nonumbers noobs nonote nogaps noline ///
+			scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Observations")  
 			
 		* effect per age group
 		foreach age_group in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" { //

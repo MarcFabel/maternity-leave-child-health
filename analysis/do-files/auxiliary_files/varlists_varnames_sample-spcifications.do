@@ -41,7 +41,7 @@
 	global summ_stay			"Accumulated length of stay"
 	global share_surgery		"Share with surgery"
 	global hospital				"Hospital admission"
-	global hospital2			"Hopsital admission w/o d14"
+	global hospital2			"Hospital admission w/o d14"
 	global d1					"Certain infectious and parasitic diseases"
 	global d2					"Neoplasms"
 	global d5					"Mental and behavioral disorders"
