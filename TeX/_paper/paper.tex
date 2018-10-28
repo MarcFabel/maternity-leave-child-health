@@ -1,7 +1,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -439,8 +439,8 @@ The main diagnosis is the diagnosis, which was the major reason for the patient'
 
 
 % Outcomes and aggregation
-We aggregate the number of hospitalizations (or by diagnoses chapters) by birth month (per cohort), survey year, and region. For our baseline specification, region is equivalent to the former area of either FRG or GDR (henceforth called the Federal level).\footnote{Due to the fact that Berlin cannot be assigned to either FRG or GRD unambiguously, it is dropped from the analysis.} Thus, for our DiD baseline specification, we have a pseudo-panel with $24*20*1=480$ (month-of-birth$*$years$*$FRG) observations. For some robustness tests and heterogeneity analysis, we aggregate to the level of labor market regions (from now on 'LMR') as defined by the Federal Institute  for Research on Building, Urban Affairs and Spatial Development (BBSR).\footnote{The labor market regions are an aggreagtion of counties ('Kreise'). We do not remain on the level of counties, as some counties do not have their own hospitals.} For the region of former West Germany, there are 204 labor market regions, implying $24*12*204= 58,752$ birth month-year-region observations.\footnote{On the LMR level, we only have data from 2003 onwards, which leaves us with only 12 years of observations.} Figure \ref{fig: AMR_regions_Germany} shows the distinction between the two aggregation concepts. \newline % popf - seit 2003 macht die 58,752 observationen; popmz sogar erst seit 2005 48,960
-In the next step, we define the outcomes as the number of diagnoses per 1000 individuals in the respective month-of-birth cohort. On the federal level, we use the number of births as denominator, and on the LMR level we divide by the aproximated number of persons in the MOB per region. To this end, we merge data on the current number of inhabitants and fertility data from the German Federal Statistical Office to the hospital registry.\footnote{While the fertility data (federal level) states information on the level of the birth month, the data on current population (LMR level) is on the year of birth level, i.e. the number of inhabitants that were born in 1979 in region $r$ in year $t$. In order to assign the people to the single months, we use weights coming from the fertility distribution. Alternatively, we use weights obtained from the German Mico Census.}\newline
+We aggregate the number of hospitalizations (or by diagnoses chapters) by birth month (per cohort), survey year, and region. For our baseline specification, region is equivalent to the former area of either FRG or GDR (henceforth called the Federal level).\footnote{Due to the fact that Berlin cannot be assigned to either FRG or GRD unambiguously, it is dropped from the analysis.} Thus, for our DiD baseline specification, we have a pseudo-panel with $24*20*1=480$ (month-of-birth$*$years$*$FRG) observations. For some robustness tests and heterogeneity analysis, we aggregate to the level of labor market regions (from now on 'LMR') as defined by the Federal Institute  for Research on Building, Urban Affairs and Spatial Development (BBSR).\footnote{The labor market regions are an aggregation of counties ('Kreise'). We do not remain on the level of counties, as some counties do not have their own hospitals.} For the region of former West Germany, there are 204 labor market regions, implying $24*12*204= 58,752$ birth month-year-region observations.\footnote{On the LMR level, we only have data from 2003 onwards, which leaves us with only 12 years of observations.} Figure \ref{fig: AMR_regions_Germany} shows the distinction between the two aggregation concepts. \newline % popf - seit 2003 macht die 58,752 observationen; popmz sogar erst seit 2005 48,960
+In the next step, we define the outcomes as the number of diagnoses per 1000 individuals in the respective month-of-birth cohort. On the federal level, we use the number of births as denominator, and on the LMR level we divide by the approximated number of persons in the MOB per region. To this end, we merge data on the current number of inhabitants and fertility data from the German Federal Statistical Office to the hospital registry.\footnote{While the fertility data (federal level) states information on the level of the birth month, the data on current population (LMR level) is on the year of birth level, i.e. the number of inhabitants that were born in 1979 in region $r$ in year $t$. In order to assign the people to the single months, we use weights coming from the fertility distribution. Alternatively, we use weights obtained from the German Mico Census.}\newline
 
 
 % -another reason why main specification is on "federal level" is that in this way we can trace out the differential for a longer period (due to non-availability of the denominator for the labor market region before), so we use fertility (we prioritized the length of the trajectory over a current denominator) + we have the induced measurement error by the approximation in the regional level
@@ -537,7 +537,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	%\input{../../analysis/graphs/paper/tikz_reform_extended_pre_and_post_birth.tex}
 	%\includegraphics[width=\linewidth]{../../analysis/graphs/paper/tikz_reform_extended_pre_and_post_birth.tikz}
 	%\includegraphics[width=0.9\linewidth]{../../analysis/graphs/paper/tikz_reform_short_post_birth.tikz}
-	\includegraphics[width=0.8\linewidth]{SOEP/Reform_shortened}
+	\includegraphics[width=0.8\linewidth]{SOEP/Reform_shortened.pdf}
 	\begin{minipage}{\linewidth}
 		\scriptsize{\emph{Notes:} The figure describes the legislative change in the length of job protection and maternity leave, which took place in the Federal Republic of Germany in 1979. The reform increased post-birth maternity leave from eight weeks to six months, while keeping the initial structure of the period from six weeks before until eight weeks after childbirth unchanged (mother protection period).\newline \textit{Source: }The figure is based on information from \cite{Dustmann2012}, \cite{DIW2002}, \cite{schonberg2014expansions} as well as \cite{zmarzlik1999mutterschutzgesetz}.}
 	\end{minipage}
@@ -607,7 +607,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{subfigure}
 	\scriptsize
 	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978.)
+		\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
@@ -617,13 +617,28 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 % Figure: effect sizes and frequency across chapters
 \vspace*{\fill}
 \begin{figure}[H]\centering
-	\includegraphics[width = 0.9 \linewidth]{paper/effect_chapters_frequency.pdf}
-	\begin{minipage}
-		{\linewidth}
-		\emph{Notes:} %The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978.)
+	\caption{Intention-to-treat effects across main chapters}\label{fig: lc_hospital2_gdr_DD}
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency.pdf}
+	\end{subfigure}
+	
+	
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Women}
+		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_f.pdf}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Men}
+		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_m.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} The figures show the intention-to-treat estimates across the main diagnosis chapters. Furthermore, they indicate how often each distribution occurs across the entire length (1995-2014). The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). \newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
+
 %--------------------------------------------
 % map: population density per AMR in Germany
 \newpage
@@ -643,79 +658,111 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------------------------------
 % TABLES
 %--------------------------------------------------------------------
-\input{KKH/paper_hospital2_DD_maintable.tex}
 
-\newpage
-
-%total 
 \begin{table}[H] \centering 
-\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (total)}}\label{tab: DD_hopsital2_total}
+\begin{threeparttable} \centering \caption{ITT effects on hospital admission and different diagnoses chapters (total)}\label{tab: ITT_across_chapters_per_age_group_total}
  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 	\begin{tabular}{l*{5}{c}}
 		\toprule 
-		%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-		& \multicolumn{4}{c}{Estimation window} \\ 
-		\cmidrule(lr){2-5}
-		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-		&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
 		\midrule
-		\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-		\input{KKH/paper_hospital2_DD_overall} \\ \\
-		\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-		\input{KKH/paper_hospital2_DD_17-21} \input{KKH/paper_hospital2_DD_22-26} \input{KKH/paper_hospital2_DD_27-31} \input{KKH/paper_hospital2_DD_32-35} 
+		&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets} \\ 
+		\cmidrule(lr){3-6}
+		&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+		
+		\midrule
+
+		\input{paper/ITT_acrosschapters_peragegroup.tex}
+
 		\bottomrule 
 	\end{tabular}}
-	\begin{tablenotes} 
-		\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-	\end{tablenotes} 
-\end{threeparttable} 
+	% \begin{tablenotes} 
+	% 	\item 
+	% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+	\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
+	\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+	\end{minipage}
 \end{table} 
 
-% female
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (women)}}\label{tab: DD_hopsital2_female} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{5}{c}}
-				\toprule 
-				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-				& \multicolumn{4}{c}{Estimation window} \\ 
-				\cmidrule(lr){2-5}
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
-				\midrule
-				\multicolumn{5}{l}{\emph{Panel A.Over entire length of the life-course}} \\
-				\input{KKH/paper_hospital2_f_DD_overall} \\ \\
-				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-				\input{KKH/paper_hospital2_f_DD_17-21} \input{KKH/paper_hospital2_f_DD_22-26} \input{KKH/paper_hospital2_f_DD_27-31} \input{KKH/paper_hospital2_f_DD_32-35} 
-				\bottomrule 
-		\end{tabular}}
-		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-		\end{tablenotes} 
-	\end{threeparttable} 
-\end{table} 
 
-% male
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (men)}}\label{tab: DD_hopsital2_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{5}{c}}
-				\toprule 
-				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-				& \multicolumn{4}{c}{Estimation window} \\ 
-				\cmidrule(lr){2-5}
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
-				\midrule
-				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-				\input{KKH/paper_hospital2_m_DD_overall} \\ \\
-				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-				\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
-				\bottomrule 
-		\end{tabular}}
-		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-		\end{tablenotes} 
-	\end{threeparttable} 
-\end{table} 
+
+\newpage
+Was ist mit dem TABLE file - wieder auskommentieren
+%\input{KKH/paper_hospital2_DD_maintable.tex}
+
+% \newpage
+
+% %total 
+% \begin{table}[H] \centering 
+% \begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (total)}}\label{tab: DD_hopsital2_total}
+%  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+% 	\begin{tabular}{l*{5}{c}}
+% 		\toprule 
+% 		%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+% 		& \multicolumn{4}{c}{Estimation window} \\ 
+% 		\cmidrule(lr){2-5}
+% 		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+% 		&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+% 		\midrule
+% 		\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+% 		\input{KKH/paper_hospital2_DD_overall} \\ \\
+% 		\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+% 		\input{KKH/paper_hospital2_DD_17-21} \input{KKH/paper_hospital2_DD_22-26} \input{KKH/paper_hospital2_DD_27-31} \input{KKH/paper_hospital2_DD_32-35} 
+% 		\bottomrule 
+% 	\end{tabular}}
+% 	\begin{tablenotes} 
+% 		\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+% 	\end{tablenotes} 
+% \end{threeparttable} 
+% \end{table} 
+
+% % female
+% \begin{table}[H] \centering 
+% 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (women)}}\label{tab: DD_hopsital2_female} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+% 			\begin{tabular}{l*{5}{c}}
+% 				\toprule 
+% 				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+% 				& \multicolumn{4}{c}{Estimation window} \\ 
+% 				\cmidrule(lr){2-5}
+% 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+% 				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+% 				\midrule
+% 				\multicolumn{5}{l}{\emph{Panel A.Over entire length of the life-course}} \\
+% 				\input{KKH/paper_hospital2_f_DD_overall} \\ \\
+% 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+% 				\input{KKH/paper_hospital2_f_DD_17-21} \input{KKH/paper_hospital2_f_DD_22-26} \input{KKH/paper_hospital2_f_DD_27-31} \input{KKH/paper_hospital2_f_DD_32-35} 
+% 				\bottomrule 
+% 		\end{tabular}}
+% 		\begin{tablenotes} 
+% 			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+% 		\end{tablenotes} 
+% 	\end{threeparttable} 
+% \end{table} 
+
+% % male
+% \begin{table}[H] \centering 
+% 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (men)}}\label{tab: DD_hopsital2_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+% 			\begin{tabular}{l*{5}{c}}
+% 				\toprule 
+% 				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+% 				& \multicolumn{4}{c}{Estimation window} \\ 
+% 				\cmidrule(lr){2-5}
+% 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+% 				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+% 				\midrule
+% 				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+% 				\input{KKH/paper_hospital2_m_DD_overall} \\ \\
+% 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+% 				\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
+% 				\bottomrule 
+% 		\end{tabular}}
+% 		\begin{tablenotes} 
+% 			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+% 		\end{tablenotes} 
+% 	\end{threeparttable} 
+% \end{table} 
 
 
 
@@ -804,6 +851,16 @@ By 3 years of age, many of the metabolic and growth differences between the brea
 %	\end{minipage}
 %\end{figure}
 %-----------------------------------------------------
-
+% Figure: effect sizes and frequency across chapters
+% \vspace*{\fill}
+% \begin{figure}[H]\centering
+% 	\includegraphics[width = 0.9 \linewidth]{paper/effect_chapters_frequency.pdf}
+% 	\begin{minipage}
+% 		{\linewidth}
+% 		\emph{Notes:} %The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978.)
+% 	\end{minipage}
+% \end{figure}
+% \vspace*{\fill}\clearpage
+%-----------------------------------------------------
 
 \end{document}
