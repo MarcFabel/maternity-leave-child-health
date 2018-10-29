@@ -1,7 +1,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -592,7 +592,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %Life-course Hospital admission
 \vspace*{\fill}
 \begin{figure}[H]\centering
-	\caption{Life-course approach}\label{fig: lc_hospital2_gdr_DD}
+	\caption{Life-course approach for hospital admission}\label{fig: lc_hospital2_gdr_DD}
 	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
 		\includegraphics[width=\linewidth]{paper/lc_hospital2_total_gdr.pdf}
 	\end{subfigure}
@@ -611,8 +611,6 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
-
-
 %--------------------------------------------
 % Figure: effect sizes and frequency across chapters
 \vspace*{\fill}
@@ -632,13 +630,46 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{subfigure}
 	\scriptsize
 	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figures show the intention-to-treat estimates across the main diagnosis chapters. Furthermore, they indicate how often each distribution occurs across the entire length (1995-2014). The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). \newline
+		\emph{Notes:} The figures plots intention-to-treat estimates (along with 90\%/95\% confidence intervals) across the main diagnosis chapters. Furthermore, they indicate how often each distribution occurs across the entire length (1995-2014). The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). \newline
 		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
 
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
-
+%--------------------------------------------
+% LC Approach D5 (Mental and behavioral disod)
+\vspace*{\fill}
+\begin{figure}[H]\centering
+	\caption{Life-course approach for mental and behavioral disorders}\label{fig: lc_d5_gdr_DD}r	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{paper/lc_d5_total_gdr.pdf}
+	\end{subfigure}
+	
+	
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Women}
+		\includegraphics[width=\linewidth]{paper/lc_d5_female_gdr.pdf}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Men}
+		\includegraphics[width=\linewidth]{paper/lc_d5_male_gdr.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on mental and behavioral disorders over the life-course. The light gray line in the background represents the number of diagnoses that were made for both the treatment and control year. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
+%--------------------------------------------
+% Graph D5 partition - Subcategories
+\vspace*{\fill}
+\begin{figure}[H]\centering
+	\caption{The top five subcategories of mental \& behavioral diagnoses}\label{fig: d5partition}
+	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/presentation/d5partition.pdf}
+	\scriptsize
+	\begin{minipage}{0.9\linewidth}
+	\emph{Notes:} This figure plots the yearly number of diagnoses for the treatment cohort (i.e. the individuals born between November 1978 and October 1979). The subcategories are ordered by their occurrence in 2014 (from the most to the least frequent diagnosis).
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
 %--------------------------------------------
 % map: population density per AMR in Germany
 \newpage
@@ -655,122 +686,78 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \vspace*{\fill}\clearpage
 
 
+
+
+
 %--------------------------------------------------------------------
 % TABLES
 %--------------------------------------------------------------------
+\newpage
+\vspace*{\fill}
+{\Huge \begin{center}\textbf{TABLES}\end{center}}
+\vspace*{\fill}\clearpage
 
+% Overview ICD 9 and ICD 10 
+\begin{table}[h] % table environment for caption and label
+	\begin{threeparttable}
+		\centering % center the tabular
+		\caption{Overview of outcome variables} % caption
+		\label{tab:outcomes_coding_main_chapters} 
+		\begin{tabular}{lrrr} % alignment and number of columns of actual table
+			\toprule % top thicker horizontal line (" rule ")
+			&\multicolumn{1}{c}{(1)}& &\multicolumn{1}{c}{(2)}\\
+			&\multicolumn{1}{c}{ICD-9} & & \multicolumn{1}{c}{ICD-10} \\ 
+			\midrule
+			%-------------------------------------------------------------------------
+			\input{../../analysis/tables/outcome_classification_ICD_System.tex}
+			%-------------------------------------------------------------------------
+			\bottomrule % bottom thicker horizontal line (" rule ")
+		\end{tabular}
+		\begin{tablenotes}
+			\scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+%--------------------------------------------
+
+
+% Difference in Difference tables for HOSPITAL 
+\newpage
+\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_total}
+\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_women}
+\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_men}
+%--------------------------------------------
+% ITT effects nach chaptern
 \begin{table}[H] \centering 
-\begin{threeparttable} \centering \caption{ITT effects on hospital admission and different diagnoses chapters (total)}\label{tab: ITT_across_chapters_per_age_group_total}
- {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-	\begin{tabular}{l*{5}{c}}
-		\toprule 
-		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
-		\midrule
-		&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets} \\ 
-		\cmidrule(lr){3-6}
-		&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
-		
-		\midrule
-
-		\input{paper/ITT_acrosschapters_peragegroup.tex}
-
-		\bottomrule 
-	\end{tabular}}
-	% \begin{tablenotes} 
-	% 	\item 
-	% \end{tablenotes} 
+	\begin{threeparttable} \centering \caption{ITT effects on hospital admission and different diagnoses chapters (total)}\label{tab: ITT_across_chapters_per_age_group_total}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/ITT_acrosschapters_peragegroup.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
 	\end{threeparttable} 
 	\begin{minipage}{0.9\linewidth}
-	\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
-	\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
 	\end{minipage}
 \end{table} 
 
 
 
-\newpage
-Was ist mit dem TABLE file - wieder auskommentieren
-%\input{KKH/paper_hospital2_DD_maintable.tex}
 
-% \newpage
-
-% %total 
-% \begin{table}[H] \centering 
-% \begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (total)}}\label{tab: DD_hopsital2_total}
-%  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-% 	\begin{tabular}{l*{5}{c}}
-% 		\toprule 
-% 		%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-% 		& \multicolumn{4}{c}{Estimation window} \\ 
-% 		\cmidrule(lr){2-5}
-% 		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-% 		&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
-% 		\midrule
-% 		\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-% 		\input{KKH/paper_hospital2_DD_overall} \\ \\
-% 		\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-% 		\input{KKH/paper_hospital2_DD_17-21} \input{KKH/paper_hospital2_DD_22-26} \input{KKH/paper_hospital2_DD_27-31} \input{KKH/paper_hospital2_DD_32-35} 
-% 		\bottomrule 
-% 	\end{tabular}}
-% 	\begin{tablenotes} 
-% 		\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-% 	\end{tablenotes} 
-% \end{threeparttable} 
-% \end{table} 
-
-% % female
-% \begin{table}[H] \centering 
-% 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (women)}}\label{tab: DD_hopsital2_female} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-% 			\begin{tabular}{l*{5}{c}}
-% 				\toprule 
-% 				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-% 				& \multicolumn{4}{c}{Estimation window} \\ 
-% 				\cmidrule(lr){2-5}
-% 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-% 				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
-% 				\midrule
-% 				\multicolumn{5}{l}{\emph{Panel A.Over entire length of the life-course}} \\
-% 				\input{KKH/paper_hospital2_f_DD_overall} \\ \\
-% 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-% 				\input{KKH/paper_hospital2_f_DD_17-21} \input{KKH/paper_hospital2_f_DD_22-26} \input{KKH/paper_hospital2_f_DD_27-31} \input{KKH/paper_hospital2_f_DD_32-35} 
-% 				\bottomrule 
-% 		\end{tabular}}
-% 		\begin{tablenotes} 
-% 			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-% 		\end{tablenotes} 
-% 	\end{threeparttable} 
-% \end{table} 
-
-% % male
-% \begin{table}[H] \centering 
-% 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (men)}}\label{tab: DD_hopsital2_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-% 			\begin{tabular}{l*{5}{c}}
-% 				\toprule 
-% 				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-% 				& \multicolumn{4}{c}{Estimation window} \\ 
-% 				\cmidrule(lr){2-5}
-% 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-% 				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
-% 				\midrule
-% 				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-% 				\input{KKH/paper_hospital2_m_DD_overall} \\ \\
-% 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-% 				\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
-% 				\bottomrule 
-% 		\end{tabular}}
-% 		\begin{tablenotes} 
-% 			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
-% 		\end{tablenotes} 
-% 	\end{threeparttable} 
-% \end{table} 
-
-
-
-%For women and men
-%\midrule\multicolumn{5}{l}{\emph{Panel B. Women}} \\ 
-%  \midrule\multicolumn{5}{l}{\emph{Panel C. Men}} \\ 
-%\input{KKH/paper_hospital2_m_DD_overall} 
-%\input{KKH/paper_hospital2_m_DD_17-21} \input{KKH/paper_hospital2_m_DD_22-26} \input{KKH/paper_hospital2_m_DD_27-31} \input{KKH/paper_hospital2_m_DD_32-35} 
 
 
 %--------------------------------------------------------------------
@@ -778,42 +765,45 @@ Was ist mit dem TABLE file - wieder auskommentieren
 %--------------------------------------------------------------------
 \newpage
 \section{Appendix}
-\subsection{Outcomes Hospital registry data}
 
 
-\begin{table}[h] % table environment for caption and label
-\begin{threeparttable}
-\centering % center the tabular
-\caption{Overview of outcome variables} % caption
-\label{tab:outcomes_coding_main_chapters} 
-\begin{tabular}{lrrr} % alignment and number of columns of actual table
-\toprule % top thicker horizontal line (" rule ")
-        &\multicolumn{1}{c}{(1)}& &\multicolumn{1}{c}{(2)}\\
-&\multicolumn{1}{c}{ICD-9} & & \multicolumn{1}{c}{ICD-10} \\ 
-\midrule
-%-------------------------------------------------------------------------
-\input{../../analysis/tables/outcome_classification_ICD_System.tex}
-%-------------------------------------------------------------------------
-\bottomrule % bottom thicker horizontal line (" rule ")
-\end{tabular}
-\begin{tablenotes}
-      \scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
-    \end{tablenotes}
-  \end{threeparttable}
-\end{table}
+% LC MATRIX FOR ALL CHAPTERS
+
+% Part 1 of LC matrix
+\begin{figure}[H]\centering
+	\caption{Life-course approach for all chapters}\label{fig: appendix_lc_matrix_chapters}
+	\includegraphics[width=1.1\linewidth]{paper/lc_matrix_chapters_1.pdf}
+		\scriptsize
+		\begin{minipage}{\linewidth}
+			\emph{Continued on next page}
+		\end{minipage}
+\end{figure}
+
+%Part 2 of LC matrix
+\begin{figure}[H]\centering
+		\begin{minipage}{\linewidth}\scriptsize
+		\begin{center} \emph{Life-course approach for all chapters (continued)}\end{center}
+	\end{minipage}
+	\includegraphics[width=1.1\linewidth]{paper/lc_matrix_chapters_2.pdf}
+		\begin{minipage}{\linewidth}
+		\scriptsize \emph{Notes:} This figure plots intention-to-treat estimates (along with confidence intervals) across the main diagnosis chapters for the entire life-course. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\
+	\end{minipage}
+\end{figure}
+%--------------------------------------------
+
+
+
+
+
+
+
+
 
 %--------------------------------------------------------------------
 % Useful links for the paper
 %-------------------------------------------------------------------
 \newpage
-\subsection{Useful links for the paper}
-
-Which item shall I include in the metabolic syndrome: 
-\begin{enumerate}
-\item obesity
-\item hypertension
-\end{enumerate}
-
+\subsection*{Useful links for the paper}
 \begin{itemize}
 \item \textbf{breastfeeding \& metabolism:}
 
