@@ -13,7 +13,7 @@ clear all
 
 	
 /*	
-* 	missing label für year
+* 	missing label fÃ¼r year
 *	
 */
 
@@ -26,7 +26,7 @@ import delimited "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\do-files\G
  qui destring, replace
  qui drop v1
  
- * Exemplarisch für bandwidth = 6 
+ * Exemplarisch fÃ¼r bandwidth = 6 
  qui keep if bandwidth == 6
  
  foreach j in "" "_f" "_m" { // "_f" "_m" 	

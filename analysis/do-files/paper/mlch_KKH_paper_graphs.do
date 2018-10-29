@@ -1,4 +1,4 @@
-﻿// ***************************** PREAMBLE********************************
+// ***************************** PREAMBLE********************************
 	clear all
 	set more off
 	
@@ -48,7 +48,7 @@ end
 capture drop Dinregression
 qui gen Dinregression = 1 if cond($C2,1,0)
 
-foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
+foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 	capture drop sum_num_diag*
 	bys Dinregression year_treat: egen sum_num_diagnoses = total(`1')
 	bys Dinregression year_treat: egen sum_num_diagnoses_f = total(`1'_f)
@@ -81,9 +81,9 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 		local start_mtick = `start' + 2 
 		*total
 		twoway line sum_num_diagnoses year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
-			rarea CIL95 CIR95 year_treat, sort  color(black%12) yaxis(1) || ///
-			rarea CIL90 CIR90 year_treat, sort  color(black%25) yaxis(1) || ///
-			line b year_treat, sort color(black) yaxis(1) ///
+			rarea CIL95 CIR95 year_treat, sort  color(gs2%12) yaxis(1) || ///
+			rarea CIL90 CIR90 year_treat, sort  color(gs2%25) yaxis(1) || ///
+			line b year_treat, sort color(gs2) yaxis(1) ///
 			scheme(s1mono)    /// 
 			yline(0, lw(thin) lpattern(dash) lcolor(black))   ///
 			legend(label(2 "95% CI") label(3 "90% CI")) ///
@@ -128,6 +128,8 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 		
 			
 	} //end: loop over variable specification (COLUMNS)
-	
-		
 	} //end: loop over variables
+	
+	
+*-------------------------------------------------------------------------------
+

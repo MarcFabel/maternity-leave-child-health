@@ -1,5 +1,41 @@
-﻿use "$temp\KKH_final_R1", clear
+// ***************************** PREAMBLE********************************
+	clear all 
+	set more off
+	
+	*paths
+	global path   	   	"G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	
+	global temp   	   	"$path/temp"
+	global graphs      	"$path/graphs/KKH"
+	global graph_paper 	"$path/graphs/paper"
+	global tables 		"$path/tables/KKH"
+	global tables_paper "$path/tables/paper"
+	global auxiliary 	"$path/do-files/auxiliary_files"
+	
+	*magic numbers
+	global first_year = 1995
+	global last_year  = 2014
+	global t_90		  = 1.645
+	global t_95   	  = 1.960
+	
+	* List of control groups
+	global C2    = "(control == 2 | control == 4)"
+	global C1_C2 = "control != 3"
+	global C1_C3 = "reform == 1"
+	
+	* Bandwidths (sample selection)
+	global M2 = "(Numx >= -2 & Numx <= 2)"
+	global M4 = "(Numx >= -4 & Numx <= 4)"
+	global M6 = "reform == 1"
+	global MD = "(Numx != -1 & Numx != 1)"﻿
+
+// ***********************************************************************
+
+use "$temp\KKH_final_R1", clear
 run "$auxiliary/varlists_varnames_sample-spcifications"
+
+
+*define new global for tables ( müssen extra abgespeichert werden) 
+
 
 capture program drop DDRD
 	program define DDRD
@@ -29,7 +65,7 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4"
 		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
 		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD"
-		esttab b* using "$tables/paper_`1'`j'_DD_overall.tex", replace booktabs fragment ///
+		esttab b* using "$tables_paper/include/paper_`1'`j'_DD_overall.tex", replace booktabs fragment ///
 			keep(TxA) coeflabels(TxA "\hspace*{10pt}Overall") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
@@ -58,14 +94,14 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 			DDRD b4 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $M4"
 			DDRD b6 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2"
 			DDRD b7 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $MD"
-			esttab b* using "$tables/paper_`1'`j'_DD_`age_outputname'.tex", replace booktabs fragment ///
+			esttab b* using "$tables_paper/include/paper_`1'`j'_DD_`age_outputname'.tex", replace booktabs fragment ///
 				keep(TxA) coeflabels(TxA "\hspace*{10pt}`age_label'") ///
 				se star(* 0.10 ** 0.05 *** 0.01) ///
 				label nomtitles nonumbers noobs nonote nogaps noline  
 		} // end: agegroup
 	} // end: tfm
 	// Panels zusammenfassen
-	esttab b* using "$tables/paper_`1'_DD_maintable.tex", replace booktabs ///
+	esttab b* using "$tables_paper/paper_`1'_DD_maintable.tex", replace booktabs ///
 		cells(none) nonote noobs ///
 		mtitles("2M" "4M" "6M" "Donut") ///
 		prehead( ///
@@ -79,17 +115,17 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 			& \multicolumn{@M}{c}{Estimation window} \\ \cmidrule(lr){2-5}) ///
 			prefoot( ///
 				\multicolumn{@span}{l}{\emph{Panel A. Total}} \\ ///
-				\input{KKH/paper_`1'_DD_overall} \input{KKH/paper_`1'_DD_17-21} ///
-				\input{KKH/paper_`1'_DD_22-26} \input{KKH/paper_`1'_DD_27-31} /// 
-				\input{KKH/paper_`1'_DD_32-35} ///
+				\input{paper/include/paper_`1'_DD_overall} \input{paper/include/paper_`1'_DD_17-21} ///
+				\input{paper/include/paper_`1'_DD_22-26} \input{paper/include/paper_`1'_DD_27-31} /// 
+				\input{paper/include/paper_`1'_DD_32-35} ///
 				\midrule\multicolumn{@span}{l}{\emph{Panel B. Women}} \\ ///
-				\input{KKH/paper_`1'_f_DD_overall} \input{KKH/paper_`1'_f_DD_17-21} ///
-				\input{KKH/paper_`1'_f_DD_22-26} \input{KKH/paper_`1'_f_DD_27-31} ///
-				\input{KKH/paper_`1'_f_DD_32-35} ///
+				\input{paper/include/paper_`1'_f_DD_overall} \input{paper/include/paper_`1'_f_DD_17-21} ///
+				\input{paper/include/paper_`1'_f_DD_22-26} \input{paper/include/paper_`1'_f_DD_27-31} ///
+				\input{paper/include/paper_`1'_f_DD_32-35} ///
 				\midrule\multicolumn{@span}{l}{\emph{Panel C. Men}} \\ ///
-				\input{KKH/paper_`1'_m_DD_overall} \input{KKH/paper_`1'_m_DD_17-21} ///
-				\input{KKH/paper_`1'_m_DD_22-26} \input{KKH/paper_`1'_m_DD_27-31} ///
-				\input{KKH/paper_`1'_m_DD_32-35} ///
+				\input{paper/include/paper_`1'_m_DD_overall} \input{paper/include/paper_`1'_m_DD_17-21} ///
+				\input{paper/include/paper_`1'_m_DD_22-26} \input{paper/include/paper_`1'_m_DD_27-31} ///
+				\input{paper/include/paper_`1'_m_DD_32-35} ///
 				) ///
 			postfoot(\bottomrule \end{tabular} } ///
 			\begin{tablenotes} ///
@@ -137,7 +173,7 @@ foreach j in ""  { // "_f" "_m"
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
 			local iter = `iter' + 1 
 		} // end: age group
-		esttab b* using "$tables/paper_ITTacrosschapters_`j'.tex", replace booktabs fragment ///
+		esttab b* using "$tables_paper/paper_ITTacrosschapters_`j'.tex", replace booktabs fragment ///
 			keep(TxA) coeflabels(TxA "$`1'") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nonumbers nomtitles noobs nonote nogaps noline  
@@ -153,7 +189,7 @@ foreach j in ""  { // "_f" "_m"
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
 			local iter = `iter' + 1 
 		} // end: age group
-		esttab b* using "$tables/paper_ITTacrosschapters_`j'.tex", append booktabs fragment ///
+		esttab b* using "$tables_paper/paper_ITTacrosschapters_`j'.tex", append booktabs fragment ///
 			keep(TxA) coeflabels(TxA "$`1'") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline 
