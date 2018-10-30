@@ -1,7 +1,13 @@
+% 	TO DO: 
+%	EINFÜGEN VON HISTORISCHEN BILDERN, MZ UND FERTILITY GRAPHEN
+% 	TANYA WILSON KOMMENTARE UND MITSCHRIEB VON TALK (LITERATURE AND CHANNELS)
+
+
+
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -698,10 +704,12 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \vspace*{\fill}\clearpage
 
 % Overview ICD 9 and ICD 10 
+%\begin{small}
+
 \begin{table}[h] % table environment for caption and label
 	\begin{threeparttable}
 		\centering % center the tabular
-		\caption{Overview of outcome variables} % caption
+		\caption{Overview of diagnoses} % caption
 		\label{tab:outcomes_coding_main_chapters} 
 		\begin{tabular}{lrrr} % alignment and number of columns of actual table
 			\toprule % top thicker horizontal line (" rule ")
@@ -714,10 +722,17 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 			\bottomrule % bottom thicker horizontal line (" rule ")
 		\end{tabular}
 		\begin{tablenotes}
-			\scriptsize{ \item \textit{Notes:} Classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization. The index for drug abuse indicates mental and behavioral disorders due to psychoactive substances. The list of psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances.\newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} }
+			\scriptsize{ \item \textit{Notes:} The table shows the classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization. \newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/}\newline$^1$ Psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances. }
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table}
+
+%\end{small}
+%\normalsize
+
+
+
+
 %--------------------------------------------
 
 
