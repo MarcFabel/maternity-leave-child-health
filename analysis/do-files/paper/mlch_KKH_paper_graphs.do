@@ -45,14 +45,15 @@ program define DDRD
 end
 *************************
 // PANEL 1.1: PLOTS FOR EACH GENDER SEPERATELY (WITH CG2!) 
-capture drop Dinregression
+capture drop Dinregression temp
 qui gen Dinregression = 1 if cond($C2,1,0)
+qui gen temp = 1 if treat == 1 & after == 0
 
-foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
+foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	capture drop sum_num_diag*
-	bys Dinregression year_treat: egen sum_num_diagnoses = total(`1')
-	bys Dinregression year_treat: egen sum_num_diagnoses_f = total(`1'_f)
-	bys Dinregression year_treat: egen sum_num_diagnoses_m = total(`1'_m)
+	bys temp year_treat: egen sum_num_diagnoses = mean(r_fert_`1') if treat == 1 & after == 0
+	bys temp year_treat: egen sum_num_diagnoses_f = mean(r_fert_`1'_f) if treat == 1 & after == 0
+	bys temp year_treat: egen sum_num_diagnoses_m = mean(r_fert_`1'_m) if treat == 1 & after == 0
 	
 	foreach var in "r_fert_"  {	// COLUMNS
 		capture drop b* CIL* CIR*
@@ -91,7 +92,7 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 			legend(region(color(none))) legend(symx(5)) ///
 			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
 			xmtick(`start_mtick'  (4) `ende') ///
-			ytitle("ITT effect", axis(1)) ytitle("Number of diagnoses",axis(2)) ///
+			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) 
 			graph export "$graph_paper/lc_`1'_total_gdr.pdf", as(pdf) replace	
 
@@ -107,7 +108,7 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 			legend(region(color(none))) legend(symx(5)) ///
 			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
 			xmtick(`start_mtick'  (4) `ende') ///
-			ytitle("ITT effect", axis(1)) ytitle("Number of diagnoses",axis(2)) ///
+			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1))
 			graph export "$graph_paper/lc_`1'_female_gdr.pdf", as(pdf) replace		
 		*male
@@ -122,7 +123,7 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 			legend(region(color(none))) legend(symx(5)) ///
 			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
 			xmtick(`start_mtick'  (4) `ende') ///
-			ytitle("ITT effect", axis(1)) ytitle("Number of diagnoses",axis(2)) ///
+			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) 
 			graph export "$graph_paper/lc_`1'_male_gdr.pdf", as(pdf) replace	
 		

@@ -199,8 +199,8 @@ Verwendete Variablen:
 * 3) Beantragen	
 	do mlch_KKHGWAP_descriptives_gdrlevel_graphs_d5partition
 	do mlch_KKHGWAP_analysis_gdr_lc_subcatgeories
-	do mlch_KKHGWAP_descriptives_gdrlevel_graphs_deaths
-	do mlch_KKHGWAP_RF_amr_MA_weighted
+	do mlch_KKHGWAP_descriptives_gdrlevel_graphs_deaths	
+	*do mlch_KKHGWAP_RF_amr_MA_weighted
 	
 	
 	

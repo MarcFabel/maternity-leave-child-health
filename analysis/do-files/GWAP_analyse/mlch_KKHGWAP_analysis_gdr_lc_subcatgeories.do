@@ -1,5 +1,24 @@
 
 
+	
+/*	
+Notiz an Herrn Bergmann bezüglich des Outputs: 
+
+		Die Datensaetze enthalten pro Variable Regressionsergbenisse für verschiedene bandbreiten
+		und Jahre. Pro Reihe finden sich die Ergebnisse für jeweils 3 Regressionen: 
+		für alle Faelle, Frauen, und Männer.
+		Es werden neben den Punktschätzern (beta) und den Standardfehlern (se), die 
+		Anzahl der Observationen (observations), das adjusted R-squared (Rsq), 
+		die involvierten diagnosen (diagnoses) und Erwartungswert (mean)
+		und standardabweichung (sd) von der abhängigen Variable der 
+		Kontrolgruppe aufgeführt. Dies geschieht seperat für alle Fälle und nach
+		Geschlechtern getrennt (suffix _m (männlich) _f (weiblich). 
+		
+		Die Ergebnisse werden nun im STATA Format zur besseren Prüfung abgespeichert.
+*/		
+
+
+
 version 14 
 
 *********************************************************************************************************
@@ -22,10 +41,10 @@ preserve
 	foreach 1 of varlist $fifth_chapter { // $fifth_chapter
 		* initiate matrix
 		mat A = J(1,23,.)
-		esttab m(A) using "$tables/`1'_lc_yrs_brckts.csv", ///
-			collabels(year beta se observations Rsq diagnoses mean pct_sd ///
-				beta_f se_f observations_f Rsq_f diagnoses_f mean_f pct_sd_f ///
-				beta_m se_m observations_m Rsq_m diagnoses_m mean_m pct_sd_m ///
+		esttab m(A) using "$tables/temp_`1'.csv", ///
+			collabels(year beta se observations Rsq diagnoses mean sd ///
+				beta_f se_f observations_f Rsq_f diagnoses_f mean_f sd_f ///
+				beta_m se_m observations_m Rsq_m diagnoses_m mean_m sd_m ///
 				bandwidth) ///
 			keep() nomtitles replace nomtitles 
 		
@@ -107,7 +126,7 @@ preserve
 			mat A[1,21] = round(`r(mean)',.001)
 			mat A[1,22] = abs(round(_b[TxA]/`r(sd)'*100,.001))
 			mat A = [A,sBW]									// add scalar of bandwidth
-			esttab m(A) using "$tables/`1'_lc_yrs_brckts.csv", collabels(none)  plain append lz nomtitles 
+			esttab m(A) using "$tables/temp_`1'.csv", collabels(none)  plain append lz nomtitles 
 			
 			****************************************************************************************
 			*overall effects (entire time frame
@@ -165,7 +184,7 @@ preserve
 			mat A[1,21] = round(`r(mean)',.001)
 			mat A[1,22] = abs(round(_b[TxA]/`r(sd)'*100,.001))
 			mat A = [A,sBW]
-			esttab m(A) using "$tables/`1'_lc_yrs_brckts.csv", collabels(none)  plain append lz nomtitles 
+			esttab m(A) using "$tables/temp_`1'.csv", collabels(none)  plain append lz nomtitles 
 			
 			****************************************************************************************
 			* life-course 
@@ -231,7 +250,7 @@ preserve
 				****************************************************************************************
 			} // end: years over lifecourse
 			mat B = [A,vBW]											// add vector of bandwidth
-			esttab m(B) using "$tables/`1'_lc_yrs_brckts.csv", collabels(none)  plain append lz nomtitles 
+			esttab m(B) using "$tables/temp_`1'.csv", collabels(none)  plain append lz nomtitles 
 			*matrix list A
 		} // end: liste von bandwiths
 ************************************************************************
@@ -318,7 +337,7 @@ preserve
 				****************************************************************************************
 			} // end: years over lifecourse: in that instance, end of age brackets
 			mat B = [A,vBW]											// add vector of bandwidth
-			esttab m(B) using "$tables/`1'_lc_yrs_brckts.csv", collabels(none)  plain append lz nomtitles 
+			esttab m(B) using "$tables/temp_`1'.csv", collabels(none)  plain append lz nomtitles 
 			*matrix list A
 		} // end: liste von bandwiths
 		
@@ -329,9 +348,10 @@ restore // end: just FRG
 
 
 *********************************************************************************************************************
-/*
+
 // in Stata importieren
-	import delimited "$tables\d5_lc_yrs_brckts.csv", delimiter(comma) varnames(1) stripquote(yes) case(preserve) clear 
+foreach 1 in "d5" "organic" "drug_abuse" "shizophrenia" "affective" "neurosis" "phys_factors" "personality" "retardation" "development" "childhood" { 
+	import delimited "$tables\temp_`1'.csv", delimiter(comma) varnames(1) stripquote(yes) case(preserve) clear 
 	drop v1					// delete column that just contains the rownumber
 	qui gen temp = _n
 	qui drop if temp == 1	// delete empty rowd
@@ -339,26 +359,12 @@ restore // end: just FRG
 	qui destring, replace
 	order bandwidth
 	*define labels
-	label define YEAR -99 "start-end" -98 "all observations" 1 "17-21 years old" 2 "22-26 years old" 3 "27-31 years old" 4 "32-35 years old"
+	label define YEAR -99 "17-35 years old" -98 "all observations" 1 "17-21 years old" 2 "22-26 years old" 3 "27-31 years old" 4 "32-35 years old"
 	label val year YEAR
 	label define BANDWIDTH 99 "Donut specification (exclude 2 birth months)" 
 	label val bandwidth BANDWIDTH
-	qui save "$tables\d5_lc_yrs_brckts" ,replace
-	
-/*	
-Notiz an Herrn Bergmann bezüglich des Outputs: 
+	qui save "$tables\`1'_lc_yrs_brckts" ,replace
+	qui erase "$tables\temp_`1'.csv"
+}	
 
-		Das Datenset enthält die Regressionsergbenisse für verschiedene bandbreiten
-		und jahre. Es werden neben den Punktschätzern und den Standardfehlern, die 
-		Anzahl der Observationen, das adjusted R-squared, die involvierten diagnosen
-		und Erwartungswert und standardabweichung von der abhängigen Variable der 
-		Kontrolgruppe aufgeführt. Dies geschieht seperat für alle Fälle und nach
-		Geschlechtern getrennt. 
-		
-		Die Ergebnisse können entweder in der csv Datei oder im Stata Format 
-		betrachtet werden, wobei wahrscheinlich zweiteres besser sein dürfte, da 
-		ich dort labels generiert habe, die zur Vertändigung beitragen sollen. 
-		Leider kann ich aus irgendeinem Grund das nicht in ein loop packen, sodass 
-		man es evtl einmal für ein outcome macht um zu erkennen was gemacht wird.
-*/		
 		
