@@ -185,11 +185,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			
 			qui reg `var'`1'`j' Numx Num_after after if treat == 1
 			qui predict `j'_hat_linear_T
-			
-			qui reg `var'`1'`j' Numx Num_after after if treat == 1 & year == 2003 
-			qui predict `j'_hat_linear_T_2003
-			qui reg `var'`1'`j' Numx Num_after after if treat == 1 & year == 2014 
-			qui predict `j'_hat_linear_T_2014
+			foreach X of numlist 2003(1)2014 { 
+				qui reg `var'`1'`j' Numx Num_after after if treat == 1 & year == `X' 
+				qui predict `j'_hat_linear_T_`X'
+			}
 			
 			
 		} // end: loop over columns (total, male, female)

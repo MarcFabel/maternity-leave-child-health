@@ -133,7 +133,7 @@ foreach 1 of varlist hospital2 {
 	foreach j in "" "_f" "_m"  { // columns:
 		qui gen W_AVRGyear`j' = nominatoryear`j'/denominatoryear`j'
 	} // end: gender		
-	foreach X  of numlist 2003(1)2010  {				
+	foreach X  of numlist 2003(1)2014  {				
 		// for single years		
 			*total		
 			twoway scatter W_AVRGyear MOB_ma if treat == 1  & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(black)  ///
