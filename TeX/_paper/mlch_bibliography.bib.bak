@@ -1,23 +1,21 @@
 % Encoding: UTF-8
 
-
-
-
-@article{avdic2018modern,
-	Author = {Avdic, Daniel and Karimi, Arizo},
-	Date-Added = {2018-11-04 16:21:21 +0000},
-	Date-Modified = {2018-11-04 16:21:37 +0000},
-	Doi = {10.1257/app.20160426},
-	Journal = {American Economic Journal: Applied Economics},
-	Month = {October},
-	Number = {4},
-	Pages = {283-307},
-	Title = {Modern Family? Paternity Leave and Marital Stability},
-	Url = {http://www.aeaweb.org/articles?id=10.1257/app.20160426},
-	Volume = {10},
-	Year = {2018},
-	Bdsk-Url-1 = {http://www.aeaweb.org/articles?id=10.1257/app.20160426},
-	Bdsk-Url-2 = {http://dx.doi.org/10.1257/app.20160426}}
+@Article{avdic2018modern,
+  author        = {Avdic, Daniel and Karimi, Arizo},
+  title         = {{Modern Family? Paternity Leave and Marital Stability}},
+  journal       = {American Economic Journal: Applied Economics},
+  year          = {2018},
+  volume        = {10},
+  number        = {4},
+  pages         = {283--307},
+  month         = {October},
+  bdsk-url-1    = {http://www.aeaweb.org/articles?id=10.1257/app.20160426},
+  bdsk-url-2    = {http://dx.doi.org/10.1257/app.20160426},
+  date-added    = {2018-11-04 16:21:21 +0000},
+  date-modified = {2018-11-04 16:21:37 +0000},
+  doi           = {10.1257/app.20160426},
+  url           = {http://www.aeaweb.org/articles?id=10.1257/app.20160426},
+}
 
 @article{danzer2017parental,
 	Author = {Danzer, Natalia and Halla, Martin and Schneeweis, Nicole E and Zweim{\"u}ller, Martina},
@@ -266,20 +264,20 @@
 	Volume = {25},
 	Year = {2007}}
 
-@article{beuchert2016,
-	Author = {Louise Voldby Beuchert and Maria Knoth Humlum and Rune Vejlin},
-	Doi = {https://doi.org/10.1016/j.labeco.2016.06.007},
-	Issn = {0927-5371},
-	Journal = {Labour Economics},
-	Keywords = {Maternity leave, Family health, Regression discontinuity},
-	Note = {Health and the Labour Market},
-	Pages = {55--71},
-	Title = {The length of maternity leave and family health},
-	Url = {http://www.sciencedirect.com/science/article/pii/S0927537116300586},
-	Volume = {43},
-	Year = {2016},
-	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0927537116300586},
-	Bdsk-Url-2 = {https://doi.org/10.1016/j.labeco.2016.06.007}}
+@Article{beuchert2016,
+  author     = {Louise Voldby Beuchert and Maria Knoth Humlum and Rune Vejlin},
+  title      = {The length of maternity leave and family health},
+  journal    = {Labour Economics},
+  year       = {2016},
+  volume     = {43},
+  pages      = {55--71},
+  issn       = {0927-5371},
+  bdsk-url-1 = {http://www.sciencedirect.com/science/article/pii/S0927537116300586},
+  bdsk-url-2 = {https://doi.org/10.1016/j.labeco.2016.06.007},
+  doi        = {https://doi.org/10.1016/j.labeco.2016.06.007},
+  keywords   = {Maternity leave, Family health, Regression discontinuity},
+  url        = {http://www.sciencedirect.com/science/article/pii/S0927537116300586},
+}
 
 @article{albagli2018,
 	Author = {Albagli, Pinjas and Rau, Tom{\'a}s},
