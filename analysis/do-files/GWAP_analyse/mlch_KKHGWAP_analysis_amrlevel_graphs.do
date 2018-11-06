@@ -68,7 +68,7 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 	bys Datum year: egen denominatoryear = total(bev_fert)
 
 	
-	foreach 1 of varlist hospital2 { //  $list_outcomes
+	foreach 1 of varlist hospital2 d5 { //  $list_outcomes
 	capture drop W_AVRG* nominator*
 	foreach var in  "r_popf_"  { // rows: 
 		foreach j in "" "_f" "_m"  { // columns:  
@@ -88,8 +88,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-			saving($graphs/AMRtotal_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_wghtd`1'_total_$date.png", replace
+			*nodraw ///
+			*saving($graphs/AMRtotal_`var', replace)
 
 		*female 
 		twoway scatter W_AVRG_f MOB_altern if treat == 1, color(red)  ///
@@ -98,8 +100,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-			saving($graphs/AMRfemale_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_wghtd`1'_female_$date.png", replace
+			*nodraw ///
+			*saving($graphs/AMRfemale_`var', replace)
 			
 		*male	
 		twoway scatter W_AVRG_m MOB_altern if treat == 1, color(blue)  ///
@@ -108,11 +112,13 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRmale_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_wghtd`1'_male_$date.png", replace
+			*nodraw ///
+			*	saving($graphs/AMRmale_`var', replace)
 				
 				
-		foreach X in 2003 2014 {				
+		foreach X of numlist 2003(1)2014 {				
 		// for single years		
 			*total		
 			twoway scatter W_AVRGyear MOB_altern if treat == 1  & year == `X', color(black)  ///
@@ -121,8 +127,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRtotal_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry))
+				graph export "$graphs/AMR_wghtd`1'_total_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRtotal_`var'`X', replace)
 	
 			*female 
 			twoway scatter W_AVRGyear_f MOB_altern if treat == 1& year == `X', color(red)  ///
@@ -131,8 +139,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRfemale_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry))
+				graph export "$graphs/AMR_wghtd`1'_female_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRfemale_`var'`X', replace)
 				
 			*male	
 			twoway scatter W_AVRGyear_m MOB_altern if treat == 1 & year == `X', color(blue)  ///
@@ -141,8 +151,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-					saving($graphs/AMRmale_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+				graph export "$graphs/AMR_wghtd`1'_male_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRmale_`var'`X', replace)
 		} // end: list 2003 and 2014					
 	} // end: loop over rows (variable specification)
 
@@ -162,7 +174,7 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 	****************************************
 	
 // B) unweighted 
-	foreach 1 of varlist $list_outcomes {
+	foreach 1 of varlist hospital2 d5 { //$list_outcomes
 	foreach var in  "r_popf_"  { // rows: 
 		foreach j in "" "_f" "_m"  { // columns:  
 			capture drop `j'_hat* AVRG`j' AVRGyear`j' 
@@ -191,8 +203,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-			saving($graphs/AMRtotal_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_nwghtd`1'_total_$date.png", replace
+			*nodraw ///
+			*saving($graphs/AMRtotal_`var', replace)
 
 		*female 
 		twoway scatter AVRG_f MOB_altern if treat == 1, color(red) || ///
@@ -203,8 +217,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-			saving($graphs/AMRfemale_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_nwghtd`1'_female_$date.png", replace
+			*nodraw ///
+			*saving($graphs/AMRfemale_`var', replace)
 			
 		*male	
 		twoway scatter AVRG_m MOB_altern if treat == 1, color(blue) || ///
@@ -215,11 +231,13 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 			ylabel(#5,grid) ///
 			xlabel(1(2)12, val) xmtick(2(2)12) ///
 			legend(off) ///
-			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRmale_`var', replace)
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graphs/AMR_nwghtd`1'_male_$date.png", replace
+			*nodraw ///
+			*saving($graphs/AMRmale_`var', replace)
 				
 				
-		foreach X in 2003 2014 {				
+		foreach X of numlist 2003(1)2014 {				
 		// for single years		
 			*total		
 			twoway scatter AVRGyear MOB_altern if treat == 1  & year == `X', color(black) || ///
@@ -230,8 +248,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRtotal_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+				graph export "$graphs/AMR_nwghtd`1'_total_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRtotal_`var'`X', replace)
 	
 			*female 
 			twoway scatter AVRGyear_f MOB_altern if treat == 1& year == `X', color(red) || ///
@@ -242,8 +262,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMRfemale_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+				graph export "$graphs/AMR_nwghtd`1'_female_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRfemale_`var'`X', replace)
 				
 			*male	
 			twoway scatter AVRGyear_m MOB_altern if treat == 1 & year == `X', color(blue) || ///
@@ -254,8 +276,10 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 				ylabel(#5,grid) ///
 				xlabel(1(2)12, val) xmtick(2(2)12) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-					saving($graphs/AMRmale_`var'`X', replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+				graph export "$graphs/AMR_nwghtd`1'_male_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMRmale_`var'`X', replace)
 		} // end: list 2003 and 2014					
 	} // end: loop over rows (variable specification)
 

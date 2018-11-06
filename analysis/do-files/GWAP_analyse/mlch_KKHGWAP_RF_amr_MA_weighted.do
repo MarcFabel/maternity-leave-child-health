@@ -84,7 +84,7 @@ drop temp*
 ********************************************************************************
 // setup of ma variables for the outcomes: 
 *male & female
-foreach 1 of varlist  hospital2  {
+foreach 1 of varlist  hospital2 d5 {
 	foreach j in "" "_f" "_m"  { // columns:
 		qui gen mat_`1'`j' = .  //cummulative cases (just used to build ratios)
 		qui gen ma_`1'`j' = .  // average numbers -> to be depicted in scatters
@@ -133,7 +133,7 @@ foreach 1 of varlist hospital2 {
 	foreach j in "" "_f" "_m"  { // columns:
 		qui gen W_AVRGyear`j' = nominatoryear`j'/denominatoryear`j'
 	} // end: gender		
-	foreach X in 2014 {				
+	foreach X  of numlist 2003(1)2010  {				
 		// for single years		
 			*total		
 			twoway scatter W_AVRGyear MOB_ma if treat == 1  & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(black)  ///
@@ -142,30 +142,39 @@ foreach 1 of varlist hospital2 {
 				ylabel(#5,grid) ///
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_total_`X'_$date, replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) ///
+				title("`X'")
+				graph export "$graphs/AMR_MA_wghtd`1'_total_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMR_`1'_total_`X'_$date, replace)
 				*saving($graphs/AMRtotal_`var'`X', replace)
 	
 			*female 
-			twoway scatter W_AVRGyear_f MOB_ma if treat == 1& year == `X'& MOB_ma>=2 & MOB_ma<=11, color(red)  ///
+			twoway scatter W_AVRGyear_f MOB_ma if treat == 1& year == `X'& MOB_ma>=2 & MOB_ma<=11, color(cranberry)  ///
 				scheme(s1mono )  ///
 				xtitle("")  ytitle("") ///
 				ylabel(#5,grid) ///
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_female_`X'_$date, replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry))  ///
+				title("`X'")
+				graph export "$graphs/AMR_MA_wghtd`1'_female_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMR_`1'_female_`X'_$date, replace)
 				*saving($graphs/AMRfemale_`var'`X', replace)
 				
 			*male	
-			twoway scatter W_AVRGyear_m MOB_ma if treat == 1 & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(blue)  ///
+			twoway scatter W_AVRGyear_m MOB_ma if treat == 1 & year == `X'& MOB_ma>=2 & MOB_ma<=11, color(navy)  ///
 				scheme(s1mono )  ///
 				xtitle("")  ytitle("") ///
 				ylabel(#5,grid) ///
 				xlabel(3(2)9, val) xmtick(4(2)10) ///
 				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
-				saving($graphs/AMR_`1'_male_`X'_$date, replace)
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) ///
+				title("`X'")
+				graph export "$graphs/AMR_MA_wghtd`1'_male_`X'_$date.png", replace
+				*nodraw ///
+				*saving($graphs/AMR_`1'_male_`X'_$date, replace)
 				*	saving($graphs/AMRmale_`var'`X', replace)
 		} // end: list 2003 and 2014
 		/*graph combine   "$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
