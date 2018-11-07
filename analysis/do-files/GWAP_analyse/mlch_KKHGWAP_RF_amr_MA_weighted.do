@@ -6,7 +6,7 @@ Frauen und Männer gemacht.
 Das besondere ist, dass die Darstellung ein moving average Verfahren mit 
 einer Gewichtung (nach Bevölkerungsgröße) kombiniert. 
 */
-
+ 
 ********************************************************************************
 use ${temp}/KKH_final_amr_level, clear
 run "auxiliary_varlists_varnames_sample-spcifications"
