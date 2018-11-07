@@ -63,22 +63,23 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 	
 	with weight = bev_fert
 	*/
-	*generate denominator (WEIGHTS ARE bev_fert, as there is no other population measure in the amr lebel analysis)
-	bys Datum: egen denominator = total(bev_fert)
-	bys Datum year: egen denominatoryear = total(bev_fert)
-
+	*rename variables such that they can be used in the loop
+	rename bev_fertf bev_fert_f 
+	rename bev_fertm bev_fert_m 
 	
 	foreach 1 of varlist hospital2 d5 { //  $list_outcomes
-	capture drop W_AVRG* nominator*
+	capture drop W_AVRG* nominator* denom*
 	foreach var in  "r_popf_"  { // rows: 
 		foreach j in "" "_f" "_m"  { // columns:  
-			capture drop `j'_hat* 
+			capture drop `j'_hat*  
 			*average over all years
-			bys Datum: egen nominator`j' = total(`var'`1'`j' * bev_fert)
-			qui gen W_AVRG`j' = nominator`j'/denominator
+			bys Datum: egen denominator`j' = total(bev_fert`j')
+			bys Datum: egen nominator`j' = total(`var'`1'`j' * bev_fert`j')
+			qui gen W_AVRG`j' = nominator`j'/denominator`j'
 			*average for different years
-			bys Datum year: egen nominatoryear`j' = total(`var'`1'`j' * bev_fert)
-			qui gen W_AVRGyear`j' = nominatoryear`j'/denominatoryear			
+			bys Datum year: egen denominatoryear`j' = total(bev_fert`j')
+			bys Datum year: egen nominatoryear`j' = total(`var'`1'`j' * bev_fert`j')
+			qui gen W_AVRGyear`j' = nominatoryear`j'/denominatoryear`j'			
 		} // end: loop over columns (total, male, female)
 
 		*total		
@@ -159,15 +160,15 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 	} // end: loop over rows (variable specification)
 
 	
-	graph combine   "$graphs/AMRtotal_r_popf_.gph"	"$graphs/AMRfemale_r_popf_.gph"	"$graphs/AMRmale_r_popf_.gph" ///
-				"$graphs/AMRtotal_r_popf_2003.gph"	"$graphs/AMRfemale_r_popf_2003.gph"	"$graphs/AMRmale_r_popf_2003.gph" ///
-				"$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
-				  title(LC: per gender) subtitle("$`1'")   ///
-				  t1title("total              		female              		male") ///
-				  l1title("2014			2003		All years") /// 
-				  scheme(s1mono)
-				   *b1title("Year [Age of treatment cohort]") subtitle(Life-course perspective)
-	graph export "$graphs/`1'_rf_amr_wghtd.pdf", as(pdf) replace
+	*graph combine   "$graphs/AMRtotal_r_popf_.gph"	"$graphs/AMRfemale_r_popf_.gph"	"$graphs/AMRmale_r_popf_.gph" ///
+	*			"$graphs/AMRtotal_r_popf_2003.gph"	"$graphs/AMRfemale_r_popf_2003.gph"	"$graphs/AMRmale_r_popf_2003.gph" ///
+	*			"$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
+	*			  title(LC: per gender) subtitle("$`1'")   ///
+	*			  t1title("total              		female              		male") ///
+	*			  l1title("2014			2003		All years") /// 
+	*			  scheme(s1mono)
+	*			   *b1title("Year [Age of treatment cohort]") subtitle(Life-course perspective)
+	*graph export "$graphs/`1'_rf_amr_wghtd.pdf", as(pdf) replace
 } //end: loop over variable list
 	
 
@@ -283,16 +284,135 @@ ACHTUNG: HIER IST EIN FEHLER NOCH DRINNEN:
 	} // end: loop over rows (variable specification)
 
 	
-	graph combine   "$graphs/AMRtotal_r_popf_.gph"	"$graphs/AMRfemale_r_popf_.gph"	"$graphs/AMRmale_r_popf_.gph" ///
-				"$graphs/AMRtotal_r_popf_2003.gph"	"$graphs/AMRfemale_r_popf_2003.gph"	"$graphs/AMRmale_r_popf_2003.gph" ///
-				"$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
-				  title(LC: per gender) subtitle("$`1'")   ///
-				  t1title("total              		female              		male") ///
-				  l1title("2014			2003		All years") /// 
-				  scheme(s1mono)
-				   *b1title("Year [Age of treatment cohort]") subtitle(Life-course perspective)
-	graph export "$graphs/`1'_rf_amr_unwghtd.pdf", as(pdf) replace
+	*graph combine   "$graphs/AMRtotal_r_popf_.gph"	"$graphs/AMRfemale_r_popf_.gph"	"$graphs/AMRmale_r_popf_.gph" ///
+	*			"$graphs/AMRtotal_r_popf_2003.gph"	"$graphs/AMRfemale_r_popf_2003.gph"	"$graphs/AMRmale_r_popf_2003.gph" ///
+	*			"$graphs/AMRtotal_r_popf_2014.gph"	"$graphs/AMRfemale_r_popf_2014.gph"	"$graphs/AMRmale_r_popf_2014.gph", altshrink ///
+	*			  title(LC: per gender) subtitle("$`1'")   ///
+	*			  t1title("total              		female              		male") ///
+	*			  l1title("2014			2003		All years") /// 
+	*			  scheme(s1mono)
+	*			   *b1title("Year [Age of treatment cohort]") subtitle(Life-course perspective)
+	*graph export "$graphs/`1'_rf_amr_unwghtd.pdf", as(pdf) replace
 } //end: loop over variable list
+
+
+*********************************RD weighted age-groups
+
+// Erabeiten Programm für weighted RD AGEGROUPS
+use ${temp}/KKH_final_amr_level, clear
+run "auxiliary_varlists_varnames_sample-spcifications"
+sort amr_clean Datum year
+*qui gen MxYxFRG = MxY * FRG
+
+
+drop if GDR == 1
+keep if treat == 1
+
+	
+*generate age group variable over which we can loop	
+qui gen age_group = . 
+*	qui replace age_group = 1 if year_treat >= 1996 & year_treat<=2000	// nicht sinnvoll, da keine Einträge in abhängigen Variablen
+qui replace age_group = 2 if year_treat >= 2003 & year_treat<=2005	
+qui replace age_group = 3 if year_treat >= 2006 & year_treat<=2010
+qui replace age_group = 4 if year_treat >= 2011 & year_treat<=2014
+label define AGE_GRP  2 "[2] 24-26 years" 3 "[3] 27-31 years" 4 "[4] 32-35 years" // 1 "[1] 17-21 years"
+label val age_group AGE_GRP
+
+*rename such that they can be used in the loop
+rename bev_fertf bev_fert_f 
+rename bev_fertm bev_fert_m 
+
+keep if year >= 2003
+	
+foreach 1 of varlist hospital2 d5 { //  $list_outcomes
+	capture drop W_AVRG* nominator* denominator*
+	foreach var in  "r_popf_"  { // rows: 
+		foreach j in "" "_f" "_m"  { // columns:  	
+			capture drop `j'_hat* 
+			*average for different years
+			bys Datum age_group: egen denominatoragegroup`j' = total(bev_fert`j')	
+			bys Datum age_group: egen nominatoragegroup`j' = total(`var'`1'`j' * bev_fert`j')
+			qui gen W_AVRGagegroup`j' = nominatoragegroup`j'/denominatoragegroup`j'			
+		} // end: loop over columns (total, male, female)
+
+					
+		// graphs for age groups		
+		foreach X of numlist 2 3 4 {
+			*total		
+			twoway scatter W_AVRGagegroup MOB_altern if treat == 1  & age_group == `X', color(black)  ///
+				scheme(s1mono )  ///
+				xtitle("")  ///
+				ylabel(#5,grid) ///
+				xlabel(1(2)12, val) xmtick(2(2)12) ///
+				legend(off) ///
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) ///
+				saving($graphs/AMR_wghtd`1'_total_grp`X', replace)
+				graph export "$graphs/AMR_wghtd`1'_total_grp`X'.png", replace
+				
+	
+			*female 
+			twoway scatter W_AVRGagegroup_f MOB_altern if treat == 1& age_group == `X', color(red)  ///
+				scheme(s1mono )  ///
+				xtitle("")  ///
+				ylabel(#5,grid) ///
+				xlabel(1(2)12, val) xmtick(2(2)12) ///
+				legend(off) ///
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) ///
+				saving($graphs/AMR_wghtd`1'_female_grp`X', replace)
+				graph export "$graphs/AMR_wghtd`1'_female_grp`X'.png", replace
+				*saving($graphs/AMRfemale_`var'`X', replace)
+				
+			*male	
+			twoway scatter W_AVRGagegroup_m MOB_altern if treat == 1 & age_group == `X', color(blue)  ///
+				scheme(s1mono )  ///
+				xtitle("")  ///
+				ylabel(#5,grid) ///
+				xlabel(1(2)12, val) xmtick(2(2)12) ///
+				legend(off) ///
+				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) ///
+				saving($graphs/AMR_wghtd`1'_male_grp`X', replace)
+				graph export "$graphs/AMR_wghtd`1'_male_grp`X'.png", replace
+				*saving($graphs/AMRmale_`var'`X', replace)
+		} // end: loop over age_groups 					
+	} // end: loop over rows (variable specification)
+
+	graph combine  ///
+	"$graphs/AMR_wghtd`1'_total_grp2.gph"	"$graphs/AMR_wghtd`1'_female_grp2.gph"	"$graphs/AMR_wghtd`1'_male_grp2.gph"	///
+	"$graphs/AMR_wghtd`1'_total_grp3.gph"	"$graphs/AMR_wghtd`1'_female_grp3.gph"	"$graphs/AMR_wghtd`1'_male_grp3.gph"	///
+	"$graphs/AMR_wghtd`1'_total_grp4.gph"	"$graphs/AMR_wghtd`1'_female_grp4.gph"	"$graphs/AMR_wghtd`1'_male_grp4.gph"	///	
+	,title(RF weighted across agegroups) subtitle("$`1'")   ///
+				  t1title("total              		female              		male") ///
+				  l1title("32-35			27-31		24-26") /// 
+				  scheme(s1mono)
+	
+				   *b1title("Year [Age of treatment cohort]") subtitle(Life-course perspective)
+	graph export "$graphs/`1'_rf_amr_wghtd_agegroups.pdf", as(pdf) replace
+} //end: loop over variable list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ********************************************************************************
 /*	
