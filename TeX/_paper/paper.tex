@@ -150,8 +150,6 @@ labelfont={bf}
 
 
 
-
-
 %--------------------------------------------------------------------
 %	BEGIN DOCUMENT
 %--------------------------------------------------------------------
@@ -627,6 +625,41 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %WMWMWMWMWMWMWMWMWMWM
 % RESULTS
 %WMWMWMWMWMWMWMWMWMWM
+% original 3 3 2 3
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+% Reduced form 
+\begin{landscape}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for hospital admission}\label{fig: rf_hospital2}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_hospital2_overview_agegroups.pdf}
+			\scriptsize
+			\begin{minipage}{0.9\linewidth}
+				\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent fitted values from a linear regression of
+				the number of diagnoses per 1,000 individuals on month-of-birth. The solid vertical red line divides the pre- and post-reform schemes (two vs. six months of leave).\newline
+				\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+			\end{minipage}
+	\end{figure}
+\end{landscape}
+
+    
+
+\begin{landscape}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for mental \& behavioral disorders}\label{fig: rf_d5}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_d5_overview_agegroups.pdf}
+		\scriptsize
+		\begin{minipage}{0.9\linewidth}
+		\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent fitted values from a linear regression of
+		the number of diagnoses per 1,000 individuals on month-of-birth. The solid vertical red line divides the pre- and post-reform schemes (two vs. six months of leave).\newline
+		\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+\end{landscape}
+\restoregeometry  
+%--------------------------------------------
+
 \newpage
 %Life-course Hospital admission
 \vspace*{\fill}
