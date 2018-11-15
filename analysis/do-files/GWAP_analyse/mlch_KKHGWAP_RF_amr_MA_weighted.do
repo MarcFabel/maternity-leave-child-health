@@ -125,11 +125,11 @@ bys Datum year: egen denominatoryear = total(ma_bev_fert)
 bys Datum year: egen denominatoryear_f = total(ma_bev_fertf)
 bys Datum year: egen denominatoryear_m = total(ma_bev_fertm)
 
-foreach 1 of varlist hospital2 {
+foreach 1 of varlist hospital2 d5 {
 	*total
 	bys Datum year: egen nominatoryear = total(ma_r_popf_`1' * ma_bev_fert)
 	bys Datum year: egen nominatoryear_f = total(ma_r_popf_`1'_f * ma_bev_fertf)
-	bys Datum year: egen nominatoryear_m = total(ma_r_popf_`1'_f * ma_bev_fertm)
+	bys Datum year: egen nominatoryear_m = total(ma_r_popf_`1'_m * ma_bev_fertm)
 	foreach j in "" "_f" "_m"  { // columns:
 		qui gen W_AVRGyear`j' = nominatoryear`j'/denominatoryear`j'
 	} // end: gender		

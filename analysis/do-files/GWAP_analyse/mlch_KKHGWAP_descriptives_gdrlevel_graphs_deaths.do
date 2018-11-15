@@ -49,4 +49,4 @@ line share_death year, sort color(black) lw(medthick) || ///
 	xmtick(1996 (2) 2014)  ///
 	ylabel(, grid glc(gs12) glw(vthin)) ///
 	plotregion(color(white)) scheme(s1mono)	///	
-	saving($graphs/descriptive_E_death_$date, replace)  
+	saving("$graphs/descriptive_E_death_$date", replace)  

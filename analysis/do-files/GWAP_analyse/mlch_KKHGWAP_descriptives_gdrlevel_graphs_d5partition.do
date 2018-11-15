@@ -91,7 +91,7 @@ twoway area t6 year, color(navy) || ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
 	ylabel(, format(%9.0f)) ///
-	saving($graphs/d5partition_top5_$date,replace)
+	saving("$graphs/d5partition_top5_$date",replace)
 
 
 	
@@ -112,7 +112,7 @@ twoway area s6 year, color(navy) || ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
 	ylabel(, format(%9.0f))	///
-	saving($graphs/d5partition_top6_$date,replace)
+	saving("$graphs/d5partition_top6_$date",replace)
 	
 
 	 
