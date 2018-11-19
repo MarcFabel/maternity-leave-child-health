@@ -120,7 +120,7 @@ Verwendete Variablen:
 // ***************************** PREAMBLE********************************
 	clear all
 	set more off
-	
+/*	
 * GWAP LANDESAMT (FÜR HERR BERGMANN)
 	global path 		"B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
 	*global path 		"D:\Data\Gast\GWA22_3053_MF_KH"
@@ -136,7 +136,7 @@ Verwendete Variablen:
 	global MZ_anspielen	"$path/A_Mikrodaten"		// verweist auf die Datei MZ_merge (von Hrrn. Janisch erhalten) 
 	global file			"kdfv_sa95"
 	*global file 		"gwap_sa95_"
-
+*/
 
 /*	
 * Landesamt (Für mich)
@@ -187,20 +187,20 @@ Verwendete Variablen:
 
 
 * 1) prepare raw format of hospital registry data (repeated cross section of individual level data)
-	*do  mlch_KKHGWAP_prepare_raw 
+	do  mlch_KKHGWAP_prepare_raw 
 	*disp "check: mlch_KKHGWAP_prepare_raw "
 
 * 2) prepare dataset on different regional levels ( aggreagate and generate analysis relevant variables) 
 	*do mlch_KKHGWAP_prepare_agslevel
 	*do mlch_KKHGWAP_prepare_amrlevel
-	*do mlch_KKHGWAP_prepare_gdrlevel
+	do mlch_KKHGWAP_prepare_gdrlevel
 	*disp "check: mlch_KKHGWAP_prepare_REGIONALLEVELS"
 	
 * 3) Beantragen	
 	*do mlch_KKHGWAP_descriptives_gdrlevel_graphs_d5partition
-	*do mlch_KKHGWAP_analysis_gdr_lc_subcatgeories
+	do mlch_KKHGWAP_analysis_gdr_lc_subcatgeories
 	*do mlch_KKHGWAP_descriptives_gdrlevel_graphs_deaths	
-	do mlch_KKHGWAP_RF_amr_MA_weighted
+	*do mlch_KKHGWAP_RF_amr_MA_weighted
 	
 	
 	
@@ -214,7 +214,7 @@ Verwendete Variablen:
 		
 * 4) analysis -graphs
 	*do mlch_KKHGWAP_analysis_gdrlevel_graphs
-	do mlch_KKHGWAP_analysis_amrlevel_graphs
+	*do mlch_KKHGWAP_analysis_amrlevel_graphs
 		*disp "check: graphs"
 		
 	*Datenanfrage

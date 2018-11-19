@@ -363,8 +363,8 @@ foreach 1 in "d5" "organic" "drug_abuse" "shizophrenia" "affective" "neurosis" "
 	label val year YEAR
 	label define BANDWIDTH 99 "Donut specification (exclude 2 birth months)" 
 	label val bandwidth BANDWIDTH
-	qui save "$tables\`1'_lc_yrs_brckts" ,replace
-	qui erase "$tables\temp_`1'.csv"
+	qui save "$tables/lc_`1'_yrs_brckts" ,replace
+	qui erase "$tables/temp_`1'.csv"
 }	
 
 		
