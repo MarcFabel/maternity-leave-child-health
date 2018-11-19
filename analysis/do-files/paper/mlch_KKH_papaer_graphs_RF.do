@@ -58,7 +58,13 @@ global t_2 = "Age 22-26"
 global t_3 = "Age 27-31"
 global t_4 = "Age 32-35"
 
-foreach 1 of varlist hospital2 d5 { // d5
+label define MOB_alt2 1 "11/78" 3 "01/79" 5 "03/79" 7 "05/79" 9 "07/79" 11 "09/79"
+label val MOB_altern MOB_alt2
+
+
+********************************************************************************
+****		RF WITH CI AROUND LINEAR FIT
+foreach 1 of varlist d5 hospital2 { // d5
 	foreach var in "r_fert_"{ // rows: 
 		foreach grp of numlist 1 2 3 4 {
 			local ylab "t_`grp'"
@@ -72,8 +78,10 @@ foreach 1 of varlist hospital2 d5 { // d5
 			if `grp' == 1 { // include top titles for first row
 				*total		
 				twoway scatter AVRG MOB_altern if treat == 1 & age_group == `grp', color(black) || ///
-					line _hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(black%60) || ///
-					line _hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(black%60) ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(black%25) clp(dash) clc(black%75) level(90) ||   ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(black%25) clp(dash) clc(black%75) level(90)   ///					
 					scheme(s1mono )  ///
 					xtitle("") ytitle("$`ylab'", box bexpand size(vhuge) margin(medsmall)) ///
 					title("Total", box bexpand size(vhuge) margin(medsmall)) ///
@@ -85,8 +93,10 @@ foreach 1 of varlist hospital2 d5 { // d5
 		
 				*female 
 				twoway scatter AVRG_f MOB_altern if treat == 1 & age_group == `grp', color(cranberry)  || ///
-					line _f_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(cranberry%60) || ///
-					line _f_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(cranberry%60) ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(cranberry%25) clp(dash) clc(cranberry%75) level(90) ||   ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(cranberry%25) clp(dash) clc(cranberry%75) level(90)   ///
 					scheme(s1mono )  ///
 					xtitle("") ytitle("") ///
 					title("Female", box bexpand size(vhuge) margin(medsmall)) ///
@@ -98,8 +108,10 @@ foreach 1 of varlist hospital2 d5 { // d5
 					
 				*male	
 				twoway scatter AVRG_m MOB_altern if treat == 1 & age_group == `grp', color(navy) || ///
-					line _m_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(navy%60) || ///
-					line _m_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(navy%60) ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(navy%25) clp(dash) clc(navy%75) level(90) ||   ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(navy%25) clp(dash) clc(navy%75) level(90)   ///
 					scheme(s1mono )  ///
 					xtitle("") ytitle("") ///
 					title("Male", box bexpand size(vhuge) margin(medsmall)) ///
@@ -114,8 +126,10 @@ foreach 1 of varlist hospital2 d5 { // d5
 			else { // all other rows
 				*total		
 				twoway scatter AVRG MOB_altern if treat == 1 & age_group == `grp', color(black) || ///
-					line _hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(black%60) || ///
-					line _hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(black%60) ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(black%25) clp(dash) clc(black%75) level(90) ||   ///
+					lfitci AVRG MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(black%25) clp(dash) clc(black%75) level(90)   ///
 					scheme(s1mono )  ///
 					xtitle("") ytitle("$`ylab'", box bexpand size(vhuge) margin(medsmall)) ///
 					ylabel(#5,grid) ///
@@ -126,8 +140,10 @@ foreach 1 of varlist hospital2 d5 { // d5
 		
 				*female 
 				twoway scatter AVRG_f MOB_altern if treat == 1 & age_group == `grp', color(cranberry)  || ///
-					line _f_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(cranberry%60) || ///
-					line _f_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(cranberry%60) ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(cranberry%25) clp(dash) clc(cranberry%75) level(90) ||   ///
+					lfitci AVRG_f MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(cranberry%25) clp(dash) clc(cranberry%75) level(90)   ///
 					scheme(s1mono )  ///
 					xtitle("") ytitle("") ///
 					ylabel(#5,grid) ///
@@ -138,8 +154,186 @@ foreach 1 of varlist hospital2 d5 { // d5
 					
 				*male	
 				twoway scatter AVRG_m MOB_altern if treat == 1 & age_group == `grp', color(navy) || ///
-					line _m_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(navy%60) || ///
-					line _m_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(navy%60) ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 1, color(navy%25) clp(dash) clc(navy%75) level(90) ||   ///
+					lfitci AVRG_m MOB_altern if treat == 1 & age_group == `grp' & after == 0, color(navy%25) clp(dash) clc(navy%75) level(90)   ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("") ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+						saving($graphs/`grp'_male_r_fert_, replace)
+			} // end else (not the first row)
+		} // end: loop over age groups
+	
+		graph combine "$graphs/1_total_r_fert_.gph"	"$graphs/1_female_r_fert_.gph"	"$graphs/1_male_r_fert_.gph" ///
+					"$graphs/2_total_r_fert_.gph"	"$graphs/2_female_r_fert_.gph"	"$graphs/2_male_r_fert_.gph" ///
+					"$graphs/3_total_r_fert_.gph"	"$graphs/3_female_r_fert_.gph"	"$graphs/3_male_r_fert_.gph" ///
+					"$graphs/4_total_r_fert_.gph"	"$graphs/4_female_r_fert_.gph"	"$graphs/4_male_r_fert_.gph" ///
+					, altshrink ///
+				  scheme(s1mono) col(3) imargin(zero) 
+		graph export "$graph_paper/rd_r_fert_`1'_overview_agegroups_CIfits.pdf", as(pdf) replace
+	} // end: loop over var specification 
+} //end: loop over variable list
+
+
+
+* POOLED VERSIONS
+foreach 1 of varlist hospital2 d5  { // 
+	foreach var in "r_fert_"{ // rows: 
+		foreach j in "" "_f" "_m"  { // columns:  
+			capture drop AVRG`j'   //
+			qui bys Datum: egen AVRG`j' = mean(r_fert_`1'`j') 
+		} // end: loop over columns (total, male, female)
+			
+		*total		
+		twoway scatter AVRG MOB_altern if treat == 1 , color(black) || ///
+			lfitci AVRG MOB_altern if treat == 1 & after == 1, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+			lfitci AVRG MOB_altern if treat == 1 & after == 0, color(black%12) clp(dash) clc(black%75) level(95) ||  ///
+			lfitci AVRG MOB_altern if treat == 1 & after == 1, color(black%25) clp(dash) clc(black%75) level(90) ||   ///
+			lfitci AVRG MOB_altern if treat == 1 & after == 0, color(black%25) clp(dash) clc(black%75) level(90)   ///					
+			scheme(s1mono ) plotregion(color(white)) ///
+			xtitle("") ytitle("") ///
+			ylabel(#5,grid) ///
+			xlabel(1(2)12, val) xmtick(2(2)12) ///
+			legend(label(2 "95% CI") label(6 "90% CI")) ///
+			legend(order(6 2)) ///
+			legend(pos(1) ring(0) col(1)) legend(size(vsmall)) ///
+			legend(region(color(none))) legend(symx(5)) ///
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry))
+			graph export "$graph_paper/rd_`1'_total_pooled.pdf", as(pdf) replace
+			
+		*female 
+		twoway scatter AVRG_f MOB_altern if treat == 1 , color(cranberry)  || ///
+			lfitci AVRG_f MOB_altern if treat == 1 & after == 1, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+			lfitci AVRG_f MOB_altern if treat == 1 & after == 0, color(cranberry%12) clp(dash) clc(cranberry%75) level(95) ||  ///
+			lfitci AVRG_f MOB_altern if treat == 1 & after == 1, color(cranberry%25) clp(dash) clc(cranberry%75) level(90) ||   ///
+			lfitci AVRG_f MOB_altern if treat == 1 & after == 0, color(cranberry%25) clp(dash) clc(cranberry%75) level(90)   ///
+			scheme(s1mono ) plotregion(color(white)) ///
+			xtitle("") ytitle("") ///
+			ylabel(#5,grid) ///
+			xlabel(1(2)12, val) xmtick(2(2)12) ///
+			legend(label(2 "95% CI") label(6 "90% CI")) ///
+			legend(order(6 2)) ///
+			legend(pos(1) ring(0) col(1)) legend(size(vsmall)) ///
+			legend(region(color(none))) legend(symx(5)) ///
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graph_paper/rd_`1'_female_pooled.pdf", as(pdf) replace
+			
+		*male	
+		twoway scatter AVRG_m MOB_altern if treat == 1 , color(navy) || ///
+			lfitci AVRG_m MOB_altern if treat == 1 & after == 1, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+			lfitci AVRG_m MOB_altern if treat == 1 & after == 0, color(navy%12) clp(dash) clc(navy%75) level(95) ||  ///
+			lfitci AVRG_m MOB_altern if treat == 1 & after == 1, color(navy%25) clp(dash) clc(navy%75) level(90) ||   ///
+			lfitci AVRG_m MOB_altern if treat == 1 & after == 0, color(navy%25) clp(dash) clc(navy%75) level(90)   ///
+			scheme(s1mono ) plotregion(color(white)) ///
+			xtitle("") ytitle("") ///
+			ylabel(#5,grid) ///
+			xlabel(1(2)12, val) xmtick(2(2)12) ///
+			legend(label(2 "95% CI") label(6 "90% CI")) ///
+			legend(order(6 2)) ///
+			legend(pos(1) ring(0) col(1)) legend(size(vsmall)) ///
+			legend(region(color(none))) legend(symx(5)) ///
+			xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) 
+			graph export "$graph_paper/rd_`1'_male_pooled.pdf", as(pdf) replace
+		
+		
+	} // end var: var specification
+	
+} // end 1: varlist
+
+********************************************************************************
+
+
+			
+/*
+
+OLD VERSION OF NORMAL RD PLOTS
+
+foreach 1 of varlist hospital2 d5 { // d5
+	foreach var in "r_fert_"{ // rows: 
+		foreach grp of numlist 1 2 3 4 {
+			local ylab "t_`grp'"
+			foreach j in "" "_f" "_m"  { // columns:  
+				capture drop AVRG`j' `j'_hat*  //
+				qui bys Datum age_group: egen AVRG`j' = mean(r_fert_`1'`j') 
+				qui reg r_fert_`1'`j' Numx Num_after after if treat == 1 & age_group == `grp'
+				qui predict `j'_hat_r_fert__T_`grp'
+			} // end: loop over columns (total, male, female)
+				
+			if `grp' == 1 { // include top titles for first row
+				*total		
+				twoway scatter AVRG MOB_altern if treat == 1 & age_group == `grp', color(black) || ///
+					line _hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(black%75) lpattern(dash) || ///
+					line _hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(black%75) lpattern(dash) ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("$`ylab'", box bexpand size(vhuge) margin(medsmall)) ///
+					title("Total", box bexpand size(vhuge) margin(medsmall)) ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+					saving($graphs/`grp'_total_r_fert_, replace)
+		
+				*female 
+				twoway scatter AVRG_f MOB_altern if treat == 1 & age_group == `grp', color(cranberry)  || ///
+					line _f_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(cranberry%75) lpattern(dash) || ///
+					line _f_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(cranberry%75) lpattern(dash) ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("") ///
+					title("Female", box bexpand size(vhuge) margin(medsmall)) ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+					saving($graphs/`grp'_female_r_fert_, replace)
+					
+				*male	
+				twoway scatter AVRG_m MOB_altern if treat == 1 & age_group == `grp', color(navy) || ///
+					line _m_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(navy%75) lpattern(dash) || ///
+					line _m_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(navy%75) lpattern(dash) ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("") ///
+					title("Male", box bexpand size(vhuge) margin(medsmall)) ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+						saving($graphs/`grp'_male_r_fert_, replace)
+				
+			} // end first group
+			
+			else { // all other rows
+				*total		
+				twoway scatter AVRG MOB_altern if treat == 1 & age_group == `grp', color(black) || ///
+					line _hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(black%75) lpattern(dash) || ///
+					line _hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(black%75) lpattern(dash) ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("$`ylab'", box bexpand size(vhuge) margin(medsmall)) ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+					saving($graphs/`grp'_total_r_fert_, replace)
+		
+				*female 
+				twoway scatter AVRG_f MOB_altern if treat == 1 & age_group == `grp', color(cranberry)  || ///
+					line _f_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(cranberry%75) lpattern(dash) || ///
+					line _f_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(cranberry%75) lpattern(dash) ///
+					scheme(s1mono )  ///
+					xtitle("") ytitle("") ///
+					ylabel(#5,grid) ///
+					xlabel(1(2)12, val) xmtick(2(2)12) ///
+					legend(off) ///
+					xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry)) nodraw ///
+					saving($graphs/`grp'_female_r_fert_, replace)
+					
+				*male	
+				twoway scatter AVRG_m MOB_altern if treat == 1 & age_group == `grp', color(navy) || ///
+					line _m_hat_r_fert__T_`grp' MOB_altern if after == 1, sort color(navy%75) lpattern(dash) || ///
+					line _m_hat_r_fert__T_`grp' MOB_altern if after == 0, sort color(navy%75) lpattern(dash) ///
 					scheme(s1mono )  ///
 					xtitle("") ytitle("") ///
 					ylabel(#5,grid) ///
@@ -160,30 +354,3 @@ foreach 1 of varlist hospital2 d5 { // d5
 	} // end: loop over var specification 
 } //end: loop over variable list
 
-
-
-/*
-global  t_4 "Age 17-21"
-foreach grp of numlist 4 {
-local ylab "t_`grp'"
-twoway scatter AVRG MOB_altern if treat == 1 & age_group == 4, color(black) || ///
-				line _hat_r_fert__T_4 MOB_altern if after == 1, sort color(black%40) || ///
-				line _hat_r_fert__T_4 MOB_altern if after == 0, sort color(black%40) ///
-				scheme(s1mono )  ///
-				xtitle("") ytitle("$`ylab'", box bexpand size(vlarge) margin(medium)) ///
-				ylabel(#5,grid) ///
-				xlabel(1(2)12, val) xmtick(2(2)12) ///
-				legend(off) ///
-				xline(6.5, lw(medthick ) lpattern(solid) lcolor(cranberry))
-} 
-
-
-
-*Graph combin
-graph combine "$graphs/1_total_r_fert_.gph"	"$graphs/1_female_r_fert_.gph"	"$graphs/1_male_r_fert_.gph" ///
-					"$graphs/2_total_r_fert_.gph"	"$graphs/2_female_r_fert_.gph"	"$graphs/2_male_r_fert_.gph" ///
-					"$graphs/3_total_r_fert_.gph"	"$graphs/3_female_r_fert_.gph"	"$graphs/3_male_r_fert_.gph" ///
-					"$graphs/4_total_r_fert_.gph"	"$graphs/4_female_r_fert_.gph"	"$graphs/4_male_r_fert_.gph" ///
-					, altshrink ///
-				  scheme(s1mono) col(3) imargin(zero)  xsize(15) ysize(11.5)
-graph export "$graph_paper/rd_r_fert_d5_overview_agegroups.pdf", as(pdf) replace
