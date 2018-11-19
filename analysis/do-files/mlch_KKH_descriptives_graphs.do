@@ -98,12 +98,13 @@ twoway  (rarea temp0  temp1  year, vertical) ///
 	*global path  "F:\econ\m-l-c-h\analysis"					//Work
 	global path  "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	//MAC
 	
-	global temp  "$path/temp"
-	global KKH   "$path/source" 
-	global graph "$path/graphs/KKH" 
-	global tables "$path/tables/KKH"
-	global graph_paper "$path/graphs/paper" 
-	global auxiliary "$path/do-files/auxiliary_files"
+	global temp  		"$path/temp"
+	global KKH   		"$path/source" 
+	global graph 		"$path/graphs/KKH" 
+	global landesamt	"$path/graphs/LfStat_Ausgabe"
+	global tables 		"$path/tables/KKH"
+	global graph_paper 	"$path/graphs/paper" 
+	global auxiliary 	"$path/do-files/auxiliary_files"
 	
 	
 	*magic numbers
@@ -334,4 +335,9 @@ line share_surgery year, sort color(black) lw(medthick) || ///
 				  scheme(s1mono) plotregion(color(white))
 	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace
 
-
+* mit deaths vom Landesamt
+	graph combine "$graph/descriptive_A_admission"			"$graph/descriptive_B_women.gph"			///
+				  "$graph/descriptive_C_staylength.gph" 			  "$graph/descriptive_D_surgery.gph" ///
+				  "$landesamt/descriptive_E_death_22Oct18.gph", altshrink ///
+				  scheme(s1mono) plotregion(color(white)) col(2) ysize(15) xsize(12)
+	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace
