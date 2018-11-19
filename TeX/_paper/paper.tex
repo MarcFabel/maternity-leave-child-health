@@ -469,16 +469,11 @@ Nevertheless, the data set has some drawbacks, too. First, the source of data li
 
 
 % Descriptives hospital admission
-Figure \ref{fig: descriptive_hospital_admission} illustrates trends in hospital admissions for the treatment cohort.\footnote{We define hospitalization as the sum of all diagnoses, except those which are related to pregnancy, childbirth and the puerperium.} In panel A, we observe a S-shaped line for the number of admissions. Hospitalization is increasing until age 19 (72,500 cases per year), then decreasing up to the age of 26 after which the number of admissions are growing again (in 2014, there are 83,000 admissions). In panel B, one can see that the share of women is decreasing from 55\% in 1995 to 48\% in 2014. Panel C shows a reduction in the average length of stay from 7.7 days to 6 days from the beginning to the end of the observation period. Panel D shows a hump-shaped evolution of surgeries that are related with hospitalization. The share of surgeries for in-patient cases is increasing up to the age of 22 (more than every other in-patient undergoes surgery), then declining until the age of 26. After that, the share of in-patients with a surgery stays constant at around 35\%.
-[XXX]- Panel E share death (muss erst noch beim Landesamt beantragt werden)\newline
+Figure \ref{fig: descriptive_hospital_admission} illustrates trends in hospital admissions for the treatment cohort.\footnote{We define hospitalization as the sum of all diagnoses, except those which are related to pregnancy, childbirth and the puerperium.} In panel A, we observe a S-shaped line for the number of admissions. Hospitalization is increasing until age 19 (72,500 cases per year), then decreasing up to the age of 26 after which the number of admissions are growing again (in 2014, there are 83,000 admissions). In panel B, one can see that the share of women is decreasing from 55\% in 1995 to 48\% in 2014. Panel C shows a reduction in the average length of stay from 7.7 days to 6 days from the beginning to the end of the observation period. Panel D shows a hump-shaped evolution of surgeries that are related with hospitalization. The share of surgeries for in-patient cases is increasing up to the age of 22 (more than every other in-patient undergoes surgery), then declining until the age of 26. After that, the share of in-patients with a surgery stays constant at around 35\%. Panel E displays the fraction of people that died during hospitalization, which is around 2 deaths per 1,000 hospitalizations over the entire time frame. \newline
 
 % Diagnosis distribution across age groups
-Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}..
-The top5 diagnosis if we sum up all diagnosis across the age groups, how does the incidence varry across age brackets.
-shift: 
-0-5 top diagnosis respiratory system and injuries. \footnote{ in this age group is by far conditions that originate in the perinatal period. but no single category as it only ocurs in this age group and thus cummulated it is not in the top 5 anymore. }
+Figure \ref{fig: top5diagnosis_in_2014_across_agegroups} gives an overview of the five most common diseases and health problems that were diagnosed for individuals aged between 0 and 35 years in 2014. For the age group that we observe in our sample, i.e. people between 15 and 35 years, mental and behavioral disorders are the most common diagnoses (357 thousand diagnoses), followed by injuries (310 thousand diagnoses), and diseases of the digestive system (260 thousand diagnoses).\footnote{This pattern holds not only in the cross-section, but can also be found when following one of our cohorts over time. Figure \ref{fig: DD_across_main chapters} illustrates next to intention-to-treat estimates the diagnosis distribution and the same three health problems constitute the top 3 diagnoses.}
 
-30-35: mental and behavioral and digestive system. are top 2 diagnosis.
 
 
 
@@ -487,6 +482,41 @@ shift:
 % RESULTS
 %--------------------------------------------------------------------
 \section{Results (evtl NATALIA)}\label{sec:results}
+
+\subsection{The effect on hospital admission}
+
+tables
+total \ref{tab: DD_hopsital2_total}
+females \ref{tab: DD_hopsital2_female}
+males  \ref{tab: DD_hopsital2_male}
+
+corresponding life-course figure 
+\ref{fig: lc_hospital2_frg_DD}
+
+RF 
+pooled \ref{fig: rf_hospital2_pooled}
+age group \ref{fig: rf_hospital2_agegroup}
+
+Effect on different chapters
+\ref{fig: DD_across_main chapters}
+and table \ref{tab: ITT_across_chapters_per_age_group_total}
+
+\subsection{The effect on mental \& behavioral disorders}
+tables
+total	\ref{tab: DD_d5_total}
+females	\ref{tab: DD_d5_female}
+males	\ref{tab: DD_d5_male}
+LC figure
+\ref{fig: lc_d5_frg_DD}
+
+RF
+pooled
+pooled \ref{fig: rf_d5_pooled}
+age group \ref{fig: rf_d5_agegroup}
+
+\subsection{Subsections of mental \& behavioral disorders}
+figure overview of subcategories of mental disorders
+\ref{fig: d5partition}
 
 \begin{enumerate}
 	\item Hospital admission: effects for different age brackets and various bandwidths, RD plot (also for different age brackets) + graphical representation of the life-course
@@ -548,9 +578,12 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------------------------------
 % FIGURES AND TABLES
 %--------------------------------------------------------------------
+%\newpage
+%\section{Figures and tables}
 \newpage
-\section{Figures and tables}
-
+\vspace*{\fill}
+{\Huge \begin{center}\textbf{FIGURES}\end{center}}
+\vspace*{\fill}\clearpage
 %--------------------------------------------
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
@@ -658,102 +691,13 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 % RESULTS
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
 
-
-% Raduced form pooled
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{Reduced form for hospital admission (pooled)}\label{fig: rf_hospital2_pooled}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
-		\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
-		\includegraphics[width=\linewidth]{paper/rd_hospital2_female_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
-		\includegraphics[width=\linewidth]{paper/rd_hospital2_male_pooled.pdf}
-		\end{subfigure}
-			\scriptsize
-			\begin{minipage}{0.95\linewidth}
-				\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-				\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-			\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-
-
-% d5 pooled
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{Reduced form for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
-		\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
-		\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
-		\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled.pdf}
-		\end{subfigure}
-			\scriptsize
-			\begin{minipage}{0.95\linewidth}
-				\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-				\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-			\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-
-\restoregeometry  
 %--------------------------------------------
-% Reduced form AGE groups 
-% original 3 3 2 3
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{Reduced form for hospital admission across age groups}\label{fig: rf_hospital2_agegroup}
-		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_hospital2_overview_agegroups_CIfits.pdf}
-			\scriptsize
-			\begin{minipage}{0.9\linewidth}
-				\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-				\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-			\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-
-    
-
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{Reduced form for mental \& behavioral disorders across age groups}\label{fig: rf_d5_agegroup}
-		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_d5_overview_agegroups_CIfits.pdf}
-		\scriptsize
-		\begin{minipage}{0.9\linewidth}
-		\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. TThe dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-		\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-		\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-\restoregeometry  
-%--------------------------------------------
-
 \newpage
 %Life-course Hospital admission
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Life-course approach for hospital admission}\label{fig: lc_hospital2_gdr_DD}
+		\caption{Life-course approach for hospital admission}\label{fig: lc_hospital2_frg_DD}
 		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
 			\includegraphics[width=\linewidth]{paper/lc_hospital2_total_gdr.pdf}
 		\end{subfigure}
@@ -771,12 +715,57 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage
 \end{landscape}
 %--------------------------------------------
+% Hospital - Reduced form pooled
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for hospital admission (pooled)}\label{fig: rf_hospital2_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_female_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_male_pooled.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry  
+%--------------------------------------------
+% Hospital -Reduced form AGE groups 
+% original 3 3 2 3
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for hospital admission across age groups}\label{fig: rf_hospital2_agegroup}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_hospital2_overview_agegroups_CIfits.pdf}
+		\scriptsize
+		\begin{minipage}{0.9\linewidth}
+			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry
+%--------------------------------------------
 % Figure: effect sizes and frequency across chapters
 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Intention-to-treat effects across main chapters}\label{fig: lc_hospital2_gdr_DD}
+		\caption{Intention-to-treat effects across main chapters}\label{fig: DD_across_main chapters}
 		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
 			\includegraphics[width=\linewidth]{paper/effect_chapters_frequency.pdf}
 		\end{subfigure}
@@ -796,11 +785,12 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage
 \end{landscape}
 %--------------------------------------------
-% LC Approach D5 (Mental and behavioral disod)
+
+% D5 - LC Approach (Mental and behavioral disod)
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Life-course approach for mental and behavioral disorders}\label{fig: lc_d5_gdr_DD}r	\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+		\caption{Life-course approach for mental and behavioral disorders}\label{fig: lc_d5_frg_DD}r	\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
 			\includegraphics[width=\linewidth]{paper/lc_d5_total_gdr.pdf}
 		\end{subfigure}
 		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
@@ -819,11 +809,56 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \end{landscape}
 
 %--------------------------------------------
+% d5 - RF pooled
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+%--------------------------------------------
+% D5 - RF (age group)
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{Reduced form for mental \& behavioral disorders across age groups}\label{fig: rf_d5_agegroup}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_d5_overview_agegroups_CIfits.pdf}
+		\scriptsize
+		\begin{minipage}{0.9\linewidth}
+			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. TThe dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry  
+%--------------------------------------------
 % Graph D5 partition - Subcategories
 \vspace*{\fill}
 \begin{figure}[H]\centering
 	\caption{The top five subcategories of mental \& behavioral diagnoses}\label{fig: d5partition}
-	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/presentation/d5partition.pdf}
+	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/paper/d5partition_lfstat.pdf}
 	\scriptsize
 	\begin{minipage}{0.9\linewidth}
 	\emph{Notes:} This figure plots the yearly number of diagnoses for the treatment cohort (i.e. the individuals born between November 1978 and October 1979). The subcategories are ordered by their occurrence in 2014 (from the most to the least frequent diagnosis).
@@ -857,9 +892,10 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 {\Huge \begin{center}\textbf{TABLES}\end{center}}
 \vspace*{\fill}\clearpage
 
+%--------------------------------------------
 % Overview ICD 9 and ICD 10 
 %\begin{small}
-
+\vspace*{\fill}
 \begin{table}[h] % table environment for caption and label
 	\begin{threeparttable}
 		\centering % center the tabular
@@ -880,23 +916,22 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table}
-
+\vspace*{\fill}\clearpage 
 %\end{small}
 %\normalsize
-
-
-
-
 %--------------------------------------------
-
-
-% Difference in Difference tables for HOSPITAL 
+% HOSPITAL - Difference in Difference tables for 
 \newpage
-\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_total}
-\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_women}
-\input{../../analysis/tables/paper/DD_hospital2_total_agegroup_men}
+\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_total}
+\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_women}
+\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_men}
+
 %--------------------------------------------
 % ITT effects nach chaptern
+% original 3 3 2 3
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
 \begin{table}[H] \centering 
 	\begin{threeparttable} \centering \caption{ITT effects on hospital admission and different diagnoses chapters (total)}\label{tab: ITT_across_chapters_per_age_group_total}
 		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
@@ -923,6 +958,15 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
 	\end{minipage}
 \end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+%--------------------------------------------
+% d5 - Difference in Difference table 
+\input{../../analysis/tables/paper/DD_d5_overall_agegroup_total}
+\input{../../analysis/tables/paper/DD_d5_overall_agegroup_women}
+\input{../../analysis/tables/paper/DD_d5_overall_agegroup_men}
+%--------------------------------------------
+
 
 
 
