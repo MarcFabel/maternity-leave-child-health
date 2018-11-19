@@ -1,0 +1,23 @@
+ \vspace*{\fill}
+ \begin{table}[H] \centering 
+ 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{mental \& behavioral disorders (men)}}\label{tab: DD_d5_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ 			\begin{tabular}{l*{5}{c}}
+ 				\toprule 
+ 				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+ 				& \multicolumn{4}{c}{Estimation window} \\ 
+ 				\cmidrule(lr){2-5}
+ 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+ 				&\multicolumn{1}{c}{2M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{Donut}\\
+ 				\midrule
+ 				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+ 				\input{paper/include/paper_d5_m_DD_overall} \\ \\
+ 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+ 				\input{paper/include/paper_d5_m_DD_17-21} \input{paper/include/paper_d5_m_DD_22-26} \input{paper/include/paper_d5_m_DD_27-31} \input{paper/include/paper_d5_m_DD_32-35} 
+ 				\bottomrule 
+ 		\end{tabular}}
+ 		\begin{tablenotes} 
+ 			\item \scriptsize \emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. The 'overall' specification includes year fixed effects, as well. The outcome variables are defined as the number of cases per thousand individuals (births). Dependent mean and the effect size correspond to pre-reform values of the treated group.
+ 		\end{tablenotes} 
+ 	\end{threeparttable} 
+ \end{table} 
+\vspace*{\fill}\clearpage 
