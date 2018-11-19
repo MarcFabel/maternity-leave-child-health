@@ -120,9 +120,9 @@ Verwendete Variablen:
 // ***************************** PREAMBLE********************************
 	clear all
 	set more off
-/*	
+	
 * GWAP LANDESAMT (FÜR HERR BERGMANN)
-	global path 		"B:\FDZ\Bearbeitung\3053_2016_ifo_Knoche_Hener"
+	global path 		"Z:\Gast\ifo\GWA22_3053_MF_KH\"
 	*global path 		"D:\Data\Gast\GWA22_3053_MF_KH"
 	*global path 		"Z:\ifo\GWA22_2827_MF_KH"
 	global KKH	 		"$path\A_Mikrodaten\"
@@ -136,7 +136,7 @@ Verwendete Variablen:
 	global MZ_anspielen	"$path/A_Mikrodaten"		// verweist auf die Datei MZ_merge (von Hrrn. Janisch erhalten) 
 	global file			"kdfv_sa95"
 	*global file 		"gwap_sa95_"
-*/
+
 
 /*	
 * Landesamt (Für mich)
