@@ -120,7 +120,7 @@ foreach j in "" "_f" "_m" {
 		yscale(r(0.5 14.5)) ///
 		saving($graphs/frequency_across_chapters,replace)
 		
-		graph combine "$graphs/ITT_across_chapters" "$graphs/frequency_across_chapters", imargin(zero) 
+		graph combine "$graphs/ITT_across_chapters" "$graphs/frequency_across_chapters", imargin(zero) scheme(s1mono)
 		graph export "$graph_paper/effect_chapters_frequency.pdf", as(pdf) replace
 	
 *female 
@@ -180,7 +180,7 @@ foreach j in "" "_f" "_m" {
 		yscale(r(0.5 14.5)) ///
 		saving($graphs/frequency_across_chapters_f,replace)
 		
-		graph combine "$graphs/ITT_across_chapters_f" "$graphs/frequency_across_chapters_f", imargin(zero) 
+		graph combine "$graphs/ITT_across_chapters_f" "$graphs/frequency_across_chapters_f", imargin(zero) scheme(s1mono)
 		graph export "$graph_paper/effect_chapters_frequency_f.pdf", as(pdf) replace	
 		
 *male 
@@ -240,6 +240,6 @@ foreach j in "" "_f" "_m" {
 		yscale(r(0.5 14.5)) ///
 		saving($graphs/frequency_across_chapters_m,replace)
 		
-		graph combine "$graphs/ITT_across_chapters_m" "$graphs/frequency_across_chapters_m", imargin(zero) 
+		graph combine "$graphs/ITT_across_chapters_m" "$graphs/frequency_across_chapters_m", imargin(zero) scheme(s1mono)
 		graph export "$graph_paper/effect_chapters_frequency_m.pdf", as(pdf) replace			
 	
