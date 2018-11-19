@@ -339,5 +339,5 @@ line share_surgery year, sort color(black) lw(medthick) || ///
 	graph combine "$graph/descriptive_A_admission"			"$graph/descriptive_B_women.gph"			///
 				  "$graph/descriptive_C_staylength.gph" 			  "$graph/descriptive_D_surgery.gph" ///
 				  "$landesamt/descriptive_E_death_22Oct18.gph", altshrink ///
-				  scheme(s1mono) plotregion(color(white)) col(2) ysize(15) xsize(12)
+				  scheme(s1mono) plotregion(color(white)) col(2) ysize(15) xsize(13)
 	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace
