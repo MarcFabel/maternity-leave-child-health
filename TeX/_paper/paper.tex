@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -617,7 +617,8 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
 
 % figure: matrix descriptive hospital admission
-\bigskip
+\newpage
+\vspace*{\fill}
 \begin{figure}[H]\centering
 	\caption{Hospital admissions}\label{fig: descriptive_hospital_admission}
 	\includegraphics[width=\linewidth]{paper/descriptive_admission.pdf}
@@ -625,6 +626,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\scriptsize{\emph{Notes:} The figure depicts the evolution of key variables for the treatment cohort (i.e. for individuals born between November 1978 and October 1979) over the period from 1995 to 2014. Hospital admissions are defined as the sum of all diagnoses, except for diagnoses of the "O" chapter (pregnancy, childbirth, and the puerperium). The x-axis shows in addition to the year the age of the treatment cohort in brackets.} 
 	\end{minipage}
 \end{figure}
+\vspace*{\fill}\clearpage
 %--------------------------------------------
 %figure TOP 5 Diagnoses across age groups
 \vspace*{\fill}
@@ -713,6 +715,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 % original 3 3 2 3
 \newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
 \begin{landscape}
+	\vspace*{\fill}
 	\begin{figure}
 		[H]\centering
 		\caption{Reduced form for hospital admission across age groups}\label{fig: rf_hospital2_agegroup}
@@ -723,11 +726,13 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 				\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
 			\end{minipage}
 	\end{figure}
+	\vspace*{\fill}\clearpage
 \end{landscape}
 
     
 
 \begin{landscape}
+	\vspace*{\fill}
 	\begin{figure}
 		[H]\centering
 		\caption{Reduced form for mental \& behavioral disorders across age groups}\label{fig: rf_d5_agegroup}
@@ -738,80 +743,81 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
 		\end{minipage}
 	\end{figure}
+	\vspace*{\fill}\clearpage
 \end{landscape}
 \restoregeometry  
 %--------------------------------------------
 
 \newpage
 %Life-course Hospital admission
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Life-course approach for hospital admission}\label{fig: lc_hospital2_gdr_DD}
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
-		\includegraphics[width=\linewidth]{paper/lc_hospital2_total_gdr.pdf}
-	\end{subfigure}
-	
-	
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Women}
-		\includegraphics[width=\linewidth]{paper/lc_hospital2_female_gdr.pdf}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Men}
-		\includegraphics[width=\linewidth]{paper/lc_hospital2_male_gdr.pdf}
-	\end{subfigure}
-	\scriptsize
-	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}[H]\centering
+		\caption{Life-course approach for hospital admission}\label{fig: lc_hospital2_gdr_DD}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/lc_hospital2_total_gdr.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/lc_hospital2_female_gdr.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/lc_hospital2_male_gdr.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{\linewidth}
+			\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
 %--------------------------------------------
 % Figure: effect sizes and frequency across chapters
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Intention-to-treat effects across main chapters}\label{fig: lc_hospital2_gdr_DD}
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
-		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency.pdf}
-	\end{subfigure}
-	
-	
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Women}
-		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_f.pdf}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Men}
-		\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_m.pdf}
-	\end{subfigure}
-	\scriptsize
-	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figures plots intention-to-treat estimates (along with 90\%/95\% confidence intervals) across the main diagnosis chapters. Furthermore, they indicate how often each distribution occurs across the entire length (1995-2014). The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). \newline
-		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
 
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}[H]\centering
+		\caption{Intention-to-treat effects across main chapters}\label{fig: lc_hospital2_gdr_DD}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/effect_chapters_frequency.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_f.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/effect_chapters_frequency_m.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{\linewidth}
+			\emph{Notes:} The figures plots intention-to-treat estimates (along with 90\%/95\% confidence intervals) across the main diagnosis chapters. Furthermore, they indicate how often each distribution occurs across the entire length (1995-2014). The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). \newline
+			\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+			
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
 %--------------------------------------------
 % LC Approach D5 (Mental and behavioral disod)
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Life-course approach for mental and behavioral disorders}\label{fig: lc_d5_gdr_DD}r	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Total}
-		\includegraphics[width=\linewidth]{paper/lc_d5_total_gdr.pdf}
-	\end{subfigure}
-	
-	
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Women}
-		\includegraphics[width=\linewidth]{paper/lc_d5_female_gdr.pdf}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Men}
-		\includegraphics[width=\linewidth]{paper/lc_d5_male_gdr.pdf}
-	\end{subfigure}
-	\scriptsize
-	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on mental and behavioral disorders over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}[H]\centering
+		\caption{Life-course approach for mental and behavioral disorders}\label{fig: lc_d5_gdr_DD}r	\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/lc_d5_total_gdr.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/lc_d5_female_gdr.pdf}
+		\end{subfigure}
+		\quad
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/lc_d5_male_gdr.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{\linewidth}
+			\emph{Notes:} The figures plot DD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on mental and behavioral disorders over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+
 %--------------------------------------------
 % Graph D5 partition - Subcategories
 \vspace*{\fill}
