@@ -305,7 +305,7 @@ danach ist die reform 05/79, früher keine Daten lokal
 */
 
 
-foreach 1 of varlist $list_vars_mandf_ratios_available { //$list_vars_mandf_ratios_available
+foreach 1 of varlist d5 hospital2 { //$list_vars_mandf_ratios_available
 	use "$temp\KKH_final_R1", clear
 	*run "auxiliary_varlists_varnames_sample-spcifications"
 	*delete treatment cohort
@@ -345,7 +345,7 @@ foreach 1 of varlist $list_vars_mandf_ratios_available { //$list_vars_mandf_rati
 	foreach var in "" "r_fert_" "r_popf_" {	// ROWS				 
 		foreach j in "" "_f" "_m" { //COLUMNS 			
 			eststo clear
-			DDRD_p `var'`1'`j'   "i.MOB" "if (p_treat == 1 | p_control == 1)"
+			DDRD_p `var'`1'`j'   "i.MOB i.year" "if (p_treat == 1 | p_control == 1)"
 			* save estimates as dataset
 			esttab using "$temp/placebo/`var'`1'`j'_graph.csv", replace ///
 				keep(p_TxA) nomtitles nonumbers noobs nonote nogaps noline nopar nostar se wide coeflabels(p_TxA "220")
@@ -388,7 +388,7 @@ foreach 1 of varlist $list_vars_mandf_ratios_available { //$list_vars_mandf_rati
 		foreach var in "" "r_fert_" "r_popf_" {	// ROWS				 
 			foreach j in ""  "_f" "_m" { //COLUMNS 			
 				eststo clear
-				DDRD_p  `var'`1'`j'   "i.MOB" "if (p_treat == 1 | p_control == 1)"
+				DDRD_p  `var'`1'`j'   "i.MOB i.year" "if (p_treat == 1 | p_control == 1)"
 				* save estimates as dataset
 				esttab using "$temp/placebo/`var'`1'`j'_graph.csv", append ///
 					keep(p_TxA) nomtitles nonumbers noobs nonote nogaps noline nopar nostar se wide coeflabels(p_TxA "`k'")
