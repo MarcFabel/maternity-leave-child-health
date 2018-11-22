@@ -57,12 +57,13 @@ capture program drop DDRD_sclrs
 	
 	
 
-foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
-	foreach j in "" "_f" "_m" { // "_f" "_m"
+foreach 1 of varlist hospital2 d5  { // hospital2 d5 
+	foreach j in "" "_f" "_m" { // "" "_f" "_m" 
 		eststo clear 	
 		*overall effect
-		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M2"
+		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M3"
 		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4"
+		DDRD_sclrs b5 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M5"
 		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
 		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD"
 		esttab b* using "$tables_paper/include/paper_`1'`j'_DD_overall.tex", replace booktabs fragment ///
@@ -90,8 +91,9 @@ foreach 1 of varlist hospital2 d5 { // $list_vars_mandf_ratios_available
 				local age_outputname = "32-35"
 			}
 			eststo clear 
-			DDRD b2 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $M2"
+			DDRD b2 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $M3"
 			DDRD b4 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $M4"
+			DDRD b5 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $M5"
 			DDRD b6 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2"
 			DDRD b7 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $MD"
 			esttab b* using "$tables_paper/include/paper_`1'`j'_DD_`age_outputname'.tex", replace booktabs fragment ///
