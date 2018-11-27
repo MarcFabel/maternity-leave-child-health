@@ -707,8 +707,18 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \end{figure}
 %--------------------------------------------
 
-
-
+%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
+% VALIDITY
+%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
+\begin{figure}[H]\centering
+	\caption{Fertility distribution}\label{fig: fertilitydistr}
+	\includegraphics[width=0.8\linewidth]{paper/fertility_raw_regression.pdf}
+	\scriptsize
+	\begin{minipage}{0.9 \linewidth}
+		\emph{Notes:} 
+		Bottom part comes from ....
+	\end{minipage}
+\end{figure}
 
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
@@ -970,6 +980,37 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \vspace*{\fill}\clearpage 
 %\end{small}
 %\normalsize
+
+%--------------------------------------------
+% VALIDITY: RD TABEL 
+\vspace*{\fill}
+\begin{table}[H] \centering
+\caption{Validity.... RD estimates for births}
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+\begin{tabular}{l*{5}{c}}
+	\toprule
+	& \multicolumn{4}{c}{Estimation window} \\
+	\cmidrule{2-5}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+	\midrule
+	\multirow{1}{*}{Variable} & \multicolumn{1}{c}{$\pm$5 days} & \multicolumn{1}{c}{$\pm$10 days} & \multicolumn{1}{c}{$\pm$15 days} & \multicolumn{1}{c}{$\pm$30 days}\\ 
+	\midrule
+	\emph{Panel A.}\\
+	\input{../../analysis/tables/paper/include/RD_fertility_raw}
+	\\ \\
+	\emph{Panel B.}\\
+	\input{../../analysis/tables/paper/include/RD_fertility_ln}
+	\bottomrule
+\end{tabular}}
+\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold
+	\end{minipage}
+\end{table}
+\vspace*{\fill}\clearpage 
+
+
+
+
 %--------------------------------------------
 % HOSPITAL - Difference in Difference tables for 
 \newpage
