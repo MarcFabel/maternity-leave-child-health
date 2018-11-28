@@ -154,3 +154,7 @@ TeX/paper_old/
 analysis/DS_data/
 
 analysis/tables/LfStat_GWAP/
+
+*.bak
+
+TeX/_paper/mlch_bibliography\.bib\.sav
