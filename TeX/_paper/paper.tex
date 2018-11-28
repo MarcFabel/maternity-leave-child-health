@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -707,8 +707,18 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \end{figure}
 %--------------------------------------------
 
-
-
+%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
+% VALIDITY
+%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
+\begin{figure}[H]\centering
+	\caption{Fertility distribution}\label{fig: fertilitydistr}
+	\includegraphics[width=0.8\linewidth]{paper/fertility_raw_regression.pdf}
+	\scriptsize
+	\begin{minipage}{0.9 \linewidth}
+		\emph{Notes:} 
+		Bottom part comes from ....
+	\end{minipage}
+\end{figure}
 
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
@@ -884,10 +894,37 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/paper/d5partition_lfstat.pdf}
 	\scriptsize
 	\begin{minipage}{0.9\linewidth}
-	\emph{Notes:} This figure plots the yearly number of diagnoses for the treatment cohort (i.e. the individuals born between November 1978 and October 1979). The subcategories are ordered by their occurrence in 2014 (from the most to the least frequent diagnosis). The five most frequent subcategories - as shown here - comprise more than 95\% of all mental and behavioral disorders. 
+	\emph{Notes:} This figure plots the yearly number of diagnoses for the treatment cohort (i.e. the individuals born between November 1978 and October 1979). The subcategories are ordered by their occurrence in 2014 (from the most to the least frequent diagnosis), which also coincides by chance with the ordering in the ICD-10 classification system. The five most frequent subcategories - as shown here - comprise more than 95\% of all mental and behavioral disorders. 
 	\end{minipage}
 \end{figure}
-\vspace*{\fill}\clearpage
+\vspace*{\fill}\clearpage%--------------------------------------------
+% figure: iverview of d5 subcategories (effects + frequency)
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{ITT effect for subcategories of mental \& behavioral disorders (pooled)}\label{fig: ITT_d5_subcategories}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency_f.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency_m.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots ITT effects for the five most common subcategories of mental and behavioral disorders....
+
+			%the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
 %--------------------------------------------
 % map: population density per AMR in Germany
 \newpage
@@ -943,6 +980,37 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \vspace*{\fill}\clearpage 
 %\end{small}
 %\normalsize
+
+%--------------------------------------------
+% VALIDITY: RD TABEL 
+\vspace*{\fill}
+\begin{table}[H] \centering
+\caption{Validity.... RD estimates for births}
+{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+\begin{tabular}{l*{5}{c}}
+	\toprule
+	& \multicolumn{4}{c}{Estimation window} \\
+	\cmidrule{2-5}
+	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+	\midrule
+	\multirow{1}{*}{Variable} & \multicolumn{1}{c}{$\pm$5 days} & \multicolumn{1}{c}{$\pm$10 days} & \multicolumn{1}{c}{$\pm$15 days} & \multicolumn{1}{c}{$\pm$30 days}\\ 
+	\midrule
+	\emph{Panel A.}\\
+	\input{../../analysis/tables/paper/include/RD_fertility_raw}
+	\\ \\
+	\emph{Panel B.}\\
+	\input{../../analysis/tables/paper/include/RD_fertility_ln}
+	\bottomrule
+\end{tabular}}
+\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold
+	\end{minipage}
+\end{table}
+\vspace*{\fill}\clearpage 
+
+
+
+
 %--------------------------------------------
 % HOSPITAL - Difference in Difference tables for 
 \newpage
@@ -1030,7 +1098,15 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{minipage}
 \end{figure}
 %--------------------------------------------
-
+% LC MATRIX D5 SUBCATGEORIES
+\begin{figure}[H]\centering
+	\caption{Life-course approach for the subcategories of mental and behavioral disorders.}\label{fig: appendix_lc_matrix_d5_subcateg}
+	\includegraphics[width=1.1\linewidth]{paper/lc_matrix_d5subcategories.pdf}
+		\begin{minipage}{\linewidth}
+		\scriptsize \emph{Notes:} This figure plots intention-to-treat estimates (along with confidence intervals) across the subcategories of mental and behavioral disorders. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
+	\end{minipage}
+\end{figure}
+%--------------------------------------------
 
 % TABLES
 
