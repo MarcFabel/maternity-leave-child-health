@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -666,8 +666,19 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{figure}
 	\vspace*{\fill}\clearpage
 \end{landscape}
-
-
+%--------------------------------------------
+% Fertilitz distribuition
+	\vspace*{\fill}
+\begin{figure}[H]\centering
+	\caption{Fertility distribution}\label{fig: fertilitydistr}
+	\includegraphics[width=0.9\linewidth]{paper/fertility_raw_regression_adjusted.pdf}
+	\scriptsize
+	\begin{minipage}{0.9 \linewidth}
+		\emph{Notes:} 
+		Bottom part comes from ....\newline Motivated by \cite{gans2009born} $\rightarrow$ let's discuss that tomorrow!!!
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
 % DATA
@@ -706,19 +717,6 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\end{minipage}
 \end{figure}
 %--------------------------------------------
-
-%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
-% VALIDITY
-%WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
-\begin{figure}[H]\centering
-	\caption{Fertility distribution}\label{fig: fertilitydistr}
-	\includegraphics[width=0.8\linewidth]{paper/fertility_raw_regression.pdf}
-	\scriptsize
-	\begin{minipage}{0.9 \linewidth}
-		\emph{Notes:} 
-		Bottom part comes from ....
-	\end{minipage}
-\end{figure}
 
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
@@ -1003,7 +1001,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\bottomrule
 \end{tabular}}
 \begin{minipage}{0.9\linewidth}
-		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold
+		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold\newline Motivated by \cite{gans2009born} $\rightarrow$ let's discuss that tomorrow!!!Probably bullshit, RDD does not make sense here, does it??
 	\end{minipage}
 \end{table}
 \vspace*{\fill}\clearpage 
