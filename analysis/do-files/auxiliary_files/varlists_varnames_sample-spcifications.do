@@ -33,7 +33,10 @@
 	global age_27_31 = "(year_treat >= 2006 & year_treat<=2010)"
 	global age_32_35 = "(year_treat >= 2011 & year_treat<=2014)"
 	
-	
+	*age range for r_popf
+	global age_27_29 = "(year_treat >= 2006 & year_treat<=2008)"
+	global age_30_32 = "(year_treat >= 2009 & year_treat<=2011)"
+	global age_33_35 = "(year_treat >= 2012 & year_treat<=2014)"
 	
 	********************************************************************************	
 	// globals definieren für überschrift in den Tabellen
