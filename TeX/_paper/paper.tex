@@ -393,7 +393,7 @@ Our main specification to estimating the effect of the length of maternity leave
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
-where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results-lifecourse}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
+where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
 
 
 The parameter of interest is $\gamma_3$ which captures the effect of the policy change on health outcomes. As we don't have any information on the fact whether the individuals' mothers were on leave, the identified parameter is an intention-to-treat effect. \newline
@@ -418,11 +418,11 @@ Standard errors are clustered on the interaction of birth month and state level 
 
 \newpage
 \subsection{Threat}\label{sec:empirical_strategy_2threats}
-Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. \cite{ekberg2013parental} describe the occurrence of birth as a random event, given the date of conception. They argue that pregnancy is a normally distributed random variable with mean of 40 weeks and a standard deviation of 2 weeks. However, there is reason to doubt the randomness of the event. \newline 
+Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. \cite{Ekberg2013parental} describe the occurrence of birth as a random event, given the date of conception. They argue that pregnancy is a normally distributed random variable with mean of 40 weeks and a standard deviation of 2 weeks. However, there is reason to doubt the randomness of the event. \newline 
 Women could influence the time when their baby is born by strategic conception and postponing the time they give birth by delaying induced births \& cesarean sections. In the following each of the concerns is discussed in turns: 
 
 \bigskip
-\textbf{(i) Strategic Conception}\\ As already mentioned in Section \ref{sec:reform}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{dustmann2012expansions} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{dustmann2012expansions} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
+\textbf{(i) Strategic Conception}\\ As already mentioned in Section \ref{sec:background}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{Dustmann2012} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{Dustmann2012} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
 
 \bigskip
 \textbf{(ii) Induced births and cesarean sections}\\ Mothers with due dates close to the cutoff date on May 1, 1979 could time the birth date of their child by postponing induced births and cesarean sections.\footnote{Bringing the birth date forward around the threshold does not constitute a threat to the identification strategy, because this behavioral response would destroy their children's eligibility. Hence, it can be safely assumed that women would like to postpone the date of birth, if any.} \cite{gans2009born} find that during the introduction of a \$ 3.000 "Baby Bonus" in Australia, parents postponed the birth by as much as a week in order to be eligible for the benefits. Consequently the data shows that sharply before the cutoff birth date there is a dip in the birth rate and a huge increase on the first day after the threshold.\newline
@@ -431,7 +431,7 @@ It is possible that there are similar distortionary "introduction effects" at wo
 \bigskip
 \textbf{(iii) Migration}
 
-In order to check the existence of potential behavioral responses, we investigate the distribution of fertility and the balance of (parental) predetermined characteristics around the cutoffs (as done in \cite{dinardo2004economic}) in Section \ref{sec: validity}.\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.} Additionally, we apply a Donut specification in the robustness section (Section \ref{sec: robustness}), in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
+In order to check the existence of potential behavioral responses, we investigate the distribution of fertility and the balance of (parental) predetermined characteristics around the cutoffs (as done in \cite{dinardo2004economic})[\textbf{DRINGEND ANPASSEN}] in Section \ref{sec:empirical_strategy_3validity}.\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.} Additionally, we apply a Donut specification in the robustness section (Section \ref{sec: robustness}), in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
 % [SOLL ICH NOCH SCHREIBEN WARUM ICH DEN DONUT GENAU MACHE???????!!!!!]
 
 
@@ -537,6 +537,8 @@ age group \ref{fig: rf_d5_agegroup}
 \subsection{Subsections of mental \& behavioral disorders}
 figure overview of subcategories of mental disorders
 \ref{fig: d5partition}
+
+\section{Robustness}\label{sec: robustness}
 
 
 \newpage
@@ -652,15 +654,15 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\caption{Fertility distribution for different years}\label{fig: fertility_hist}
 		\begin{subfigure}[h]{0.40\linewidth}\centering
 		\caption{Control: Nov 1977-Oct 1978}
-		\includegraphics[width=\linewidth]{paper/fertility_histogram_CG.pdf}
+		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_CG.pdf}
 		\end{subfigure}
 		\begin{subfigure}[h]{0.40\linewidth}\centering
 		\caption{Treatment: Nov 1978-Oct 1979}
-		\includegraphics[width=\linewidth]{paper/fertility_histogram_TG.pdf}
+		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_TG.pdf}
 		\end{subfigure}
 			\scriptsize
 			\begin{minipage}{0.95\linewidth}
-				\emph{Notes:} The figure shows the number of births per month for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
+				\emph{Notes:} The figure shows the number of births per day across birth-months for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
 				\emph{Source:} German Federal Statistical Office (Destatis).
 			\end{minipage}
 	\end{figure}
@@ -1101,7 +1103,9 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------
 % d5 - robustness in one table - blueprint for paper
 \newpage
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
 \input{../../analysis/tables/paper/robustness_d5}
+\restoregeometry
 
 
 
