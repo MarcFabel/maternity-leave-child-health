@@ -2,33 +2,35 @@
 	\vspace*{\fill}
 	\begin{table}[htbp] \centering 
 		\begin{threeparttable} \centering 
-			\caption{Robustness for \textbf{mental and behavioral disorders}} 
+			\caption{Robustness for \textbf{mental and behavioral disorders}} \label{tab: robustness_d5} 
 			{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-				\begin{tabular}{l*{9}{c}} \toprule 
+				\begin{tabular}{l*{10}{c}} \toprule 
 					
-					& & \multicolumn{2}{c}{Alternative specifications} & \multicolumn{2}{c}{\clb{c}{Alternative\\estimation}} & \multicolumn{2}{c}{Heterogeneity}& \multicolumn{2}{c}{Placebos}\\
-					\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
-					&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}&\multicolumn{1}{c}{(9)}\\
-					&\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{current\\population}}&\multicolumn{1}{c}{\clb{c}{LMR\\level}}&\multicolumn{1}{c}{\clb{c}{DDD}}&\multicolumn{1}{c}{\clb{c}{alt. DD}}&\multicolumn{1}{c}{\clb{c}{rural}}&\multicolumn{1}{c}{\clb{c}{urban}}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}\\
+					& & \multicolumn{2}{c}{Alternative specifications} & \multicolumn{3}{c}{\clb{c}{Alternative\\estimation}} & \multicolumn{2}{c}{Heterogeneity}& \multicolumn{2}{c}{Placebos}\\
+					\cmidrule(lr){3-4} \cmidrule(lr){5-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+					&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}&\multicolumn{1}{c}{(9)}&\multicolumn{1}{c}{(10)}\\
+					&\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{current\\population}}&\multicolumn{1}{c}{\clb{c}{LMR\\level$^a$}}&\multicolumn{1}{c}{\clb{c}{DDD}}&\multicolumn{1}{c}{\clb{c}{alt. DD}}&\multicolumn{1}{c}{add. CG}&\multicolumn{1}{c}{\clb{c}{rural$^a$}}&\multicolumn{1}{c}{\clb{c}{urban$^a$}}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}\\
 					\midrule
 					\\
-					(1) {total} 		&   -0.634\sym{**}	&	-0.832\sym{***}	&   -0.831\sym{**}  &	-0.834\sym{**}  & 	-0.558\sym{**}  &	-0.0987		&	-1.006\sym{***} 	&	0.162			&	0.200		\\
-										&	(0.249)			&	(0.239)			&   (0.229)     	&	(0.318)			& 	(0.153)			&	(0.588)		&	(0.202)				&	(0.304)			&	(0.139)		\\
-					(2) {female}		&   0.0599			&	-0.0853			& 	-0.0724     	&	-0.0385			& 	-0.217			&	0.299		&	-0.161				&	0.457			&	0.0984		\\
-										&	(0.266)			&	(0.266)			&   (0.258)     	&	(0.317)			& 	(0.141)			&	(0.816)		&	(0.234)				&	(0.369)			&	(0.192)		\\
-					(3) {male} 			&   -1.267\sym{***}	&	-1.554\sym{***}	&   -1.598\sym{***} &	-1.533\sym{***} & 	-0.834\sym{***} &	-0.414		&	-1.877\sym{***} 	&	-0.112			&	0.266		\\
-										&	(0.292)			&	(0.299)			&   (0.286)     	&	(0.384)			& 	(0.244)			&	(0.487)		&	(0.333)				&	 (0.331) 		&	(0.198)		\\
-					\midrule            																																																			
-					For total: 																																															\\							 
-					Dependent mean 		&   18.96			&	17.28			&   17.65     		&	13.80			& 	13.80			&	16.76		&	18.38				&	18.67			&	8.640		\\
-					Effect in SDs [\%] 	&   11.43			&	41.92			&   5.20      		&	12.53			& 	8.380			&	1.69		&	7,27				&	3.490			&	9.440		\\
-					Observations 		&   480				&	288				&   58,751    		&	960				& 	480				&	26,495		&	32,256				&	480				&	480			\\
-					Federal level		&   \checkmark		&	\checkmark		&   $\times$		& \checkmark		&	\checkmark		&	$\times$	&	$\times$			&	\checkmark		&  \checkmark	\\ 
+					(1) {total} 		&   -0.634\sym{**}	&	-0.832\sym{***}	&   -0.831\sym{***} &	-0.834\sym{***} & 	-0.558\sym{***} & -0.553\sym{**}	&	-0.0987		&	-1.006\sym{***} 	&	0.162			&	0.200		\\
+										&	(0.249)			&	(0.239)			&   (0.229)     	&	(0.321)			& 	(0.157)			& (0.269)			&	(0.588)		&	(0.202)				&	(0.304)			&	(0.141)		\\
+					(2) {female}		&   0.0599			&	-0.0853			& 	-0.0724     	&	-0.0385			& 	-0.217			& 0.289			    &	0.299		&	-0.161				&	0.457			&	0.0984		\\
+										&	(0.266)			&	(0.266)			&   (0.258)     	&	(0.320)			& 	(0.144)			& (0.287)			&	(0.816)		&	(0.234)				&	(0.369)			&	(0.196)		\\
+					(3) {male} 			&   -1.267\sym{***}	&	-1.554\sym{***}	&   -1.598\sym{***} &	-1.533\sym{***} & 	-0.834\sym{***} & -1.323\sym{***}	&	-0.414		&	-1.877\sym{***} 	&	-0.112			&	0.266		\\
+										&	(0.292)			&	(0.299)			&   (0.286)     	&	(0.388)			& 	(0.190)			& (0.322)			&	(0.487)		&	(0.333)				&	 (0.331) 		&	(0.198)		\\
+					\midrule            																																																						
+					For total: 																																																				\\							 
+					Dependent mean 		&   18.96			&	17.28			&   17.65     		&	13.80			& 	13.80			& 18.96				&	16.76		&	18.38				&	18.67			&	8.640		\\
+					Effect in SDs [\%] 	&   11.43			&	41.92			&   5.20      		&	12.53			& 	8.380			& 9.960				&	1.69		&	7,27				&	3.490			&	9.440		\\
+					Observations 		&   480				&	288				&   58,751    		&	960				& 	480				& 720				&	26,495		&	32,256				&	480				&	480			\\
+					Federal level		&   \checkmark		&	\checkmark		&   $\times$		& \checkmark		&	\checkmark		& \checkmark		&	$\times$	&	$\times$			&	\checkmark		&  \checkmark	\\ 
 					\bottomrule
 			\end{tabular}}
 	\end{threeparttable} 
-		\begin{minipage}{0.9\linewidth}
+		\begin{minipage}{0.87\linewidth}
 		\scriptsize \emph{Notes:} This table %reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).  regressions on LMR include LMR FE
+		\newline \emph{Legend:} (1) baseline specification that was used in previous parts of the paper, (2) number of diagnoses divided by the current number of individuals (approximated), (3) the analysis is carried out on the level of labor market regions, (4) triple difference model (the third differences stems from the former region of the GDR), (5) alternative difference-in-difference model which compares pre and post of the treatment cohort in FRG with the respective values in GDR, (6) uses next to the cohort before the reform also the cohort 2 years prior to the policy change as control group, (7) + (8)  DD carried out in rural and urban regions (compare with figure \ref{fig: AMR_regions_population_density}), (9) first placebo, in which the entire analysis set-up is pushed back by one year, i.e. the placebo TG is the cohort prior to the real TG and the placebo CG is the cohort born 2 years before the reform took place, (10) second placebo, in which we run the normal DD set-up in the area of the former GDR. \newline
+		\hspace{10 pt}$^a$ population weighted regression, includes region fixed effects.
 	\end{minipage}
 \end{table} 
 	\vspace*{\fill}\clearpage
@@ -37,3 +39,4 @@
 % Columns 1, 2 8 (lokal) ok 
 % COLUMN 8 uses the r_popf specification
 % sind DDD, alt DD, spatial placebo mit r_pop
+
