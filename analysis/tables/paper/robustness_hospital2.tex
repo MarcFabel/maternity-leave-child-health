@@ -9,7 +9,7 @@
 					& & \multicolumn{2}{c}{Alternative specifications} & \multicolumn{3}{c}{\clb{c}{Alternative\\estimation}} & \multicolumn{2}{c}{Placebos}& \multicolumn{2}{c}{Heterogeneity}\\
 					\cmidrule(lr){3-4} \cmidrule(lr){5-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
 					&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}&\multicolumn{1}{c}{(9)}&\multicolumn{1}{c}{(10)}\\
-					&\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{current\\population}}&\multicolumn{1}{c}{\clb{c}{LMR\\level$^a$}}&\multicolumn{1}{c}{\clb{c}{DDD}}&\multicolumn{1}{c}{\clb{c}{alt. DD}}&\multicolumn{1}{c}{add. CG}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}&\multicolumn{1}{c}{\clb{c}{rural$^a$}}&\multicolumn{1}{c}{\clb{c}{urban$^a$}}\\
+					&\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{current\\population}}&\multicolumn{1}{c}{\clb{c}{LMR\\level$^a$}}&\multicolumn{1}{c}{\clb{c}{DDD$^b$}}&\multicolumn{1}{c}{\clb{c}{alt. DD$^b$}}&\multicolumn{1}{c}{add. CG}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}&\multicolumn{1}{c}{\clb{c}{rural$^a$}}&\multicolumn{1}{c}{\clb{c}{urban$^a$}}\\
 					\midrule
 					\\
 					%							1					2					3					4					5					6					7					8				9				10				
@@ -34,7 +34,8 @@
 		\begin{minipage}{0.87\linewidth}
 		\scriptsize \emph{Notes:} This table %reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).  regressions on LMR include LMR FE
 		\newline \emph{Legend:} (1) baseline specification that was used in previous parts of the paper, (2) number of diagnoses divided by the current number of individuals (approximated), (3) the analysis is carried out on the level of labor market regions, (4) triple difference model (the third differences stems from the former region of the GDR), (5) alternative difference-in-difference model which compares pre and post of the treatment cohort in FRG with the respective values in GDR, (6) uses next to the cohort before the reform also the cohort 2 years prior to the policy change as control group, (7) first placebo, in which the entire analysis set-up is pushed back by one year, i.e. the placebo TG is the cohort prior to the real TG and the placebo CG is the cohort born 2 years before the reform took place, (8) second placebo, in which we run the normal DD set-up in the area of the former GDR, (9) + (10)  DD carried out in rural and urban regions (compare with figure \ref{fig: AMR_regions_population_density}). \newline
-		\hspace{10 pt}$^a$: level of analysis on Labor Market Regions: weighted regressions (by population), includes region fixed effects.
+		\hspace{10 pt}$^a$: level of analysis on Labor Market Regions: weighted regressions (by population), includes region fixed effects.\newline
+		\hspace{10 pt}$^b$: standard errors clustered on the month-of-birth$\times$birth-cohort$\times$East-West cell level.
 	\end{minipage}
 \end{table} 
 	\vspace*{\fill}\clearpage
