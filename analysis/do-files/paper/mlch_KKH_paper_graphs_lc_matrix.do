@@ -39,6 +39,10 @@
 	use "$temp\KKH_final_R1", clear
 	run "$auxiliary/varlists_varnames_sample-spcifications"
 
+	capture program drop DDRD
+program define DDRD
+		qui reg `1' treat after TxA i.MOB   `2'  , vce(cluster MxY) 
+end
 
 
 	*define short globals for variable labels in the table
@@ -59,10 +63,9 @@
 	
 
 
-
 *hospital mit captions oben
 capture drop Dinregression
-qui gen Dinregression = 1 if cond($C2,1,0)
+qui gen Dinregression = 1 if cond($C2,1,0) 
 
 foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 	capture drop sum_num_diag*
@@ -70,8 +73,10 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 	bys Dinregression year_treat: egen sum_num_diagnoses_f = total(`1'_f)
 	bys Dinregression year_treat: egen sum_num_diagnoses_m = total(`1'_m)
 	
+	
+	
 	foreach var in "r_fert_"  {	// COLUMNS
-		capture drop b* CIL* CIR*
+		capture drop b* CIL* CIR* mean*
 		foreach j in "" "_f" "_m" { // rows
 			qui replace sum_num_diagnoses`j'= sum_num_diagnoses`j'/1000
 			qui gen b`j' =.
@@ -79,6 +84,7 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			qui gen CIR95`j' =. 
 			qui gen CIL90`j' =.
 			qui gen CIR90`j' =. 
+			qui gen mean`j' =.
 			
 			qui summ year_treat if !missing(`var'`1') & treat == 1
 			local start = r(min) + 1
@@ -92,11 +98,15 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				qui replace CIL90`j' = (_b[TxA]- $t_90 *_se[TxA]) if year_treat == `X'
 				qui replace CIR90`j' = (_b[TxA]+ $t_90 *_se[TxA]) if year_treat == `X'
 				
+				qui sum `var'`1'`j' if e(sample) & treat== 1 & after == 0 
+				qui replace mean`j' = `r(mean)' if year_treat == `X'
+				
+				
 			} //end:loop over lifecycle
 		} //end:loop t,f,m (ROWS)
 		local start_mtick = `start' + 2 
 		*total
-		twoway line sum_num_diagnoses year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+		twoway line mean year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 			rarea CIL95 CIR95 year_treat, sort  color(gs2%12) yaxis(1) || ///
 			rarea CIL90 CIR90 year_treat, sort  color(gs2%25) yaxis(1) || ///
 			line b year_treat, sort color(gs2) yaxis(1) ///
@@ -111,12 +121,12 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
 			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
 			ylabel(-15 0 10, nogrid axis(1)) ///
-			ylabel(0 80 160, nogrid axis(2)) ///
+			ylabel(none, nogrid axis(2)) ///
 			nodraw ///
 			saving($graphs/lc_`1'_DD,replace)
 
 		*female
-		twoway line sum_num_diagnoses_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+		twoway line mean_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 			rarea CIL95_f CIR95_f year_treat, sort  color(cranberry%12) yaxis(1) || ///
 			rarea CIL90_f CIR90_f year_treat, sort  color(cranberry%25) yaxis(1) || ///
 			line b_f year_treat, sort color(cranberry) yaxis(1) ///
@@ -129,12 +139,12 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			title("Female", box bexpand) ///
 			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
 			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
-			ylabel(-15 0 10, nogrid axis(1)) ///
-			ylabel(0 40 80, nogrid axis(2)) ///
+			ylabel(none, nogrid axis(1)) ///
+			ylabel(none, nogrid axis(2)) ///
 			nodraw ///
 			saving($graphs/lc_`1'_DD_f,replace)
 		*male
-		twoway line sum_num_diagnoses_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+		twoway line mean_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 			rarea CIL95_m CIR95_m year_treat, sort  color(navy%12) yaxis(1) || ///
 			rarea CIL90_m CIR90_m year_treat, sort  color(navy%25) yaxis(1) || ///
 			line b_m year_treat, sort color(navy) yaxis(1) ///
@@ -147,16 +157,16 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			title("Male", box bexpand) ///
 			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
 			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
-			ylabel(-15 0 10, nogrid axis(1)) ///
-			ylabel(0 40 80, nogrid axis(2)) ///
+			ylabel(none, nogrid axis(1)) ///
+			ylabel(0 80 160, nogrid axis(2)) ///
 			nodraw ///
 			saving($graphs/lc_`1'_DD_m,replace)
 		
 			
 	} //end: loop over variable specification (COLUMNS)
-	} //end: loop over variables
+} //end: loop over variables
 	
-		*graph combine "$graphs/lc_hospital2_DD" "$graphs/lc_hospital2_DD_f" "$graphs/lc_hospital2_DD_m" 
+		graph combine "$graphs/lc_hospital2_DD" "$graphs/lc_hospital2_DD_f" "$graphs/lc_hospital2_DD_m", col(3) imargin(zero) 
 
 	
 	*im Zuge der Vergleichbarkeit: define min und max für Variablen	
@@ -173,6 +183,11 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 	global max_diag_f = 25
 	global min_diag_m = 0
 	global max_diag_m = 25	
+	
+	global min_itt = -8
+	global max_itt = 4
+	global min_diag = 0
+	global max_diag = 40
 	
 * setup für andere variablen 
 	foreach 1 of varlist d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13 d17 { // $list_vars_mandf_ratios_available
@@ -203,11 +218,14 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 					qui replace CIL90`j' = (_b[TxA]- $t_90 *_se[TxA]) if year_treat == `X'
 					qui replace CIR90`j' = (_b[TxA]+ $t_90 *_se[TxA]) if year_treat == `X'
 					
+					qui sum `var'`1'`j' if e(sample) & treat== 1 & after == 0 
+					qui replace mean`j' = `r(mean)' if year_treat == `X'
+					
 				} //end:loop over lifecycle
 			} //end:loop t,f,m (ROWS)
 			local start_mtick = `start' + 2 
 			*total
-			twoway line sum_num_diagnoses year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95 CIR95 year_treat, sort  color(gs2%12) yaxis(1) || ///
 				rarea CIL90 CIR90 year_treat, sort  color(gs2%25) yaxis(1) || ///
 				line b year_treat, sort color(gs2) yaxis(1) ///
@@ -218,15 +236,15 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) /// 
 				ytitle("$`1'", axis(1) box bexpand size(large)) ///
-				yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
-				yscale(range($min_diag_t $max_diag_t) axis(2)) ///
+				yscale(range($min_itt $max_itt ) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
 				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 20 40, nogrid axis(2)) ///
+				ylabel(none, nogrid axis(2)) ///
 				nodraw ///
 				saving($graphs/lc_`1'_DD,replace)
 	
 			*female
-			twoway line sum_num_diagnoses_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95_f CIR95_f year_treat, sort  color(cranberry%12) yaxis(1) || ///
 				rarea CIL90_f CIR90_f year_treat, sort  color(cranberry%25) yaxis(1) || ///
 				line b_f year_treat, sort color(cranberry) yaxis(1) ///
@@ -236,14 +254,14 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				xlabel(`start' (6) `ende', nolab) xtitle("") ///
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) ///
-				yscale(range($min_itt_f $max_itt_f ) axis(1)) ///
-				yscale(range($min_diag_f $max_diag_f) axis(2)) ///
-				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 10 20, nogrid axis(2)) ////
+				yscale(range($min_itt $max_itt ) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
+				ylabel(none, nogrid axis(1)) ///
+				ylabel(none, nogrid axis(2)) ////
 				nodraw ///
 				saving($graphs/lc_`1'_DD_f,replace)
 			*male
-			twoway line sum_num_diagnoses_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95_m CIR95_m year_treat, sort  color(navy%12) yaxis(1) || ///
 				rarea CIL90_m CIR90_m year_treat, sort  color(navy%25) yaxis(1) || ///
 				line b_m year_treat, sort color(navy) yaxis(1) ///
@@ -253,16 +271,16 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				xlabel(`start' (6) `ende', nolab) xtitle("") ///
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) /// 
-				yscale(range($min_itt_m $max_itt_m) axis(1)) ///
-				yscale(range($min_diag_m $max_diag_m) axis(2)) ///
-				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 10 20, nogrid axis(2)) ///
+				yscale(range($min_itt $max_itt) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
+				ylabel(none, nogrid axis(1)) ///
+				ylabel(0 20 40, nogrid axis(2)) ///
 				nodraw ///
 				saving($graphs/lc_`1'_DD_m,replace)
 			
 				
 		} //end: loop over variable specification (COLUMNS)
-		} //end: loop over variables	
+	} //end: loop over variables	
 		
 		
 	
@@ -298,11 +316,14 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 					qui replace CIL90`j' = (_b[TxA]- $t_90 *_se[TxA]) if year_treat == `X'
 					qui replace CIR90`j' = (_b[TxA]+ $t_90 *_se[TxA]) if year_treat == `X'
 					
+					qui sum `var'`1'`j' if e(sample) & treat== 1 & after == 0 
+					qui replace mean`j' = `r(mean)' if year_treat == `X'
+					
 				} //end:loop over lifecycle
 			} //end:loop t,f,m (ROWS)
 			local start_mtick = `start' + 2 
 			*total
-			twoway line sum_num_diagnoses year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95 CIR95 year_treat, sort  color(gs2%12) yaxis(1) || ///
 				rarea CIL90 CIR90 year_treat, sort  color(gs2%25) yaxis(1) || ///
 				line b year_treat, sort color(gs2) yaxis(1) ///
@@ -313,15 +334,15 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) /// 
 				ytitle("$`1'", axis(1) box bexpand size(large)) /// 
-				yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
-				yscale(range($min_diag_t $max_diag_t) axis(2)) ///
+				yscale(range($min_itt $max_itt ) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
 				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 20 40, nogrid axis(2)) ///
+				ylabel(none, nogrid axis(2)) ///
 				nodraw ///
 				saving($graphs/lc_`1'_DD,replace)
 	
 			*female
-			twoway line sum_num_diagnoses_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean_f year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95_f CIR95_f year_treat, sort  color(cranberry%12) yaxis(1) || ///
 				rarea CIL90_f CIR90_f year_treat, sort  color(cranberry%25) yaxis(1) || ///
 				line b_f year_treat, sort color(cranberry) yaxis(1) ///
@@ -331,14 +352,14 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				xlabel(`start' (6) `ende' ,val angle(0)) xtitle("") ///
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) ///
-				yscale(range($min_itt_f $max_itt_f ) axis(1)) ///
-				yscale(range($min_diag_f $max_diag_f) axis(2)) ///
-				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 10 20, nogrid axis(2)) ///
+				yscale(range($min_itt $max_itt ) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
+				ylabel(none, nogrid axis(1)) ///
+				ylabel(none, nogrid axis(2)) ///
 				nodraw ///
 				saving($graphs/lc_`1'_DD_f,replace)
 			*male
-			twoway line sum_num_diagnoses_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
+			twoway line mean_m year_treat if Dinregression == 1 & year_treat >= `start' & year_treat <= `ende', sort color(gs14) lw(vthick) yaxis(2)  || ///
 				rarea CIL95_m CIR95_m year_treat, sort  color(navy%12) yaxis(1) || ///
 				rarea CIL90_m CIR90_m year_treat, sort  color(navy%25) yaxis(1) || ///
 				line b_m year_treat, sort color(navy) yaxis(1) ///
@@ -348,16 +369,16 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 				xlabel(`start' (6) `ende' ,val angle(0)) xtitle("") ///
 				ytitle("", axis(1)) ytitle("",axis(2)) ///
 				yscale(alt axis(2)) yscale(alt axis(1)) /// 
-				yscale(range($min_itt_m $max_itt_m) axis(1)) ///
-				yscale(range($min_diag_m $max_diag_m) axis(2)) ///
-				ylabel(-5 0 5, nogrid axis(1)) ///
-				ylabel(0 10 20, nogrid axis(2)) ///
+				yscale(range($min_itt $max_itt) axis(1)) ///
+				yscale(range($min_diag $max_diag) axis(2)) ///
+				ylabel(none, nogrid axis(1)) ///
+				ylabel(0 20 40, nogrid axis(2)) ///
 				nodraw ///
 				saving($graphs/lc_`1'_DD_m,replace)
 			
 				
 		} //end: loop over variable specification (COLUMNS)
-		} //end: loop over variables
+	} //end: loop over variables
 		
 	
 
