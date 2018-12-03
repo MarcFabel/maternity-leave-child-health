@@ -47,7 +47,7 @@ Tabelle an der gleichen Stelle.
 	program define DDalt
 		qui eststo `1': reg `2' after FRG FxA   `3'  `4', vce(cluster MxYxFRG) 
 		qui estadd scalar Nn = e(N)
-		qui sum `2' if e(sample) & treat == 1 & after == 0
+		qui sum `2' if e(sample) & treat == 1 & after == 0 & GDR==0
 		qui estadd scalar mean = round(`r(mean)',.01)
 		qui estadd scalar sd = abs(round(_b[FxA]/`r(sd)'*100,.01))		
 	end
@@ -56,13 +56,12 @@ Tabelle an der gleichen Stelle.
 	program define DDD_sclrs
 		qui eststo `1': reg `2' treat after FRG TxA FxT FxA FxTxA `3' `4', vce(cluster MxYxFRG)
 		qui estadd scalar Nn = e(N)
-		qui sum `2' if e(sample) & treat == 1 & after == 0
+		qui sum `2' if e(sample) & treat == 1 & after == 0 & GDR==0
 		qui estadd scalar mean = round(`r(mean)',.01)
 		qui estadd scalar sd = abs(round(_b[FxTxA]/`r(sd)'*100,.01))
 	end		
 
 ********************************************************************************
-
 // A) GDR LEVEL
 
 use "$temp/KKH_final_gdr_level", clear
@@ -90,15 +89,15 @@ foreach 1 of varlist hospital2 d5 {
 
 	* define labels	
 	foreach j in "" "_f" "_m"{
-	if "`j'" == "" {
-		local label = "TOTAL"
-	}
-	if "`j'" == "_f" {
-		local label = "WOMEN"
-	}
-	if "`j'" == "_m" {
-		local label = "MEN"
-	}
+		if "`j'" == "" {
+			local label = "TOTAL"
+		}
+		if "`j'" == "_f" {
+			local label = "WOMEN"
+		}
+		if "`j'" == "_m" {
+			local label = "MEN"
+		}
 	// DDD (triple-diff model)
 		eststo clear
 		* overall effect
@@ -120,10 +119,10 @@ foreach 1 of varlist hospital2 d5 {
 	
 	// alt DD			
 		eststo clear 
-		DDalt 		b1 r_fert_`1'   "i.MOB i.year" "if treat == 1"
+		DDalt 		b1 r_fert_`1'`j'   "i.MOB i.year" "if treat == 1"
 		local count = 2
 		foreach age_bracket in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" {
-			DDalt 		b`count' r_fert_`1'   "i.MOB i.year" "if treat == 1 & `age_bracket'"
+			DDalt 		b`count' r_fert_`1'`j'   "i.MOB i.year" "if treat == 1 & `age_bracket'"
 			local count = `count' + 1
 		}
 		esttab b* using "$tables/gdr_level_tables_Ausgabe_`1'_2018_11.txt", append ///

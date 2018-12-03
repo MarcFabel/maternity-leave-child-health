@@ -4,7 +4,7 @@
 *	USES:   Wellen 1995-2013 von der Krankenhausdiagnosestatistik
 *	SAVES:  
 *	Author: Marc Fabel
-*	Last revision of this Do-File: 06.11.2017 
+*	Last revision of this Do-File: 30.11.2018 
 //////////////////////////////////////////////////////////////////////////////// 
 
 
@@ -36,12 +36,13 @@
 /*	
 * Landesamt (Für mich)
 	global path 		"Z:\ifo\GWA22_3053_MF_KH"
-	*global KKH	 		"$path\A_Mikrodaten\"
+	global KKH	 		"$path\A_Mikrodaten\"
 	global temp 		"$path\D_Ergebnisse\temp\" 
 	global tables   	"$path\D_Ergebnisse\TABLES"
 	global graphs 		"$path\D_Ergebnisse\GRAPHS"
 	global logfiles 	"$path\D_Ergebnisse\LOGFILES"
 	global dofiles		"$path\C_Programm"
+	global file			"kdfv_sa95"
 */
 	
 
@@ -105,7 +106,8 @@ Grundriss des Programms:
 	
 	ZUSATZ: Ich habe eine aehnliche Datenstruktur im Juni beantragt, jedoch fuer 
 	andere Geburtskohorten (1976-1980) und für deutlich mehr und zum teil feinere
-	Diagnosen.
+	Diagnosen. D.h. es gibt keinerlei Überschneidungen mit Output, den ich in der
+	Vergangenheit schon mal beantragt habe. 
 		
 
 Verwendete Variablen:
@@ -145,6 +147,7 @@ Verwendete Variablen:
 foreach wave of numlist 1995(1)1999 {
 
 	use "$KKH\${file}_`wave'.dta", clear
+	*use "$KKH\${file}_1995.dta", clear
 	gen year = `wave'
  
 	*Zurückrechnen auf Geburtsdatum:
@@ -200,7 +203,9 @@ foreach wave of numlist 1995(1)1999 {
 	
 	
 	*Metadaten:
-	qui egen hospital = rowtotal(Diag_1 -Diag_18)
+	*hospital admission
+	qui egen hospital2 = rowtotal(Diag_1 Diag_2 Diag_4 Diag_5 Diag_6 Diag_7 ///
+		Diag_8 Diag_9 Diag_10 Diag_11 Diag_12 Diag_13 Diag_17 Diag_18)
 	
 		
 	
@@ -243,8 +248,9 @@ foreach wave of numlist 1995(1)1999 {
 	label define GENDER 0 "Male" 1 "Female"
 	label values female GENDER
 
-keep Diag_5 Diag_14 hospital female GDR year YOB MOB
-	
+	keep Diag_5 hospital2 female GDR year YOB MOB
+	keep if GDR == 0
+	collapse (sum) Diag* hospital2, by(year YOB MOB female)
 	save "$temp\prepared_`wave'_Nov2018.dta", replace
 } // end: loop 1995-1999
 
@@ -256,6 +262,7 @@ keep Diag_5 Diag_14 hospital female GDR year YOB MOB
 foreach wave of numlist 2000(1)2014 {
 
 	use "$KKH\${file}_`wave'.dta", clear
+	*use "$KKH\${file}_2014.dta", clear
 	gen year = `wave'
  
 	*Zurückrechnen auf Geburtsdatum:
@@ -353,8 +360,8 @@ foreach wave of numlist 2000(1)2014 {
 	
 	
 	*Metadaten:
-	qui egen hospital = rowtotal(Diag_1 -Diag_18)
-	
+	qui egen hospital2 = rowtotal(Diag_1 Diag_2 Diag_4 Diag_5 Diag_6 Diag_7 ///
+		Diag_8 Diag_9 Diag_10 Diag_11 Diag_12 Diag_13 Diag_17 Diag_18)
 
 	
 	//label variables                                                                 
@@ -397,7 +404,9 @@ foreach wave of numlist 2000(1)2014 {
 	label values female GENDER
 
 
-	keep Diag_5 Diag_14 hospital female GDR year YOB MOB
+	keep Diag_5 hospital2 female GDR year YOB MOB
+	keep if GDR == 0
+	collapse (sum) Diag* hospital2, by(year YOB MOB female)
 	save "$temp\prepared_`wave'_Nov2018.dta", replace
 } // end: loop 2000-2014
 
@@ -410,32 +419,10 @@ use "$temp\prepared_1995_Nov2018.dta", clear
 
 foreach x of numlist 1996(1)2014 {
 	qui append using "$temp\prepared_`x'_Nov2018.dta"
-	qui erase "$temp\prepared_`x'_Nov2018.dta"
+	*qui erase "$temp\prepared_`x'_Nov2018.dta"
 }
-	qui erase "$temp\prepared_1995_Nov2018.dta"
-
+	*qui erase "$temp\prepared_1995_Nov2018.dta"
 	
-save "$temp\data_final_Nov2018", replace
-
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-//COLLAPSE für einzelne Variablen
-	
-	/* Notitz an Herrn Bergmann: 
-	1) zunächst keine Probleme mit Anzahl der Fälle (immer grösser gleich 3) 
-	*/
-
-//a) Diagnosen, die beide Geschlechter betreffen
-	use "$temp\data_final_Nov2018.dta", clear 
-
-	keep if GDR == 0
-
-	collapse (sum) Diag* hospital, by(year YOB MOB female)
-	
-	qui gen hospital2 = hospital - Diag_14
 	
 	sort YOB MOB year female
 	save "$temp/Anfrage_Nov2018_data_final_collapsed_1946-1976.dta", replace	
