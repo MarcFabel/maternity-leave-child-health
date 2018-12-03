@@ -16,6 +16,7 @@
 	
 	//Important globals
 	* List of control groups
+	global C1  	 = "(control == 1 | control == 4)"
 	global C2    = "(control == 2 | control == 4)"
 	global C1_C2 = "control != 3"
 	
