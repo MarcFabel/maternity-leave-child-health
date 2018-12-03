@@ -197,3 +197,60 @@ foreach j in ""  { // "_f" "_m"
 			label nomtitles nonumbers noobs nonote nogaps noline 
 	} // end: varlist
 } // end: tfm
+
+
+********************************************************************************
+
+*Robustness 
+*current population
+	DDRD_sclrs b1 r_popf_hospital2   "i.MOB i.year" "if $C2"
+	DDRD_sclrs b2 r_popf_hospital2_f   "i.MOB i.year" "if $C2"
+	DDRD_sclrs b3 r_popf_hospital2_m   "i.MOB i.year" "if $C2"
+	esttab b* ,  ///
+		keep(TxA) ///
+		se star(* 0.10 ** 0.05 *** 0.01) ///
+		scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Observations")  
+
+		
+* temporal placebo
+capture program drop DDRD
+	program define DDRD
+		qui eststo `1': reg `2' p_treat p_after p_TxA   `3'  `4', vce(cluster MxY)
+		qui estadd scalar Nn = e(N)
+		qui sum `2' if e(sample) & p_treat== 1 & p_after == 0 
+		qui estadd scalar mean = round(`r(mean)',.01)		// pre-reform mean for treated group
+		qui estadd scalar sd = abs(round(_b[p_TxA]/`r(sd)'*100,.01))		
+	end	
+	
+	use "$temp\KKH_final_R1", clear
+	run "$auxiliary/varlists_varnames_sample-spcifications"
+
+*delete treatment cohort
+drop if control == 4 	
+
+
+capture drop p_threshold p_treat p_after p_TxA
+*2) May prior cohort is treat ==1 (CONTROL2 IS TREAT)
+	qui gen p_threshold = monthly("1978m5", "YM")
+	format p_threshold %tm
+	local threshm 5
+	local binw 6
+	qui gen p_treat = cond((Datum>p_threshold-`binw'-1 & Datum<p_threshold + `binw' ),1,0)	
+	qui gen p_after = cond((MOB>= `threshm' & MOB< `threshm'+`binw' ),1,0)		// Months after reform
+	qui gen p_TxA = p_treat*p_after
+
+	global control2 = "(control == 2 | control == 1)"
+
+	
+foreach 1 of varlist hospital2 d5 {	
+	eststo clear
+	DDRD b1 r_fert_`1'   "i.MOB i.year" "if $control2"
+	DDRD b2 r_fert_`1'_f   "i.MOB i.year" "if $control2"
+	DDRD b3 r_fert_`1'_m   "i.MOB i.year" "if $control2"
+	
+	esttab b* ,  ///
+			keep(p_TxA)  ///
+			se star(* 0.10 ** 0.05 *** 0.01) /// 
+					scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Observations")  
+
+}
