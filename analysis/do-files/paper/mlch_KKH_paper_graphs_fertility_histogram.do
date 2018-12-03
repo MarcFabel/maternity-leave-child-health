@@ -99,7 +99,14 @@ graph combine "$graphs/temp1" "$graphs/temp2", col(2) xsize(15) ysize(5)
 ********************************************************************************
 //	Number of births per day
 
+use "$temp\KKH_final_R1", clear
+	run "$auxiliary/varlists_varnames_sample-spcifications"
 
+keep if treat == 1 | control == 2
+keep if GDR == 0
+keep if year == 1995
+
+keep YOB MOB Datum Datum2 fert fertf fertm control
 * days in month (keine Schaltjahre)
 qui gen days = .
 qui replace days = 31 if MOB == 1
