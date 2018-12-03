@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -160,7 +160,7 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
 [Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
-\author{Natalia Danzer \& Marc Fabel \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).}}
+\author{Marc Fabel \& Natalia Danzer \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).}}
 
 \date{\monthyeardate\today}
 
@@ -393,7 +393,7 @@ Our main specification to estimating the effect of the length of maternity leave
 \begin{align}
 Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
 \end{align}
-where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results-lifecourse}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
+where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
 
 
 The parameter of interest is $\gamma_3$ which captures the effect of the policy change on health outcomes. As we don't have any information on the fact whether the individuals' mothers were on leave, the identified parameter is an intention-to-treat effect. \newline
@@ -418,11 +418,11 @@ Standard errors are clustered on the interaction of birth month and state level 
 
 \newpage
 \subsection{Threat}\label{sec:empirical_strategy_2threats}
-Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. \cite{ekberg2013parental} describe the occurrence of birth as a random event, given the date of conception. They argue that pregnancy is a normally distributed random variable with mean of 40 weeks and a standard deviation of 2 weeks. However, there is reason to doubt the randomness of the event. \newline 
+Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. \cite{Ekberg2013parental} describe the occurrence of birth as a random event, given the date of conception. They argue that pregnancy is a normally distributed random variable with mean of 40 weeks and a standard deviation of 2 weeks. However, there is reason to doubt the randomness of the event. \newline 
 Women could influence the time when their baby is born by strategic conception and postponing the time they give birth by delaying induced births \& cesarean sections. In the following each of the concerns is discussed in turns: 
 
 \bigskip
-\textbf{(i) Strategic Conception}\\ As already mentioned in Section \ref{sec:reform}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{dustmann2012expansions} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{dustmann2012expansions} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
+\textbf{(i) Strategic Conception}\\ As already mentioned in Section \ref{sec:background}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{Dustmann2012} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{Dustmann2012} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
 
 \bigskip
 \textbf{(ii) Induced births and cesarean sections}\\ Mothers with due dates close to the cutoff date on May 1, 1979 could time the birth date of their child by postponing induced births and cesarean sections.\footnote{Bringing the birth date forward around the threshold does not constitute a threat to the identification strategy, because this behavioral response would destroy their children's eligibility. Hence, it can be safely assumed that women would like to postpone the date of birth, if any.} \cite{gans2009born} find that during the introduction of a \$ 3.000 "Baby Bonus" in Australia, parents postponed the birth by as much as a week in order to be eligible for the benefits. Consequently the data shows that sharply before the cutoff birth date there is a dip in the birth rate and a huge increase on the first day after the threshold.\newline
@@ -431,7 +431,7 @@ It is possible that there are similar distortionary "introduction effects" at wo
 \bigskip
 \textbf{(iii) Migration}
 
-In order to check the existence of potential behavioral responses, we investigate the distribution of fertility and the balance of (parental) predetermined characteristics around the cutoffs (as done in \cite{dinardo2004economic}) in Section \ref{sec: validity}.\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.} Additionally, we apply a Donut specification in the robustness section (Section \ref{sec: robustness}), in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
+In order to check the existence of potential behavioral responses, we investigate the distribution of fertility and the balance of (parental) predetermined characteristics around the cutoffs (as done in \cite{dinardo2004economic})[\textbf{DRINGEND ANPASSEN}] in Section \ref{sec:empirical_strategy_3validity}.\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.} Additionally, we apply a Donut specification in the robustness section (Section \ref{sec: robustness}), in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
 % [SOLL ICH NOCH SCHREIBEN WARUM ICH DEN DONUT GENAU MACHE???????!!!!!]
 
 
@@ -537,6 +537,8 @@ age group \ref{fig: rf_d5_agegroup}
 \subsection{Subsections of mental \& behavioral disorders}
 figure overview of subcategories of mental disorders
 \ref{fig: d5partition}
+
+\section{Robustness}\label{sec: robustness}
 
 
 \newpage
@@ -652,15 +654,15 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 		\caption{Fertility distribution for different years}\label{fig: fertility_hist}
 		\begin{subfigure}[h]{0.40\linewidth}\centering
 		\caption{Control: Nov 1977-Oct 1978}
-		\includegraphics[width=\linewidth]{paper/fertility_histogram_CG.pdf}
+		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_CG.pdf}
 		\end{subfigure}
 		\begin{subfigure}[h]{0.40\linewidth}\centering
 		\caption{Treatment: Nov 1978-Oct 1979}
-		\includegraphics[width=\linewidth]{paper/fertility_histogram_TG.pdf}
+		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_TG.pdf}
 		\end{subfigure}
 			\scriptsize
 			\begin{minipage}{0.95\linewidth}
-				\emph{Notes:} The figure shows the number of births per month for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
+				\emph{Notes:} The figure shows the number of births per day across birth-months for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
 				\emph{Source:} German Federal Statistical Office (Destatis).
 			\end{minipage}
 	\end{figure}
@@ -979,32 +981,6 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %\end{small}
 %\normalsize
 
-%--------------------------------------------
-% VALIDITY: RD TABEL 
-\vspace*{\fill}
-\begin{table}[H] \centering
-\caption{Validity.... RD estimates for births}
-{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-\begin{tabular}{l*{5}{c}}
-	\toprule
-	& \multicolumn{4}{c}{Estimation window} \\
-	\cmidrule{2-5}
-	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-	\midrule
-	\multirow{1}{*}{Variable} & \multicolumn{1}{c}{$\pm$5 days} & \multicolumn{1}{c}{$\pm$10 days} & \multicolumn{1}{c}{$\pm$15 days} & \multicolumn{1}{c}{$\pm$30 days}\\ 
-	\midrule
-	\emph{Panel A.}\\
-	\input{../../analysis/tables/paper/include/RD_fertility_raw}
-	\\ \\
-	\emph{Panel B.}\\
-	\input{../../analysis/tables/paper/include/RD_fertility_ln}
-	\bottomrule
-\end{tabular}}
-\begin{minipage}{0.9\linewidth}
-		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold\newline Motivated by \cite{gans2009born} $\rightarrow$ let's discuss that tomorrow!!!Probably bullshit, RDD does not make sense here, does it??
-	\end{minipage}
-\end{table}
-\vspace*{\fill}\clearpage 
 
 
 
@@ -1029,7 +1005,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 				\toprule 
 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
 				\midrule
-				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets} \\ 
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
 				\cmidrule(lr){3-6}
 				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
 				
@@ -1055,10 +1031,62 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \input{../../analysis/tables/paper/DD_d5_overall_agegroup_total}
 \input{../../analysis/tables/paper/DD_d5_overall_agegroup_women}
 \input{../../analysis/tables/paper/DD_d5_overall_agegroup_men}
+
+
+
+
+
+
+
+
+
+
+
+%--------------------------------------------
+% D5 SUBCATEGORIES
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on the \textbf{subcategories of mental \& behavioral disorders (total)}}\label{tab: ITT_across_d5subcategories_per_age_group_total}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/ITT_d5subcategories_peragegroup_total.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} ...
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+%--------------------------------------------
+% HOSPITAL 2 -ROBUSTNESS TABLE
+\newpage
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
+\input{../../analysis/tables/paper/robustness_hospital2}
+\restoregeometry
 %--------------------------------------------
 % d5 - robustness in one table - blueprint for paper
 \newpage
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
 \input{../../analysis/tables/paper/robustness_d5}
+\restoregeometry
+%--------------------------------------------
 
 
 
@@ -1107,6 +1135,74 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------
 
 % TABLES
+
+
+%--------------------------------------------
+% D5 SUBCATEGORIES (WOMEN)
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on the \textbf{subcategories of mental \& behavioral disorders (women)}}\label{tab: ITT_across_d5subcategories_per_age_group_women}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/ITT_d5subcategories_peragegroup_women.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} ...
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+
+%--------------------------------------------
+% D5 SUBCATEGORIES
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on the \textbf{subcategories of mental \& behavioral disorders (men)}}\label{tab: ITT_across_d5subcategories_per_age_group_men}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/ITT_d5subcategories_peragegroup_men.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} ...
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+
 
 %t-tests
 %\input{../../analysis/tables/paper/t-tests}
@@ -1168,5 +1264,33 @@ By 3 years of age, many of the metabolic and growth differences between the brea
 % \end{figure}
 % \vspace*{\fill}\clearpage
 %-----------------------------------------------------
+%--------------------------------------------
+% VALIDITY: RD TABEL 
+% \vspace*{\fill}
+% \begin{table}[H] \centering
+% \caption{Validity.... RD estimates for births}
+% {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+% \begin{tabular}{l*{5}{c}}
+% 	\toprule
+% 	& \multicolumn{4}{c}{Estimation window} \\
+% 	\cmidrule{2-5}
+% 	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+% 	\midrule
+% 	\multirow{1}{*}{Variable} & \multicolumn{1}{c}{$\pm$5 days} & \multicolumn{1}{c}{$\pm$10 days} & \multicolumn{1}{c}{$\pm$15 days} & \multicolumn{1}{c}{$\pm$30 days}\\ 
+% 	\midrule
+% 	\emph{Panel A.}\\
+% 	\input{../../analysis/tables/paper/include/RD_fertility_raw}
+% 	\\ \\
+% 	\emph{Panel B.}\\
+% 	\input{../../analysis/tables/paper/include/RD_fertility_ln}
+% 	\bottomrule
+% \end{tabular}}
+% \begin{minipage}{0.9\linewidth}
+% 		\scriptsize \emph{Notes:} estimates come from a regression \newline 		$y_t = \beta_1 After_t + \beta_2 \tilde{X}_t + \beta_3 After_t*\tilde{X}_t + I^{DOW}_t + I^{Public Holiday}_t  +\varepsilon_t $, where $\tilde{X}_t$ is the number of days from the threshold\newline Motivated by \cite{gans2009born} $\rightarrow$ let's discuss that tomorrow!!!Probably bullshit, RDD does not make sense here, does it??
+% 	\end{minipage}
+% \end{table}
+% \vspace*{\fill}\clearpage 
+
+
 
 \end{document}
