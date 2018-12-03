@@ -1,0 +1,279 @@
+% 	TO DO: 
+%	Wie passen die neu eingefügten Bilder (RF,fertilty hist)
+ 
+
+%	MZ Tabelle nicht einfügen: DDRD estimate von Regression mit 3 CG
+
+
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} 	% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} 			% better control over placement of tables and figures in the text
+\usepackage{graphicx} 		% input of graphics
+\usepackage{xcolor} 		% advanced color package
+\usepackage{url, hyperref} 	% include (clickable) URLs
+\usepackage{pdfpages}		% insert pages of external pdf documents
+\setlength{\parskip}{0em}	% vertical spacing for paragraphs
+\setlength{\parindent}{0em}	% horizonzal spacing for paragraphs
+\usepackage{tikz}
+\usepackage{tikzscale}		% helps to adjust tikz pictures to textwidth/linewidth
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+
+% Have sections in TOC, but not in text
+\usepackage{xparse}% for easier management of optional arguments
+\ExplSyntaxOn
+\NewDocumentCommand{\TODO}{msom}
+{
+	\IfBooleanF{#1}% do nothing if it's starred
+	{
+		\cs_if_eq:NNT #1 \chapter { \cleardoublepage\mbox{} }
+		\refstepcounter{\cs_to_str:N #1}
+		\IfNoValueTF{#3}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#4}
+		}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#3}
+		}
+	}
+	\cs_if_eq:NNF #1 \chapter { \mbox{} }% allow page breaks after sections
+}
+\ExplSyntaxOff
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{threeparttable} % add notes below tables
+\renewcommand\TPTrlap{}		% add margins on the side of the notes
+	\renewcommand\TPTnoteSettings{%
+	\setlength\leftmargin{5 pt}%
+	\setlength\rightmargin{5 pt}%
+}
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis 
+
+
+%\usepackage{threeparttablex} % for "ThreePartTable" environment, helps to combine threepart and longtable
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\rlb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}% optional argument: b = bottom or t= top alignment
+
+
+\usepackage[singlelinecheck=on]{subcaption}%both together help to have subfigures
+\usepackage{wrapfig}				% wrap text around figure
+
+
+\usepackage{rotating}				% rotating figures & tables
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts} % more math symbols and commands
+\let\vec\mathbf				 % make vector bold, with no arrow and not in italic
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	BIBLIOGRAPHY & CITATIONS
+%--------------------------------------------------------------------
+\usepackage{csquotes} % language specific quotations
+\usepackage{etex}		% some more Tex functionality
+\usepackage[nottoc]{tocbibind} %add bibliography to TOC
+\usepackage[authoryear, round, comma]{natbib} %biblatex
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/}}	%PATH TO TABLES
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/}}		% PATH TO GRAPHS
+
+%--------------------------------------------------------------------
+%	LAYOUT
+%--------------------------------------------------------------------
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+
+% CAPTIAL LETTERS FOR SECTION CAPTIONS
+%\usepackage{sectsty}
+%\sectionfont{\normalfont\scshape\centering\textbf}
+%\renewcommand{\thesection}{\Roman{section}.}
+%\renewcommand{\thesubsection}{\Alph{subsection}.}%\thesection\Alph{subsection}.
+%\subsectionfont{\itshape}
+%\subsubsectionfont{\scshape}
+%\newcommand\relphantom[1]{\mathrel{\phantom{#1}}}
+%\setlength\topmargin{0.1in} \setlength\headheight{0.1in}
+%\setlength\headsep{0in} \setlength\textheight{9.2in}
+%\setlength\textwidth{6.3in} \setlength\oddsidemargin{0.1in}
+%\setlength\evensidemargin{0.1in}
+
+\hypersetup{
+  colorlinks  = true,
+  citecolor   = darkblue,
+ 	linkcolor   = darkblue,
+  urlcolor    = darkblue 
+} % macht die URLS blau   
+     
+\usepackage{lettrine}	% First letter capitalized
+
+% have date in month year format (i.e. omit the day in dates)
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+%--------------------------------------------------------------------
+%	AUTHOR & TITLE
+%--------------------------------------------------------------------
+\title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
+[Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
+\author{Natalia Danzer \& Marc Fabel \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).}}
+
+\date{\monthyeardate\today}
+
+
+
+
+
+
+
+
+%--------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%--------------------------------------------------------------------
+\begin{document}
+
+
+
+%\bibliographystyle{ecca_edited}%previous style-chicago
+%\bibliography{mlch_bibliography}
+%--------------------------------------------------------------------
+% FIGURES AND TABLES
+%--------------------------------------------------------------------
+%\newpage
+%\section{Figures and tables}
+\newpage
+\TODO\section{RD plots - 2 months taken together}
+\vspace*{\fill}
+{\Huge \begin{center}\textbf{FIGURES}\end{center}}
+\vspace*{\fill}\clearpage
+%--------------------------------------------
+
+%--------------------------------------------
+
+
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for hospital admission (pooled)}\label{fig: rf_d5_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled_2M.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_female_pooled_2M.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_male_pooled_2M.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled_2M.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled_2M.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled_2M.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+
+
+
+
+HAVE SAME YLABEL
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled_2M_sameylabel.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled_2M_sameylabel.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled_2M_sameylabel.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+\end{document}
