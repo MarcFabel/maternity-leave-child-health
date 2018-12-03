@@ -67,6 +67,12 @@ end
 capture drop Dinregression
 qui gen Dinregression = 1 if cond($C2,1,0) 
 
+	global min_itt = -15
+	global max_itt = 10
+	global min_diag = 0
+	global max_diag = 160
+
+
 foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 	capture drop sum_num_diag*
 	bys Dinregression year_treat: egen sum_num_diagnoses = total(`1')
@@ -118,8 +124,8 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			yscale(alt axis(2)) yscale(alt axis(1)) /// 
 			ytitle("Hospital", axis(1) box bexpand size(large)) /// 
 			title("Total", box bexpand) ///
-			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
-			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
+			yscale(range($min_itt $max_itt ) axis(1)) ///
+			yscale(range($min_diag $max_diag) axis(2)) ///
 			ylabel(-15 0 10, nogrid axis(1)) ///
 			ylabel(none, nogrid axis(2)) ///
 			nodraw ///
@@ -137,8 +143,8 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			ytitle("", axis(1)) ytitle("",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) /// 
 			title("Female", box bexpand) ///
-			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
-			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
+			yscale(range($min_itt $max_itt ) axis(1)) ///
+			yscale(range($min_diag $max_diag) axis(2)) ///
 			ylabel(none, nogrid axis(1)) ///
 			ylabel(none, nogrid axis(2)) ///
 			nodraw ///
@@ -155,8 +161,8 @@ foreach 1 of varlist hospital2 { // $list_vars_mandf_ratios_available
 			ytitle("", axis(1)) ytitle("",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) /// 
 			title("Male", box bexpand) ///
-			yscale(range($min_itt_t $max_itt_t ) axis(1)) ///
-			yscale(range($min_diag_t $max_diag_t) axis(2)) ///
+			yscale(range($min_itt $max_itt ) axis(1)) ///
+			yscale(range($min_diag $max_diag) axis(2)) ///
 			ylabel(none, nogrid axis(1)) ///
 			ylabel(0 80 160, nogrid axis(2)) ///
 			nodraw ///
