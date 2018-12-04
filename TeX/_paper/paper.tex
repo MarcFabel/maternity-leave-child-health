@@ -709,16 +709,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \end{figure}
 \vspace*{\fill}\clearpage
 %--------------------------------------------
-% map: AMR of Germany
-\begin{figure}[H]\centering
-	\caption{The regions in Germany}\label{fig: AMR_regions_Germany}
-	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
-	\scriptsize
-	\begin{minipage}{0.9 \linewidth}
-		\emph{Notes:} This map shows the regions used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany ("West Germany"), while the white areas indicate the area of the former German Democratic Republic ("East Germany"). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals.\newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
-	\end{minipage}
-\end{figure}
-%--------------------------------------------
+
 
 
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
@@ -748,50 +739,9 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage
 \end{landscape}
 %--------------------------------------------
-% Hospital - Reduced form pooled
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{RD plots for hospital admission (pooled)}\label{fig: rf_hospital2_pooled}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
-			\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
-			\includegraphics[width=\linewidth]{paper/rd_hospital2_female_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
-			\includegraphics[width=\linewidth]{paper/rd_hospital2_male_pooled.pdf}
-		\end{subfigure}
-		\scriptsize
-		\begin{minipage}{0.95\linewidth}
-			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-		\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-\restoregeometry  
-%--------------------------------------------
-% Hospital -Reduced form AGE groups 
-% original 3 3 2 3
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{RD plots for hospital admission across age groups}\label{fig: rf_hospital2_agegroup}
-		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_hospital2_overview_agegroups_CIfits.pdf}
-		\scriptsize
-		\begin{minipage}{0.9\linewidth}
-			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-		\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-\restoregeometry
+% HOPSITAL2 - RD plots
+%\input{old/RD_hospital2}
+
 %--------------------------------------------
 % Figure: effect sizes and frequency across chapters
 
@@ -842,50 +792,10 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \end{landscape}
 
 %--------------------------------------------
-% d5 - RF pooled
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{RD plots for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
-			\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
-			\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
-			\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled.pdf}
-		\end{subfigure}
-		\scriptsize
-		\begin{minipage}{0.95\linewidth}
-			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-		\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-\restoregeometry 
+% D5 RD plots
+%\input{old/RD_d5}
 
-%--------------------------------------------
-% D5 - RF (age group)
-\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{RD plots for mental \& behavioral disorders across age groups}\label{fig: rf_d5_agegroup}
-		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_d5_overview_agegroups_CIfits.pdf}
-		\scriptsize
-		\begin{minipage}{0.9\linewidth}
-			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
-			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
-		\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
-\restoregeometry  
+  
 %--------------------------------------------
 % Graph D5 partition - Subcategories
 \vspace*{\fill}
@@ -925,20 +835,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage
 \end{landscape}
 \restoregeometry 
-%--------------------------------------------
-% map: population density per AMR in Germany
-\newpage
 
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Region-level population density}\label{fig: AMR_regions_population_density}
-	\includegraphics[width=0.8 \linewidth]{paper/AMR_popdensity.png}
-	\scriptsize
-	\begin{minipage}{0.9\linewidth}
-		\emph{Notes:} This map shows the regional variation of population density across German regions. \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
 
 
 
@@ -999,7 +896,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 \newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
 \vspace*{\fill}
 \begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{ITT effects on hospital admission and different diagnoses chapters (total)}\label{tab: ITT_across_chapters_per_age_group_total}
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission and main diagnoses chapters (total)}}\label{tab: ITT_across_chapters_per_age_group_total}
 		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 			\begin{tabular}{l*{5}{c}}
 				\toprule 
@@ -1011,7 +908,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 				
 				\midrule
 				
-				\input{paper/ITT_acrosschapters_peragegroup.tex}
+				\input{paper/paper_ITTacrosschapters.tex}
 				
 				\bottomrule 
 		\end{tabular}}
@@ -1099,7 +996,33 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------------------------------
 \newpage
 \section{Appendix}
+%--------------------------------------------
+% map: AMR of Germany
+\vspace*{\fill}
+\begin{figure}[H]\centering
+	\caption{The regions in Germany}\label{fig: AMR_regions_Germany}
+	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
+	\scriptsize
+	\begin{minipage}{0.9 \linewidth}
+		\emph{Notes:} This map shows the regions used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany ("West Germany"), while the white areas indicate the area of the former German Democratic Republic ("East Germany"). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals.\newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
+%--------------------------------------------
+% map: population density per AMR in Germany
+\newpage
 
+\vspace*{\fill}
+\begin{figure}[H]\centering
+	\caption{Region-level population density}\label{fig: AMR_regions_population_density}
+	\includegraphics[width=0.8 \linewidth]{paper/AMR_popdensity.png}
+	\scriptsize
+	\begin{minipage}{0.9\linewidth}
+		\emph{Notes:} This map shows the regional variation of population density across German regions. \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
+	\end{minipage}
+\end{figure}
+\vspace*{\fill}\clearpage
+%--------------------------------------------
 
 % LC MATRIX FOR ALL CHAPTERS
 
@@ -1135,6 +1058,79 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 %--------------------------------------------
 
 % TABLES
+
+%--------------------------------------------
+% ITT effects nach chaptern (WOMEN)
+
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission and main diagnoses chapters (women)}}\label{tab: ITT_across_chapters_per_age_group_women}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/paper_ITTacrosschapters_f.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+
+
+
+%--------------------------------------------
+% ITT effects nach chaptern (MEN)
+% original 3 3 2 3
+\newpage
+\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission and main diagnoses chapters (men)}}\label{tab: ITT_across_chapters_per_age_group_men}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/paper_ITTacrosschapters_m.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.9\linewidth}
+		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental \& behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), "symptoms, signs, and ill-defined conditions" (Sym), "injury, poisoning and certain other consequences of external causes" (Ext).
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+
 
 
 %--------------------------------------------

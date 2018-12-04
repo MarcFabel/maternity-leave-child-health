@@ -164,7 +164,7 @@ global d17 "Sym"
 global d18 "Ext"
 
 
-foreach j in ""  { // "_f" "_m"
+foreach j in "" "_f" "_m" { // "" "_f" "_m"
 	*initiate filewith hospitalization	
 	foreach 1 of varlist hospital2  { 
 		*overall effect
