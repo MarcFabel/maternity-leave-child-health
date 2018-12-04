@@ -57,7 +57,7 @@ capture program drop DDRD_sclrs
 	
 	
 
-foreach 1 of varlist hospital2   { // hospital2 d5 
+foreach 1 of varlist hospital2  d5  { // hospital2 d5 
 	foreach j in "" "_f" "_m" { // "" "_f" "_m" 
 		eststo clear 	
 		*overall effect
@@ -103,41 +103,7 @@ foreach 1 of varlist hospital2   { // hospital2 d5
 		} // end: agegroup
 	} // end: tfm
 	// Panels zusammenfassen
-	esttab b* using "$tables_paper/paper_`1'_DD_maintable.tex", replace booktabs ///
-		cells(none) nonote noobs ///
-		mtitles("2M" "4M" "6M" "Donut") ///
-		prehead( ///
-		\begin{table}[htbp]  ///
-			\centering  ///
-			\begin{threeparttable} ///
-			\centering  ///
-			\caption{Dep. variable: \textbf{$`1'}} ///
-			{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} ///
-			\begin{tabular}{l*{@span}{c}} \toprule ///
-			& \multicolumn{@M}{c}{Estimation window} \\ \cmidrule(lr){2-5}) ///
-			prefoot( ///
-				\multicolumn{@span}{l}{\emph{Panel A. Total}} \\ ///
-				\input{paper/include/paper_`1'_DD_overall} \input{paper/include/paper_`1'_DD_17-21} ///
-				\input{paper/include/paper_`1'_DD_22-26} \input{paper/include/paper_`1'_DD_27-31} /// 
-				\input{paper/include/paper_`1'_DD_32-35} ///
-				\midrule\multicolumn{@span}{l}{\emph{Panel B. Women}} \\ ///
-				\input{paper/include/paper_`1'_f_DD_overall} \input{paper/include/paper_`1'_f_DD_17-21} ///
-				\input{paper/include/paper_`1'_f_DD_22-26} \input{paper/include/paper_`1'_f_DD_27-31} ///
-				\input{paper/include/paper_`1'_f_DD_32-35} ///
-				\midrule\multicolumn{@span}{l}{\emph{Panel C. Men}} \\ ///
-				\input{paper/include/paper_`1'_m_DD_overall} \input{paper/include/paper_`1'_m_DD_17-21} ///
-				\input{paper/include/paper_`1'_m_DD_22-26} \input{paper/include/paper_`1'_m_DD_27-31} ///
-				\input{paper/include/paper_`1'_m_DD_32-35} ///
-				) ///
-			postfoot(\bottomrule \end{tabular} } ///
-			\begin{tablenotes} ///
-			\item \scriptsize ///
-			\emph{Notes:} Clustered standard errors in parentheses. All regression are run with CG2 (i.e. the cohort prior to the reform) and with month-of-birth FEs. Ratios indicate cases per thousand; either approximated population (with weights coming from the original fertility distribution) or original number of births.   ///
-			\end{tablenotes} ///
-			\end{threeparttable} ///
-		\end{table} ///
-		) ///
-		substitute(\_ _)
+	
 } //end: varlist
 	
 
