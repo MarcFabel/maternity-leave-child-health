@@ -57,7 +57,7 @@ capture program drop DDRD_sclrs
 	
 	
 
-foreach 1 of varlist hospital2 d5  { // hospital2 d5 
+foreach 1 of varlist hospital2   { // hospital2 d5 
 	foreach j in "" "_f" "_m" { // "" "_f" "_m" 
 		eststo clear 	
 		*overall effect
@@ -70,7 +70,7 @@ foreach 1 of varlist hospital2 d5  { // hospital2 d5
 			keep(TxA) coeflabels(TxA "\hspace*{10pt}Overall") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
-			scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Observations")  
+			scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn \(N\) (MOB $\times$ year)")  
 			
 		* effect per age group
 		foreach age_group in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" { //
@@ -175,7 +175,7 @@ foreach j in "" "_f" "_m" { // "" "_f" "_m"
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
 			local iter = `iter' + 1 
 		} // end: age group
-		esttab b* using "$tables_paper/paper_ITTacrosschapters_`j'.tex", replace booktabs fragment ///
+		esttab b* using "$tables_paper/paper_ITTacrosschapters`j'.tex", replace booktabs fragment ///
 			keep(TxA) coeflabels(TxA "$`1'") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nonumbers nomtitles noobs nonote nogaps noline  
@@ -191,7 +191,7 @@ foreach j in "" "_f" "_m" { // "" "_f" "_m"
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
 			local iter = `iter' + 1 
 		} // end: age group
-		esttab b* using "$tables_paper/paper_ITTacrosschapters_`j'.tex", append booktabs fragment ///
+		esttab b* using "$tables_paper/paper_ITTacrosschapters`j'.tex", append booktabs fragment ///
 			keep(TxA) coeflabels(TxA "$`1'") ///
 			se star(* 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline 
