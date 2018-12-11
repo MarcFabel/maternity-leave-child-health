@@ -160,7 +160,8 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
 [Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
-\author{Marc Fabel \& Natalia Danzer \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).}}
+\author{Marc Fabel\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
+} \ \& Natalia Danzer }
 
 \date{\monthyeardate\today}
 
@@ -507,6 +508,8 @@ Figure \ref{fig: top5diagnosis_in_2014_across_agegroups} gives an overview of th
 \subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
 
 
+\textbf{OVERVIEW TABELLEN: Sollen wir evtl die SD rausnehmen und einfach nur alles in Bezug zum mean interpretieren?}
+
 % Hospital - Total
 Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. In panel A, we pool all years from 1995 to 2014 and show ITT estimates for different bandwidths around the cutoff.\footnote{\textbf{ IN DIE EMPIRISCHE SECTION VERSCHIEBEN: In order to eliminate any maturity effects, we compare the cohorts at the same age. In other words, we compare the treatment cohort in year $t$ with the control cohort in year $t-1$.}} The outcome is defined as the number of hospital admissions per 1,000 individuals. With our baseline specification that uses a bandwidth of half a year (column 4), we find that there are on average 2.076 fewer hospitalizations per 1,000 individuals for children whose mothers were eligible for prolonged maternity leave. This corresponds to a reduction by 1.7\% from the pre-treatment mean. In the next step, we vary the width of the estimation window from three months to half a year and run a "Donut" specification in which we omit children who are born in the months directly around the threshold (i.e. exclude children born in April and May). The point estimate is fairly robust to different estimation windows.  \newline 
 In Panel B, we present ITT estimates when breaking up the entire life-course into age groups. The results suggest that at younger ages (17-26 year old cohorts) there is no effect of the length of maternity leave on hospital admissions as the DD estimates are not significantly different from zero. However, as the children grow older, the differentials are opening up for the cohorts aged 27-31 and 32-35. The magnitude of the effects are larger and statistically significant. \newline
@@ -522,30 +525,17 @@ Figure \ref{fig: lc_hospital2_frg_DD} summarizes the previous findings in one gr
 
 
 % Main Diagnosis Chapters
-To further examine the source for the reductions in hospitalizations, we 
+To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the components of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on the number of diagnosis (per chapter) per 1,000 individuals for all patients (panel a), women (b), and men (c). Each panel provides next to the point estimates, the incidence distribution across chapters. In constructing the graphs, we used the pooled sample and a bandwidth of six months. In the first panel we see that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest contributor for the reduction in hospitalization can be found in diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization is driven by fewer diagnoses of digestive diseases for women, whereas for males the reduction is mostly coming from less diagnoses of mental and behavioral disorders. Women as well as men exhibit the largest impact in the diagnosis chapter, which is particularly salient. \newline
+Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, such as mental and behavioral disorders and consequences of external causes. These are congruent to the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups. Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings. \textbf{Conclusion??}
 
 
-
-Overview figure \ref{fig: DD_across_main chapters}
-and table \ref{tab: ITT_across_chapters_per_age_group_total}
--> Update mit \$LC
-
-
-
-\newpage
-\textbf{TABELLEN: Sollen wir evtl die SD rausnehmen und einfach nur alles in Bezug zum mean interpretieren?}
-
-
-
-
-%RF 
-%pooled \ref{fig: rf_hospital2_pooled}
-%age group \ref{fig: rf_hospital2_agegroup}
-
-Effect on different chapters
-
-
+\bigskip
 \subsection{The effect on mental \& behavioral disorders}
+In the following we will focus on the effect of the expansion in maternity leave on mental and behavioral disorders (henceforth MBD). We do so due to mainly two reasons. First, MBD represent the most frequent diagnosis type as seen in Figure 
+% überletung MBD: overall: MBD accounts for one third of the reduction, last age bracket almost 50% of the effect comes from MBD, ;  not only the largest point estimate, but also a diagnosis with a very high incidence rate.
+
+
+
 tables
 total	\ref{tab: DD_d5_total}
 females	\ref{tab: DD_d5_female}
