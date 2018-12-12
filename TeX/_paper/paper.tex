@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -160,8 +160,8 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
 [Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
-\author{Marc Fabel\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
-} \ \& Natalia Danzer }
+\author{Natalia Danzer \& Marc Fabel\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
+} \ }
 
 \date{\monthyeardate\today}
 
@@ -459,6 +459,23 @@ In order to check the existence of potential behavioral responses, we investigat
 
 figure \ref{fig: fertility_hist} shows fertility distribution for both treatment and control cohort.
 
+
+\cite{gans2009born} approach: 
+Figure \ref{fig: fertilitydistr} and Table \ref{tab: validity_birth_rate} 
+
+
+for figure: 
+\begin{align}
+	\text{Births}_i = I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_fig}
+\end{align}
+generate $(\widehat{\text{Births}})$, plot residuals $(\text{Births}-\widehat{\text{Births}})$
+
+for table: 
+\begin{align}
+\text{Births}_i &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i  \label{eq: validity_tab_birth} \\
+ln(\text{Births}_i) &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_tab_lnbirth}
+\end{align}
+
 %--------------------------------------------------------------------
 % DATA & VARIABLES
 %--------------------------------------------------------------------
@@ -503,7 +520,7 @@ Figure \ref{fig: top5diagnosis_in_2014_across_agegroups} gives an overview of th
 %--------------------------------------------------------------------
 % RESULTS
 %--------------------------------------------------------------------
-\section{Results}\label{sec:results}
+\section{Results (evtl Natalia)}\label{sec:results}
 
 \subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
 
@@ -616,7 +633,9 @@ Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \
 \section{Concluding remarks (evtl NATALIA)}\label{sec:conclusion}
 
 Why is it interestign to look at F-chapter
-Mental \& behavioral disorders are the diagnosis types with the longest average length of stay: 20.1 days (in comparisson to a genral average of 7.6 days) [Data source: \cite[p. 5]{statistisches2012diagnosedaten} ]
+Mental \& behavioral disorders are the diagnosis types with the longest average length of stay: 20.1 days (in comparisson to a general average of 7.6 days) [Data source: \cite[p. 5]{statistisches2012diagnosedaten} ]
+
+Back-of-the-envelope calculation
 
 
 
@@ -704,7 +723,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage
 \end{landscape}
 %--------------------------------------------
-% Fertilitz distribuition
+% Fertility distribuition
 	\vspace*{\fill}
 \begin{figure}[H]\centering
 	\caption{Fertility distribution}\label{fig: fertilitydistr}
@@ -712,7 +731,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\scriptsize
 	\begin{minipage}{0.9 \linewidth}
 		\emph{Notes:} 
-		Bottom part comes from ....\newline Motivated by \cite{gans2009born} $\rightarrow$ let's discuss that tomorrow!!!
+		 Motivated by \cite{gans2009born} $\rightarrow$ \textbf{how do I get the gray shading from the original figure in the bottom part?}
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
@@ -965,8 +984,31 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 	\vspace*{\fill}\clearpage 
 \end{landscape}
 \restoregeometry
-
-
+%--------------------------------------------
+%VALIDITY: Birth rate effects
+ \vspace*{\fill}
+ \begin{table}[H] \centering
+ \caption{Validity: birth rate effects}\label{tab: validity_birth_rate}
+ {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ \begin{tabular}{l*{5}{c}}
+ 	\toprule
+ 	& \multicolumn{4}{c}{Estimation window} \\
+ 	\cmidrule{2-5}
+ 	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+	 & \multicolumn{1}{c}{$\pm$7 days} & \multicolumn{1}{c}{$\pm$14 days} & \multicolumn{1}{c}{$\pm$21 days} & \multicolumn{1}{c}{$\pm$28 days}\\ 
+ 	\midrule
+ 	\multicolumn{5}{l}{\emph{Panel A. Dependent variable is number of births}}\\
+ 	\input{../../analysis/tables/paper/include/birth_rate_effects_births}
+ 	\\ \\
+ 	\multicolumn{5}{l}{\emph{Panel B. Dependent variable is ln(number of births)}}\\
+ 	\input{../../analysis/tables/paper/include/birth_rate_effects_lnbirths}
+ 	\bottomrule
+ \end{tabular}}
+ \begin{minipage}{0.9\linewidth}
+ 		\scriptsize \emph{Notes:} 
+ 	\end{minipage}
+ \end{table}
+ \vspace*{\fill}\clearpage 
 
 %--------------------------------------------
 % HOSPITAL - Difference in Difference tables for 
