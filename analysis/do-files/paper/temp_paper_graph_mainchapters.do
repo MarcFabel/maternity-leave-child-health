@@ -41,7 +41,7 @@ foreach j in "" "_f" "_m" {
 	mat A = J(14,3,.)
 	local iter = 1
 	foreach 1 of varlist hospital2 d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13 d17 d18 { 
-		DDRD b1 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
+		DDRD b1 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $all_age"
 			matrix temp = e(b) 								// make copy of estimate vector (Row vector) 
 			matrix tempV = e(V) 							// make copy of VC matrix 
 			*mat A[`iter',1] = "$`1'"

@@ -102,7 +102,7 @@ qui save "$temp/d5_subcategories_results", replace
 ***********************************************************************	
 use "$temp/d5_subcategories_results", clear
 	
-keep if bandwidth == 6	& year == -98 // al observations
+keep if bandwidth == 6	& year == -99 // al observations   // corrected for year == -99 (have $LC)
 
 *total	
 	twoway bar diagnoses var if var >= 2,  color(gs2%80) ///

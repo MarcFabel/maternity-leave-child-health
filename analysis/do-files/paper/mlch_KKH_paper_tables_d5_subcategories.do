@@ -3,7 +3,7 @@
 
 
 /* 
-ACHTUNG: + muss manuell durch * ersetzt werden, mit * funktioniert es nicht....  
+ACHTUNG: & muss manuell durch * ersetzt werden, mit * funktioniert es nicht....  
 */
 
 
@@ -11,9 +11,9 @@ clear all
 set more off 
 use "$temp/d5_subcategories_results", clear
 keep if bandwidth == 6
-keep if year == -98 | (year >= 1 & year <= 4)
+keep if year == -99 | (year >= 1 & year <= 4)			// corrected for year == -99 (have $LC)
 
-recode year (-98=0)
+recode year (-99=0)
 
 // Setup Program that generates lines that can be copied i tabel
 foreach 1 of numlist 1 (1) 6 {
@@ -31,7 +31,7 @@ foreach 1 of numlist 1 (1) 6 {
 				scalar define star`1'`j'_`yrs' = ""
 			}
 			if (p`1'`j'_`yrs' > 0.05  & p`1'`j'_`yrs' <= 0.1)  {
-				scalar define star`1'`j'_`yrs' = "\sym{+}"
+				scalar define star`1'`j'_`yrs' = "\sym{&}"
 			}
 			if (p`1'`j'_`yrs' > 0.01  & p`1'`j'_`yrs' <= 0.05)  {
 				scalar define star`1'`j'_`yrs' = "\sym{**}"

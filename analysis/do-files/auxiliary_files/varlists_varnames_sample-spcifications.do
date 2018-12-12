@@ -33,6 +33,8 @@
 	global age_22_26 = "(year_treat >= 2001 & year_treat<=2005)"
 	global age_27_31 = "(year_treat >= 2006 & year_treat<=2010)"
 	global age_32_35 = "(year_treat >= 2011 & year_treat<=2014)"
+	global all_age   = "(year_treat >= 1996 & year_treat<=2014)" // to exclude maturity effect - kick out 1 year TG in the begining and 1 year control in the end
+
 	
 	*age range for r_popf
 	global age_27_29 = "(year_treat >= 2006 & year_treat<=2008)"

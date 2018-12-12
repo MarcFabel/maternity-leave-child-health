@@ -101,7 +101,7 @@ foreach 1 of varlist hospital2 d5 {
 	// DDD (triple-diff model)
 		eststo clear
 		* overall effect
-		DDD_sclrs 	a1 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
+		DDD_sclrs 	a1 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $all_age"
 		*age group 
 		local count = 2
 		foreach age_bracket in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" {
@@ -119,7 +119,7 @@ foreach 1 of varlist hospital2 d5 {
 	
 	// alt DD			
 		eststo clear 
-		DDalt 		b1 r_fert_`1'`j'   "i.MOB i.year" "if treat == 1"
+		DDalt 		b1 r_fert_`1'`j'   "i.MOB i.year" "if treat == 1 & $all_age"
 		local count = 2
 		foreach age_bracket in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" {
 			DDalt 		b`count' r_fert_`1'`j'   "i.MOB i.year" "if treat == 1 & `age_bracket'"
@@ -134,7 +134,7 @@ foreach 1 of varlist hospital2 d5 {
 		
 	// GDR Placebo  	
 		eststo clear 
-		DDRD_sclrs 	b1 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & GDR == 1"
+		DDRD_sclrs 	b1 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & GDR == 1 & $all_age"
 		local count = 2
 		foreach age_bracket in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" {
 			DDRD_sclrs 	b`count' r_fert_`1'`j'   "i.MOB i.year" "if $C2 & GDR == 1 & `age_bracket'"
@@ -209,7 +209,7 @@ foreach 1 of varlist hospital2 d5 {
 		
 		// 1) AMR Region
 		eststo clear
-		DDRD_sclrs c1 r_popf_`1'`j'   "i.MOB i.year i.amr_clean" "if $C2 [w = popweights] "
+		DDRD_sclrs c1 r_popf_`1'`j'   "i.MOB i.year i.amr_clean" "if $C2 & $all_age [w = popweights] "
 		local count = 2
 		foreach age_bracket in  "$age_22_26" "$age_27_31" "$age_32_35" { // "$age_17_21"
 			DDRD_sclrs c`count' r_popf_`1'`j'   "i.MOB i.year i.amr_clean" "if $C2 & `age_bracket' [w = popweights]"
@@ -226,7 +226,7 @@ foreach 1 of varlist hospital2 d5 {
 			
 		// 2) Rural
 		eststo clear
-		DDRD_sclrs c1 r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 0 & $C2 [w = popweights]"
+		DDRD_sclrs c1 r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 0 & $C2 & $all_age [w = popweights]"
 		local count = 2
 		foreach age_bracket in  "$age_22_26" "$age_27_31" "$age_32_35" { // "$age_17_21"
 			DDRD_sclrs c`count' r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 0 & $C2 & `age_bracket' [w = popweights]"
@@ -241,7 +241,7 @@ foreach 1 of varlist hospital2 d5 {
 
 		// 3) URBAN
 		eststo clear
-		DDRD_sclrs c1 r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 1 & $C2 [w = popweights]"
+		DDRD_sclrs c1 r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 1 & $C2 & $all_age [w = popweights]"
 		local count = 2
 		foreach age_bracket in  "$age_22_26" "$age_27_31" "$age_32_35" { // "$age_17_21"
 			DDRD_sclrs c`count' r_popf_`1'`j'  "i.MOB i.year i.amr_clean" "if high_density == 1 & $C2 & `age_bracket' [w = popweights]"

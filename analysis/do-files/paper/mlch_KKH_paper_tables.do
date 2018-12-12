@@ -61,14 +61,14 @@ foreach 1 of varlist hospital2  d5  { // hospital2 d5
 	foreach j in "" "_f" "_m" { // "" "_f" "_m" 
 		eststo clear 	
 		*overall effect
-		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M3"
-		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4"
-		DDRD_sclrs b5 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M5"
-		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
-		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD"
+		DDRD_sclrs b2 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M3 & $all_age"
+		DDRD_sclrs b4 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M4 & $all_age"
+		DDRD_sclrs b5 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $M5 & $all_age"
+		DDRD_sclrs b6 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $all_age"
+		DDRD_sclrs b7 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $MD & $all_age"
 		esttab b* using "$tables_paper/include/paper_`1'`j'_DD_overall.tex", replace booktabs fragment ///
 			keep(TxA) coeflabels(TxA "\hspace*{10pt}Overall") ///
-			se star(* 0.10 ** 0.05 *** 0.01) ///
+			se star(+ 0.15 * 0.10 ** 0.05 *** 0.01) ///
 			label nomtitles nonumbers noobs nonote nogaps noline ///
 			scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn \(N\) (MOB $\times$ year)")  
 			
@@ -98,7 +98,7 @@ foreach 1 of varlist hospital2  d5  { // hospital2 d5
 			DDRD b7 r_fert_`1'`j'   "i.MOB i.year" "if `age_group' & $C2 & $MD"
 			esttab b* using "$tables_paper/include/paper_`1'`j'_DD_`age_outputname'.tex", replace booktabs fragment ///
 				keep(TxA) coeflabels(TxA "\hspace*{10pt}`age_label'") ///
-				se star(* 0.10 ** 0.05 *** 0.01) ///
+				se star(+ 0.15 * 0.10 ** 0.05 *** 0.01) ///
 				label nomtitles nonumbers noobs nonote nogaps noline  
 		} // end: agegroup
 	} // end: tfm
@@ -135,7 +135,7 @@ foreach j in "" "_f" "_m" { // "" "_f" "_m"
 	foreach 1 of varlist hospital2  { 
 		*overall effect
 		eststo clear 	
-		DDRD b0 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
+		DDRD b0 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $all_age"
 		local iter = 1
 		foreach age_group in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" { //
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
@@ -151,7 +151,7 @@ foreach j in "" "_f" "_m" { // "" "_f" "_m"
 	foreach 1 of varlist d1 d2 d5 d6 d7 d8 d9 d10 d11 d12 d13 d17 d18  { //  
 		*overall effect
 		eststo clear 	
-		DDRD b0 r_fert_`1'`j'   "i.MOB i.year" "if $C2"
+		DDRD b0 r_fert_`1'`j'   "i.MOB i.year" "if $C2 & $all_age"
 		local iter = 1
 		foreach age_group in "$age_17_21" "$age_22_26" "$age_27_31" "$age_32_35" { //
 			DDRD b_`iter' r_fert_`1'`j'  "i.MOB i.year" "if `age_group' & $C2"
