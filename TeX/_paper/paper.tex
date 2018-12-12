@@ -8,7 +8,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -160,7 +160,8 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
 [Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
-\author{Marc Fabel \& Natalia Danzer \thanks{Marc Fabel (corresponding author): Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).}}
+\author{Marc Fabel\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
+} \ \& Natalia Danzer }
 
 \date{\monthyeardate\today}
 
@@ -392,7 +393,7 @@ The implicit identifying assumption is that seasonality is time-invariant, in ot
 
 Our main specification to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation: \footnote{The estimation procedure can also be found in similar contexts in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, \cite{danzer2017}, \cite{guertzgen2018}, and \cite{avdic2018modern}.}
 \begin{align}
-Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 Treat_{mr} * After_{mr} + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt}
+Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 (Treat_{mr} \times After_{mr}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_basline}
 \end{align}
 where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
 
@@ -504,25 +505,37 @@ Figure \ref{fig: top5diagnosis_in_2014_across_agegroups} gives an overview of th
 %--------------------------------------------------------------------
 \section{Results}\label{sec:results}
 
-\subsection{The effect on hospital admission}
+\subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
 
-tables
-total \ref{tab: DD_hopsital2_total}
-females \ref{tab: DD_hopsital2_female}
-males  \ref{tab: DD_hopsital2_male}
 
-corresponding life-course figure 
-\ref{fig: lc_hospital2_frg_DD}
+\textbf{OVERVIEW TABELLEN: Sollen wir evtl die SD rausnehmen und einfach nur alles in Bezug zum mean interpretieren?}
 
-%RF 
-%pooled \ref{fig: rf_hospital2_pooled}
-%age group \ref{fig: rf_hospital2_agegroup}
+% Hospital - Total
+Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. In panel A, we pool all years from 1995 to 2014 and show ITT estimates for different bandwidths around the cutoff.\footnote{\textbf{ IN DIE EMPIRISCHE SECTION VERSCHIEBEN: In order to eliminate any maturity effects, we compare the cohorts at the same age. In other words, we compare the treatment cohort in year $t$ with the control cohort in year $t-1$.}} The outcome is defined as the number of hospital admissions per 1,000 individuals. With our baseline specification that uses a bandwidth of half a year (column 4), we find that there are on average 2.076 fewer hospitalizations per 1,000 individuals for children whose mothers were eligible for prolonged maternity leave. This corresponds to a reduction by 1.7\% from the pre-treatment mean. In the next step, we vary the width of the estimation window from three months to half a year and run a "Donut" specification in which we omit children who are born in the months directly around the threshold (i.e. exclude children born in April and May). The point estimate is fairly robust to different estimation windows.  \newline 
+In Panel B, we present ITT estimates when breaking up the entire life-course into age groups. The results suggest that at younger ages (17-26 year old cohorts) there is no effect of the length of maternity leave on hospital admissions as the DD estimates are not significantly different from zero. However, as the children grow older, the differentials are opening up for the cohorts aged 27-31 and 32-35. The magnitude of the effects are larger and statistically significant. \newline
+%level of analysis is on MOBxYOBXyear level
 
-Effect on different chapters
-\ref{fig: DD_across_main chapters}
-and table \ref{tab: ITT_across_chapters_per_age_group_total}
 
+% Hospital -  Distinction Women and Men (tabelle)
+We next explore effect heterogeneity across gender. Tables \ref{tab: DD_hopsital2_female} and \ref{tab: DD_hopsital2_male} show the effect of the 1979 maternity leave reform on hospital admissions for women and men, respectively. In general, the point estimates for men are mostly larger than the equivalent ones for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust with respect to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} very closely. On the one hand, we find for men in the pooled sample an average reduction of 2.410 fewer hospitalizations for MOB cohorts that were born under the more generous regime, irrespective of the estimation window. On the other hand, the effects are growing in size the longer we follow the cohorts across their life-cycle. \newline
+
+%  Hospital - life-course graph
+Figure \ref{fig: lc_hospital2_frg_DD} summarizes the previous findings in one graph and concentrates on the explicit trajectories of the differentials. While the previous estimates provide ITT effects for the entire period or for certain age groups, the following life-course approach exploits the single waves, with cohorts ranging from 17 up to and including 35 years of age.\footnote{We still control for any maturity effects and compare treatment and control cohorts at the same age. In other words, we shift the control cohort from wave $w$ to wave $w+1$.} We estimate the specification as in equation \ref{eq:DD_basline} per survey wave and plot the DD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a, shows the life-course for all hospital admissions in which all but two years exhibit negative point estimates. However, the ITT effects are significantly different only for four years towards the end of the observed time period. For men (women), we see in panel c (b) that there are 6 (5) years with negative and significant effects. Besides, the differentials for males in the last five years of the observation window are among the significant ones and are continuously increasing.\newline
+%The gray bold line in the background, specification of 6M BW
+
+
+% Main Diagnosis Chapters
+To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the components of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on the number of diagnosis (per chapter) per 1,000 individuals for all patients (panel a), women (b), and men (c). Each panel provides next to the point estimates, the incidence distribution across chapters. In constructing the graphs, we used the pooled sample and a bandwidth of six months. In the first panel we see that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest contributor for the reduction in hospitalization can be found in diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization is driven by fewer diagnoses of digestive diseases for women, whereas for males the reduction is mostly coming from less diagnoses of mental and behavioral disorders. Women as well as men exhibit the largest impact in the diagnosis chapter, which is particularly salient. \newline
+Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, such as mental and behavioral disorders and consequences of external causes. These are congruent to the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups. Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings. \textbf{Conclusion??}
+
+
+\bigskip
 \subsection{The effect on mental \& behavioral disorders}
+In the following we will focus on the effect of the expansion in maternity leave on mental and behavioral disorders (henceforth MBD). We do so due to mainly two reasons. First, MBD represent the most frequent diagnosis type as seen in Figure 
+% überletung MBD: overall: MBD accounts for one third of the reduction, last age bracket almost 50% of the effect comes from MBD, ;  not only the largest point estimate, but also a diagnosis with a very high incidence rate.
+
+
+
 tables
 total	\ref{tab: DD_d5_total}
 females	\ref{tab: DD_d5_female}
@@ -540,6 +553,27 @@ figure overview of subcategories of mental disorders
 \ref{fig: d5partition}
 
 \section{Robustness}\label{sec: robustness}
+
+
+% Robustness - LMR level
+\begin{align}
+Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 (Treat_{mr} \times After_{mr}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
+\end{align}
+additionally include region fxied effects $\phi_r$
+new: on regional level $r$
+
+
+% Robustness - DDD specification
+\begin{align}
+Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mrt} \label{eq:DDD}
+\end{align}
+wiht $FRG$ is a dummy variable 
+
+
+% Robustness - alternative DD 
+\begin{align}
+Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mrt} \label{eq:alt_DD}
+\end{align}
 
 
 \newpage
@@ -924,7 +958,7 @@ Mental \& behavioral disorders are the diagnosis types with the longest average 
 				\bottomrule % bottom thicker horizontal line (" rule ")
 			\end{tabular}
 			\begin{tablenotes}
-				\scriptsize{ \item \textit{Notes:} The table shows the classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization.  The table reports next to the ICD codes summary statistics for the different diagnosis types. Column 3 and 4 show mean and standard deviation of the number of diagnosis per 1,000 individuals for the pre-reform treatment cohort. \newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/}. \newline\hspace*{15 pt}$^1$ Psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances. }
+				\scriptsize{ \item \textit{Notes:} The table shows the classification of diseases according to the "International Statistical Classification of Diseases and Related Health Problems (ICD)", a medical classification list provided by the World Health Organization.  The table reports next to the ICD codes summary statistics for the different diagnosis types. Column 3 and 4 show mean and standard deviation of the number of diagnosis per 1,000 individuals for the pre-reform treatment cohort. \newline \textit{Source:} World Health Organization (WHO), see for example: \href{http://www.who.int/classifications/icd/en/}{http://www.who.int/classifications/icd/en/} for the ICD coding, hospital registry data for the mean and standard deviation. \newline\hspace*{15 pt}$^1$ Psychoactive substances include alcohol, opioids, cannabinoids, sedatives or hypnotics, cocaine, other stimulants (including caffeine), hallucinogens, tobacco, volatile solvents,  multiple drug use and use of other psychoactive substances. }
 			\end{tablenotes}
 		\end{threeparttable}
 	\end{table}
