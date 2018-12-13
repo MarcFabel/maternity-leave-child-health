@@ -29,6 +29,7 @@
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{patterns}
 \usetikzlibrary{arrows}
+\usepackage{eurosym}		% Eurosymbol
 
 % Have sections in TOC, but not in text
 \usepackage{xparse}% for easier management of optional arguments
@@ -160,8 +161,11 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \title{Maternity Leave and Long-Term Health Outcomes of Children\footnote{We are grateful to Maarten Lindeboom, Erik Plug, Helmut Rainer and participants at several conferences for helpful comments and suggestions. The authors gratefully acknowledge financial support from the Leibniz association. All errors and omissions are our own.
 [Q to ND:  other people which we would like to thank: Daniel Kühnle, Anna Raute, Mathias Hübener, Tanya Wilson]}}
-\author{Natalia Danzer \& Marc Fabel\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
-} \ }
+\author{
+	Marc Fabel \& Natalia Danzer 
+		\thanks{Corresponding author: Marc Fabel, Munich Graduate School of Economics (MGSE) and ifo Institute for Economic Research, ifo Center for Labor and Demographic Economics (email: \href{mailto:fabel@ifo.de}{fabel@ifo.de}).%\newline Natalia Danzer: Free University of Berlin, CESifo and IZA (email: \href{mailto:natalia.danzer@fu-berlin.de}{natalia.danzer@fu-berlin.de}).
+		}
+}
 
 \date{\monthyeardate\today}
 
@@ -196,7 +200,7 @@ labelfont={bf}
 %--------------------------------------------------------------------
 % INTRODUCTION
 %--------------------------------------------------------------------
-\section{Introduction (evtl NATALIA)}\label{sec:introduction}
+\section{Introduction (NATALIA)}\label{sec:introduction}
 Intro –
 Health paper or PL paper?
 Why relevant?
@@ -272,7 +276,7 @@ The socio-liberal coalition of chancellor Helmut Schmidt passed a reform bill in
 %It should last until the 1986 reform until all mothers (irrespective of their employment status) and fathers became eligibile for parental leave.
 \newline
 
-The reform was initiated by a draft bill on January 05, 1979. The final law was ratified by the German Bundesrat (the Upper House of the German Parliament) on May 19 and by the German Bundestag (the Lower House) on June 22, 1979.  All previously employed women, who gave birth on/after May 01, 1979, were eligible for a total maternity leave of six months after childbirth, whereas all previously employed mothers, who delivered their baby before the cutoff date were only entitled to the 'common' 2 months of job-protected maternity leave. Note -- in relation to behavioral responses -- that the conception period for births when the reform took effect was way earlier than when the draft bill was proposed. This implies that families were not able to anticipate the legislation change and the 1979 reform in maternity leave can be seen as a quasi-experiment. This issue is discussed in more detail in Section (\ref{sec:empirical_strategy_2threats}).\newline
+The reform was initiated by a draft bill on January 05, 1979. The final law was ratified by the German Bundesrat (the Upper House of the German Parliament) on May 19 and by the German Bundestag (the Lower House) on June 22, 1979.  All previously employed women, who gave birth on/after May 01, 1979, were eligible for a total maternity leave of six months after childbirth, whereas all previously employed mothers, who delivered their baby before the cutoff date were only entitled to the 'common' 2 months of job-protected maternity leave. Note -- in relation to behavioral responses -- that the conception period for births when the reform took effect was way earlier than when the draft bill was proposed. This implies that families were not able to anticipate the legislation change and the 1979 reform in maternity leave can be seen as a quasi-experiment. This issue is discussed in more detail in Section \ref{sec:empirical_strategy_threats+validity}.\newline
 
 \subsection{Female labor force participation and childcare situation}
 In April 1979, the average female labor force participation rate was at 49.7\% for women in the age group between 15 and 65 years and women comprised around 38\% of the labor force \citep{federalstatisticaloffice1981yearbook}.\footnote{At the same time, as a comparison, 50.6\% of all women in the US participated in the labor market (see US Bureau of Labor Statistics).} Yet, the average female labor force participation rate masks pronounced heterogeneity. For instance, female labor market attachment was at 62.4\% for singles, 45.2\% for married, 32.5\% for widowed, and 76.5\% for divorced women. Additionally, there was a strong gradient with respect to age. While 69.2\% of all women aged between 20 and 25 years were participating in the labor force, the share is 55.0\% for women in the age bracket between 30 and 35 years.\footnote{Women aged 20 to 35 are the relevant age group in this context, as 84\% of all children were delivered by these women \citep{federalstatisticaloffice1981yearbook}.} The high numbers for younger women and singles indicate that a high share of mothers-to-be were an active part of the labor force and thus eligible for maternity leave. \newline 
@@ -388,97 +392,90 @@ noch irgendwo unterbringen:
 \section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}\label{sec:empirical_strategy_1design}
 In order to estimate the causal effect of maternity leave at the intensive margin, we exploit the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after a specified birth cutoff date (May 01, 1979) fall under the new regime with six months of maternity leave after childbirth, whereas children born before the threshold are exposed to two months. Assignment to treatment is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. A regression discontinuity design (RDD) might constitute a first potential identification strategy, in which one compares health outcomes of children which are quite similar with the only notable exception that their mothers were entitled to different lengths of maternity leave.\newline 
-We augment this idea of a local identification by combining the RDD with a difference-in-differences (DD) approach. A large body of literature suggests that there is a strong relationship between season of birth, health and other socioeconomic outcomes. The seasonality may come about due to reasons that are associated with either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of in-utero disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later outcomes.} Last, the seasonality aspect may also be the result of social postnatal factors such as age at school-entry \citep{black2011too}. \newline If one would not take these season-of-birth effects into consideration, it could be the case that the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. Yet, by matching up the difference in health outcomes of children born within a distance to the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold one year prior the reform (control group) we can eliminate the seasonality component while preserving the local identification aspect.\footnote{In our widest specification we use a bandwidth of half a year on either side, i.e. the treatment groups consists of people that were born between November 1978 and October 1979.}
-The implicit identifying assumption is that seasonality is time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group.\newline
+We augment this idea of a local identification by combining the RDD with a difference-in-differences (DD) approach. A large body of literature suggests that there is a strong relationship between season of birth, health and other socioeconomic outcomes. The seasonality may come about due to reasons that are associated with either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that the issue of selection is not as large as previously thought and put forward the idea that any season of birth effects might be due to seasonal patterns of in-utero disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later outcomes.} Last, the seasonality aspect may also be the result of social postnatal factors such as age at school-entry \citep{black2011too}. \newline If one would not take these season-of-birth effects into consideration, it could be the case that the estimated effect is partly driven by the difference of health outcomes from that seasonality component and not due to the expansion in maternity leave coverage. Yet, by matching up the difference in health outcomes of children born within a distance to the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold one year prior the reform (control group), we can eliminate the seasonality component while preserving the local identification aspect. The implicit identifying assumption is that seasonality is time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group.\newline
 
-Our main specification to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation: \footnote{The estimation procedure can also be found in similar contexts in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, \cite{danzer2017}, \cite{guertzgen2018}, and \cite{avdic2018modern}.}
+Our main specification to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation: \footnote{The estimation procedure can also be found in similar contexts in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013parental}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, \cite{danzer2017}, \cite{guertzgen2018}, and \cite{avdic2018modern}.}
 \begin{align}
-Y_{mrt} = \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 (Treat_{mr} \times After_{mr}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_basline}
+Y_{mt} = \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DD_basline}
 \end{align}
-where $Y_{mrt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, who reside in region $r$ at time period $t$. $Treat_{mr}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{mr}$ is a dummy variable that equals to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\phi_r$, $\rho_t$ are month-of-birth, region, and survey year fixed effects respectively. At first, $Y_{mrt}$ correspond to outcomes observed over the period 1995-2014. In section \ref{sec:results}, we apply a life-course approach by running the regression for each year individually.\footnote{text} 
-
-
-The parameter of interest is $\gamma_3$ which captures the effect of the policy change on health outcomes. As we don't have any information on the fact whether the individuals' mothers were on leave, the identified parameter is an intention-to-treat effect. \newline
+where $Y_{mt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, at time period $t$. $Treat_{m}$ is a dichotomous variable equal to one for groups that are born shortly before or after the legislation took place (i.e. the treatment cohort).\footnote{In the widest specification this involves children, who are born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff.} $After_{m}$ is a dummy variable that is equal to one if the individuals are born after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohort). $\psi_m$, $\rho_t$ are month-of-birth and survey year fixed effects, respectively. Initially, $Y_{mt}$ corresponds to outcomes observed over the pooled period 1995-2014. We successively break up the entire time frame in different age groups until we apply a life-course approach by running the regression for each year of life separately.\newline 
+The parameter of interest is $\gamma_3$, which captures the effect of the policy change on health outcomes. As we do not have any information on the fact whether the individuals' mothers were on leave, the identified parameter is an intention-to-treat effect. \newline
  %The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
 
 
 %control group
-Unlike \cite{Dustmann2012} we only use the cohort born in the year prior to the reform as control group.\footnote{\cite{Dustmann2012} use in total three birth cohorts as control group, two cohorts before and one cohort after the treatment cohort: group 1 born 11/1976-10/1976; group 2 born 11/1977-10/1978; and group 3 born 11/1979-10/1980 compromise the control group. Our control cohort is identical to the one used by \cite{guertzgen2018}.} The more cohorts are used as potential control groups, the less likely it is that the identifying assumption is met. Additionally, taking a birth cohort in the year after the policy change as control group might invalidate the comparability between the treatment and control group as parents might have enough time to react to the reform and adjust fertility patterns. For these reasons, we have just the one cohort prior to the treatment cohort as control group in our main specifications and in the robustness section we show the results of estimations which are in line with the approach chosen by \cite{Dustmann2012}.\newline
+Unlike \cite{Dustmann2012} we only use the cohort born in the year prior to the reform as control group.\footnote{\cite{Dustmann2012} use in total three birth cohorts as control group, two cohorts before and one cohort after the treatment cohort: group 1 born 11/1976-10/1976; group 2 born 11/1977-10/1978; and group 3 born 11/1979-10/1980 compromise the control group. Our control cohort is identical to the one used by \cite{guertzgen2018}.} The more cohorts are used as potential control groups, the less likely it is that the identifying assumption is met. Additionally, taking a birth cohort in the year after the policy change as control group might invalidate the comparability between the treatment and control group as parents might have enough time to react to the reform and adjust fertility patterns. For these reasons, we choose the cohort prior to the treatment cohort as control group in our main specifications and in the robustness section we present results when adding more control cohorts.\newline
 
 
 %clustering
-Standard errors are clustered on the interaction of birth month and state level in order to account for likely correlation of the error $\varepsilon_{mrt}$ over time for a given month of birth cohort and across cohorts for a given state.
+Standard errors are clustered on the birth month$\times$birth year level in order to account for likely correlation of the error $\varepsilon_{mt}$ over time for a given month of birth cohort.
 %We use sandwiched standard error estimates
 %, allowing errors to be correlated over time within a month-of-birth cohort, and across 
 %Diagnosis rates are serially correlated, cluster on month-of-birth and state level.
 
 
 
-
-
-
-
-\newpage
-\subsection{Threat}\label{sec:empirical_strategy_2threats}
-Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. \cite{Ekberg2013parental} describe the occurrence of birth as a random event, given the date of conception. They argue that pregnancy is a normally distributed random variable with mean of 40 weeks and a standard deviation of 2 weeks. However, there is reason to doubt the randomness of the event. \newline 
+\bigskip
+\subsection{Potential threats \& validity of the identification}\label{sec:empirical_strategy_threats+validity}
+Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. Usually, the occurrence of birth can be considered as a random event, given the date of conception. Gestation length is a normally distributed random variable with mean of 40 weeks and 2 weeks standard deviation \citep{Ekberg2013parental}. However, there is reason to doubt the randomness of the event. \newline 
 Women could influence the time when their baby is born by strategic conception and postponing the time they give birth by delaying induced births \& cesarean sections. In the following each of the concerns is discussed in turns: 
 
-\bigskip
-\textbf{(i) Strategic Conception}\\ As already mentioned in Section \ref{sec:background}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{Dustmann2012} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{Dustmann2012} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
-
-\bigskip
-\textbf{(ii) Induced births and cesarean sections}\\ Mothers with due dates close to the cutoff date on May 1, 1979 could time the birth date of their child by postponing induced births and cesarean sections.\footnote{Bringing the birth date forward around the threshold does not constitute a threat to the identification strategy, because this behavioral response would destroy their children's eligibility. Hence, it can be safely assumed that women would like to postpone the date of birth, if any.} \cite{gans2009born} find that during the introduction of a \$ 3.000 "Baby Bonus" in Australia, parents postponed the birth by as much as a week in order to be eligible for the benefits. Consequently the data shows that sharply before the cutoff birth date there is a dip in the birth rate and a huge increase on the first day after the threshold.\newline
-It is possible that there are similar distortionary "introduction effects" at work in the maternity leave expansion in Germany in 1979. In other words, even though the announcement period does not allow for a strategic conception, parents may be incentivized to delay the timing of their child due to the reform. 
-
-\bigskip
-\textbf{(iii) Migration}
-
-In order to check the existence of potential behavioral responses, we investigate the distribution of fertility and the balance of (parental) predetermined characteristics around the cutoffs (as done in \cite{dinardo2004economic})[\textbf{DRINGEND ANPASSEN}] in Section \ref{sec:empirical_strategy_3validity}.\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.} Additionally, we apply a Donut specification in the robustness section (Section \ref{sec: robustness}), in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
-% [SOLL ICH NOCH SCHREIBEN WARUM ICH DEN DONUT GENAU MACHE???????!!!!!]
+\bigskip\bigskip
+\textbf{A. Threats to identification}
+\begin{enumerate}
+	\item \underline{Strategic conception}\\ As already mentioned in Section \ref{sec:background}, it was impossible to conceive a child as a reaction to the draft bill, because the draft was only proposed four months before the threshold birth date.\footnote{The earliest possible birth date as a reaction to the draft bill would be October 1979. In the widest specification for the RD design, the sample contains children born between November 1978 and October 1979.} However, it could be possible that the topic aroused public awareness due to media coverage before the draft bill was initiated. For that reason \cite{Dustmann2012} conduct a literature search for any articles about the reform in the two leading national newspapers.\footnote{For their newspaper search \cite{Dustmann2012} use the daily national papers \emph{Frankfurter Allgemeine} and \emph{Süddeutsche Zeitung}.} They find that the earliest articles were only published two months prior to when the reform was put into practice.
+	
+	\item \underline{Induced births and cesarean sections}\\ Mothers with due dates close to the cutoff date on May 1, 1979 could time the birth date of their child by postponing induced births and cesarean sections.\footnote{Bringing the birth date forward around the threshold does not constitute a threat to the identification strategy, because this behavioral response would destroy their children's eligibility. Hence, it can be safely assumed that women would like to postpone the date of birth, if any.} \cite{gans2009born} find that during the introduction of a \$3.000 "Baby Bonus" in Australia, parents postponed the birth by as much as a week in order to be eligible for the benefits. Consequently the data shows that sharply before the cutoff birth date there is a dip in the birth rate and a huge increase on the first day after the threshold.
+\end{enumerate}
+It is possible that there are similar distortionary "introduction effects" at work in the maternity leave expansion in Germany in 1979. In other words, even though the announcement period does not allow for a strategic conception, parents may be incentivized to delay the timing of their child due to the reform.
 
 
+\bigskip\bigskip
+\textbf{B. Validity of the empirical approach}\newline 
+In order to check the existence of potential behavioral responses, we investigate the fertility distribution around the cutoff. We follow the example of \cite{gans2009born} very closely to show that there is no tampering with the fertility distribution. In our analysis we use daily data on the number of births from the federal states of Baden-Württemberg and North Rhine-Westphalia over the window 1977-1990.\footnote{Appendix Figure \ref{fig: fertility_hist} shows the monthly number of births per day for both treatment and control cohort. Although the figure utilizes all childbirths from the former region of the Federal Republic of Germany, it is difficult to see whether parents moved births from April to May. For that reason, we use daily births from two federal states.} Both states together act as a good proxy for the entire area of the former FRG as they account for almost 36\% of all births in 1979.\footnote{In 1979, 8.50\%/27.4\% of all births occurred in Baden-Württemberg/NRW.} In our analysis, we limit the sample to a time window of one month before and after the cutoff date (just April and May). Panel A of Figure \ref{fig: fertilitydistr} shows the (unadjusted) daily number of births for April and May 1979. Over the time window, one can observe a strong weekly pattern with more births born on weekdays and less births on weekends. On May 01, which was a Tuesday, one can see a drop in the number of births, which seems unexpected. If parents want to move the time of birth, one would expect that there is a rise in the number of births right after the cutoff date. However, May 01 is a national public holiday (Labor Day) and birth rates are generally lower on public holidays. \newline 
 
-\begin{itemize}
-	\item timing of birth potentially possible, yet hardly the case literature search carried out by \cite{Dustmann2012},
-	\item selective migration 
-  \begin{itemize}
-    \item general: if people migrate at random (across MOB) it's not a problem, effect is diluted and we estimate a lower bound of the true effect
-    \item David Neumarks comment: differential migration patterns across month of birth would pose a threat
-  \end{itemize}
-\end{itemize}
-
-
-
-
-\subsection{validity}\label{sec:empirical_strategy_3validity}
-\begin{itemize}
-	\item MZ (problem of selected sample, but large (enough?) number of obs) -> balancing table of parental predetermined covariates
-	\item Fertility distribution  -> histograms
-	\item potentially for later: SOEP, Zensus2011 (is there a question about parental background?)
-\end{itemize}
-
-figure \ref{fig: fertility_hist} shows fertility distribution for both treatment and control cohort.
-
-
-\cite{gans2009born} approach: 
-Figure \ref{fig: fertilitydistr} and Table \ref{tab: validity_birth_rate} 
-
-
-for figure: 
+%Panel B
+Panel B of Figure \ref{fig: fertilitydistr} shows the time series when taking out any variation in the timing of births stemming from day of week, public holiday, year, and day of year. To do so, we estimate the following equation on all years, \emph{except} April and May 1979:
 \begin{align}
-	\text{Births}_i = I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_fig}
+\text{Births}_i = I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_fig}
 \end{align}
-generate $(\widehat{\text{Births}})$, plot residuals $(\text{Births}-\widehat{\text{Births}})$
+where $\text{Births}_i$ is the number of children born on day $i$. This is a linear combination of dummies for the year interacted with the day of the week (allowing a different effect for Tuesdays in 1979), for the day of the year (permits a different effect for May 01), and a dummy for public national holidays.\footnote{For public holidays we use Good Friday, Holy Saturday, Easter Sunday, Easter Monday, Labor Day, Ascension Day, Whit Sunday, Whit Monday, and Corpus Christi.} Parameters are left out for better readability. \newline We use the calibrated model to predict the expected number of births for April and May 1979 $(\widehat{\text{Births}})$. In panel B, we plot the residuals $(\text{Births}-\widehat{\text{Births}})$. In contrast to \cite{gans2009born}, we do not detect systematically less births than expected in the month prior to the policy reform, nor more births than expected right after the policy change came into effect. They observe a trough piling up right before and a peak just after the cut-off. Instead, we notice a series that exhibits a mean reverting tendency across all days. Thus, graphically there is no evidence that parents moved the births to after the cutoff in order to become eligible for th extended leave. \newline 
 
-for table: 
+To formalize this, we estimate the following models: 
 \begin{align}
 \text{Births}_i &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i  \label{eq: validity_tab_birth} \\
 ln(\text{Births}_i) &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_tab_lnbirth}
 \end{align}
+with the new dummy $I^{\text{Reform}}_i$, which equals one for days after the cutoff in 1979. Table \ref{tab: validity_birth_rate} presents the estimates of the expansion in maternity leave on fertility for different estimation windows on both sides of the threshold. Irrespective of whether we use the number of births or the log of the number of births, there is no evidence that suggests that parents postponed births to after the threshold. On the contrary, the point estimates are throughout negative and become significantly different from zero with increasing estimation window. This indicates rather a reduction in fertility after the policy came into effect, if any. Furthermore, the magnitude of the estimates are constant across estimation windows, which would seem counterintuitive if parents shifted the births from the week prior to the reform to the week after the reform. If such behavior were present, one would expect point estimates to decrease in absolute value as the estimation window is enlarged. \newline 
+
+%wrap up
+By investigating the fertility distribution around the threshold we do not find evidence that parents strategically delayed births in the reform year. For this reason, the 1979 maternity leave reform can be considered as a valid natural experiment. Nonetheless, to scrutinize the possibility that the identification strategy is not jeopardized by selective fertility changes, we analyze the robustness of the results by applying a Donut specification, in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
+
+
+
+
+% Was noch reinkommen könnte:
+% 1) Parental covariate balance
+	% and the balance of (parental) predetermined characteristics\footnote{If there are behavioral responses due to the reform, one would expect that there is sorting around the threshold. In other words, it may be that the fertility pattern depends on parental family background characteristics.}
+	%\item MZ (problem of selected sample, but large (enough?) number of obs) -> balancing table of parental predetermined covariates
+	%\item potentially for later: SOEP, Zensus2011 (is there a question about parental background?)
+	
+% 2) Migration 
+	% \item general: if people migrate at random (across MOB) it's not a problem, effect is diluted and we estimate a lower bound of the true effect
+	%\item David Neumarks comment: differential migration patterns across month of birth would pose a threat
+
+
+
+
+
+
+
+
 
 %--------------------------------------------------------------------
 % DATA & VARIABLES
 %--------------------------------------------------------------------
+\bigskip
 \section{Data}\label{sec:data}
 % Description data
 For this research we use hospital register data spanning the period from 1995 to 2014, provided by the Research Data Centers of the Federal Statistical Office and the statistical offices of the Länder.\footnote{Due to data confidentiality regulations data access was provided via on-site and remote access at the research data center.} The register contains information on the universe of German in-patient cases (in 2014: 19.6 million observations). It covers \textit{all} patients that were discharged from \textit{any} hospital or medical prevention/rehabilitation facility in Germany in the reporting year.\footnote{The data does not cover police hospitals, hospitals of the penal system, and military hospitals. Military hospitals are covered to the extent in which they offer services to civilians.\newline Medical prevention/rehabilitation centers are included since 2003 if they have more than 100 beds. This criterion might potentially exclude establishments with a specialized range of treatments. Among the ten most frequent diagnoses made in prevention/rehabilitation facilities, one can find diseases of the musculoskeletal system, of the circulatory system, and mental \& behavioral disorders.} The data includes next to the patient's main diagnosis, socio-demographic characteristics (date of birth, gender, and the postal code of the place of residence), the length of stay, whether the patient died or underwent a surgery, and in which medicating specialist department the patient stayed the longest.\newline 
@@ -520,7 +517,7 @@ Figure \ref{fig: top5diagnosis_in_2014_across_agegroups} gives an overview of th
 %--------------------------------------------------------------------
 % RESULTS
 %--------------------------------------------------------------------
-\section{Results (evtl Natalia)}\label{sec:results}
+\section{Results (Natalia)}\label{sec:results}
 
 \subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
 
@@ -542,17 +539,19 @@ Figure \ref{fig: lc_hospital2_frg_DD} summarizes the previous findings in one gr
 
 
 % Main Diagnosis Chapters
-To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the components of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on the number of diagnosis (per chapter) per 1,000 individuals for all patients (panel a), women (b), and men (c). Each panel provides next to the point estimates, the incidence distribution across chapters. In constructing the graphs, we used the pooled sample and a bandwidth of six months. In the first panel we see that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest contributor for the reduction in hospitalization can be found in diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization is driven by fewer diagnoses of digestive diseases for women, whereas for males the reduction is mostly coming from less diagnoses of mental and behavioral disorders. Women as well as men exhibit the largest impact in the diagnosis chapter, which is particularly salient. \newline
-Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, such as mental and behavioral disorders and consequences of external causes. These are congruent to the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups. Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings. \textbf{Conclusion??}
+To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the components of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on the number of diagnosis (per chapter) per 1,000 individuals for all patients (panel a), women (b), and men (c). Each panel provides next to the point estimates, the incidence distribution across chapters. In constructing the graphs, we used the pooled sample and a bandwidth of six months. In the first panel we see that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest contributor for the reduction in hospitalization can be found in diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization is driven by fewer diagnoses of digestive diseases for women, whereas for males the reduction is mostly coming from less diagnoses of mental and behavioral disorders. Women as well as men exhibit the largest impact in that diagnosis chapter, which is the particularly salient one. \newline
+Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, such as mental and behavioral disorders and consequences of external causes. These are congruent to the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups. Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings. \newline 
+
+% Transition to d5 - why focus on d5
+Previously, we have presented evidence that the expansion in maternity leave leads to a reduction in hospitalization, in particular for men and towards the end of the observed time window. Furthermore, when looking at the main diagnosis chapters, we see that the largest driver for the decline in hospital admissions is coming from mental and behavioral disorders.\footnote{This is also true when we consider the effect in percent of the baseline mean as an effective measure. The largest reduction is coming from diseases of the sense organs (7.03\%), but is followed by mental and behavioral disorders (3.17\%).} In the following, we will focus on the effect of the expansion in maternity leave on mental and behavioral disorders. We do so for multiple reasons. First, in the overall sample MBD accounts for one third of the reduction in hospitalization, and in the last age bracket the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. Second, as we have seen in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 0 and 35 years in 2014. Third, mental and behavioral disorders caused the highest costs among all chapters for the age group 15-45 years in 2015.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: mental and behavioral disorders (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} 
+
+
+
+
 
 
 \bigskip
 \subsection{The effect on mental \& behavioral disorders}
-In the following we will focus on the effect of the expansion in maternity leave on mental and behavioral disorders (henceforth MBD). We do so due to mainly two reasons. First, MBD represent the most frequent diagnosis type as seen in Figure 
-% überletung MBD: overall: MBD accounts for one third of the reduction, last age bracket almost 50% of the effect comes from MBD, ;  not only the largest point estimate, but also a diagnosis with a very high incidence rate.
-
-
-
 tables
 total	\ref{tab: DD_d5_total}
 females	\ref{tab: DD_d5_female}
@@ -566,28 +565,41 @@ LC figure
 %age group \ref{fig: rf_d5_agegroup}
 
 \subsection{Subsections of mental \& behavioral disorders}
-figure overview of subcategories of mental disorders
-\ref{fig: d5partition}
+Figure \ref{fig: d5partition}: overview of subcategories of mental disorders
+Figure \ref{fig: ITT_d5_subcategories} ITT effects across subcategories of MBD
+Table \ref{tab: ITT_across_d5subcategories_per_age_group_total}: ITT effects across subcategoires of MBD\footnote{The table for women and men can be found in Table \ref{tab: ITT_across_d5subcategories_per_age_group_women} and \ref{tab: ITT_across_d5subcategories_per_age_group_men}.}
 
+
+
+%--------------------------------------------------------------------
+% RESULTS
+%--------------------------------------------------------------------
+\newpage
 \section{Robustness}\label{sec: robustness}
 
+Table \ref{tab: robustness_hospital}\footnote{Robustness table for mental and behavioral disorders can be found in Appendix Table \ref{tab: robustness_d5}.}
 
 % Robustness - LMR level
+\textbf{Analysis carried out on the AMR level}
 \begin{align}
-Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{mr} + \gamma_2 After_{mr} + \gamma_3 (Treat_{mr} \times After_{mr}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
+Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
 \end{align}
 additionally include region fxied effects $\phi_r$
 new: on regional level $r$
 
+in total there are 245 LMR, 204 in the area of the former FRG, 41 in the area of the former GDR. 
+
 
 % Robustness - DDD specification
+\textbf{Triple difference specification (DDD)}
 \begin{align}
-Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mrt} \label{eq:DDD}
+Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DDD}
 \end{align}
 wiht $FRG$ is a dummy variable 
 
 
 % Robustness - alternative DD 
+\textbf{Alternative DD}
 \begin{align}
 Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mrt} \label{eq:alt_DD}
 \end{align}
@@ -630,7 +642,7 @@ Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \
 %--------------------------------------------------------------------
 % CONCLUSION
 %-------------------------------------------------------------------
-\section{Concluding remarks (evtl NATALIA)}\label{sec:conclusion}
+\section{Concluding remarks (NATALIA)}\label{sec:conclusion}
 
 Why is it interestign to look at F-chapter
 Mental \& behavioral disorders are the diagnosis types with the longest average length of stay: 20.1 days (in comparisson to a general average of 7.6 days) [Data source: \cite[p. 5]{statistisches2012diagnosedaten} ]
@@ -726,12 +738,12 @@ Back-of-the-envelope calculation
 % Fertility distribuition
 	\vspace*{\fill}
 \begin{figure}[H]\centering
-	\caption{Fertility distribution}\label{fig: fertilitydistr}
+	\caption{Daily number of births around the expansion in maternity leave}\label{fig: fertilitydistr}
 	\includegraphics[width=0.9\linewidth]{paper/fertility_raw_regression_adjusted.pdf}
 	\scriptsize
 	\begin{minipage}{0.9 \linewidth}
-		\emph{Notes:} 
-		 Motivated by \cite{gans2009born} $\rightarrow$ \textbf{how do I get the gray shading from the original figure in the bottom part?}
+		\emph{Notes:} The figure plots the number of births around the cutoff date May 01 1979 for the expansion in maternity leave from two to six months after childbirth. Panel A shows the raw data, i.e. the actual number of births per day (unadjusted). Panel B, however, plots the difference between the raw and expected number of births when accounting for day of year, public holiday, and year$\times$day of week fixed effects. For the expected number of births we use data in the same time window (one month before and after the threshold) for the years 1977-1990, except for the year in which the reform took place. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
+		\textbf{how do I get the gray shading from the original figure in the bottom part?}
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
@@ -988,7 +1000,7 @@ Back-of-the-envelope calculation
 %VALIDITY: Birth rate effects
  \vspace*{\fill}
  \begin{table}[H] \centering
- \caption{Validity: birth rate effects}\label{tab: validity_birth_rate}
+ \caption{Birth rate effects of the 1979 maternity leave reform}\label{tab: validity_birth_rate}
  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
  \begin{tabular}{l*{5}{c}}
  	\toprule
@@ -1004,8 +1016,8 @@ Back-of-the-envelope calculation
  	\input{../../analysis/tables/paper/include/birth_rate_effects_lnbirths}
  	\bottomrule
  \end{tabular}}
- \begin{minipage}{0.9\linewidth}
- 		\scriptsize \emph{Notes:} 
+ \begin{minipage}{0.7\linewidth}
+ 		\scriptsize \emph{Notes:} The table shows regression estimates of the impact of the 1979 maternity leave reform on fertility. The sample comprises daily births within the relevant estimation window in the federal states of Baden-Württemberg and North Rhine-Westphalia from 1977-1990. Panel A uses the number of births as dependent variable, whereas panel B shows results with the log of the number of births as dependent variable. All specifications control for day of year, public holiday, and year$\times$day of week fixed effects. The estimation window is referring to the number of days before and after May 01. For instance, the $\pm$ 7 day window includes the last week in April and the first week in May across all years. Standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
  	\end{minipage}
  \end{table}
  \vspace*{\fill}\clearpage 
@@ -1106,12 +1118,7 @@ Back-of-the-envelope calculation
 \input{../../analysis/tables/paper/robustness_hospital2}
 \restoregeometry
 %--------------------------------------------
-% d5 - robustness in one table - blueprint for paper
-\newpage
-\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
-\input{../../analysis/tables/paper/robustness_d5}
-\restoregeometry
-%--------------------------------------------
+
 
 
 
@@ -1131,11 +1138,11 @@ Back-of-the-envelope calculation
 % map: AMR of Germany
 \vspace*{\fill}
 \begin{figure}[H]\centering
-	\caption{The regions in Germany}\label{fig: AMR_regions_Germany}
+	\caption{Labor market regions in Germany}\label{fig: AMR_regions_Germany}
 	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
 	\scriptsize
 	\begin{minipage}{0.9 \linewidth}
-		\emph{Notes:} This map shows the regions used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany ("West Germany"), while the white areas indicate the area of the former German Democratic Republic ("East Germany"). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals.\newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
+		\emph{Notes:} This map shows the labor market regions (LMR) used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany ("West Germany"), while the white areas indicate the area of the former German Democratic Republic ("East Germany"). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). There are in total 245 LMR, with 204 in the area of the FRG and 41 in the area of the former GDR. The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals. The regions \newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
@@ -1149,7 +1156,7 @@ Back-of-the-envelope calculation
 	\includegraphics[width=0.8 \linewidth]{paper/AMR_popdensity.png}
 	\scriptsize
 	\begin{minipage}{0.9\linewidth}
-		\emph{Notes:} This map shows the regional variation of population density across German regions. \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
+		\emph{Notes:} This map shows the regional variation of population density across German regions. \newline\emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
@@ -1330,6 +1337,15 @@ Back-of-the-envelope calculation
 \end{table} 
 \vspace*{\fill}\clearpage 
 \restoregeometry
+
+
+%--------------------------------------------
+% d5 - robustness in one table - blueprint for paper
+\newpage
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
+\input{../../analysis/tables/paper/robustness_d5}
+\restoregeometry
+%--------------------------------------------
 
 
 %t-tests
