@@ -289,7 +289,7 @@ Nevertheless, next to the female labor force participation rate, it is the count
 
 %--------------------------------------------------------------------    
 \bigskip
-\subsection[effects of 1979 reform on outcomes]{Effects of the 1979 maternity leave reform on maternal and child labor market outcomes}
+\subsection[Effects of 1979 reform on outcomes]{Effects of the 1979 maternity leave reform on maternal and child labor market outcomes}
 %[XXX Ich habe jetzt pro Aspekt die beiden Zusammengeworfen und nicht jedes paper für sich behandelt, notwendig da SL zB mehr in die Tiefe geht bei maternal outcomes]
 The effects of the 1979 maternity leave reform has been investigated by the three studies of \cite{Dustmann2012}, \cite{schonberg2014expansions}, and \cite{guertzgen2018}.\footnote{Both, \cite{Dustmann2012} and \cite{schonberg2014expansions} analyze the impact of the expansion in maternity leave on maternal labor market outcomes. While the former study augments this aspect by evaluating potential changes in child outcomes due to the reform, the latter study focuses on maternal labor market outcomes but elicits more in depth results.} The first two studies show that the reform has a large impact on mothers' short-run labor market outcomes. \newline First, many mothers strongly adjust their labor supply downwards during the four months of extra leave, and return to the labor market as soon as the leave period terminates. Yet, it seems that there is only a small effect on long-run maternal labor supply (i.e. for the time period beyond six months after childbirth). For instance, while the reform decreases the share of mothers who returned to the labor market by the third month after childbirth by 30.5 percentage points, the reduction in the share of returned mothers by the 52nd/76th month after childbirth is only around one percentage point.\footnote{When looking at long-run maternal labor force participation rates (i.e. at the child's sixth birthday), one can see that the reform leads to a modest increase in the probability a mother is working. The implication is that the mothers who abstain from the labor market in the long-run, would have only returned to work temporarily in absence of the reform.}
 In total, the change of postnatal maternity leave from two to six months causes mothers to postpone their return to work by, on average, 0.835 months.\footnote{This number corresponds to the number of months away from work in the first 40 months since childbirth.} Furthermore, approximately two-third of the decline in short-run female labor force participation is the result from a contraction in full-time work. Most of the mothers who postpone their labor market return, would have returned to their previous employers in absence of the reform. \newline
@@ -312,7 +312,7 @@ Although there are strong effects on maternal labor market outcomes, in particul
 
 
 %--------------------------------------------------------------------
-\subsection[channels]{Potential channels and implied prior on health effects}
+\subsection[Channels]{Potential channels and implied prior on health effects}
 How might the length of maternity leave affect long-run health outcomes of children? Before proceeding with the analysis, we provide a short discussion about potential mechanisms through which the reform could affect child health outcomes. In particular, we consider differences in care quality, changes in family income, parental health differentials and higher order fertility as potential pathways how the reform may affect long-run child health outcomes.  \newline
 
 % more maternal time - higher quality of care
@@ -446,7 +446,7 @@ To formalize this, we estimate the following models:
 \text{Births}_i &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i  \label{eq: validity_tab_birth} \\
 ln(\text{Births}_i) &= I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i \label{eq: validity_tab_lnbirth}
 \end{align}
-with the new dummy $I^{\text{Reform}}_i$, which equals one for days after the cutoff in 1979. Table \ref{tab: validity_birth_rate} presents the estimates of the expansion in maternity leave on fertility for different estimation windows on both sides of the threshold. Irrespective of whether we use the number of births or the log of the number of births, there is no evidence that suggests that parents postponed births to after the threshold. On the contrary, the point estimates are throughout negative and become significantly different from zero with increasing estimation window. This indicates rather a reduction in fertility after the policy came into effect, if any. Furthermore, the magnitude of the estimates are constant across estimation windows, which would seem counterintuitive if parents shifted the births from the week prior to the reform to the week after the reform. If such behavior were present, one would expect point estimates to decrease in absolute value as the estimation window is enlarged. \newline 
+with the new dummy $I^{\text{Reform}}_i$, which equals one for days after the cutoff in 1979. Table \ref{tab: validity_birth_rate} presents the estimates of the expansion in maternity leave on fertility for different estimation windows. Irrespective of whether we use the number of births or the log of the number of births, there is no evidence that suggests that parents postponed births to after the threshold. On the contrary, the point estimates are throughout negative and become significantly different from zero with increasing estimation window. This indicates rather a reduction in fertility after the policy came into effect, if any. Furthermore, the magnitude of the estimates are constant across estimation windows, which would seem counterintuitive if parents shifted the births from the week prior to the reform to the week after the reform. If such behavior were present, one would expect point estimates to decrease in absolute value as the estimation window is enlarged. \newline 
 
 %wrap up
 By investigating the fertility distribution around the threshold we do not find evidence that parents strategically delayed births in the reform year. For this reason, the 1979 maternity leave reform can be considered as a valid natural experiment. Nonetheless, to scrutinize the possibility that the identification strategy is not jeopardized by selective fertility changes, we analyze the robustness of the results by applying a Donut specification, in which we exclude those children from the analysis that were born in the month before and after the policy was implemented (i.e. exclude the children, who were born either in April or May).
@@ -713,27 +713,7 @@ Back-of-the-envelope calculation
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
 % VALIDITY
 %WMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWMWM
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{figure}
-		[H]\centering
-		\caption{Fertility distribution for different years}\label{fig: fertility_hist}
-		\begin{subfigure}[h]{0.40\linewidth}\centering
-		\caption{Control: Nov 1977-Oct 1978}
-		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_CG.pdf}
-		\end{subfigure}
-		\begin{subfigure}[h]{0.40\linewidth}\centering
-		\caption{Treatment: Nov 1978-Oct 1979}
-		\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_TG.pdf}
-		\end{subfigure}
-			\scriptsize
-			\begin{minipage}{0.95\linewidth}
-				\emph{Notes:} The figure shows the number of births per day across birth-months for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
-				\emph{Source:} German Federal Statistical Office (Destatis).
-			\end{minipage}
-	\end{figure}
-	\vspace*{\fill}\clearpage
-\end{landscape}
+
 %--------------------------------------------
 % Fertility distribuition
 	\vspace*{\fill}
@@ -1130,10 +1110,38 @@ Back-of-the-envelope calculation
 % APPENDIX
 %--------------------------------------------------------------------
 \newpage
-\section{Appendix}
+\TODO\section{Appendix}
+\vspace*{\fill}
+{\Huge \begin{center}\textbf{APPENDIX}\end{center}}
+\vspace*{\fill}\clearpage
+
+
 \renewcommand\thefigure{A\arabic{figure}}
 \setcounter{figure}{0} 
 \captionsetup[subfigure]{labelformat=parens}
+%--------------------------------------------
+% Validity: fertility histograms for TG & CG
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{Fertility distribution for different years}\label{fig: fertility_hist}
+		\begin{subfigure}[h]{0.40\linewidth}\centering
+			\caption{Control: Nov 1977-Oct 1978}
+			\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_CG.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.40\linewidth}\centering
+			\caption{Treatment: Nov 1978-Oct 1979}
+			\includegraphics[width=\linewidth]{paper/fertility_per_day_histogram_TG.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure shows the number of births per day across birth-months for the former region of the Federal Republic of Germany. The solid vertical red line divides pre- and post-reform time span for the treatment group, i.e. two or six months of job-protected leave after childbirth. The dashed line illustrates the same cutoff value for the control group born in other years.\newline
+			\emph{Source:} German Federal Statistical Office (Destatis).
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
 %--------------------------------------------
 % map: AMR of Germany
 \vspace*{\fill}
