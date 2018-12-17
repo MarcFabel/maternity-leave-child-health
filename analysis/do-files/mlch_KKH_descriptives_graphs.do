@@ -589,7 +589,7 @@ line hospital2 year if control == 4, color(black) lw(medthick) || ///
 	legend(off) ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
-	ylabel(, grid glc(gs12) glw(vthin)) /// 
+	ylabel(#4, grid glc(gs12) glw(vthin)) /// 
 	plotregion(color(white)) scheme(s1mono) ///
 	saving($graph/descriptive_A_admission_TCG, replace) 
 	
@@ -601,11 +601,12 @@ line share_f year if control == 4, color(black) lw(medthick) || ///
 	title("Panel B. Share women",pos(11) span  size(vlarge)) ///
 	ytitle("Share women [in percent]") subtitle(" ") ///
 	xtitle("") /// 
-	legend(off) ///
 	xlabel(1996 (4) 2014 ,val angle(0)) ///
 	xmtick(1996 (2) 2014)  ///
 	ylabel(, grid glc(gs12) glw(vthin)) ///
 	plotregion(color(white)) scheme(s1mono) ///
+	legend(label(1 "treatment") label(3 "control") ///
+	order(1 3) col(1)  pos(1) ring(0) size(vlarge)	) ///
 	saving($graph/descriptive_B_women_TCG, replace) 
 
 	
