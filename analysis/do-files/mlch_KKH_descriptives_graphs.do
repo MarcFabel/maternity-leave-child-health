@@ -332,12 +332,318 @@ line share_surgery year, sort color(black) lw(medthick) || ///
 	
 	graph combine "$graph/descriptive_A_admission"			"$graph/descriptive_B_women.gph"			///
 				  "$graph/descriptive_C_staylength.gph" 			  "$graph/descriptive_D_surgery.gph"	, altshrink ///
-				  scheme(s1mono) plotregion(color(white))
+				  scheme(s1mono) plotregion(color(white)) col(2)
 	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace
 
-* mit deaths vom Landesamt
+/* mit deaths vom Landesamt
 	graph combine "$graph/descriptive_A_admission"			"$graph/descriptive_B_women.gph"			///
 				  "$graph/descriptive_C_staylength.gph" 			  "$graph/descriptive_D_surgery.gph" ///
 				  "$landesamt/descriptive_E_death_22Oct18.gph", altshrink ///
 				  scheme(s1mono) plotregion(color(white)) col(2) ysize(15) xsize(13)
-	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace
+	graph export "$graph_paper/descriptive_admission.pdf", as(pdf) replace*/
+	
+*****************************************************************************	
+// control group	
+use "$temp/KKH_final_R1", clear
+run "$auxiliary/varlists_varnames_sample-spcifications"
+
+keep if GDR == 0 
+keep if control == 2	
+
+*label
+	#delim ;
+	label define YEAR 
+		1995 "1995 [16]"
+		1996 "1996 [17]"
+		1997 "1997 [18]"
+		1998 "1998 [19]"
+		1999 "1999 [20]"
+		2000 "2000 [21]"
+		2001 "2001 [22]"
+		2002 "2002 [23]"
+		2003 "2003 [24]"
+		2004 "2004 [25]"
+		2005 "2005 [26]"
+		2006 "2006 [27]"
+		2007 "2007 [28]"
+		2008 "2008 [29]"
+		2009 "2009 [30]"
+		2010 "2010 [31]"
+		2011 "2011 [32]"
+		2012 "2012 [33]"
+		2013 "2013 [34]"
+		2014 "2014 [35]";
+	#delim cr
+	label values year YEAR
+
+collapse (mean) length_of_stay length_of_stay_m length_of_stay_f ///
+	share_surgery share_surgery_m share_surgery_f ///
+	(sum) hospital2 hospital2_m hospital2_f, by(year )
+ 
+qui replace share_surgery = share_surgery *100
+qui gen share_f = hospital2_f*100 / hospital2 
+qui gen share_m = hospital2_m*100 / hospital2
+qui replace hospital2 = hospital2 / 1000
+
+*Panel A: Hospital admission 
+line hospital2 year, color(black) lw(medthick) || ///
+	scatter hospital2 year, color(gs6) m(O) ///
+	title("Panel A. Number of admissions",pos(11) span  size(vlarge)) ///
+	ytitle(" Number of hospital admissions [in thousand]") subtitle(" ") ///
+	xtitle("") ///
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) /// 
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_A_admission_CG, replace) 
+	
+*Panel B: Relative frequency women 
+line share_f year, color(black) lw(medthick) || ///
+	scatter share_f year, color(gs6) m(O) ///
+	title("Panel B. Share women",pos(11) span  size(vlarge)) ///
+	ytitle("Share women [in percent]") subtitle(" ") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_B_women_CG, replace) 
+
+	
+* Panel C: Length of Stay 	
+line length_of_stay year, sort color(black) lw(medthick) || ///
+	scatter length_of_stay year, sort color(gs6) m(O) ///
+	title("Panel C. Average length of stay",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Average length of stay [in days]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_C_staylength_CG, replace) 
+	
+	
+*Panel D: Surgery
+line share_surgery year, sort color(black) lw(medthick) || ///
+	scatter share_surgery year, sort color(gs6) m(O) ///
+	title("Panel D. Share surgery",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Share surgery [in percent]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///	
+	saving($graph/descriptive_D_surgery_CG, replace)  
+	
+	graph combine "$graph/descriptive_A_admission_CG"		"$graph/descriptive_B_women_CG.gph"			///
+				  "$graph/descriptive_C_staylength_CG.gph" 			  "$graph/descriptive_D_surgery_CG.gph"	, altshrink ///
+				  scheme(s1mono) plotregion(color(white)) col(2)
+	graph export "$graph_paper/descriptive_admission_CG.pdf", as(pdf) replace
+
+*****************************************************************************	
+// TREATMENT & control group (MIT ALTERSVERSCHEIBUNG - PROBLEM!!!!)	
+use "$temp/KKH_final_R1", clear
+run "$auxiliary/varlists_varnames_sample-spcifications"
+
+keep if GDR == 0 
+keep if control == 2 | control == 4
+keep if year_treat >= 1996 & year_treat <=2014
+keep if after == 0
+
+
+collapse (mean) length_of_stay length_of_stay_m length_of_stay_f ///
+	share_surgery share_surgery_m share_surgery_f ///
+	(sum) hospital2 hospital2_m hospital2_f, by(year_treat control)
+ 
+qui replace share_surgery = share_surgery *100
+qui gen share_f = hospital2_f*100 / hospital2 
+qui gen share_m = hospital2_m*100 / hospital2
+qui replace hospital2 = hospital2 / 1000
+
+*Panel A: Hospital admission 
+line hospital2 year_treat if control == 4, color(black) lw(medthick) || ///
+	scatter hospital2 year_treat  if control == 4, color(gs6) m(O) || ///
+	line hospital2 year_treat if control == 2, color(black%20) lw(medthick) lp(dash) || ///
+	scatter hospital2 year_treat  if control == 2, color(gs6%20) m(O)  ///
+	title("Panel A. Number of admissions",pos(11) span  size(vlarge)) ///
+	ytitle(" Number of hospital admissions [in thousand]") subtitle(" ") ///
+	xtitle("") ///
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) /// 
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_A_admission_TCG, replace) 
+	
+*Panel B: Relative frequency women 
+line share_f year_treat if control == 4, color(black) lw(medthick) || ///
+	scatter share_f year_treat if control == 4, color(gs6) m(O) || ///
+	line share_f year_treat if control == 2, color(black%20) lw(medthick) lp(dash) || ///
+	scatter share_f year_treat if control == 2, color(gs6%20) m(O)  ///
+	title("Panel B. Share women",pos(11) span  size(vlarge)) ///
+	ytitle("Share women [in percent]") subtitle(" ") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_B_women_TCG, replace) 
+
+	
+* Panel C: Length of Stay 	
+line length_of_stay year_treat if control == 4, sort color(black) lw(medthick) || ///
+	scatter length_of_stay year_treat if control == 4, sort color(gs6) m(O) || ///
+	line length_of_stay year_treat if control == 2, sort color(black%20) lw(medthick) lp(dash) || ///
+	scatter length_of_stay year_treat if control == 2, sort color(gs6%20) m(O) ///
+	title("Panel C. Average length of stay",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Average length of stay [in days]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_C_staylength_TCG, replace) 
+	
+	
+*Panel D: Surgery
+line share_surgery year_treat if control == 4, sort color(black) lw(medthick) || ///
+	scatter share_surgery year_treat if control == 4, sort color(gs6) m(O) || ///
+	line share_surgery year_treat if control == 2, sort color(black%20) lw(medthick) lp(dash) || ///
+	scatter share_surgery year_treat if control == 2, sort color(gs6%20) m(O)  ///
+	title("Panel D. Share surgery",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Share surgery [in percent]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///	
+	saving($graph/descriptive_D_surgery_TCG, replace)  
+	
+	graph combine "$graph/descriptive_A_admission_TCG"		"$graph/descriptive_B_women_TCG.gph"			///
+				  "$graph/descriptive_C_staylength_TCG.gph" 			  "$graph/descriptive_D_surgery_TCG.gph"	, altshrink ///
+				  scheme(s1mono) plotregion(color(white)) col(2)
+	graph export "$graph_paper/descriptive_admission_TCG.pdf", as(pdf) replace
+	
+	
+	
+*********************************************************************************
+// TREATMENT & control group(OHNE ALTERSVERSCHIEBUNG!!!!)
+use "$temp/KKH_final_R1", clear
+run "$auxiliary/varlists_varnames_sample-spcifications"
+
+keep if GDR == 0 
+keep if control == 2 | control == 4
+keep if after == 0
+
+
+*label
+	#delim ;
+	label define YEAR 
+		1995 "1995 [16]"
+		1996 "1996 [17]"
+		1997 "1997 [18]"
+		1998 "1998 [19]"
+		1999 "1999 [20]"
+		2000 "2000 [21]"
+		2001 "2001 [22]"
+		2002 "2002 [23]"
+		2003 "2003 [24]"
+		2004 "2004 [25]"
+		2005 "2005 [26]"
+		2006 "2006 [27]"
+		2007 "2007 [28]"
+		2008 "2008 [29]"
+		2009 "2009 [30]"
+		2010 "2010 [31]"
+		2011 "2011 [32]"
+		2012 "2012 [33]"
+		2013 "2013 [34]"
+		2014 "2014 [35]";
+	#delim cr
+	label values year YEAR
+
+collapse (mean) length_of_stay length_of_stay_m length_of_stay_f ///
+	share_surgery share_surgery_m share_surgery_f ///
+	(sum) hospital2 hospital2_m hospital2_f, by(year control)
+ 
+qui replace share_surgery = share_surgery *100
+qui gen share_f = hospital2_f*100 / hospital2 
+qui gen share_m = hospital2_m*100 / hospital2
+qui replace hospital2 = hospital2 / 1000
+
+*Panel A: Hospital admission 
+line hospital2 year if control == 4, color(black) lw(medthick) || ///
+	scatter hospital2 year  if control == 4, color(gs6) m(O) || ///
+	line hospital2 year if control == 2, color(black%20) lw(medthick) lp(dash) || ///
+	scatter hospital2 year  if control == 2, color(gs6%20) m(O)  ///
+	title("Panel A. Number of admissions",pos(11) span  size(vlarge)) ///
+	ytitle(" Number of hospital admissions [in thousand]") subtitle(" ") ///
+	xtitle("") ///
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) /// 
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_A_admission_TCG, replace) 
+	
+*Panel B: Relative frequency women 
+line share_f year if control == 4, color(black) lw(medthick) || ///
+	scatter share_f year if control == 4, color(gs6) m(O) || ///
+	line share_f year if control == 2, color(black%20) lw(medthick) lp(dash) || ///
+	scatter share_f year if control == 2, color(gs6%20) m(O)  ///
+	title("Panel B. Share women",pos(11) span  size(vlarge)) ///
+	ytitle("Share women [in percent]") subtitle(" ") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_B_women_TCG, replace) 
+
+	
+* Panel C: Length of Stay 	
+line length_of_stay year if control == 4, sort color(black) lw(medthick) || ///
+	scatter length_of_stay year if control == 4, sort color(gs6) m(O) || ///
+	line length_of_stay year if control == 2, sort color(black%20) lw(medthick) lp(dash) || ///
+	scatter length_of_stay year if control == 2, sort color(gs6%20) m(O) ///
+	title("Panel C. Average length of stay",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Average length of stay [in days]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///
+	saving($graph/descriptive_C_staylength_TCG, replace) 
+	
+	
+*Panel D: Surgery
+line share_surgery year if control == 4, sort color(black) lw(medthick) || ///
+	scatter share_surgery year if control == 4, sort color(gs6) m(O) || ///
+	line share_surgery year if control == 2, sort color(black%20) lw(medthick) lp(dash) || ///
+	scatter share_surgery year if control == 2, sort color(gs6%20) m(O)  ///
+	title("Panel D. Share surgery",pos(11) span  size(vlarge)) subtitle(" ") ///
+	ytitle("Share surgery [in percent]") ///
+	xtitle("") /// 
+	legend(off) ///
+	xlabel(1996 (4) 2014 ,val angle(0)) ///
+	xmtick(1996 (2) 2014)  ///
+	ylabel(, grid glc(gs12) glw(vthin)) ///
+	plotregion(color(white)) scheme(s1mono) ///	
+	saving($graph/descriptive_D_surgery_TCG, replace)  
+	
+	graph combine "$graph/descriptive_A_admission_TCG"		"$graph/descriptive_B_women_TCG.gph"			///
+				  "$graph/descriptive_C_staylength_TCG.gph" 			  "$graph/descriptive_D_surgery_TCG.gph"	, altshrink ///
+				  scheme(s1mono) plotregion(color(white)) col(2)
+graph export "$graph_paper/descriptive_admission_TCG.pdf", as(pdf) replace	
+	
+	
+	
