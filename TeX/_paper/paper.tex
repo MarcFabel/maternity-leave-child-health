@@ -126,6 +126,7 @@ labelfont={bf}
 \usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
 
 \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\newcommand\natalia[1]{\textcolor{orange}{#1}}
 
 % CAPTIAL LETTERS FOR SECTION CAPTIONS
 %\usepackage{sectsty}
@@ -508,41 +509,107 @@ Nevertheless, the data set has some drawbacks, too. First, the source of data li
 %--------------------------------------------------------------------
 % RESULTS
 %--------------------------------------------------------------------
-\section{Results (Natalia)}\label{sec:results}
+\section{Results}\label{sec:results}
 
 \subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
-
+ 
 
 \textbf{OVERVIEW TABELLEN: Sollen wir evtl die SD rausnehmen und einfach nur alles in Bezug zum mean interpretieren?}
+\natalia{if we find something even on these very extreme health outcomes, this tells us something!}
 
 % Hospital - Total
-Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. In panel A, we pool all years from 1995 to 2014 and show ITT estimates for different bandwidths around the cutoff. The outcome is defined as the number of hospital admissions per 1,000 individuals. With our baseline specification that uses a bandwidth of half a year (column 4), we find that there are on average 2.076 fewer hospitalizations per 1,000 individuals for children whose mothers were eligible for prolonged maternity leave. This corresponds to a reduction by 1.7\% from the pre-treatment mean. In the next step, we vary the width of the estimation window from three months to half a year and run a "Donut" specification in which we omit children who are born in the months directly around the threshold (i.e. exclude children born in April and May). The point estimate is fairly robust to different estimation windows.  \newline 
-In Panel B, we present ITT estimates when breaking up the entire life-course into age groups. The results suggest that at younger ages (17-26 year old cohorts) there is no effect of the length of maternity leave on hospital admissions as the DD estimates are not significantly different from zero. However, as the children grow older, the differentials are opening up for the cohorts aged 27-31 and 32-35. The magnitude of the effects are larger and statistically significant. \newline
+Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. The outcome is defined as the annual number of hospital admissions per 1,000 individuals per month of birth. In panel A, we present our ITT results based on the pooled data covering the years from 1995 to 2014, i.e. from age 17 to 35. The maternity leave reform significantly reduced the fraction of annual inpatient treatments in hospitals by 2.1 cases per 1,000 individuals (column 1, baseline specification). This corresponds to a reduction by 1.7\% from the pre-treatment mean. The point estimate is very robust to using narrower estimation windows (columns 2 - 4) and to excluding children born close to the cut-off (children born in April and May).\footnote{The results for the narrower bandwidths are less precisely estimated due to the smaller sample sizes; however, the point estimates do not differ significantly across the specifications.} 
+\newline     
+%alt: With our baseline specification that uses a bandwidth of half a year (column 4), we find that there are on average 2.076 fewer hospitalizations per 1,000 individuals for children whose mothers were eligible for prolonged maternity leave. In the next step, we vary the width of the estimation window from three months to half a year and run a "Donut" specification in which we omit children who are born in the months directly around the threshold (i.e. exclude children born in April and May). The point estimate is fairly robust to different estimation windows.  
+
+To investigate whether these effects are stable over the life-cycle or vary by age, we refine our analysis and consider how the effects of the maternity leave reform evolve with age. Panel B, contains our results for the reform's impact on the hospitalization ratio measured at different ages. Even though all estimates  carry a negative sign, the point estimates become larger and significantly different from zero only at older ages (-2.7 and -3.9 hospital admissions for the age group 27-31 and 32-35, respectively). The average impact on hospitalizations at younger ages (17-26 years of age) is much smaller and generally not statistically different from zero.\newline
+
+%On average, we find not significant effects of the extended maternity leave on hospitalizations at younger ages (17-26 year-olds). However, with increasing age as the children grow older, the differentials are opening up for the cohorts aged 27-31 and 32-35. The magnitude of the effects are larger and statistically significant. 
 %level of analysis is on MOBxYOBXyear level
 
-
 % Hospital -  Distinction Women and Men (tabelle)
-We next explore effect heterogeneity across gender. Tables \ref{tab: DD_hopsital2_female} and \ref{tab: DD_hopsital2_male} show the effect of the 1979 maternity leave reform on hospital admissions for women and men, respectively. In general, the point estimates for men are mostly larger than the equivalent ones for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust with respect to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} very closely. On the one hand, we find for men in the pooled sample an average reduction of 2.410 fewer hospitalizations for MOB cohorts that were born under the more generous regime, irrespective of the estimation window. On the other hand, the effects are growing in size the longer we follow the cohorts across their life-cycle. \newline
+We next explore effect heterogeneity across gender. Tables \ref{tab: DD_hopsital2_female} and \ref{tab: DD_hopsital2_male} show the effect of the 1979 maternity leave reform on hospital admissions for women and men, respectively. In general, the point estimates for men are mostly larger than the corresponding ones for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust with respect to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} very closely. On the one hand, we find for men in the pooled sample an average reduction of 2.410 fewer hospitalizations for MOB cohorts that were born under the more generous regime, irrespective of the estimation window. On the other hand, the effects are growing in size the longer we follow individuals across their life-cycle. \newline
 
 %  Hospital - life-course graph
-Figure \ref{fig: lc_hospital2_frg_DD} summarizes the previous findings in one graph and concentrates on the explicit trajectories of the differentials. While the previous estimates provide ITT effects for the entire period or for certain age groups, the following life-course approach exploits the single waves, with cohorts ranging from 17 up to and including 35 years of age.\footnote{We still control for any maturity effects and compare treatment and control cohorts at the same age. In other words, we shift the control cohort from year $t$ to year $t+1$.} We estimate the specification as in equation \ref{eq:DD_basline} per survey wave and plot the DD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a, shows the life-course for all hospital admissions in which all but two years exhibit negative point estimates. However, the ITT effects are significantly different only for four years towards the end of the observed time period. For men (women), we see in panel c (b) that there are 6 (5) years with negative and significant effects. Besides, the differentials for males in the last five years of the observation window are among the significant ones and are continuously increasing.\newline
+Figure \ref{fig: lc_hospital2_frg_DD} illustrates the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{We still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age.} We estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a, shows effect on hospital admissions over the life-course for the pooled sample of men and women. Overall, the figure reveals that the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c). For men, the positive health impact of the reform seems to  materialize more and more with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: While the figure reveals several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35 \natalia{(?)}\newline
 %The gray bold line in the background, specification of 6M BW
 
+\subsection{Robustness}\label{sec: robustness}
+
+We performed several sensitivity and placebo test to assess the robustness of our findings. The result of these additional tests are reported in Table \ref{tab: robustness_hospital}. First, we test whether our results are sensitive to the respective denominator used in calculating the fraction of diagnoses by 1000 individuals born in a specific month and year. Ideally, we would use as denominator the actual number of individuals living in Germany in a respective year (1995-2014) and born in a particular year and month. This data is not available. In the main analysis, we thus employ as denominator the number of births in a particular year and month (based on federal vital statistics). However, over time, this denominator might reflect the actual population size born in a particular month and year only imperfectly (due to migration or death). Therefore, we construct an alternative denominator using actual annual population figures by year of birth, weighted by the relative frequency of births across birth months in the year of birth. \footnote{The number of observations is smaller since the statistics on annual population size by birth month and year are only available since \natalia{2003}.}
+Column 2 in Table \ref{tab: robustness_hospital} shows that our result is robust to using this alternative denominator.\newline
+
+Second, we exploit information on regional location of hospitals to dis-aggregate our data spatially. We create a regional panel for the years 2003 - 2014 for the 204 labor market regions in West Germany containing information on number of diagnoses per 1000 individuals in a respective MOB cohort. Actual population size by MOB cohort on the LMR level is approximated by data on current population by year of birth - i.e. the number of inhabitants in year $t$ who were born in 1979 in region $r$ - weighted by the relative frequency of birth across months (as given by the fertility distribution in the national vital statistics). An advantage of this regional-level analysis is that it allows including region fixed effects. We can thus control for potentially confounding effects on the regional level. The corresponding regression specification is as follows: 
+\bigskip
+%\textbf{Analysis carried out on the LMR level}
+\begin{align}
+Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
+\end{align}
+%additionally include region fxied effects $\phi_r$
+%new: on regional level $r$
+%in total there are 245 LMR, 204 in the area of the former FRG, 41 in the area of the former GDR. 
+The estimated coefficients based on the regional panel data are very similar to the main results (column 3). \newline
+
+Next, we performed several alternative estimations using additional or alternative control groups. In Table \ref{tab: robustness_hospital}, column (4), we report estimates based on a Difference-in-difference-in-differences approach. The additional control group is comprised of individuals living on the territory of the former GDR (East Germany). The underlying idea is that children (and their mothers) born in East Germany in 1979 were not affected by the West German 1979 maternity leave reform and should thus resemble a valid comparison group (conditional the common trend assumption). Importantly, this specification allows us netting out any general time trend in the outcome variables that might affect the results. The corresponding Triple-difference-estimation specification becomes: 
+
+\bigskip
+%\textbf{Triple difference specification (DDD)}
+\begin{align}
+Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DDD}
+\end{align}
+
+which now contains an additional dummy variable $FRG$ (West Germany) as well as interactions of this control group with the treatment cohort 1979 (Treat), children born after April (After) and with the interaction term Treat X After. Once again, the general pattern of our main results remains robust to this alternative estimation. While the estimates become less precise, the point estimates increase slightly (but not significantly).  \newline
+
+This general pattern also holds true if only use the 1979 birth cohort born in East Germany (GDR) as control group in an alternative difference-in-difference specification (see column 5). 
+
+% Robustness - alternative DD 
+\textbf{Alternative DD}
+\begin{align}
+Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:alt_DD}
+\end{align}
+
+As a further sensitivity test with respect to our chosen estimation specification and included control groups, we re-estimate our main regression equation including an additional control group, that is children born in West Germany in 1977. The advantage of including another pre-reform West German birth cohort is that might better help to account for systematic month-of-birth patterns in hospitalization rates (due to a larger sample size). \footnote{However, it also reduces the age span for which we can perform our analysis.}
+Once again, the results and pattern of our original main results hold when adding this additional control cohort (column 6).\newline
+
+Overall, the sensitivity tests demonstrate that our main results are robust to alternative specifications and estimations, indicating that the maternity leave reform significantly reduced hospitalization rates between the ages 16 to 34, and in particular so for men.
+
+Last, we performed two placebo analyses to test the validity of our identifying assumptions: First, to test whether our estimated effects are caused by children eligible to the more generous maternity leave regime and not by an underlying general time trend affecting children born post-April, we ran a placebo analysis with two pre-reform birth cohorts 1978 and 1977, pretending that May 1, 1978 was the reform date. As a second placebo analysis we re-estimated our main DiD specification using the birth cohorts 1979 and 1978 and May 1, 1979 as reform cut-off date, but this time using the sample of East German individuals (who were not affected by the reform).  
+Reassuringly, both placebo tests yield insignificant effects supporting the notion that our main findings are indeed caused by the West German maternity leave reform.
+
+\bigskip
+
+%Table \ref{tab: robustness_hospital}
+%ORDER OF COLUMNS:
+%1) BL 
+%2) current population 
+%3) LMR 
+%4) DDD
+%5) alt. DD 
+%6) ad CG 
+%7) Placebo: temporal 
+%8) Placebo spatial  
+%9 + 10) rural/urban heterogeneity (non-homogeneous first stage)
+
+%11) Do not shift age observations
+
+
+\subsection[The effect on main diagnosis chapters]{Results on main diagnosis chapters}
 
 % Main Diagnosis Chapters
-To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the components of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on the number of diagnosis (per chapter) per 1,000 individuals for all patients (panel a), women (b), and men (c). Each panel provides next to the point estimates, the incidence distribution across chapters. In constructing the graphs, we used the pooled sample and a bandwidth of six months. In the first panel we see that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest contributor for the reduction in hospitalization can be found in diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization is driven by fewer diagnoses of digestive diseases for women, whereas for males the reduction is mostly coming from less diagnoses of mental and behavioral disorders. Women as well as men exhibit the largest impact in that diagnosis chapter, which is the particularly salient one. \newline
-Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, such as mental and behavioral disorders and consequences of external causes. These are congruent to the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups. Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings. \newline 
+What is driving the significant reductions in hospitalization rates? We exploit the detailed reporting on main diagnosis related to each hospitalization case in the data and assess the effect of extended maternity leave on specific diagnoses, grouped in 13 so-called main diagnosis chapters. The outcome variables now refer to the number of hospitalizations due to particular diagnoses per 1000 individuals (per MOB cohort). An overview of these main diagnosis chapters is given in Panel A of Table \ref{tab:outcomes_coding_main_chapters}. \newline
+%To further examine the source for the reductions in hospitalizations, we look at the impact of the maternity leave reform on the reasons of hospitalizations. For that reason, we use the main diagnoses chapters as dependent variables.
+%\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} 
+Figure \ref{fig: DD_across_main chapters} plots ITT estimates of the effect of the policy change on these 13 main diagnoses chapters for all patients (panel a) and separately for women (panel b) and men (panel c). Each panel provides the respective point estimates (left hand side) and the overall incidence of inpatient cases in each diagnosis chapter from 1995-2004 (on the right hand side). The estimates are based on the pooled sample and a bandwidth of six months. The results in panel a (men and women) reveal that almost all point estimates are either negative or not significantly different from zero. This implies that we can reject the hypothesis that the expansion has detrimental effect on long-run child health. Furthermore, the largest effect of the maternity leave extension can be found with respect to diagnoses of mental and behavioral disorders, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. Assessing the results against the background of the overall frequency of these diagnoses chapters, the strong effect on mental and behavioral disorders clearly stands out as this diagnosis chapters has such a high prevalance in this age group.
+When looking at effect heterogeneity across gender, wee see that the reduction in hospitalization for women is driven by fewer diagnoses of digestive diseases, whereas for males the reduction mostly stems from less diagnoses of mental and behavioral disorders. sout{Women as well as men exhibit the largest impact in that diagnosis chapter, which is the particularly salient one.} \newline
+Breaking up the analysis by age group generates additional insights. Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DD estimates of the impact of the expansion in maternity leave on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and confirms the graphical evidence. Moreover, columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. For some chapters we see health differentials that are increasing with age, and this is particularly the case for mental and behavioral disorders. These are congruent with the overall effect on hospital admission. Other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups.\footnote{Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and summarizes the previous findings.}\newline 
 
 % Transition to d5 - why focus on d5
-Previously, we have presented evidence that the expansion in maternity leave leads to a reduction in hospitalization, in particular for men and towards the end of the observed time window. Furthermore, when looking at the main diagnosis chapters, we see that the largest driver for the decline in hospital admissions is coming from mental and behavioral disorders.\footnote{This is also true when we consider the effect in percent of the baseline mean as an effective measure. The largest reduction is coming from diseases of the sense organs (7.03\%), but is followed by mental and behavioral disorders (3.17\%).} In the following, we will focus on the effect of the expansion in maternity leave on mental and behavioral disorders. We do so for multiple reasons. First, in the overall sample MBD accounts for one third of the reduction in hospitalization, and in the last age bracket the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. Second, as we have seen in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 0 and 35 years in 2014. Third, mental and behavioral disorders caused the highest costs among all chapters for the age group 15-45 years in 2015.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: mental and behavioral disorders (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} 
-
-
-
-
-
+Or results provide evidence that the expansion in maternity leave caused a reduction in hospitalization, in particular for men and towards the end of the observed time window. Furthermore, when considering the main diagnosis chapters, we see that the largest driver for the decline in hospital admissions is coming from mental and behavioral disorders.\footnote{This is also true when we consider the effect in percent of the baseline mean as an effective measure. The largest reduction is coming from diseases of the sense organs (7.03\%), but is followed by mental and behavioral disorders (3.17\%).} 
 
 \bigskip
 \subsection{The effect on mental \& behavioral disorders}
+Since the estimated effects of the maternity leave reform on mental and behavioral disorders stand out in terms of effect size and frequency of diagnoses, we present more refined evidence on this diagnosis chapter in the following. To recapitulate, first, in the overall sample, MBD accounts for one third of the reduction in hospitalizations, and in the last age bracket the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. Second, as shown in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 0 and 35 years in 2014. Another important aspect is that MBD caused the highest costs per diagnosis among all diagnoses chapters for the age group 15-45 years in 2015 \natalia{add source}.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: mental and behavioral disorders (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} 
+
 tables
 total	\ref{tab: DD_d5_total}
 females	\ref{tab: DD_d5_female}
@@ -560,104 +627,7 @@ Figure \ref{fig: d5partition}: overview of subcategories of mental disorders
 Figure \ref{fig: ITT_d5_subcategories} ITT effects across subcategories of MBD
 Table \ref{tab: ITT_across_d5subcategories_per_age_group_total}: ITT effects across subcategoires of MBD\footnote{The table for women and men can be found in Table \ref{tab: ITT_across_d5subcategories_per_age_group_women} and \ref{tab: ITT_across_d5subcategories_per_age_group_men}.}
 
-
-
-%--------------------------------------------------------------------
-% RESULTS
-%--------------------------------------------------------------------
-\newpage
-\subsection{Robustness}\label{sec: robustness}
-
-
-ORDER OF COLUMNS:
-1) BL 
-2) current population 
-3) LMR 
-4) DDD
-5) alt. DD 
-6) ad CG 
-7) Placebo: temporal 
-8) Placebo spatial  
-9 + 10) rural/urban heterogeneity (non-homogeneous first stage)
-
-11) Do not shift age observations
-
-
-Table \ref{tab: robustness_hospital}\footnote{Robustness table for mental and behavioral disorders can be found in Appendix Table \ref{tab: robustness_d5}.}
-
-% Robustness - LMR level
-
-% From data section
-For some robustness tests and heterogeneity analysis, we disaggregate to the level of labor market regions (from now on 'LMR') as defined by the Federal Institute  for Research on Building, Urban Affairs and Spatial Development (BBSR).\footnote{The labor market regions are an aggregation of counties ('Kreise'). We do not remain on the level of counties, as some counties do not have their own hospitals.} For the region of former West Germany, there are 204 labor market regions, implying $24*12*204= 58,752$ birth month-year-region observations.\footnote{On the LMR level, we only have data from 2003 onwards, which leaves us with only 12 years of observations.} Figure \ref{fig: AMR_regions_Germany} shows the distinction between the two aggregation concepts.
-
-
-
-and on the LMR level we divide by the approximated number of persons in the MOB per region. To this end, we merge data on the current number of inhabitants and fertility data from the German Federal Statistical Office to the hospital registry.
-
-War in einer Fußnote:
-While the fertility data (federal level) states information on the level of the birth month, the data on current population (LMR level) is on the year of birth level, i.e. the number of inhabitants that were born in 1979 in region $r$ in year $t$. In order to assign the people to the single months, we use weights coming from the fertility distribution. Alternatively, we use weights obtained from the German Mico Census.
-
-
-
-\textbf{Analysis carried out on the LMR level}
-\begin{align}
-Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
-\end{align}
-additionally include region fxied effects $\phi_r$
-new: on regional level $r$
-
-in total there are 245 LMR, 204 in the area of the former FRG, 41 in the area of the former GDR. 
-
-
-% Robustness - DDD specification
-\textbf{Triple difference specification (DDD)}
-\begin{align}
-Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DDD}
-\end{align}
-wiht $FRG$ is a dummy variable 
-
-
-% Robustness - alternative DD 
-\textbf{Alternative DD}
-\begin{align}
-Y_{mt} =\ &\delta_0 +  \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:alt_DD}
-\end{align}
-
-
-
-
-\textbf{OHNE Altersverschiebung}
-
-
-\newpage
-\textbf{Old notes}
-\begin{enumerate}
-	\item Hospital admission: effects for different age brackets and various bandwidths, RD plot (also for different age brackets) + graphical representation of the life-course
-	%effect on men: [Tanya Wilson] natural birth rate in favor of males, boys are weaker, -> selection, once outside womb: more likely to have illness condition
-	\item main diagnosis chapter: effect for different age brackets + appendix: matrix of LC graphs\newline $\rightarrow$ results from hospital admission is triggered by mental illnesses
-	\item look at mental and behavioral disorders: subcategories (also in life-course representation) 
-	\begin{itemize}
-		\item 	note to Schizophrenia: "origin lies in genetic and/or environmental disruption of brain development" \citep{owen2016schizophrenia}
-		\item woher kommt der positive Effekt bei affektivve disorders, split up in bi-polar, depressive, and maniac, do all components go in same direction
-	\end{itemize}
-	\item (further results: e.g. MZ)
-	\begin{itemize}
-		\item university degree: Germans are older when they graduate, end 20s $\rightarrow$ precisely the time when we see the differentials to open up
-		\item in our case we have data from 26-34 olds, D+S are in that range
-		\item what are the variable specifications
-	\end{itemize}
-	\item robustness (see for instance slides of IZA WL conference)
-	\begin{itemize}
-		\item \textbf{placebo outcome} do we have one sort of diagnosis that is purely genetic (e.g. some sort of cancer)
-	\end{itemize}
-\end{enumerate}
-
-
-
-
-
-
-
+\footnote{Robustness table for mental and behavioral disorders can be found in Appendix Table \ref{tab: robustness_d5}.}
 
 
 
