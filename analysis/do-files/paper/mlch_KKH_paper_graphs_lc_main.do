@@ -90,7 +90,7 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 			legend(label(2 "95% CI") label(3 "90% CI")) ///
 			legend(order(3 2)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 			legend(region(color(none))) legend(symx(5)) ///
-			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
+			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
 			xmtick(`start_mtick'  (4) `ende') ///
 			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) 
@@ -106,7 +106,7 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 			legend(label(2 "95% CI") label(3 "90% CI")) ///
 			legend(order(3 2)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 			legend(region(color(none))) legend(symx(5)) ///
-			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
+			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
 			xmtick(`start_mtick'  (4) `ende') ///
 			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1))
@@ -121,7 +121,7 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 			legend(label(2 "95% CI") label(3 "90% CI")) ///
 			legend(order(3 2)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 			legend(region(color(none))) legend(symx(5)) ///
-			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("") ///
+			xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
 			xmtick(`start_mtick'  (4) `ende') ///
 			ytitle("ITT effect", axis(1)) ytitle("Dependent mean",axis(2)) ///
 			yscale(alt axis(2)) yscale(alt axis(1)) 
