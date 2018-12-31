@@ -126,7 +126,7 @@ labelfont={bf}
 \usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
 
 \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\newcommand\natalia[1]{\textcolor{orange}{#1}}
+\newcommand\natalia[1]{\textcolor{black}{#1}}
 
 % CAPTIAL LETTERS FOR SECTION CAPTIONS
 %\usepackage{sectsty}
@@ -179,7 +179,7 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \begin{document}
 \setcounter{page}{0}  
-\tableofcontents
+% \tableofcontents
 \newpage
 \setcounter{page}{1}    
 \maketitle
@@ -188,8 +188,10 @@ labelfont={bf}
 \renewcommand{\abstractname}{\vspace{-\baselineskip}} % GET RID OF ABSTRACT TITLE
 
   \begin{abstract}\noindent 
-   \footnotesize{\begin{center}\textbf{Abstract}\end{center} This paper assesses the impact of the length of maternity leave on children’s long-run health outcomes. Our quasi-experimental design evaluates an expansion in maternity leave coverage from two to six months, which occurred in the Federal Republic of Germany in 1979. The expansion came into effect after a sharp cutoff date and significantly increased the time working mothers stayed at home with their newborns. In our analysis, we exploit the German Micro Census and hospital registry data, containing detailed information about the universe of inpatients' diagnoses and treatment for the years 1995 to 2014. By tracking the health of treated and control children from age 16 up to age 35, we provide new insights into the trajectory of health differentials over the life-cycle.
-   	We find a positive effect of the legislative change on several measures of long-term child health. Our intention-to-treat estimates suggest that children who were born shortly after the implementation of the reform experience fewer hospital admissions and are less likely to be diagnosed with mental and behavioral disorders.\\\newline \textbf{Keywords:} Early childhood development, health, paid maternity leave, life-cycle approach \newline \textbf{JEL codes:} I10, J13, J18}
+   \footnotesize{\begin{center}\textbf{Abstract}\end{center} This paper assesses the impact of the length of maternity leave on children’s long-run health outcomes. Our quasi-experimental design evaluates an expansion in maternity leave coverage from two to six months, which occurred in the Federal Republic of Germany in 1979. The expansion came into effect after a sharp cutoff date and significantly increased the time working mothers stayed at home with their newborns during the first six months after childbirth. In our analysis, we exploit German hospital registry data, containing detailed information about the universe of inpatients' diagnoses for the years 1995 to 2014. 
+   By tracking the health of treated and control children from age 16 up to age 35, we provide new insights into the trajectory of health differentials over the life-cycle.
+   We find a positive effect of the legislative change on several measures of long-term child health. Our intention-to-treat estimates suggest that children who were born shortly after the implementation of the reform experience fewer hospital admissions and are less likely to be diagnosed with mental and behavioral disorders.
+   	\\\newline \textbf{Keywords:} Early childhood development, health, paid maternity leave, life-cycle approach \newline \textbf{JEL codes:} I10, J13, J18}
     \end{abstract}
 
 \newpage
@@ -198,54 +200,66 @@ labelfont={bf}
 %--------------------------------------------------------------------
 % INTRODUCTION
 %--------------------------------------------------------------------
-\section{Introduction (NATALIA)}\label{sec:introduction}
-Intro –
-Health paper or PL paper?
-Why relevant?
-What do we (not) know?
-What do we do?
-What do we find?
+\section{Introduction}\label{sec:introduction}
+
+This paper assesses the impact of the length of maternity leave on children’s long-run health outcomes. Our quasi-experimental design evaluates an expansion in maternity leave coverage from two to six months, which occurred in the Federal Republic of Germany in 1979. The expansion came into effect after a sharp cutoff date and significantly increased the time working mothers stayed at home with their newborns during the first six months after childbirth. In our analysis, we exploit German hospital registry data, containing detailed information about the universe of inpatients' diagnoses for the years 1995 to 2014. \newline
+
+In order to estimate the causal effect of the length of maternity leave on child health outcomes we exploit the exogenous variation stemming from the reform, which provides a treatment assignment that is as good as random. In order to eliminate potential season of birth effects, we combine a regression discontinuity with a difference-in-difference approach: health outcomes of children, who were born shortly before and after the implementation of the policy reform, are compared to the outcomes of children who are born in the same calendar months but in the previous year in which no legislative change took place.\newline
+
+By tracking the health of treated and control children from age 16 up to age 35, we provide new insights into the trajectory of health differentials over the life-cycle.
+We find a positive effect of the legislative change on several measures of long-term child health. Our intention-to-treat estimates suggest that children who were born shortly after the implementation of the reform experience fewer hospital admissions.
+In particular, we see that this decline in hospital admissions is due to fewer diagnoses of mental and behavioral disorders (the most common diagnoses for individuals aged 15-35) and that the effect is mostly driven by males and occurs towards the end of the observed time period (at the end of 20s up to 35). Last, the largest effect is observed for mental and behavioral disorders due to psychoactive substance use and schizophrenia. 
+Investigating other health outcomes, we see either positive (diseases of the respiratory and digestive system, and injuries) or null effects. \newline
+
+
+
+We contribute to the growing literature on parental leave and child development by adding new and unique insights into long-run health effects. Furthermore, it is crucial to understand the implications of maternity leave on various aspects of child development and outcomes for a comprehensive assessment of the cost and benefits of such leave schemes. These results illustrate the vast impact that early childhood conditions can have on later life (health) outcomes. Our intention-to-treat estimates suggest that the expansion in maternity leave from two to six months has a positive impact on children’s health in the long-run.
+% Due to the fact that (long-run) health outcomes were not so much in the center of the discussion and the health effects under investigation only materialize later in life, we hope to add to the current debate about the costs and benefits of such leave schemes.
+
+
+
+% Intro –
+% Health paper or PL paper?
+% Why relevant?
+% What do we (not) know?
+% What do we do?
+% What do we find?
  
-To which literature do we contribute to?
-\begin{itemize}
-  \item Parental leave literature
-  \item Literature on the role of early childhood interventions on long-run child development
-  \begin{itemize}
-    \item The role of type of nurture at the beginning of life on later health outcomes
-    \item Fetal origin hypotheses extended
-  \end{itemize}
-  \item Spill-over of labor market policy on health outcomes
-\end{itemize}
+% To which literature do we contribute to?
+% \begin{itemize}
+%   \item Parental leave literature
+%   \item Literature on the role of early childhood interventions on long-run child development
+%   \begin{itemize}
+%     \item The role of type of nurture at the beginning of life on later health outcomes
+%     \item Fetal origin hypotheses extended
+%   \end{itemize}
+%   \item Spill-over of labor market policy on health outcomes
+% \end{itemize}
 
-What is long-term health??( evtl auch in die background section?) 
-\begin{itemize}
-	\item Hospital admission
-	\item why relevant? costs...
-	\item what are frequencies (compare to ND's picture for the IZA presentation)
-\end{itemize}
-
-
+% What is long-term health??( evtl auch in die background section?) 
+% \begin{itemize}
+% 	\item Hospital admission
+% 	\item why relevant? costs...
+% 	\item what are frequencies (compare to ND's picture for the IZA presentation)
+% \end{itemize}
 
 
-
-
-
-\textbf{RELEVANT LITERATURE, either other LR domains or SR health} 
-\begin{itemize}
-	\item long-run domain
-	\begin{itemize}
-		\item intro \cite{currie2011human} \& \cite{almond2017childhood}
-		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood (mention effect on breastfeeding)  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
-		\item find null effect \cite{Dahl2016Case}, \cite{rasmussen2010increasing} (parental access to birth-related leave)
-	\end{itemize}
-	\item health domain
-	\begin{itemize}
-		\item \cite{stearns2015effects} and \cite{rossin2011effects} (backup birth-weight \cite{almond2005costs} and \cite{currie2007biology})
-		\item \cite{beuchert2016}
-		\item \cite{adhvaryu2018early}: effects of changes in real producer price of cocoa in early life on mental health outcomes in Ghana
-	\end{itemize}
-	\item beides combined: \cite{danzer2017parental} disability status, fit for military service, finding positive effects on children's health status but none for educational attainment and labor market outcomes. No heterogeneity by gender or SES, but by counterfactual mode of care (pos effects in regions with no nursery).
-\end{itemize}
+% \textbf{RELEVANT LITERATURE, either other LR domains or SR health} 
+% \begin{itemize}
+% 	\item long-run domain
+% 	\begin{itemize}
+% 		\item intro \cite{currie2011human} \& \cite{almond2017childhood}
+% 		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood (mention effect on breastfeeding)  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
+% 		\item find null effect \cite{Dahl2016Case}, \cite{rasmussen2010increasing} (parental access to birth-related leave)
+% 	\end{itemize}
+% 	\item health domain
+% 	\begin{itemize}
+% 		\item \cite{stearns2015effects} and \cite{rossin2011effects} (backup birth-weight \cite{almond2005costs} and \cite{currie2007biology})
+% 		\item \cite{beuchert2016}
+% 		\item \cite{adhvaryu2018early}: effects of changes in real producer price of cocoa in early life on mental health outcomes in Ghana
+% 	\end{itemize}
+% 	\item beides combined: \cite{danzer2017parental} disability status, fit for military service, finding positive effects on children's health status but none for educational attainment and labor market outcomes. No heterogeneity by gender or SES, but by counterfactual mode of care (pos effects in regions with no nursery).
+% \end{itemize}
 
 
 % Nice way of framing taken from ACD (2017) NBER 
@@ -254,7 +268,7 @@ What is long-term health??( evtl auch in die background section?)
 %  - Maternity Leave: "If childhood investments are an increasing function of parental time, then maternity leave policies may increase investments at key developmental stages. Such policies appear to be predicated on the belief that the elasticity of child investments in (1) with respect to parental time is large in very early childhood. The key policy question is when specifically maternal (or paternal) time is most important?" 
 % heterogenity in the effect (according to parental SES) not all parents can make use of their resouirfces in the same efficient way; implies different production functions 
 % early childhood environmetn in the context of intergenerational mobility
-[Q ND: Motivation - shall we have a cross-country (maybe OECD data) scatter with linear fit, Y: health outcomes and X lenght of Maternity/parental leave]
+% [Q ND: Motivation - shall we have a cross-country (maybe OECD data) scatter with linear fit, Y: health outcomes and X lenght of Maternity/parental leave]
 
 
 
@@ -311,7 +325,7 @@ Although there are strong effects on maternal labor market outcomes, in particul
 
 %--------------------------------------------------------------------
 \subsection[Channels]{Potential channels and prior on health effects}
-How might the length of maternity leave affect long-run health outcomes of children? The notion that later-life outcomes have their origins in early-childhood is not particularly new. Already in 1990, \citeauthor{Barker1990origins} postulated the idea that conditions in-utero and during infancy have long-lasting effects on later life health.\footnote{{\color{red} wide range of impairments}} Adult physical and mental wellbeing is influenced by early experiences - whether they are good or bad - in at least two ways \citep{shonkoff2009neuroscience}. On the one hand, this can be a \emph{cumulative} process, in which physically and psychologically stressful events are experienced again and again until chronic health impairments eventually materialize. The persistent experience of stressful events causes a constant provocation of neurobiological responses, which are supposed to help you cope with stress and are under normal circumstances healthy and protective, may become pathogenic.\footnote{The neurobiological reactions can include, for instance, the release of stress hormones, higher blood pressure and heart rate, protective mobilization of nutrients, among other. See for example \cite{mcewen1998stress,shonkoff2009neuroscience}.} On the other hand, the environment at key developmental stages is 'programmed' into regulatory physiological systems such that it impacts adult disease and risk factors latently. This idea of \emph{biological embedding} of adversities is consistent with \citeauthor{Barker1990origins}'s hypothesis. In these sensitive periods, the developing brain's architecture is modified considerably and is thus particularly sensitive to environmental stimuli. The programming process starts in the embryonic state and culminates in the first years of life \citep{raikkonen2012early}. However, as not all brain circuits develop at the same time, it depends on the timing of the experience/adversity.\footnote{See the 'life-cycle' model of stress \citep{lupien2009effects}.} In other words, the adversity has the highest impact on the brain region that undergoes the most change at the time when the adversity is experienced. During infancy, the hippocampus is the area of the brain that is maturing most expeditiously and is consequently more vulnerable than during other stages. This region is tied to the regulation of emotions, social behavior, stress responsiveness, and ultimately mental health \citep{center2016best,shonkoff2009neuroscience}. Yet, the effects on later life health impairment are not only determined by the timing, but also by the type of the experience. In both cases - the cumulative exposure and the programming of the adversity - the effects of experiences made in early life may be latent at first until the onset of a particular condition \citep{almond2011fetalorigins}. The time lag can be many years, even decades \citep{shonkoff2009neuroscience}.\newline
+How might the length of maternity leave affect long-run health outcomes of children? The notion that later-life outcomes have their origins in early-childhood is not particularly new. Already in 1990, \citeauthor{Barker1990origins} postulated the idea that conditions in-utero and during infancy have long-lasting effects on later life health. Adult physical and mental wellbeing is influenced by early experiences - whether they are good or bad - in at least two ways \citep{shonkoff2009neuroscience}. On the one hand, this can be a \emph{cumulative} process, in which physically and psychologically stressful events are experienced again and again until chronic health impairments eventually materialize. The persistent experience of stressful events causes a constant provocation of neurobiological responses, which are supposed to help you cope with stress and are under normal circumstances healthy and protective, may become pathogenic.\footnote{The neurobiological reactions can include, for instance, the release of stress hormones, higher blood pressure and heart rate, protective mobilization of nutrients, among other. See for example \cite{mcewen1998stress,shonkoff2009neuroscience}.} On the other hand, the environment at key developmental stages is 'programmed' into regulatory physiological systems such that it impacts adult disease and risk factors latently. This idea of \emph{biological embedding} of adversities is consistent with \citeauthor{Barker1990origins}'s hypothesis. In these sensitive periods, the developing brain's architecture is modified considerably and is thus particularly sensitive to environmental stimuli. The programming process starts in the embryonic state and culminates in the first years of life \citep{raikkonen2012early}. However, as not all brain circuits develop at the same time, it depends on the timing of the experience/adversity.\footnote{See the 'life-cycle' model of stress \citep{lupien2009effects}.} In other words, the adversity has the highest impact on the brain region that undergoes the most change at the time when the adversity is experienced. During infancy, the hippocampus is the area of the brain that is maturing most expeditiously and is consequently more vulnerable than during other stages. This region is tied to the regulation of emotions, social behavior, stress responsiveness, and ultimately mental health \citep{center2016best,shonkoff2009neuroscience}. Yet, the effects on later life health impairment are not only determined by the timing, but also by the type of the experience. In both cases - the cumulative exposure and the programming of the adversity - the effects of experiences made in early life may be latent at first until the onset of a particular condition \citep{almond2011fetalorigins}. The time lag can be many years, even decades \citep{shonkoff2009neuroscience}.\newline
 
 
 % how the 1979 maternity leave reform might affect early life conditions of the newborns
@@ -355,10 +369,21 @@ Summing up, if there are effects of extending maternity leave on parental health
 
 
 % Income & other outcomes (fertility)
-Third,  [NUR STICHPUNKTE IN DEM ABSATZ]
- income (depreciation of human capital, change selection of mothers into work, change in labor market attachment see SL2014)
-transitional changes might not matter; hardly the case for families at the bottom of the SES distribution $\rightarrow$	 
-experiment led by Greg Duncan: "RCT to evaluate the role of economic resources in early development. Is there a causal effect of unconditional cash transfers on cognitive, socio-emotional and brain development of infants in low-income US families. Brain circuitry may be sensitive to the effects of early experience even before early behavioral differences can be detected. In order to understand the impacts of added income on children's brain functioning at age 3, we will assess, during a lab visit, treatment/control group differences in measures of brain activity" (official title: Household Income and Child Development in the First Three Years of Life)
+Third, changes in household income are potential pathways for how the reform can affect child health outcomes. A considerable amount of research has been concerned with the positive association of family income with child cognitive achievement and health outcomes. Some studies have exploited expansions in the "earned income tax credit" (EITC) in order to investigate effects of household income on child outcomes. \cite{dahl2012impact} find that an increase in family income goes hand in hand with a boost in math and reading test scores, with the highest gains made among children from a low SES background. \cite{hoynes2015income} identify that an increase in household income concurs with a reduced likelihood of low birth weight, which is induced by more prenatal care and less adverse health behavior such as smoking. Recently, the literature was focusing on the associations associations between SES and functional brain development \citep{tomalski2013}. In order to evaluate the causal effect of economic resources in early childhood on cognitive, socio-emotional and brain development, an RCT was established and is still running until 2022.\footnote{The experiment with the title "Household Income and Child Development in the First Three Years of Life" is led by Greg Duncan.} The effect of parental income must not be underestimated as \cite{case2002economic} mention that the impact of parental income on children's health status is partly responsible for the intergenerational transmission mechanisms of socioeconomic status, due to the fact that adverse health effects of lower income are accumulated over children's life. \newline
+Another aspect is that women's share of household income may decrease when they stop working to take care of their children. This is problematic, for the reason that expenditures for child goods are often correlated with women's relative income share. The basis for this intra-household conflict may be rooted in asymmetric preferences for household goods across men and women \citep{anderson2002economics}.\footnote{The problem with intra-household allocation of resources and child well-being is not only found in developing countries, but was also a rationale for changing child benefit structures in the UK in the late 1970s \citep{lundberg1996bargaining}. Prior to the reform the benefit was basically a tax reduction for fathers, which was replaced by a cash payment to mothers in the hope that "kids do better".}\newline
+
+
+As the reform 'improved' the children's environment in the context of the previously raised points, we expect a-priori an enhancement of child health status.
+
+
+
+
+%  income (depreciation of human capital, change selection of mothers into work, change in labor market attachment see SL2014)
+% transitional changes might not matter; 
+
+
+% hardly the case for families at the bottom of the SES distribution $\rightarrow$	 
+% experiment led by Greg Duncan: "RCT to evaluate the role of economic resources in early development. Is there a causal effect of unconditional cash transfers on cognitive, socio-emotional and brain development of infants in low-income US families. Brain circuitry may be sensitive to the effects of early experience even before early behavioral differences can be detected. In order to understand the impacts of added income on children's brain functioning at age 3, we will assess, during a lab visit, treatment/control group differences in measures of brain activity" (official title: Household Income and Child Development in the First Three Years of Life)
 
 % https://onlinelibrary-wiley-com.emedien.ub.uni-muenchen.de/doi/epdf/10.1111/desc.12079 (Socioeconomic status and functional braindevelopment )
 
@@ -382,10 +407,10 @@ experiment led by Greg Duncan: "RCT to evaluate the role of economic resources i
 %--------------------------------------------------------------------
 % IDENTIFICATION
 %--------------------------------------------------------------------
-\newpage
+\bigskip
 \section{Empirical strategy}\label{sec:empirical_strategy}
 \subsection{Design}\label{sec:empirical_strategy_1design}
-In order to estimate the causal effect of the length of maternity leave, we exploit the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after the specified birth cutoff date (May 01, 1979) fall under the new regime, in which their mothers are eligible for six months of maternity leave after childbirth. Mothers of children born before the threshold are entitled to two months. Assignment to {\color{red} one of the two schemes} is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. A regression discontinuity design (RDD) might constitute a first potential identification strategy, in which one compares health outcomes of children which are quite similar with the only notable exception that their mothers were entitled to different lengths of maternity leave.\newline 
+In order to estimate the causal effect of the length of maternity leave, we exploit the 1979 reform's eligibility rule, which is contingent on childrens' birth date (see section \ref{sec:background}). Children born on/after the specified birth cutoff date (May 01, 1979) fall under the new regime, in which their mothers are eligible for six months of maternity leave after childbirth. Mothers of children born before the threshold are entitled to two months. Assignment to one of the two schemes is a deterministic function of the birth date of the child and thus "sharp" as in the terminology of \cite{hahn2001identification}. A regression discontinuity design (RDD) might constitute a first potential identification strategy, in which one compares health outcomes of children which are quite similar with the only notable exception that their mothers were entitled to different lengths of maternity leave.\newline 
 We augment this idea of a local identification by combining the RDD with a difference-in-differences (DD) approach. A large body of literature suggests that there is a strong relationship between season of birth, health and other socioeconomic outcomes. The seasonality may come about due to reasons that are associated with either pre- or postnatal factors. First, the seasonality might arise due to selective conception, i.e. the socioeconomic composition of mothers varies over time \citep{buckles2013season}. Second, \cite{currie2013within} argue that season of birth effects might arise due to seasonal patterns of in-utero disease prevalence and nutrition.\footnote{In particular, they find seasonal influenza as a potential mechanism between month of birth and later outcomes.} Last, the seasonality aspect may also be the result of social postnatal factors such as age at school-entry \citep{black2011too}. \newline Not accounting for these season-of-birth effects, the estimated health differentials of children born before and after the reform date might be biased. The bias emanates from the fact that the estimated effect might be partly driven by the difference of heath outcomes from the seasonality component and not so much by the expansion in maternity leave coverage itself. Yet, by matching up the difference in health outcomes of children born within a distance to the birth cutoff date in which the legislation change took place (henceforth referred to as the treatment cohort) with differences in outcomes of children born around the same threshold one year prior the reform (control group), we can eliminate the seasonality component while preserving the local identification aspect. The implicit identifying assumption is that seasonality is time-invariant, in other words, one has to assume that the season-of-birth effects are the same for treatment and control group.\newline
 
 Our main specification to estimating the effect of the length of maternity leave on children's health outcomes corresponds to the following equation: \footnote{The estimation procedure can also be found in similar contexts in \cite{RafaelLaliveandJosefZweimuller2009}, \cite{Dustmann2012}, \cite{Ekberg2013parental}, \cite{schonberg2014expansions}, \cite{Lalive2014}, \cite{Huebener2017}, \cite{danzer2017}, \cite{guertzgen2018}, and \cite{avdic2018modern}.}
@@ -418,7 +443,7 @@ Behavioral responses with respect to the forcing variable (the birth date of the
 	
 	\item \underline{Induced births and cesarean sections}\\ Mothers with due dates close to the cutoff date on May 1, 1979 could time the birth date of their child by postponing induced births and cesarean sections.\footnote{Bringing the birth date forward around the threshold does not constitute a threat to the identification strategy, because this behavioral response would destroy their children's eligibility. Hence, it can be safely assumed that women would like to postpone the date of birth, if any.} \cite{gans2009born} find that during the introduction of a \$3.000 "Baby Bonus" in Australia, parents postponed the birth by as much as a week in order to be eligible for the benefits. Consequently the data shows that sharply before the cutoff birth date there is a dip in the birth rate and a huge increase on the first day after the threshold.
 \end{enumerate}
-It is possible that there are similar distortionary "introduction effects" at work in the maternity leave expansion in Germany in 1979. In other words, even though the announcement period does not allow for a strategic conception, parents may be incentivized to delay the timing of their child due to the reform.\footnote{Yet, we believe that this effect is rather unlikely as the C-section/induced birth rate in the FRG around 1980 was significantly lower than its counterpart in Australia in 2004. This gives less scope for shifting births around the threshold. {\color{red} Quelle?}}
+It is possible that there are similar distortionary "introduction effects" at work in the maternity leave expansion in Germany in 1979. In other words, even though the announcement period does not allow for a strategic conception, parents may be incentivized to delay the timing of their child due to the reform.\footnote{Yet, we believe that this effect is rather unlikely as the C-section/induced birth rate in the FRG around 1980 was significantly lower than its counterpart in Australia in 2004. This gives less scope for shifting births around the threshold. } %{\color{red} Quelle?}
 
 
 \bigskip\bigskip
@@ -490,7 +515,8 @@ In the next step, we define the outcomes as the number of diagnoses per 1,000 in
 The data set has three main advantages. First, compared to survey data, the hospital registry data covers the universe of German in-patient cases and is consequently not prone to sampling errors or problems associated with attrition. Additionally, the large number of observations come in handy when identifying local effects. Second, due to the longitudinal character of the data set we are able to trace out the trajectory of children's health differentials over 20 years of their adulthood. Third, there is almost surely no measurement error. On the one hand, this might affect the birth date, which is accurate to the month in our context. This is particularly relevant as the time of birth is the deciding factor whether an individual's mother is eligible for the more generous leave scheme or not. \cite{Dustmann2012} do not have information about the exact birth date and have to impute the month-of-birth.\footnote{\cite{Dustmann2012} estimate that in roughly 70\% of the cases they obtain the correct birth month.} On the other hand, the lack of measurement error holds for the outcome variables, as well. As the diagnosis code matters for remuneration, the ICD code is of a very high quality. Moreover, in comparison with self-reported survey data, administrative data does not suffer from issues related to social desirability bias \citep{marcus2015}.\newline
 
 %Nachteile
-Nevertheless, the data set has some drawbacks, too. First, the source of data limits us to analyze rather severe health events. A priori we expect to find an effect only for the types of health outcomes, which are particularly salient in the hospital registry data. Yet, some health conditions, which are diagnosed elsewhere (e.g. practitioner), might be even more affected than the diagnoses that we observe.\footnote{One could supplement health insurance data for more common diagnosis types that are more likely made by practitioners, but are probably affected by the extension of maternity leave (e.g. such as the incidence of metabolic syndrome).} This implies that our estimates represent a lower-bound of the overall effect of the maternity leave on health outcomes. {\color{red} Max: Hausarztbesuche}\newline%In a way, we just scratch the tip of the iceberg  
+Nevertheless, the data set has some drawbacks, too. First, the source of data limits us to analyze rather severe health events. A priori we expect to find an effect only for the types of health outcomes, which are particularly salient in the hospital registry data. Yet, some health conditions, which are diagnosed elsewhere (e.g. practitioner), might be even more affected than the diagnoses that we observe.\footnote{One could supplement health insurance data for more common diagnosis types that are more likely made by practitioners, but are probably affected by the extension of maternity leave (e.g. such as the incidence of metabolic syndrome).} This implies that our estimates represent a lower-bound of the overall effect of the maternity leave on health outcomes. \newline%In a way, we just scratch the tip of the iceberg  
+%{\color{red} Max: Hausarztbesuche}
  Second, although the registry data is rich in both, the numbers of observations and the quality of its entries, it contains only few socio-economic variables. This implies that we can only demonstrate average effects of the 1979 maternity leave reform, but cannot present any results by subgroups. Last, connected to the previous point, we do not have information about the place of birth, implying that the region $r$ in which we observe a patient in year $t$ does not necessarily have to coincide with the patient's place of birth. Ideally, we would like to exclude individuals from the analysis whose mothers were not affected by the reform, such as foreign-born children and children born in the German Democratic Republic (GDR). Yet, as we are unable to do so, the results get diluted such that our ITT estimates are pushed towards zero. The implicit assumption is that migration to the area of the former FRG occurred at random (with respect to the month-of-birth). In order to refute this concern to some extent, our baseline specification is aggregated to the level of the former FRG and GRD and we rely on more disaggregated data only for the investigation of effect heterogeneity and robustness tests. In this way, we hope to limit the impact of within region migration of the area of the former FRG or GDR. \footnote{Undoubtedly, if unaffected individuals migrated differently by the month-of-birth, this would cause some trouble for identification.}\newline
 
 
@@ -509,11 +535,8 @@ Nevertheless, the data set has some drawbacks, too. First, the source of data li
 \subsection[The effect on hospital admission]{The effect of the 1979 maternity leave reform on hospitalization}
 
 
-\textbf{OVERVIEW TABELLEN: Sollen wir evtl die SD rausnehmen und einfach nur alles in Bezug zum mean interpretieren?}
-\natalia{if we find something even on these very extreme health outcomes, this tells us something!}
-
 % Hospital - Total
-Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. The outcome is defined as the \natalia{annual?!} number of hospital admissions per 1,000 individuals per month of birth. In panel A, we present our ITT results based on the pooled data covering the years from 1995 to 2014, i.e. from age 17 to 35. The maternity leave reform significantly reduced the fraction of annual inpatient treatments in hospitals by 2.1 cases per 1,000 individuals (column 1, baseline specification). This corresponds to a reduction by 1.7\% from the pre-treatment mean. Given that hospital admissions reflect rather extreme health problems, this estimate  potentially represents an lower bound of the overall health impact of the reform. \natalia{voriger satz: raus oder rein oder evtl nach hinten in die conclusion?} The point estimate is very robust to using narrower estimation windows (columns 2 - 4) and to excluding children born close to the cut-off (children born in April and May).\footnote{The results for the narrower bandwidths are less precisely estimated due to the smaller sample sizes; however, the point estimates do not differ significantly across the specifications.} 
+Table \ref{tab: DD_hopsital2_total} contains difference-in-difference estimates of the impact of the expansion in maternity leave on hospital admission, based on equation \ref{eq:DD_basline}. The outcome is defined as the annual number of hospital admissions per 1,000 individuals per month of birth. In panel A, we present our ITT results based on the pooled data covering the years from 1995 to 2014, i.e. from age 17 to 35. The maternity leave reform significantly reduced the fraction of annual inpatient treatments in hospitals by 2.1 cases per 1,000 individuals (column 1, baseline specification). This corresponds to a reduction by 1.7\% from the pre-treatment mean.  The point estimate is very robust to using narrower estimation windows (columns 2 - 4) and to excluding children born close to the cut-off (children born in April and May).\footnote{The results for the narrower bandwidths are less precisely estimated due to the smaller sample sizes; however, the point estimates do not differ significantly across the specifications.} 
 \newline     
 %alt: With our baseline specification that uses a bandwidth of half a year (column 4), we find that there are on average 2.076 fewer hospitalizations per 1,000 individuals for children whose mothers were eligible for prolonged maternity leave. In the next step, we vary the width of the estimation window from three months to half a year and run a "Donut" specification in which we omit children who are born in the months directly around the threshold (i.e. exclude children born in April and May). The point estimate is fairly robust to different estimation windows.  
 
@@ -523,12 +546,12 @@ To investigate whether these effects are stable over the life-cycle or vary by a
 
 %On average, we find not significant effects of the extended maternity leave on hospitalizations at younger ages (17-26 year-olds). However, with increasing age as the children grow older, the differentials are opening up for the cohorts aged 27-31 and 32-35. The magnitude of the effects are larger and statistically significant. 
 %level of analysis is on MOBxYOBXyear level
-
+ 
 % Hospital -  Distinction Women and Men (tabelle)
 We next explore whether these general findings and the age pattern hold similarly for men and women. Tables \ref{tab: DD_hopsital2_female} and \ref{tab: DD_hopsital2_male} show the effect of the 1979 maternity leave reform on hospital admissions for women and men, respectively. In general, the point estimates for men are mostly larger than the corresponding ones for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust with respect to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} very closely. On the one hand, we find for men in the pooled sample an average reduction of 2.410 fewer hospitalizations for MOB cohorts that were born under the more generous regime, irrespective of the estimation window. On the other hand, the effects are growing in size the longer we follow individuals across their life-cycle. \newline
 
 %  Hospital - life-course graph
-Figure \ref{fig: lc_hospital2_frg_DD} illustrates the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{We still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age.} We estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a shows effect on hospital admissions over the life-course for the pooled sample of men and women. Overall, the figure reveals that the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c). For men, the positive health impact of the reform seems to  materialize more and more with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: While the figure reveals several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35 \natalia{(?)}\newline
+Figure \ref{fig: lc_hospital2_frg_DD} illustrates the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{We still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age.} We estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a shows effect on hospital admissions over the life-course for the pooled sample of men and women. Overall, the figure reveals that the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c). For men, the positive health impact of the reform seems to  materialize more and more with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: While the figure reveals several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35.\newline
 %The gray bold line in the background, specification of 6M BW
 
 \subsection{Robustness}\label{sec: robustness}
@@ -536,7 +559,7 @@ Figure \ref{fig: lc_hospital2_frg_DD} illustrates the trajectories of the hospit
 We performed several sensitivity and placebo test to assess the robustness of our findings. The result of these additional tests are reported in Table \ref{tab: robustness_hospital}. 
 
 \textit{1. Alternative Specifications}\newline
-First, we test whether our results are sensitive to the respective denominator used in calculating the fraction of diagnoses by 1000 individuals born in a specific month and year. Ideally, we would use as denominator the actual number of individuals living in Germany in a respective year (1995-2014) and born in a particular year and month. This data is not available. In the main analysis, we thus employ as denominator the number of births in a particular year and month (based on federal vital statistics). However, over time, this denominator might reflect the actual population size born in a particular month and year only imperfectly (due to migration or death). Therefore, we construct an alternative denominator using actual annual population figures by year of birth, weighted by the relative frequency of births across birth months in the year of birth. \footnote{The number of observations is smaller since the statistics on annual population size by birth month and year are only available since \natalia{2003}.}
+First, we test whether our results are sensitive to the respective denominator used in calculating the fraction of diagnoses by 1000 individuals born in a specific month and year. Ideally, we would use as denominator the actual number of individuals living in Germany in a respective year (1995-2014) and born in a particular year and month. This data is not available. In the main analysis, we thus employ as denominator the number of births in a particular year and month (based on federal vital statistics). However, over time, this denominator might reflect the actual population size born in a particular month and year only imperfectly (due to migration or death). Therefore, we construct an alternative denominator using actual annual population figures by year of birth, weighted by the relative frequency of births across birth months in the year of birth. \footnote{The number of observations is smaller since the statistics on annual population size by birth month and year are only available since 2003.}
 Column 2 in Table \ref{tab: robustness_hospital} shows that our result is robust to using this alternative denominator.\newline
 Second, we exploit information on regional location of hospitals to dis-aggregate our data spatially. We create a regional panel for the years 2003 - 2014 for the 204 labor market regions in West Germany containing information on number of diagnoses per 1000 individuals in a respective MOB cohort. Actual population size by MOB cohort on the LMR level is approximated by data on current population by year of birth - i.e. the number of inhabitants in year $t$ who were born in 1979 in region $r$ - weighted by the relative frequency of birth across months (as given by the fertility distribution in the national vital statistics). An advantage of this regional-level analysis is that it allows including region fixed effects. We can thus control for potentially confounding effects on the regional level. The corresponding regression specification is as follows: 
 \bigskip
@@ -609,27 +632,29 @@ Breaking up the analysis by age group generates additional insights. Table \ref{
 Or results provide evidence that the expansion in maternity leave caused a reduction in hospitalization, in particular for men and towards the end of the observed time window. Furthermore, when considering the main diagnosis chapters, we see that the largest driver for the decline in hospital admissions is coming from mental and behavioral disorders.\footnote{This is also true when we consider the effect in percent of the baseline mean as an effective measure. The largest reduction is coming from diseases of the sense organs (7.03\%), but is followed by mental and behavioral disorders (3.17\%).} 
 
 \bigskip
+% EFFECT ON MENTAL AND BEHAVIORAL DISORDERS
 \subsection{The effect on mental \& behavioral disorders}
-Since the estimated effects of the maternity leave reform on mental and behavioral disorders stand out in terms of effect size and frequency of diagnoses, we present more refined evidence on this diagnosis chapter in the following. To recapitulate, first, in the overall sample, MBD accounts for one third of the reduction in hospitalizations, and in the last age bracket the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. Second, as shown in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 0 and 35 years in 2014. Another important aspect is that MBD caused the highest costs per diagnosis among all diagnoses chapters for the age group 15-45 years in 2015 \natalia{add source}.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: mental and behavioral disorders (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} 
+Since the estimated effects of the maternity leave reform on mental and behavioral disorders stand out in terms of effect size and frequency of diagnoses, we present more refined evidence on this diagnosis chapter in the following. To recapitulate, first, in the overall sample, MBD accounts for one third of the reduction in hospitalizations, and in the last age bracket the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. Second, as shown in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 0 and 35 years in 2014. Another important aspect is that MBD caused the highest costs per diagnosis among all diagnoses chapters for the age group 15-45 years in 2015.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: mental and behavioral disorders (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} \newline
 
-tables
-total	\ref{tab: DD_d5_total}
-females	\ref{tab: DD_d5_female}
-males	\ref{tab: DD_d5_male}
-LC figure
-\ref{fig: lc_d5_frg_DD}
+Tables \ref{tab: DD_d5_total}, \ref{tab: DD_d5_female} and \ref{tab: DD_d5_male} show the ITT estimates for the effect of the expansion in maternity leave on the diagnosis of mental and behavioral disorders for all in-patients, women and men, respectively. While the estimates for women are close to zero and not statistically significant from zero, the magnitude of the effects for men are large. Males who are born after the expansion of maternity leave experience 1.192 fewer diagnoses per 1,000 individuals compared to individuals whose mothers were not eligible for the extended leave period. When considering the estimates per age bracket one can see the same pattern as with hospital admission - namely that the health differentials are opening up at the age of 26 and are further increasing towards the end of the observed time span. Figure \ref{fig: lc_d5_frg_DD} shows the corresponding life-course graphs, which confirm the impression obtained from the tables. We run the same set of sensitivity test as we did for hospital admission in Table \ref{tab: robustness_hospital} and find that the results are robust to different specifications and estimation procedures.\footnote{Robustness table for mental and behavioral disorders can be found in Appendix Table \ref{tab: robustness_d5}.} \newline
+
+In the next step, we investigate what are the drivers for the reduction in mental and behavioral disorders in response to the 1979 maternity leave reform. To do so we utilize the number of subdiagnosis per 1,000 individuals as dependent outcome as shown in equation \ref{eq:DD_basline}. The subcategories are defined in Panel B of Table \ref{tab:outcomes_coding_main_chapters} and Figure \ref{fig: d5partition} shows the incidence distribution of the top 5 subcategories over time. Table \ref{tab: ITT_across_d5subcategories_per_age_group_total} and Figure \ref{fig: ITT_d5_subcategories} show that the reduction in mental and behavioral disorders is coming from fewer diagnoses of mental disorders due to psychoactive substances and incidences of Schizophrenia. \footnote{The table for women and men can be found in Table \ref{tab: ITT_across_d5subcategories_per_age_group_women} and \ref{tab: ITT_across_d5subcategories_per_age_group_men}.}
+
+
+
+
+
+
 
 %RF
 %pooled
 %pooled \ref{fig: rf_d5_pooled}
 %age group \ref{fig: rf_d5_agegroup}
 
-\subsection{Subsections of mental \& behavioral disorders}
-Figure \ref{fig: d5partition}: overview of subcategories of mental disorders
-Figure \ref{fig: ITT_d5_subcategories} ITT effects across subcategories of MBD
-Table \ref{tab: ITT_across_d5subcategories_per_age_group_total}: ITT effects across subcategoires of MBD\footnote{The table for women and men can be found in Table \ref{tab: ITT_across_d5subcategories_per_age_group_women} and \ref{tab: ITT_across_d5subcategories_per_age_group_men}.}
+% \subsection{Subsections of mental \& behavioral disorders}
 
-\footnote{Robustness table for mental and behavioral disorders can be found in Appendix Table \ref{tab: robustness_d5}.}
+
+
 
 
 
@@ -644,14 +669,17 @@ Table \ref{tab: ITT_across_d5subcategories_per_age_group_total}: ITT effects acr
 %--------------------------------------------------------------------
 % CONCLUSION
 %-------------------------------------------------------------------
-\section{Concluding remarks (NATALIA)}\label{sec:conclusion}
+\section{Concluding remarks}\label{sec:conclusion}
+
+Our results show that the 1979 maternity leave reform had positive health effects as indicated by fewer hospitalizations. Importantly, some of these effects materialize only later in life. Hence, our results imply that the assessment of maternity leave, which focuses only on short-run outcomes, might miss out certain aspects that develop only in the long-run.
+
  
-Why is it interestign to look at F-chapter
-Mental \& behavioral disorders are the diagnosis types with the longest average length of stay: 20.1 days (in comparisson to a general average of 7.6 days) [Data source: \cite[p. 5]{statistisches2012diagnosedaten} ]
+% Why is it interestign to look at F-chapter
+% Mental \& behavioral disorders are the diagnosis types with the longest average length of stay: 20.1 days (in comparisson to a general average of 7.6 days) [Data source: \cite[p. 5]{statistisches2012diagnosedaten} ]
 
-Back-of-the-envelope calculation
+% Back-of-the-envelope calculation
 
-Financial returns to society through health promotion and disease prevention
+% Financial returns to society through health promotion and disease prevention
 
 
 
@@ -724,7 +752,7 @@ Financial returns to society through health promotion and disease prevention
 	\scriptsize
 	\begin{minipage}{0.9 \linewidth}
 		\emph{Notes:} The figure plots the number of births around the cutoff date May 01 1979 for the expansion in maternity leave from two to six months after childbirth. Panel A shows the raw data, i.e. the actual number of births per day (unadjusted). Panel B, however, plots the difference between the raw and expected number of births when accounting for day of year, public holiday, and year$\times$day of week fixed effects. For the expected number of births we use data in the same time window (one month before and after the threshold) for the years 1977-1990, except for the year in which the reform took place. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
-		{\color{red}how do I get the gray shading from the original figure in the bottom part?}
+		% {\color{red}how do I get the gray shading from the original figure in the bottom part?}
 	\end{minipage}
 \end{figure}
 \vspace*{\fill}\clearpage
