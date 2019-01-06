@@ -1,0 +1,24 @@
+\vspace*{\fill}
+\begin{table}[H] \centering 
+ \begin{threeparttable} \centering %\caption{ITT effects on \textbf{hospital admission (total)}}\label{tab: DD_hopsital2_total}
+  {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ 	\begin{tabular}{l*{6}{c}}
+ 		\toprule 
+ 		%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+ 		& \multicolumn{5}{c}{Estimation window} \\ 
+ 		\cmidrule(lr){2-6}
+ 		&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+ 		&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+ 		\midrule
+ 		\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+ 		\input{presentation/include/paper_hospital2_DD_overall} \\ \\
+ 		\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+ 		\input{paper/include/paper_hospital2_DD_17-21} \input{paper/include/paper_hospital2_DD_22-26} \input{paper/include/paper_hospital2_DD_27-31} \input{paper/include/paper_hospital2_DD_32-35} 
+ 		\bottomrule 
+ 	\end{tabular}}
+ 	\begin{tablenotes} 
+ 		\item \tiny \emph{Notes:} Clustered standard errors are reported in parentheses. \newline Significance levels: $+$ p $<$ 0.15, * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01. 
+ 	\end{tablenotes} 
+ \end{threeparttable} 
+ \end{table}
+\vspace*{\fill}\clearpage 
