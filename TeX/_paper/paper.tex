@@ -5,7 +5,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -126,7 +126,7 @@ labelfont={bf}
 \usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
 
 \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\newcommand\natalia[1]{\textcolor{black}{#1}}
+\newcommand\natalia[1]{\textcolor{orange}{#1}}
 
 % CAPTIAL LETTERS FOR SECTION CAPTIONS
 %\usepackage{sectsty}
@@ -202,6 +202,55 @@ labelfont={bf}
 %--------------------------------------------------------------------
 \section{Introduction}\label{sec:introduction}
 
+
+\newpage
+\textbf{Notes what we could potentially include in the introduction}\newline
+Intro –
+Health paper or PL paper?
+Why relevant?
+What do we (not) know?
+What do we do?
+What do we find?
+
+To which literature do we contribute to?
+\begin{itemize}
+	\item Parental leave literature
+	\item Literature on the role of early childhood interventions on long-run child development
+	\begin{itemize}
+		\item The role of type of nurture at the beginning of life on later health outcomes
+		\item Fetal origin hypotheses extended
+	\end{itemize}
+	\item Spill-over of labor market policy on health outcomes
+\end{itemize}
+
+What is long-term health??( evtl auch in die background section?) 
+\begin{itemize}
+	\item Hospital admission
+	\item why relevant? costs...
+	\item what are frequencies (compare to ND's picture for the IZA presentation)
+\end{itemize}
+
+
+\textbf{RELEVANT LITERATURE, either other LR domains or SR health} 
+\begin{itemize}
+	\item long-run domain
+	\begin{itemize}
+		\item intro \cite{currie2011human} \& \cite{almond2017childhood}
+		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood (mention effect on breastfeeding)  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
+		\item find null effect \cite{Dahl2016Case}, \cite{rasmussen2010increasing} (parental access to birth-related leave)
+	\end{itemize}
+	\item health domain
+	\begin{itemize}
+		\item \cite{stearns2015effects} and \cite{rossin2011effects} (backup birth-weight \cite{almond2005costs} and \cite{currie2007biology})
+		\item \cite{beuchert2016}
+		\item \cite{adhvaryu2018early}: effects of changes in real producer price of cocoa in early life on mental health outcomes in Ghana
+	\end{itemize}
+	\item beides combined: \cite{danzer2017parental} disability status, fit for military service, finding positive effects on children's health status but none for educational attainment and labor market outcomes. No heterogeneity by gender or SES, but by counterfactual mode of care (pos effects in regions with no nursery).
+\end{itemize}
+
+\newpage 
+\textbf{From the abstract of our submission to the dggö}
+
 This paper assesses the impact of the length of maternity leave on children’s long-run health outcomes. Our quasi-experimental design evaluates an expansion in maternity leave coverage from two to six months, which occurred in the Federal Republic of Germany in 1979. The expansion came into effect after a sharp cutoff date and significantly increased the time working mothers stayed at home with their newborns during the first six months after childbirth. In our analysis, we exploit German hospital registry data, containing detailed information about the universe of inpatients' diagnoses for the years 1995 to 2014. \newline
 
 In order to estimate the causal effect of the length of maternity leave on child health outcomes we exploit the exogenous variation stemming from the reform, which provides a treatment assignment that is as good as random. In order to eliminate potential season of birth effects, we combine a regression discontinuity with a difference-in-difference approach: health outcomes of children, who were born shortly before and after the implementation of the policy reform, are compared to the outcomes of children who are born in the same calendar months but in the previous year in which no legislative change took place.\newline
@@ -218,48 +267,7 @@ We contribute to the growing literature on parental leave and child development 
 
 
 
-% Intro –
-% Health paper or PL paper?
-% Why relevant?
-% What do we (not) know?
-% What do we do?
-% What do we find?
- 
-% To which literature do we contribute to?
-% \begin{itemize}
-%   \item Parental leave literature
-%   \item Literature on the role of early childhood interventions on long-run child development
-%   \begin{itemize}
-%     \item The role of type of nurture at the beginning of life on later health outcomes
-%     \item Fetal origin hypotheses extended
-%   \end{itemize}
-%   \item Spill-over of labor market policy on health outcomes
-% \end{itemize}
 
-% What is long-term health??( evtl auch in die background section?) 
-% \begin{itemize}
-% 	\item Hospital admission
-% 	\item why relevant? costs...
-% 	\item what are frequencies (compare to ND's picture for the IZA presentation)
-% \end{itemize}
-
-
-% \textbf{RELEVANT LITERATURE, either other LR domains or SR health} 
-% \begin{itemize}
-% 	\item long-run domain
-% 	\begin{itemize}
-% 		\item intro \cite{currie2011human} \& \cite{almond2017childhood}
-% 		\item find positive effect: \cite{carneiro2015flying} Norway; \cite{albagli2018}: reform 2011 in chile, pos effect on child cognitive skills (0.2 std), stronger effect for children of mothers with low education levels persistence in adulthood (mention effect on breastfeeding)  \cite{danzer2017} parental leave Austria (change 12->24 months job protection and benefit period) no effect on PISA scores in pooled sample, but positive effects for children with a high SES background , in particular for boys, detrimental effects for children from lower educated mothers $\rightarrow$ "when no formal  child care system: early maternal employment of highly educated women might have detrimental effects for their offspring"
-% 		\item find null effect \cite{Dahl2016Case}, \cite{rasmussen2010increasing} (parental access to birth-related leave)
-% 	\end{itemize}
-% 	\item health domain
-% 	\begin{itemize}
-% 		\item \cite{stearns2015effects} and \cite{rossin2011effects} (backup birth-weight \cite{almond2005costs} and \cite{currie2007biology})
-% 		\item \cite{beuchert2016}
-% 		\item \cite{adhvaryu2018early}: effects of changes in real producer price of cocoa in early life on mental health outcomes in Ghana
-% 	\end{itemize}
-% 	\item beides combined: \cite{danzer2017parental} disability status, fit for military service, finding positive effects on children's health status but none for educational attainment and labor market outcomes. No heterogeneity by gender or SES, but by counterfactual mode of care (pos effects in regions with no nursery).
-% \end{itemize}
 
 
 % Nice way of framing taken from ACD (2017) NBER 
