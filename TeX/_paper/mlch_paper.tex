@@ -576,68 +576,7 @@ I next explore whether these general findings and the age pattern hold similarly
 Figure \ref{fig: lc_hospital2_frg_DD} illustrates the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{I still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age.} I estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DiD estimates (along with 90\%/95\% confidence intervals) across time.\footnote{Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} Panel a shows effect on hospital admissions over the life-course for the pooled sample of men and women. Overall, the figure reveals that the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c). For men, the positive health impact of the reform seems to materialize more and more with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: While the figure reveals several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35.\newline
 %The gray bold line in the background, specification of 6M BW
 
-\subsection{Robustness}\label{sec: robustness}
 
-I performed several sensitivity and placebo test to assess the robustness of my findings. The result of these additional tests are reported in Table \ref{tab: robustness_hospital}. 
-
-\textit{1. Alternative Specifications}\newline
-First, I test whether my results are sensitive to the respective denominator used in calculating the fraction of diagnoses by 1000 individuals born in a specific month and year. Ideally, I would use as denominator the actual number of individuals living in Germany in a respective year (1995-2014) and born in a particular year and month. This data is not available. In the main analysis, I thus employ as denominator the number of births in a particular year and month (based on federal vital statistics). However, over time, this denominator might reflect the actual population size born in a particular month and year only imperfectly (due to migration or death). Therefore, I construct an alternative denominator using actual annual population figures by year of birth, weighted by the relative frequency of births across birth months in the year of birth. \footnote{The number of observations is smaller since the statistics on annual population size by birth month and year are only available since 2003.}
-Column 2 in Table \ref{tab: robustness_hospital} shows that my result is robust to using this alternative denominator.\newline
-Second, I exploit information on regional location of hospitals to dis-aggregate my data spatially. I create a regional panel for the years 2003 - 2014 for the 204 labor market regions in West Germany containing information on number of diagnoses per 1000 individuals in a respective MOB cohort. Actual population size by MOB cohort on the LMR level is approximated by data on current population by year of birth - i.e. the number of inhabitants in year $t$ who were born in 1979 in region $r$ - weighted by the relative frequency of birth across months (as given by the fertility distribution in the national vital statistics). An advantage of this regional-level analysis is that it allows including region fixed effects. I can thus control for potentially confounding effects on the regional level. The corresponding regression specification is as follows: 
-\bigskip
-%\textbf{Analysis carried out on the LMR level}
-\begin{align}
-Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
-\end{align}
-%additionally include region fxied effects $\phi_r$
-%new: on regional level $r$
-%in total there are 245 LMR, 204 in the area of the former FRG, 41 in the area of the former GDR. 
-The estimated coefficients based on the regional panel data are very similar to the main results (column 3). \newline
-
-\textit{2. Alternative Estimations}\newline
-Next, I performed several alternative estimations using additional or alternative control groups. In Table \ref{tab: robustness_hospital}, column (4), I report estimates based on a Difference-in-difference-in-differences approach. The additional control group is comprised of individuals living on the territory of the former GDR (East Germany). The underlying idea is that children (and their mothers) born in East Germany in 1979 were not affected by the West German 1979 maternity leave reform and should thus resemble a valid comparison group (conditional the common trend assumption). Importantly, this specification allows me netting out any general time trend in the outcome variables that might affect the results. The corresponding Triple-difference-estimation specification becomes: \newline
-
-
-%\textbf{Triple difference specification (DDD)}
-\begin{align}
-Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DDD}
-\end{align}
-
-which now contains an additional dummy variable $FRG$ (West Germany) as well as interactions of this control group with the treatment cohort 1979 (Treat), children born after April (After) and with the interaction term Treat X After. Once again, the general pattern of my main results remains robust to this alternative estimation. While the estimates become less precise, the point estimates increase slightly (but not significantly). This general pattern also holds true if only use the 1979 birth cohort born in East Germany (GDR) as control group in an alternative difference-in-difference specification (see column 5). \footnote{
-% Robustness - alternative DD 
-%\textbf{Alternative DD}
-\begin{align}
-Y_{mt} =\ &\delta_0 + \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:alt_DD}
-\end{align}
-}
-
-As a further sensitivity test with respect to my chosen estimation specification and included control groups, I re-estimate my main regression equation including an additional control group, that is children born in West Germany in 1977. The advantage of including another pre-reform West German birth cohort is that might better help to account for systematic month-of-birth patterns in hospitalization rates (due to a larger sample size). \footnote{However, it also reduces the age span for which I can perform my analysis.}
-Once again, the results and pattern of my original main results hold when adding this additional control cohort (column 6).\newline
-
-Overall, the sensitivity tests demonstrate that my main results are robust to alternative specifications and estimations, indicating that the maternity leave reform significantly reduced hospitalization rates between the ages 16 to 34, and in particular so for men.\newline
-
-\textit{3. Placebo Tests}\newline
-I performed two placebo analyses to test the validity of my identifying assumptions: First, to test whether my estimated effects are caused by children eligible to the more generous maternity leave regime and not by an underlying general time trend affecting children born post-April, I ran a placebo analysis with two pre-reform birth cohorts 1978 and 1977, pretending that May 1, 1978 was the reform date. As a second placebo analysis I re-estimated my main DiD specification using the birth cohorts 1979 and 1978 and May 1, 1979 as reform cut-off date, but this time using the sample of East German individuals (who were not affected by the reform). 
-Reassuringly, both placebo tests yield insignificant effects supporting the notion that my main findings are indeed caused by the West German maternity leave reform.\newline
-
-\textit{4. Subgroup analysis: Rural and Urban Areas}\newline
-Last, I used my regional panel on inpatient cases to assess whether reform had a different impact on children's health in rural and urban areas. Theoretically, there are three reasons for why I might estimate a differential impact of the maternity leave reform. First, (female) labor force participation rates are generally higher in urban areas. Hence, it is likely that maternity leave eligibility rates in urban areas were higher than in rural areas. If that is true, I would expect my ITT estimates to be larger in urban areas. Second, apart from general differences in labor force participation rates, mothers in urban and rural areas might differ in their return to work behavior. If urban pre-reform mothers were more likely to return to the labor market quickly (after 2 months of giving birth) than rural mothers, the reform impact for urban mothers would comprise a partly compensated reduction in their reduced labor supply in the first 6 months after childbirth; in contrast, if rural mothers would have stayed at home in the absence of the reform anyways, the reform implied a windfall profit. To be clear, this argumentation is very hypothetical, since I lack information on the return-to-work behavior for mothers in urban and rural regions. This hypothesis is grounded on the observation that the rural population tends to be more traditional and conservative. Third, differential reform effects in urban and rural regions might also result from differences in the available counterfactual mode of care (see Danzer et al.). 
-
-\bigskip
-
-%Table \ref{tab: robustness_hospital}
-%ORDER OF COLUMNS:
-%1) BL 
-%2) current population 
-%3) LMR 
-%4) DDD
-%5) alt. DD 
-%6) ad CG 
-%7) Placebo: temporal 
-%8) Placebo spatial 
-%9 + 10) rural/urban heterogeneity (non-homogeneous first stage)
-
-%11) Do not shift age observations
 
 
 \subsection[The effect on main diagnosis chapters]{Results on main diagnosis chapters}
@@ -677,7 +616,68 @@ In the next step, I investigate what are the drivers for the reduction in mental
 
 
 
+\subsection{Robustness}\label{sec: robustness}
 
+I performed several sensitivity and placebo test to assess the robustness of my findings. The result of these additional tests are reported in Table \ref{tab: robustness_hospital}. 
+
+\textit{1. Alternative Specifications}\newline
+First, I test whether my results are sensitive to the respective denominator used in calculating the fraction of diagnoses by 1000 individuals born in a specific month and year. Ideally, I would use as denominator the actual number of individuals living in Germany in a respective year (1995-2014) and born in a particular year and month. This data is not available. In the main analysis, I thus employ as denominator the number of births in a particular year and month (based on federal vital statistics). However, over time, this denominator might reflect the actual population size born in a particular month and year only imperfectly (due to migration or death). Therefore, I construct an alternative denominator using actual annual population figures by year of birth, weighted by the relative frequency of births across birth months in the year of birth. \footnote{The number of observations is smaller since the statistics on annual population size by birth month and year are only available since 2003.}
+Column 2 in Table \ref{tab: robustness_hospital} shows that my result is robust to using this alternative denominator.\newline
+Second, I exploit information on regional location of hospitals to dis-aggregate my data spatially. I create a regional panel for the years 2003 - 2014 for the 204 labor market regions in West Germany containing information on number of diagnoses per 1000 individuals in a respective MOB cohort. Actual population size by MOB cohort on the LMR level is approximated by data on current population by year of birth - i.e. the number of inhabitants in year $t$ who were born in 1979 in region $r$ - weighted by the relative frequency of birth across months (as given by the fertility distribution in the national vital statistics). An advantage of this regional-level analysis is that it allows including region fixed effects. I can thus control for potentially confounding effects on the regional level. The corresponding regression specification is as follows: 
+\bigskip
+%\textbf{Analysis carried out on the LMR level}
+\begin{align}
+Y_{mrt} =\ \gamma_0 + \gamma_1 Treat_{m} + \gamma_2 After_{m} + \gamma_3 (Treat_{m} \times After_{m}) + \psi_m + \phi_r + \rho_t + \varepsilon_{mrt} \label{eq:DD_LMR}
+\end{align}
+%additionally include region fxied effects $\phi_r$
+%new: on regional level $r$
+%in total there are 245 LMR, 204 in the area of the former FRG, 41 in the area of the former GDR. 
+The estimated coefficients based on the regional panel data are very similar to the main results (column 3). \newline
+
+\textit{2. Alternative Estimations}\newline
+Next, I performed several alternative estimations using additional or alternative control groups. In Table \ref{tab: robustness_hospital}, column (4), I report estimates based on a Difference-in-difference-in-differences approach. The additional control group is comprised of individuals living on the territory of the former GDR (East Germany). The underlying idea is that children (and their mothers) born in East Germany in 1979 were not affected by the West German 1979 maternity leave reform and should thus resemble a valid comparison group (conditional the common trend assumption). Importantly, this specification allows me netting out any general time trend in the outcome variables that might affect the results. The corresponding Triple-difference-estimation specification becomes: \newline
+
+
+%\textbf{Triple difference specification (DDD)}
+\begin{align}
+Y_{mt} =\ &\beta_0 + \beta_1 Treat_{m} + \beta_2 After_{m} + \beta_3 FRG_m \nonumber\\&+ \beta_4 (Treat_{m} \times After_{m}) + \beta_5 (Treat_m \times FRG_m) + \beta_6 (After_m \times FRG_m) \nonumber\\ &+ \beta_7 (Treat_m\times After_m\times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DDD}
+\end{align}
+
+which now contains an additional dummy variable $FRG$ (West Germany) as well as interactions of this control group with the treatment cohort 1979 (Treat), children born after April (After) and with the interaction term Treat X After. Once again, the general pattern of my main results remains robust to this alternative estimation. While the estimates become less precise, the point estimates increase slightly (but not significantly). This general pattern also holds true if only use the 1979 birth cohort born in East Germany (GDR) as control group in an alternative difference-in-difference specification (see column 5). \footnote{
+	% Robustness - alternative DD 
+	%\textbf{Alternative DD}
+	\begin{align}
+	Y_{mt} =\ &\delta_0 + \delta_1 After_{m} + \delta_2 FRG_m + \delta_3 (After_m \times FRG_m) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:alt_DD}
+	\end{align}
+}
+
+As a further sensitivity test with respect to my chosen estimation specification and included control groups, I re-estimate my main regression equation including an additional control group, that is children born in West Germany in 1977. The advantage of including another pre-reform West German birth cohort is that might better help to account for systematic month-of-birth patterns in hospitalization rates (due to a larger sample size). \footnote{However, it also reduces the age span for which I can perform my analysis.}
+Once again, the results and pattern of my original main results hold when adding this additional control cohort (column 6).\newline
+
+Overall, the sensitivity tests demonstrate that my main results are robust to alternative specifications and estimations, indicating that the maternity leave reform significantly reduced hospitalization rates between the ages 16 to 34, and in particular so for men.\newline
+
+\textit{3. Placebo Tests}\newline
+I performed two placebo analyses to test the validity of my identifying assumptions: First, to test whether my estimated effects are caused by children eligible to the more generous maternity leave regime and not by an underlying general time trend affecting children born post-April, I ran a placebo analysis with two pre-reform birth cohorts 1978 and 1977, pretending that May 1, 1978 was the reform date. As a second placebo analysis I re-estimated my main DiD specification using the birth cohorts 1979 and 1978 and May 1, 1979 as reform cut-off date, but this time using the sample of East German individuals (who were not affected by the reform). 
+Reassuringly, both placebo tests yield insignificant effects supporting the notion that my main findings are indeed caused by the West German maternity leave reform.\newline
+
+\textit{4. Subgroup analysis: Rural and Urban Areas}\newline
+Last, I used my regional panel on inpatient cases to assess whether reform had a different impact on children's health in rural and urban areas. Theoretically, there are three reasons for why I might estimate a differential impact of the maternity leave reform. First, (female) labor force participation rates are generally higher in urban areas. Hence, it is likely that maternity leave eligibility rates in urban areas were higher than in rural areas. If that is true, I would expect my ITT estimates to be larger in urban areas. Second, apart from general differences in labor force participation rates, mothers in urban and rural areas might differ in their return to work behavior. If urban pre-reform mothers were more likely to return to the labor market quickly (after 2 months of giving birth) than rural mothers, the reform impact for urban mothers would comprise a partly compensated reduction in their reduced labor supply in the first 6 months after childbirth; in contrast, if rural mothers would have stayed at home in the absence of the reform anyways, the reform implied a windfall profit. To be clear, this argumentation is very hypothetical, since I lack information on the return-to-work behavior for mothers in urban and rural regions. This hypothesis is grounded on the observation that the rural population tends to be more traditional and conservative. Third, differential reform effects in urban and rural regions might also result from differences in the available counterfactual mode of care (see Danzer et al.). 
+
+\bigskip
+
+%Table \ref{tab: robustness_hospital}
+%ORDER OF COLUMNS:
+%1) BL 
+%2) current population 
+%3) LMR 
+%4) DDD
+%5) alt. DD 
+%6) ad CG 
+%7) Placebo: temporal 
+%8) Placebo spatial 
+%9 + 10) rural/urban heterogeneity (non-homogeneous first stage)
+
+%11) Do not shift age observations
 
 
 
