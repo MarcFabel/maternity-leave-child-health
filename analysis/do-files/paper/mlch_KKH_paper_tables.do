@@ -3,7 +3,7 @@
 	set more off
 	
 	*paths
-	global path   	   	"G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	
+	global path   	   	"F:\econ\m-l-c-h/analysis"	
 	global temp   	   	"$path/temp"
 	global graphs      	"$path/graphs/KKH"
 	global graph_paper 	"$path/graphs/paper"
