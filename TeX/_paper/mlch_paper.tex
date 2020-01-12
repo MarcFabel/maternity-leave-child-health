@@ -5,7 +5,7 @@
 %--------------------------------------------------------------------
 %	DOCUMENT CLASS
 %--------------------------------------------------------------------
-\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\documentclass[11pt, a4paper,draft]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
 \usepackage{fullpage} % leaves less space at margins of page
 \usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
 
@@ -223,23 +223,22 @@ The 1979 maternity leave expansion entails benefits, which were not primarily at
 % Relation to the literature
 This article is related to previous literature in the following ways. First, it relates to a large literature about early childhood experiences on later life outcomes. \cite{currie2011human} and \cite{almond2017childhood} offer detailed summaries of recent work in that strand of research. Most of the literature that investigates the long-run impacts of maternity leave focuses on human capital accumulation and labor market outcomes of children. 
 On the one hand, there are studies that find positive effects of leave duration on child outcomes. Among these, \cite{albagli2018} use a reform in Chile that increased paid maternity leave from 12 to 24 weeks in 2011. They find that the extension leads to a positive effect on children's cognitive skills, with larger effects for children from a disadvantaged background. Furthermore, they find increased breastfeeding (both at the extensive and intensive margin), and reduced levels of maternal stress. \cite{carneiro2015flying} studies the impact of a Norwegian reform in 1977, which increases the eligibility from 12 weeks of unpaid leave to 4 months paid and 12 months of unpaid leave. They find that the extension decreases the likelihood to drop-out from high school and increases earnings of individuals when aged 30. \cite{danzer2017} investigate an extension of parental leave duration in Austria. In 1990, paid and job protected paternity leave was extended from 12 to 24 months. The authors find no effect on PISA scores in the pooled sample, but positive effects for children from a high SES background (in particular boys). This is true when the reform induced a substitution of informal with maternal care. \cite{ginja2020parental} exploit a birth spacing eligibility cutoff in the Swedish leave system with the help of a regression discontinuity design and find that higher levels of parental leave benefits improve educational outcomes of the older child. Namely, there is an increase of children's cumulative GPA in ninth grade and a higher probability to have attended college by age 24. On the other hand, there are studies that find null effects. For instance, \cite{Dahl2016Case} investigate a series of policy reforms in Norway in the period from 1987 to 1992. In these legislation changes paid ML was increased from 18 to 35 weeks. The find little effects on children's school outcomes, such as performance in written exams in ninth grade and the probability to drop out from high school. 
+%effect really depends on concrete setting of the reform
 
-Second, this article is related to the literature about the impact of (maternity) leave on short-run health outcomes. In contrast to the previous point, the results in  this strand of the literature are unambiguous. For example, \cite{bullinger2019effect} considers the health effects of California's paid family leave policy. She finds improvements in infants' (aged 0 or 1) overall health and reductions in asthma rates. Moreover, the results suggest that maternal mental health is improving due to the paid leave program. 
+Second, this article is related to the literature about the impact of (maternity) leave on short-run health outcomes. In contrast to previously, the results in  this strand of the literature are unambiguous. It seems that leave mandates have a positive impact in children's health in the short-run. For example, \cite{bullinger2019effect} considers the health effects of California's paid family leave policy. She finds improvements in infants' (aged 0 or 1) overall health and reductions in asthma rates. Moreover, the results suggest that maternal mental health is improving due to the paid leave program. \cite{sayour2019impact} investigates the impact of a Canadian parental leave reform that was implemented at the end of 2000 on children's health outcomes when aged 2-3 years. She finds that the three additional months that mothers spend with their newborns lead to a decreased emotional disorder score. \cite{stearns2015effects} researches the effect of paid maternity leave in the setting of Temporary Disability Insurance programs in the United States on children's birth outcomes. She finds that maternity leave leads to a reduced likelihood of early term birth and increases in birth weight, which can be regarded as a key indicator of health of newborns and has high predictive power for future outcomes \citep{currie2007biology}.
+
+The empirical analysis in this paper expands and clarifies previous literature on several dimensions. First, the article combines the two previously mentioned fields of literature and evaluates \textit{long-run} health outcomes. As discussed before, the previous literature is either focused on short-run health or long-run educational attainment or labor market outcomes, whereas this paper provides causal estimates of the length of ML on \textit{long-run} child health outcomes. The closest study to my paper is \cite{danzer2019parental} that uses the same PL reform in Austria as \cite{danzer2017}. They find no effect of the Austrian reform on children's labor market outcomes, but positive effects on children's disability status up to age 23 and fitness for military service (males only). They find no effect heterogeneity by gender or SES, but by counterfactual mode of care: The positive effects on disability status and fitness for military service are driven by regions with no nurseries, i.e. regions where informal care is substituted with maternal care. Second, I am extending the literature by using detailed hospital registry data that allows to look at an unusual broad range of health outcomes. I use the universe of in-patient cases that were discharged from a hospital or rehabilitation facility and look at the effects of the ML reform on the patients' main diagnosis, which is coded according to the WHO's classification catalog. In this way I can investigate the effect of a ML expansion on all important disease categories. Third, the institutional setting in Germany and the data allow me to trace out the trajectory of the health differentials across 20 years of the children's adulthood (from age 16 up to age 35). This implies that a long-run perspective is really possible as the children are grown up and differentials had time to develop. \newline
 
 
 
-
-effect really depends on concrete setting of the reform
-
-The main contribution of this paper is to provide causal estimates of the length of ML on \textit{long-run} child health outcomes. 
-closest study: : \cite{danzer2019parental} disability status, fit for military service, finding positive effects on children's health status but none for educational attainment and labor market outcomes. No heterogeneity by gender or SES, but by counterfactual mode of care (pos effects in regions with no nursery).
+% Roadmap
+The remainder of the paper is structured as follows. The next section provides information about the 1979 ML reform and a discussion of potential channels. Section \ref{sec:data} explains the data and variables. Section \ref{sec:empirical_strategy} discusses the empirical design and the validity of the identification strategy. Section \ref{sec:results} reports results and Section \ref{sec:conclusion} presents a discussion that summarizes the findings. 
 
 
 
 \newpage
 To which literature do I contribute to?
 \begin{itemize}
-	\item Parental leave literature
 	\item Literature on the role of early childhood interventions on long-run child development
 	\begin{itemize}
 		\item The role of type of nurture at the beginning of life on later health outcomes
@@ -250,34 +249,6 @@ To which literature do I contribute to?
 
 
 
-
-\textbf{RELEVANT LITERATURE, either other LR domains or SR health} 
-\begin{itemize}
-	\item long-run domain
-	\begin{itemize}
-		\item find null effect , \cite{rasmussen2010increasing} (parental access to birth-related leave)
-	\end{itemize}
-	\item health domain
-	\begin{itemize}
-		\item \cite{stearns2015effects} and \cite{rossin2011effects} (backup birth-weight \cite{almond2005costs} and \cite{currie2007biology})
-		\item \cite{beuchert2016}
-		\item \cite{adhvaryu2018early}: effects of changes in real producer price of cocoa in early life on mental health outcomes in Ghana
-	\end{itemize}
-	
-\end{itemize}
-
-
-
-% Roadmap
-The remainder of the paper is structured as follows. The next section provides information about the 1979 ML reform and a discussion of potential channels. Section \ref{sec:data} explains the data and variables. Section \ref{sec:empirical_strategy} discusses the empirical design and the validity of the identification strategy. Section \ref{sec:results} reports results and Section \ref{sec:conclusion} presents a discussion that summarizes the findings. 
-
-
-
-
-
-
-
-\newpage
 \textbf{Notes what I could potentially include in the introduction}\newline
 Intro –
 Health paper or PL paper?
