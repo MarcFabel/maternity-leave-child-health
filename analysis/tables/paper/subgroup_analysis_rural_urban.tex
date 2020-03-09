@@ -1,0 +1,44 @@
+\vspace*{\fill}
+\begin{table}[htbp] \centering 
+	\begin{threeparttable} \centering 
+		\caption{Subgroup analysis} \label{tab: heterogeneity analysis} 
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{2}{c}} \toprule 
+				
+				&  \multicolumn{2}{c}{Heterogeneity}\\
+				\cmidrule(lr){2-3} 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+				&\multicolumn{1}{c}{\clb{c}{rural}}&\multicolumn{1}{c}{\clb{c}{urban}}\\
+				\midrule
+				\\
+
+				\textit{Panel A: Hospital admissions}\\
+				DiD estimate 		&	-1.654		 &	-1.799\sym{***} \\
+									&	(1.096)		 &	(0.598)			\\
+
+				Dependent mean 		&	101.3		 &	96.50			\\
+				Effect in SDs [\%] 	&	3.880		 &	5.600			\\
+				$N$ 				&	24,287		 &	29,568			\\
+				\\ \\
+
+
+				\textit{Panel B: Mental and behavioral disorders}\\
+				DiD estimate 		&	-0.241		&	-0.986\sym{***} 	\\
+									&	(0.564)		&	(0.196)				\\							 
+				Dependent mean 		&	17.00  		&	18.61				\\
+				Effect in SDs [\%] 	&	1.310		&	7.100				\\
+				$N$ 				&	24,287		&	29,568				\\
+
+				\\
+				\midrule
+				MOB fixed effects 	&	\checkmark	&	\checkmark		    \\ 
+				Year fixed effects  &	\checkmark	&	\checkmark		    \\
+				Region fixed effects& 	\checkmark	&	\checkmark		    \\
+				\bottomrule
+		\end{tabular}}
+	\end{threeparttable} 
+	\begin{minipage}{0.7\linewidth}
+		\scriptsize \emph{Notes:} This table contains a subgroup analysis for the effect of the 1979 maternity leave reform on different health outcomes. The DiD estimates stem from weighted regression (by population) over the entire pooled time frame, and a bandwidth of half a year around the cutoff. The level of analysis is on Labor Market Regions. Figure \ref{fig: AMR_regions_population_density} shows a map of Germany with the regions marked as rural/urban. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage
