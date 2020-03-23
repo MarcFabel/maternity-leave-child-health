@@ -355,8 +355,9 @@ Although there were distinct effects on maternal labor market outcomes, in parti
 
 
 
-
 %--------------------------------------------------------------------
+% FRAMEWORK
+%-------------------------------------------------------------------
 \bigskip
 \section[Framework]{Conceptional Framework for Long-Run Health Effects}\label{sec:framework}
 The notion that later-life outcomes have their origins in early-childhood is not new. In 1990, \citeauthor{Barker1990origins} postulated the idea that conditions in-utero and during infancy have long-lasting effects on later life health. Adult physical and mental well-being is influenced by early experiences - whether they are good or bad - in at least two ways \citep{shonkoff2009neuroscience}.
@@ -400,13 +401,13 @@ Figure \ref{fig: descriptive_hospital_admission} illustrates trends in hospital 
 
 
 % Outcomes and aggregation
-For the analysis, I aggregate the number of diagnoses per chapter by birth month, birth year, and survey year \textbf{\color{red} /reporting year?}. In the next step, I define the outcomes as the number of diagnoses per 1,000 individuals.\footnote{In my baseline specification, I use the monthly number of births in the denominator (based on Federal vital statistics). In the robustness section, I present results with the approximated number of current inhabitants on different regional levels. The advantage of using the original number of births is twofold. First, I can trace out differentials for a longer period, because the population data is only available from 2003 onwards. Second, I avoid to induce measurement error in my dependent variable due to the fact that there is only information on the number of individuals aged $x$ years. In order to obtain an approximated number of persons per birth-month, I assign them using weights from either the German Micro Census or the original fertility distribution.} I use all hospitalizations of individuals who reside in the area of the former Federal Republic of Germany.\footnote{Due to the fact that Berlin cannot be assigned to either FRG or GDR unambiguously, it is dropped from the analysis.} Thus, for my DiD baseline specification, I have a pseudo-panel with $2\times12\times20=480$ (cohorts$\times$month-of-birth$\times$years) observations. Yet, in order to avoid any confounding that might be triggered by differential maturity effects between treatment and control group, I want to compare the two birth cohorts at the same age. To achieve this, I shift a control observation from period $t$ to period $t+1$, which decreases the number of effective observations to $456$. The shifting reduces the number of observations at the beginning and the end of the observed time frame. For instance, in 1995, the treatment (control) cohort is aged 16 (17). As there is no control group that is aged 16, I drop these 12 months of the treatment group from the sample. The control group that is already 17 years old is shifted to 1996. Analogously, I drop the control cohort in 2014. % popf - seit 2003 macht die 58,752 observationen; popmz sogar erst seit 2005 48,960
+For the analysis, I aggregate the number of diagnoses per chapter by birth month, birth year, and \textbf{\color{red}reporting year?}. In the next step, I define the outcomes as the number of diagnoses per 1,000 individuals.\footnote{In my baseline specification, I use the monthly number of births in the denominator (based on Federal vital statistics). In the robustness section, I present results with the approximated number of current inhabitants on different regional levels. The advantage of using the original number of births is twofold. First, I can trace out differentials for a longer period, because the population data is only available from 2003 onwards. Second, I avoid to induce measurement error in my dependent variable due to the fact that there is only information on the number of individuals aged $x$ years. In order to obtain an approximated number of persons per birth-month, I assign them using weights from either the German Micro Census or the original fertility distribution.} I use all hospitalizations of individuals who reside in the area of the former Federal Republic of Germany.\footnote{Due to the fact that Berlin cannot be assigned to either FRG or GDR unambiguously, it is dropped from the analysis.} Thus, for my DiD baseline specification, I have a pseudo-panel with $2\times12\times20=480$ (cohorts$\times$month-of-birth$\times$years) observations. Yet, in order to avoid any confounding that might be triggered by differential maturity effects between treatment and control group, I want to compare the two birth cohorts at the same age. To achieve this, I shift a control observation from period $t$ to period $t+1$, which decreases the number of effective observations to $456$. The shifting reduces the number of observations at the beginning and the end of the observed time frame. For instance, in 1995, the treatment (control) cohort is aged 16 (17). As there is no control group that is aged 16, I drop these 12 months of the treatment group from the sample. The control group that is already 17 years old is shifted to 1996. Analogously, I drop the control cohort in 2014. % popf - seit 2003 macht die 58,752 observationen; popmz sogar erst seit 2005 48,960
 
 % I refrain from using the absolute numbers as the month-of-birth cohorts vary substantially in size (due to e.g. number of days per month or seasonality of births over one year).
 
 
 % Vorteile data
-The data set has three main advantages. First, compared to survey data, the hospital registry data covers the universe of German inpatient cases and is consequently not prone to sampling errors or problems associated with attrition. Additionally, the large number of patients provides power to identify local effects. Second, due to the longitudinal character of the data set, I am able to trace out the trajectory of children's health differentials over 20 years of their adulthood. Third, there is almost surely no measurement error in the data on health outcomes. \textbf{\color{red}On the one hand, this might affect the birth date, which is accurate to the month in my context. This is particularly relevant as the time of birth is the deciding factor whether an individual's mother is eligible for the more generous leave scheme or not. \cite{Dustmann2012} do not have information about the exact birth date and have to impute the month-of-birth. On the other hand, the lack of measurement error holds for the outcome variables, as well.} As the diagnosis code matters for remuneration, the ICD code is of a very high quality. Moreover, in comparison with self-reported survey data, administrative data does not suffer from issues related to social desirability bias.
+The data set has three main advantages. First, compared to survey data, the hospital registry data covers the universe of German inpatient cases and is consequently not prone to sampling errors or problems associated with attrition. Additionally, the large number of patients provides power to identify local effects. Second, due to the longitudinal character of the data set, I am able to trace out the trajectory of children's health differentials over 20 years of their adulthood. Third, there is almost surely no measurement error in the data on health outcomes. As the diagnosis code matters for remuneration, the ICD code is of a very high quality. Moreover, in comparison with self-reported survey data, administrative data does not suffer from issues related to social desirability bias.
 
 %Nachteile
 Nevertheless, the data set has some drawbacks, too. First, the source of data limits me to analyze rather severe health events, which are encountered in the context of hospitals and medical prevention/rehabilitation centers. Yet, some health conditions, which are diagnosed elsewhere (e.g. at a practitioner), might be even more impacted by the reform than the diagnoses I observe. % A priori I expect to find an effect for the types of health outcomes, which are particularly salient in the hospital registry data.
@@ -450,7 +451,7 @@ My main specification to estimate the effect of the length of ML on children's h
 \begin{align}
 \text{Y}_{mt} = \gamma_0 + \gamma_1 \text{Treat}_{m} + \gamma_2 \text{After}_{m} + \gamma_3 (\text{Treat}_{m} \times \text{After}_{m}) + \psi_m + \rho_t + \varepsilon_{mt} \label{eq:DD_basline}
 \end{align}
-where $\text{Y}_{mt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, at time period $t$. The treatment cohort is represented by $\text{Treat}_{m}$, a dichotomous variable equal to one for groups that are born shortly before or after the legislation change, and zero otherwise. In the analysis, I present results for different estimation windows around the threshold date. In the widest specification the treatment cohort includes children born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff. As control group, I choose the cohort born in the same months, but in the year prior to the reform.\footnote{\cite{Dustmann2012} use in total three birth cohorts as control group, two cohorts before and one cohort after the treatment cohort: group 1 born 11/1976-10/1976, group 2 born 11/1977-10/1978, and group 3 born 11/1979-10/1980. My control cohort is identical to the one used by \cite{guertzgen2018}. \newline I choose the cohort prior to the treatment cohort as control group in my main specification for two reasons. First, with more cohorts as control groups, it may be less likely that the identifying assumption (time-invariance of seasonality) is met. Second, taking a birth cohort in the year after the policy change as control group might invalidate the comparability between the treatment and control group as parents might have enough time to react to the reform and adjust fertility patterns. Nevertheless, I present results when adding more control cohorts in the robustness section.} $\text{After}_{m}$ is a dummy variable that is equal to one if the individuals are born in/after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohorts). $\psi_m$, $\rho_t$ are month-of-birth and survey year fixed effects, respectively. Initially, $\text{Y}_{mt}$ corresponds to outcomes observed over the pooled period 1995-2014. I successively break up the entire time frame in different age groups until I apply a life-course approach by running the regression for each year of life separately. The parameter of interest is $\gamma_3$, which captures the effect of the policy change on health outcomes. As I do not have information on whether the children's mothers were on leave, the identified parameter is an intention-to-treat effect.
+where $\text{Y}_{mt}$ is the number of diagnoses per thousand individuals of the cohort born in month $m$, at time period $t$. The treatment cohort is represented by $\text{Treat}_{m}$, a dichotomous variable equal to one for groups that are born shortly before or after the legislation change, and zero otherwise. In the analysis, I present results for different estimation windows around the threshold date. In the widest specification the treatment cohort includes children born between November 1978 and October 1979, implying a bandwidth of half a year around the cutoff. As control group, I choose the cohort born in the same months, but in the year prior to the reform.\footnote{\cite{Dustmann2012} use in total three birth cohorts as control group, two cohorts before and one cohort after the treatment cohort: group 1 born 11/1976-10/1976, group 2 born 11/1977-10/1978, and group 3 born 11/1979-10/1980. My control cohort is identical to the one used by \cite{guertzgen2018}. \newline I choose the cohort prior to the treatment cohort as control group in my main specification for two reasons. First, with more cohorts as control groups, it may be less likely that the identifying assumption (time-invariance of seasonality) is met. Second, taking a birth cohort in the year after the policy change as control group might invalidate the comparability between the treatment and control group as parents might have enough time to react to the reform and adjust fertility patterns. Nevertheless, I present results when adding more control cohorts in the robustness section.} $\text{After}_{m}$ is a dummy variable that is equal to one if the individuals are born in/after the threshold month May (i.e. born in May-October in the widest specification, for both treatment and control cohorts). $\psi_m$, $\rho_t$ are month-of-birth and reporting year fixed effects, respectively. Initially, $\text{Y}_{mt}$ corresponds to outcomes observed over the pooled period 1995-2014. I successively break up the entire time frame in different age groups until I apply a life-course approach by running the regression for each year of life separately. The parameter of interest is $\gamma_3$, which captures the effect of the policy change on health outcomes. As I do not have information on whether the children's mothers were on leave, the identified parameter is an intention-to-treat effect.
  %The interaction term $Treat_{mr} * After_{mr}$ equals one for the group of interest (the children born between May and October 1979,i.e. the post-reform children in the treatment group).
 
 %clustering
@@ -460,7 +461,8 @@ Standard errors are clustered at the birth month$\times$birth year level in orde
 %Diagnosis rates are serially correlated, cluster on month-of-birth and state level.
 
 
-
+%--------------------------------------------------------------------
+% THREATS
 \bigskip
 \subsection{Potential Threats to Identification and Validity of the Design}\label{sec:empirical_strategy_threats+validity}
 Behavioral responses with respect to the forcing variable (the birth date of the child) would jeopardize the validity of the identification strategy. Usually, the occurrence of birth can be considered a random event, given the date of conception.\footnote{Gestation length is a normally distributed random variable with mean of 40 weeks and 2 weeks standard deviation \citep{Ekberg2013parental}.} However, parents may influence the time when their baby is born in two ways. 
@@ -544,13 +546,13 @@ In the next step, I explore whether these general findings hold similarly for me
 
 
 % Hospital - life-course graph
-A finer granularity with respect to age helps to identify the periods when the effects of the reform are particularly salient. Figure \ref{fig: lc_hospital2_frg_DD} shows the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{I still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age. Survey year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} I estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DiD estimates across time. Panel a shows the effect on all hospital admissions over the life-course. Overall, the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c): the positive health impact of the reform seems to materialize with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: while there are several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35.
+A finer granularity with respect to age helps to identify the periods when the effects of the reform are particularly salient. Figure \ref{fig: lc_hospital2_frg_DD} shows the trajectories of the hospitalization differentials between treatment and control group on a yearly basis (ranging from age 17 up to 35).\footnote{I still control for any maturity effects and compare outcomes of treatment and control cohorts measured at the same age. Reporting year fixed effects $\rho_t$ have to be omitted from the specification due to collinearity.} I estimate the specification as in equation \ref{eq:DD_basline} year by year and plot the DiD estimates across time. Panel a shows the effect on all hospital admissions over the life-course. Overall, the average reform effect is close to zero at younger ages, but grows in magnitude and becomes significantly different from zero at older ages. This negative trend (which reflects a growing positive health effect of the reform with increasing age) is even more pronounced for men (panel c): the positive health impact of the reform seems to materialize with increasing age. In contrast, the figure for women (panel b) does not reveal a comparably similar and clear structure: while there are several significant reductions in hospitalization rates at older ages, there is no significant reform effect at age 35.
 %The gray bold line in the background, specification of 6M BW
 
 
 
-
-%\subsection[The effect on main diagnosis chapters]{Results on main diagnosis chapters}
+%--------------------------------------------------------------------
+% CHAPTERS
 \bigskip
 \subsection{Diagnosis Chapters}
 
@@ -566,6 +568,10 @@ Figure \ref{fig: DD_across_main chapters} plots DiD estimates of the policy effe
 Breaking up the analysis by age group generates additional insights. Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DiD estimates of the impact of the ML expansion on the main diagnosis chapters (for all inpatients).\footnote{Appendix Tables \ref{tab: ITT_across_chapters_per_age_group_women} and \ref{tab: ITT_across_chapters_per_age_group_men} show the effects for women and men, respectively.} Column 1 reports the effect on the pooled sample and is equivalent to the estimates in the graphical representation. Columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. On the one hand, some chapters exhibit increasing health differentials the older individuals grow. This is especially the case for mental and behavioral disorders, which resemble the overall effects of hospital admissions. In general, mental and behavioral disorders bear the largest relative contribution in reducing hospitalizations: in the pooled sample, MBDs account for one third of the reduction in hospitalizations, and in the last age bracket (32-35 years of age) the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. On the other hand, other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups.\footnote{Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and extends the previous findings.} 
 
 
+
+
+%--------------------------------------------------------------------
+% MBDS
 \bigskip
 % EFFECT ON MENTAL AND BEHAVIORAL DISORDERS
 \subsection{Mental and Behavioral Disorders}
@@ -591,7 +597,8 @@ antisocial personality disorder) in males..."}
 
 
 
-
+%--------------------------------------------------------------------
+% ROBUSTNESS
 \bigskip
 \subsection{Robustness Tests}\label{sec: robustness}
 
@@ -618,10 +625,13 @@ Third, as a further sensitivity test, I re-estimate my main regression equation 
 \textbf{Mental and Behavioral Disorders.---}Since this diagnosis chapter plays a central role in this analysis, I run the same set of sensitivity test as I did for hospital admissions. The results can be found in Table \ref{tab: robustness_d5} in the Appendix. I find that the results are robust to the different specifications and estimation procedures.
 
 
+
+
+%--------------------------------------------------------------------
+% DISCUSSION
+%-------------------------------------------------------------------
 \bigskip
 \section[Discussion]{Discussion}\label{sec:discussion}
-
-
 \subsection{Maternal Return to Work Behavior}
 
 %Subgroup Analysis: Rural and Urban Areas.
@@ -636,7 +646,8 @@ Taken together, the finding that the overall effects are driven by urban areas i
 %\footnote{Another reason why I may estimate a differential impact of the reform is that mothers in urban and rural areas might have differed in their return to work behavior. If urban pre-reform mothers were more likely to return to the labor market faster (after e.g. two months of giving birth) than rural mothers, the reform would partly compensate for urban mothers' reduced labor supply in the first six months after childbirth. In contrast, if rural mothers had stayed at home in the absence of the reform anyways, the reform would have implied a windfall profit. To be clear, this argumentation is very hypothetical, since I lack information on the return-to-work behavior for mothers in urban and rural regions. This hypothesis is grounded on the observation that the rural population tends to be more traditional and conservative.}
 
 
-
+%--------------------------------------------------------------------
+% OTHER MECHANISMS
 \subsection{Other Potential Mechanisms}
 
 % how the 1979 ML reform might affect early life conditions of the newborns
@@ -723,6 +734,7 @@ Since I find positive health differentials for children born under the more gene
 %--------------------------------------------------------------------
 % CONCLUSION
 %-------------------------------------------------------------------
+\bigskip
 \section{Concluding Remarks}\label{sec:conclusion}
 
 %summary of paper
