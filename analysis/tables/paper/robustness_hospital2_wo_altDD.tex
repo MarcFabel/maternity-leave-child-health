@@ -1,0 +1,48 @@
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{table}[htbp] \centering 
+		\begin{threeparttable} \centering 
+			\caption{Robustness checks for \textbf{hospital admission}}\label{tab: robustness_hospital} 
+			{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+				\begin{tabular}{l*{8}{c}} \toprule 
+					
+					& & \multicolumn{2}{c}{Alternative specifications} & \multicolumn{2}{c}{\clb{c}{Alternative\\estimation}} & \multicolumn{2}{c}{Placebos}\\
+					\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} 
+					&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}\\
+					&\multicolumn{1}{c}{Baseline}&\multicolumn{1}{c}{\clb{c}{current\\population}}&\multicolumn{1}{c}{\clb{c}{LMR\\level$^a$}}&\multicolumn{1}{c}{\clb{c}{DDD$^b$}}&\multicolumn{1}{c}{add. CG}&\multicolumn{1}{c}{\clb{c}{temporal:\\cohort}}&\multicolumn{1}{c}{\clb{c}{spatial:\\ GDR}}\\
+					\midrule
+					\\
+					%							1					2					3					4					5					6					7					8			
+					(1) {total} 		&   -2.168\sym{**}	&	-1.581\sym{**}	&   -1.771\sym{***} &	-2.313\sym{*}	&  -2.327\sym{**}	&	-0.318			&	0.154		\\
+										&	(0.782)			&	(0.675)			&   (0.623)     	&	(1.127)			&  (1.003)			&	(0.946)			&	(0.469)		\\
+					(2) {female}		&   -1.815			&	-0.694			& 	-0.740      	&	-1.255			&  -1.573		    &	0.483			&	-0.396		\\
+										&	(0.807)			&	(0.633)			&   (0.597)     	&	(1.231)			&  (1.114)			&	(0.942)			&	(0.503)		\\
+					(3) {male} 			&   -2.525\sym{**}	&	-2.462\sym{**}	&   -2.816\sym{***} &	-3.252\sym{**}	&  -3.063\sym{**}	&	-1.076			&	0.593		\\
+										&	(0.997)			&	(0.981)			&   (0.945)     	&	(1.310)			&  (1.140)			&	 (1.059) 		&	(0.714)		\\
+					\midrule            																																							
+					For total: 																																					\\							 
+					Dependent mean 		&   120.6			&	92.22			&   98.66     		&	121.8			&  120.6			&	120.2			&	66.29		\\
+					Effect in SDs [\%] 	&   19.78			&	16.21			&   4.750      		&	20.94			&  21.23			&	3.060			&	1.260		\\
+					$N$ 				&   480				&	288				&   53,855    		&	912				&  720				&	480				&	456			\\
+					%Federal level		&   \checkmark		&	\checkmark		&   $\times$		& \checkmark		& \checkmark		&	\checkmark		&  \checkmark	\\ 
+					\\
+					MOB fixed effects 	&   \checkmark		&	\checkmark		&   \checkmark		& \checkmark		& \checkmark		&	\checkmark		&  \checkmark	\\ 
+					Year fixed effects  &   \checkmark		&	\checkmark		&   \checkmark		& \checkmark		& \checkmark		&	\checkmark		&  \checkmark	\\ 
+					\bottomrule
+			\end{tabular}}
+	\end{threeparttable} 
+		\begin{minipage}{0.66\linewidth}
+		\scriptsize \emph{Notes:} This table displays robustness checks for the effect of the 1979 maternity leave reform on hospital admissions. I perform the following checks (with reference to the column): (1) baseline specification that was used in previous parts of the paper, (2) for the outcome I use the number of diagnoses divided by the current number of individuals (approximation), (3) the analysis is carried out on the level of labor market regions, (4) triple difference model (the third difference stems from the former region of the GDR), (5) I use as control cohort not only the cohort before the reform, but also the cohort 2 years prior to the policy change, (6) first placebo, in which the entire analysis set-up is pushed back by one year, i.e. the placebo TG is the cohort prior to the real TG and the placebo CG is the cohort born 2 years before the reform took place, (7) second placebo, in which I run the normal DD set-up in the area of the former GDR. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline
+		\hspace*{15 pt}$^a$: level of analysis on Labor Market Regions: weighted regressions (by population), includes region fixed effects.\newline
+		\hspace*{15 pt}$^b$: standard errors clustered on the month-of-birth$\times$birth-cohort$\times$East-West cell level.
+	\end{minipage}
+\end{table} 
+	\vspace*{\fill}\clearpage
+\end{landscape}
+
+% Welche Columns sind geupdated (einbinden von $LC) : 3,4,5,8,9,10
+
+
+
+
+

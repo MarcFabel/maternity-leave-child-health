@@ -603,9 +603,9 @@ I perform several sensitivity and placebo tests to assess the robustness of the 
 
 which now contains an additional dummy variable $\text{FRG}_m$ (West Germany) as well as interactions of this group with the treatment cohort 1979 ($\text{Treat}_{m}$), children born in/after May ($\text{After}_{m}$) and with the interaction term $\text{Treat}_{m} \times \text{After}_{m}$. The parameter of interest is $\beta_7$, which captures the impact of the 1979 ML reform on health outcomes. Likewise, the general pattern of the main results remains robust to this alternative estimation. While the estimates become less precise, the point estimates increase slightly but not significantly.
 
-Second, column 5 presents estimates based on an \textit{alternative difference-in-differences} estimation. In this case, I use the 1979 birth cohort born in East Germany as control group. In other words, I compare health outcomes of children who were born in months close the the cutoff date (May 1979) and reside in the former area of West Germany to outcomes of children born in the same months but who live in the area of the former GDR.\footnote{I use the empirical model: $\text{Y}_{mt} =\ \delta_0 + \delta_1 \text{After}_{m} + \delta_2 \text{FRG}_m + \delta_3 (\text{After}_m \times \text{FRG}_m) + \psi_m + \rho_t + \varepsilon_{mt}$.} The estimates in column 5 suggest that the results are robust to using this alternative difference-in-differences approach.\footnote{In this specification, there are also significant results for females, which is not in line with my baseline findings.}
+% Second, column 5 presents estimates based on an \textit{alternative difference-in-differences} estimation. In this case, I use the 1979 birth cohort born in East Germany as control group. In other words, I compare health outcomes of children who were born in months close the the cutoff date (May 1979) and reside in the former area of West Germany to outcomes of children born in the same months but who live in the area of the former GDR.\footnote{I use the empirical model: $\text{Y}_{mt} =\ \delta_0 + \delta_1 \text{After}_{m} + \delta_2 \text{FRG}_m + \delta_3 (\text{After}_m \times \text{FRG}_m) + \psi_m + \rho_t + \varepsilon_{mt}$.} The estimates in column 5 suggest that the results are robust to using this alternative difference-in-differences approach.\footnote{In this specification, there are also significant results for females, which is not in line with my baseline findings.}
 
-Third, as a further sensitivity test, I re-estimate the main regression equation including an \textit{additional control group} next to the one defined in section \ref{sec:empirical_strategy}. The additional control group is comprised of children born in the months around the threshold month of May, but two years before the reform took place (i.e. around May 1977). The advantage of including another pre-reform West German birth cohort is that it may account better for systematic month-of-birth patterns in hospitalization rates due to a larger sample size. The estimates from this approach can be found in column 6. Once again, the results and pattern of the baseline results hold when adding this additional control cohort.\newline
+Second, as a further sensitivity test, I re-estimate the main regression equation including an \textit{additional control group} next to the one defined in section \ref{sec:empirical_strategy}. The additional control group is comprised of children born in the months around the threshold month of May, but two years before the reform took place (i.e. around May 1977). The advantage of including another pre-reform West German birth cohort is that it may account better for systematic month-of-birth patterns in hospitalization rates due to a larger sample size. The estimates from this approach can be found in column 6. Once again, the results and pattern of the baseline results hold when adding this additional control cohort.\newline
 
 
 \textbf{Placebo Tests.---}I perform two placebo tests to validate my identifying assumptions: First, I run a \textit{temporal placebo} and test whether the estimated effects are caused by children eligible to the more generous ML regime and not by an underlying general time trend affecting children born post-April. For this exercise, I use the two pre-reform birth cohorts 1978 and 1977, using May 1, 1978 as the placebo reform date. The estimates from this placebo analysis can be found in column 7. Second, I run a \textit{spatial placebo} analysis and re-estimate the baseline DiD specification but substitute it with the sample of East German individuals who were not affected by the reform. Column 8 shows the estimates of this placebo analysis. In support of the internal validity of the main estimates, both placebo tests yield insignificant effects, 
@@ -1041,8 +1041,13 @@ From a policy perspective, this study suggests that a comprehensive cost-benefit
 % HOSPITAL 2 -ROBUSTNESS TABLE
 \newpage
 \newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
-\input{../../analysis/tables/paper/robustness_hospital2}
+% \input{../../analysis/tables/paper/robustness_hospital2}
+\input{../../analysis/tables/paper/robustness_hospital2_wo_altDD}
 \restoregeometry
+
+
+
+
 %--------------------------------------------
 
 % Heterogeneity analysis - rural/urban
@@ -1593,7 +1598,9 @@ Table \ref{tab: validity_birth_rate} presents estimates of the effect of the ML 
 % d5 - robustness in one table - blueprint for paper
 \newpage
 \newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
-\input{../../analysis/tables/paper/robustness_d5}
+% \input{../../analysis/tables/paper/robustness_d5}
+\input{../../analysis/tables/paper/robustness_d5_wo_altDD}
+
 \restoregeometry
 %--------------------------------------------
 
