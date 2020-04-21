@@ -1,0 +1,40 @@
+\begin{landscape}
+\vspace*{\fill}
+ \begin{table}[H] \centering 
+ 	\begin{threeparttable} \centering \caption{ITT effects on \textbf{mental \& behavioral disorders, by gender}}\label{tab: DD_d5_female_male} {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+ 			\begin{tabular}{l*{12}{c}}
+ 				\toprule 
+ 				% \multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+ 				& \multicolumn{5}{c}{Women} && \multicolumn{5}{c}{Men} \\ 
+ 				\cmidrule(lr){2-6} \cmidrule(lr){8-12}
+ 				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{        }&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}&\multicolumn{1}{c}{(9)}&\multicolumn{1}{c}{(10)}\\
+ 				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}&&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+ 				\midrule
+ 				\multicolumn{5}{l}{\emph{Panel A.Over entire length of the life-course}} \\
+
+
+ 				\hspace*{10pt}Overall&     0.00972         &     -0.0900         &      -0.205         &      -0.244         &      0.0211       & &      -1.192\sym{***}&      -1.328\sym{***}&      -1.462\sym{***}&      -1.098\sym{**} &      -1.533\sym{***}\\
+				                    &     (0.271)         &     (0.303)         &     (0.377)         &     (0.496)         &     (0.285)        & &     (0.288)         &     (0.336)         &     (0.412)         &     (0.486)         &     (0.286)         \\
+				\midrule Dependent mean&       16.11         &       16.09         &       16.09         &       16.32         &       16.32     & &       22.84         &       22.91         &       23.07         &       23.19         &       23.05         \\
+				Effect in SDs [\%]  &       0.300         &       2.650         &       5.940         &       7.010         &       0.650        & &       17.60         &       19.29         &       20.84         &       15.43         &       22.64         \\
+				\(N\) (MOB $\times$ year)&         456         &         380         &         304         &         228         &         380   & &         456         &         380         &         304         &         228         &         380         \\
+				\\
+
+ 				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+ 				\hspace*{10pt}Age 17-21	&       0.388         &       0.416         &       0.527         &      0.0745         &       0.235   & &    -0.0319         &       0.129         &       0.119         &       0.192         &      -0.344		   \\ 
+				                    	&     (0.313)         &     (0.378)         &     (0.463)         &     (0.555)         &     (0.318)   & &    (0.262)         &     (0.300)         &     (0.373)         &     (0.507)         &     (0.217)         \\ 
+				\hspace*{10pt}Age 22-26	&       0.205         &       0.119         &      0.0485         &       0.217         &     -0.0753   & &     -0.180         &      -0.379         &      -0.373         &       0.475         &      -0.602         \\ 
+				                    	&     (0.466)         &     (0.558)         &     (0.700)         &     (0.791)         &     (0.499)   & &    (0.485)         &     (0.575)         &     (0.683)         &     (0.680)         &     (0.526)         \\ 
+				\hspace*{10pt}Age 27-31	&      -0.426         &      -0.598         &      -0.816         &      -0.612         &      -0.273   & &     -1.504\sym{***}&      -1.943\sym{***}&      -2.152\sym{***}&      -1.854\sym{**} &      -1.690\sym{***}\\ 
+				                    	&     (0.418)         &     (0.469)         &     (0.579)         &     (0.781)         &     (0.426)   & &    (0.507)         &     (0.542)         &     (0.675)         &     (0.652)         &     (0.570)         \\ 
+				\hspace*{10pt}Age 32-35	&      -0.163         &      -0.349         &      -0.671\sym{*}  &      -0.760			&       0.242   & &     -3.518\sym{***}&      -3.568\sym{***}&      -3.938\sym{***}&      -3.733\sym{***}&      -3.989\sym{***}\\ 
+				                    	&     (0.388)         &     (0.335)         &     (0.344)         &     (0.466)         &     (0.396)   & &    (0.515)         &     (0.522)         &     (0.596)         &     (0.741)         &     (0.515)         \\ 
+ 				\bottomrule 
+ 		\end{tabular}}
+ 		\begin{tablenotes} 
+ 			\item \scriptsize \emph{Notes:} The table shows DiD estimates of the effect of the 1979 maternity leave reform on mental and behavioral disorders for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. Panel A shows the effect for the entire pooled time frame and panel B breaks the life-course up in age brackets. The outcome variables are defined as the number of cases per thousand individuals (births). All regressions control for year and month-of-birth fixed effects. The control group is comprised of children that are born in the same months but one year before the reform (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$. The dependent mean and the effect size in standard deviation units correspond to pre-reform values of the treated group. Clustered standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline 	\emph{Source:} Hospital registry data.
+ 		\end{tablenotes} 
+ 	\end{threeparttable} 
+ \end{table}
+\vspace*{\fill}\clearpage 
+\end{landscape}
