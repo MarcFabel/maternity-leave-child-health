@@ -527,7 +527,7 @@ Table \ref{tab: DD_hopsital2_total} reports DiD estimates of the impact of the M
  
 
 % Hospital - Distinction Women and Men (tabelle)
-In the next step, I explore whether these general findings hold similarly for men and women. Tables \ref{tab: DD_hopsital2_female} and \ref{tab: DD_hopsital2_male} show the effect of the 1979 ML reform on hospital admissions for women and men, respectively. In general, the point estimates for men are larger than those for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} closely. The DiD estimates suggest that men, whose mothers were eligible for extended leave duration, have lower hospitalization rates, irrespective of the estimation window. In the pooled sample, I find an average reduction of 2.4 fewer hospital admissions per 1,000 individuals. Moreover, the effects for males increase in size the older men become. 
+In the next step, I explore whether these general findings hold similarly for men and women. Table \ref{tab: DD_hospital2_female_male} shows the effect of the 1979 ML reform on hospital admissions for women and men, respectively. In general, the point estimates for men are larger than those for women.\footnote{Yet, the baseline means are not significantly different from each other.} Furthermore, the effects for women are less robust to the choice of bandwidth than the effects for men, which mirror the overall effects from Table \ref{tab: DD_hopsital2_total} closely. The DiD estimates suggest that men, whose mothers were eligible for extended leave duration, have lower hospitalization rates, irrespective of the estimation window. In the pooled sample, I find an average reduction of 2.4 fewer hospital admissions per 1,000 individuals. Moreover, the effects for males increase in size the older men become. 
 
 
 % Hospital - life-course graph
@@ -547,11 +547,13 @@ What is driving the significant reductions in hospitalization rates? I exploit t
 %\footnote{Panel A of Table \ref{tab:outcomes_coding_main_chapters} gives an overview of the diagnosis chapters that generate the hospital admission variable.} 
 
 
-Figure \ref{fig: DD_across_main chapters} plots DiD estimates of the policy effect on the incidence rate per diagnosis chapter for all patients (panel A) as well as for women and men separately (panels B and C).\footnote{Breaking up the analysis by age group generates additional insights. Table \ref{tab: ITT_across_chapters_per_age_group_total} in the Appendix contains DiD estimates of the impact of the ML expansion on the main diagnosis chapters for all inpatients. On the one hand, some chapters exhibit increasing health differentials as individuals grow older. This is especially the case for MBDs, which resemble the overall effects of hospital admissions. In general, MBDs account for the largest relative contribution in hospitalization reduction.} The estimates are based on the pooled sample and a bandwidth of six months. In addition to the estimates, each panel shows  the frequency distribution across chapters from 1995 to 2014. The results in panel A (all hospitalizations, irrespective of gender) illustrate that almost all point estimates are either negative or not significantly different from zero. This implies that it is unlikely the expansion has a detrimental effect on any long-run child health outcome, as represented by the chapters in use. Furthermore, the ML extension has the largest impact on MBDs, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. Comparing the results against the frequency of diagnoses chapters, the strong effect on MBDs is striking as this diagnosis chapter has a particularly high prevalence rate among this age group. When looking at heterogeneous effects across genders, the largest impact for both women and men occur for the chapter that is among the most frequently diagnosed. For women, the largest reduction in hospitalizations is the result of fewer diagnoses of digestive diseases, whereas for males the reduction stems from fewer diagnoses of MBDs. 
+Figure \ref{fig: DD_across_main chapters} plots DiD estimates of the policy effect on the incidence rate per diagnosis chapter for all patients (panel A) as well as for women and men separately (panels B and C). The estimates are based on the pooled sample and a bandwidth of six months. In addition to the estimates, each panel shows the frequency distribution across chapters from 1995 to 2014. The results in panel A (all hospitalizations, irrespective of gender) illustrate that almost all point estimates are either negative or not significantly different from zero. This implies that it is unlikely the expansion has a detrimental effect on any long-run child health outcome, as represented by the chapters in use. Furthermore, the ML extension has the largest impact on MBDs, followed by consequences of external causes, diseases of the digestive system, and respiratory maladies. Comparing the results against the frequency of diagnoses chapters, the strong effect on MBDs is striking as this diagnosis chapter has a particularly high prevalence rate among this age group. When looking at heterogeneous effects across genders, the largest impact for both women and men occur for the chapter that is among the most frequently diagnosed. For women, the largest reduction in hospitalizations is the result of fewer diagnoses of digestive diseases, whereas for males the reduction stems from fewer diagnoses of MBDs. 
 
 
 
- In the pooled sample, MBDs account for one-third of the reduction in hospitalizations, and in the last age bracket (32-35 years of age) the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. On the other hand, other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups.\footnote{Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and extends the previous findings.} 
+
+
+Breaking up the analysis by age group generates additional insights. Table \ref{tab: ITT_across_chapters_per_age_group_total} contains DiD estimates of the impact of the ML expansion on the main diagnosis chapters for all inpatients. Column 1 reports the effect on the pooled sample and is equivalent to the estimates in the graphical representation. Columns 2 to 5 list the impact of the expansion on the main diagnosis chapter per age bracket. On the one hand, some chapters exhibit increasing health differentials as individuals grow older. This is especially the case for MBDs, which resemble the overall effects of hospital admissions. In general, MBDs account for the largest relative contribution in hospitalization reduction. In the pooled sample, MBDs account for one-third of the reduction in hospitalizations, and in the last age bracket (32-35 years of age) the importance of this diagnosis chapter for the drop in hospitalizations rises to almost 50\%. On the other hand, other chapters display differentials that either fade out (disease of the digestive system and respiratory maladies), or are constant (e.g. illnesses affecting sense organs) across age groups.\footnote{Appendix Figure \ref{fig: appendix_lc_matrix_chapters} shows the respective life-course figures for each diagnosis chapter separately and extends the previous findings.} 
 
 
 
@@ -563,7 +565,7 @@ Figure \ref{fig: DD_across_main chapters} plots DiD estimates of the policy effe
 \subsection{Mental and Behavioral Disorders}
 MBDs stand out in terms of importance for the overall effect of the ML reform on hospitalizations and its prevalence in the age group under consideration. For this reason, I present more refined evidence on this diagnosis chapter. %Second, as shown in Figure \ref{fig: top5diagnosis_in_2014_across_agegroups}, MBD are the most frequent diagnosis type for individuals aged between 15 and 35 years in 2014. %Another important aspect is that MBD caused the highest costs per diagnosis among all diagnoses chapters for the age group 15-45 years in 2015.\footnote{The top three chapters with the highest costs per diagnosis (for the age group 15-45 in 2015) were: MBDs (9,800{\euro}), diseases of the digestive system (8,900{\euro}), and illnesses of the musculoskeletal system (4,900{\euro}).} \newline
 
-Table \ref{tab: DD_d5_total} shows DiD estimates for the effect of the ML expansion on the diagnosis of MBDs for all inpatients. Analogous to the tables before, Panel A presents estimates on the pooled sample, covering the years 1995 to 2014 (age 17-35). Panel B contains estimates when splitting the data into four age groups. The dependent variable is defined as the number of diagnoses in the chapter of MBDs per 1,000 individuals. The coefficient in Panel A, column 1 suggests that over the entire time frame, there are on average 0.6 fewer diagnoses of MBDs per 1,000 individuals. When looking at the effects per age bracket, as shown in Panel B, no significant effects for younger cohorts and an increasing impact of the ML expansion with children's age are observed. Tables \ref{tab: DD_d5_female} and \ref{tab: DD_d5_male} show the effects for women and men separately. While the estimates for women are close to zero and not statistically significant from zero, the magnitude of the effects for men is large. In the pooled sample, I find an average reduction of 1.2 MBD diagnoses per 1,000 individuals for men who were born after the ML expansion. When considering the estimates per age bracket, there is a similar pattern to hospitalization rates: Health differentials open up from the age of 27 and further increase towards the end of the observed time span. Figure \ref{fig: lc_d5_frg_DD} shows the corresponding life-course graphs, which confirm the findings obtained from the tables. Panel A shows DiD estimates on a yearly basis for all diagnoses related to MBD. The life-course graph illustrates that at younger ages the effect of the legislation change is close to zero and insignificant. Yet, the estimates grow in magnitude and become statistically significant for older cohorts. Overall, the reduction in MBD diagnoses at older ages appear to be driven by males. Their life-course graph exhibits even more pronounced features than the corresponding one for all cases in panel A. In contrast, the differentials for women do not appear to follow a visible trend. 
+Table \ref{tab: DD_d5_total} shows DiD estimates for the effect of the ML expansion on the diagnosis of MBDs for all inpatients. Analogous to the tables before, Panel A presents estimates on the pooled sample, covering the years 1995 to 2014 (age 17-35). Panel B contains estimates when splitting the data into four age groups. The dependent variable is defined as the number of diagnoses in the chapter of MBDs per 1,000 individuals. The coefficient in Panel A, column 1 suggests that over the entire time frame, there are on average 0.6 fewer diagnoses of MBDs per 1,000 individuals. When looking at the effects per age bracket, as shown in Panel B, no significant effects for younger cohorts and an increasing impact of the ML expansion with children's age are observed. Table \ref{tab: DD_d5_female_male} shows the effects for women and men separately. While the estimates for women are close to zero and not statistically significant from zero, the magnitude of the effects for men is large. In the pooled sample, I find an average reduction of 1.2 MBD diagnoses per 1,000 individuals for men who were born after the ML expansion. When considering the estimates per age bracket, there is a similar pattern to hospitalization rates: Health differentials open up from the age of 27 and further increase towards the end of the observed time span. Figure \ref{fig: lc_d5_frg_DD} shows the corresponding life-course graphs, which confirm the findings obtained from the tables. Panel A shows DiD estimates on a yearly basis for all diagnoses related to MBD. The life-course graph illustrates that at younger ages the effect of the legislation change is close to zero and insignificant. Yet, the estimates grow in magnitude and become statistically significant for older cohorts. Overall, the reduction in MBD diagnoses at older ages appear to be driven by males. Their life-course graph exhibits even more pronounced features than the corresponding one for all cases in panel A. In contrast, the differentials for women do not appear to follow a visible trend. 
 
 Next, I investigate the drivers for the reduction in MBDs in response to the 1979 ML reform. To do so, I make use of the detailed coding in the ICD classification system and investigate the effect on diseases that constitute the chapter of mental and behavioral diseases (henceforth called subdiagnoses or subcategories).\footnote{For instance, the chapter of mental and behavioral diseases has codes starting with F00-F99. In this exercise I go one level deeper and look at the effect of the reform on, for example, affective disorders, which are grouped in the codes F30-F39. Panel B of Table \ref{tab:outcomes_coding_main_chapters} in the Appendix defines the subcategories of the mental and behavioral diseases chapter.} Appendix Figure \ref{fig: d5partition} shows the temporal variation in the composition of mental and behavioral diseases. In 2014, the endpoint of the sample, the five most frequent MBDs are (in descending order): mental and behavioral disorders due to the use of psychoactive substances, schizophrenia, affective disorders, neuroses, and finally personality disorders. These five subcategories constitute more than 95\% of all MBDs. Figure \ref{fig: ITT_d5_subcategories} shows DiD estimates of the legislation effect and incidence rates of the subcategories of MBDs.\footnote{Appendix Table \ref{tab: ITT_across_d5subcategories_per_age_group_total} presents results when dividing the pooled sample into four age brackets. The reductions in the subcategories are experienced by the age cohorts 27-31 and 32-35, and tend to get larger with increasing age.} The dependent variables are defined as the number of subdiagnosis per 1,000 individuals and estimates are based on the pooled sample as well as a bandwidth of half a year around the cutoff date. Panel A shows that the reduction in MBDs is the result of fewer diagnoses related to the use of psychoactive substances and fewer incidences of schizophrenia. When considering effect heterogeneity by gender, it can be seen that the reduction is driven by fewer diagnoses for males. 
 
@@ -966,20 +968,69 @@ From a policy perspective, this study suggests that a comprehensive cost-benefit
 % HOSPITAL - Difference in Difference tables for 
 \newpage
 \input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_total}
-\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_women}
-\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_men}
+% \input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_women}
+% \input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_men}
+
+
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
+\input{../../analysis/tables/paper/DD_hospital2_overall_agegroup_women_men}
+\restoregeometry
+
+
+
+
+
+%--------------------------------------------
+% ITT effects nach chaptern
+% original 3 3 2 3
+\newpage
+\newgeometry{left=3cm,right=3cm,top=0.5cm,bottom=2.0cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission and main diagnoses chapters}}\label{tab: ITT_across_chapters_per_age_group_total}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/paper_ITTacrosschapters.tex}
+				
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	\end{threeparttable} 
+	\begin{minipage}{0.95\linewidth}
+		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$.\newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental and behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), symptoms, signs, and ill-defined conditions (Sym), injury, poisoning and certain other consequences of external causes (Ext).\newline \emph{Source:} Hospital registry data.
+	\end{minipage}
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry
+%--------------------------------------------
+
+
 
 
 %--------------------------------------------
 % d5 - Difference in Difference table 
 \input{../../analysis/tables/paper/DD_d5_overall_agegroup_total}
-\input{../../analysis/tables/paper/DD_d5_overall_agegroup_women}
-\input{../../analysis/tables/paper/DD_d5_overall_agegroup_men}
+% \input{../../analysis/tables/paper/DD_d5_overall_agegroup_women}
+% \input{../../analysis/tables/paper/DD_d5_overall_agegroup_men}
 
 
-
-
-
+%--------------------------------------------
+% d5 - Difference in Difference table - by GENDER
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2.5cm} 
+\input{../../analysis/tables/paper/DD_d5_overall_agegroup_women_men}
+\restoregeometry
 
 
 
@@ -1214,32 +1265,59 @@ Table \ref{tab: validity_birth_rate} presents estimates of the effect of the ML 
 % 	\end{figure}
 % 	\vspace*{\fill}\clearpage
 % \end{landscape}
-%--------------------------------------------
-% map: AMR of Germany
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Labor market regions in Germany}\label{fig: AMR_regions_Germany}
-	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
-	\scriptsize
-	\begin{minipage}{0.9 \linewidth}
-		\emph{Notes:} This map shows the labor market regions (LMR) used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany (`West Germany'), while the white areas indicate the area of the former German Democratic Republic (`East Germany'). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). There are in total 245 LMR, with 204 in the area of the FRG and 41 in the area of the former GDR. The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals. \newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
-%--------------------------------------------
-% map: population density per AMR in Germany
-\newpage
 
-\vspace*{\fill}
-\begin{figure}[H]\centering
-	\caption{Region-level population density}\label{fig: AMR_regions_population_density}
-	\includegraphics[width=0.8 \linewidth]{paper/AMR_popdensity.png}
-	\scriptsize
-	\begin{minipage}{0.9\linewidth}
-		\emph{Notes:} This map shows the regional variation of population density across German regions. Labor market regions are labeled as urban if their population density exceeds the median value of all regions. \newline\emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
-	\end{minipage}
-\end{figure}
-\vspace*{\fill}\clearpage
+
+
+% have both maps in one figure
+\newgeometry{left=0.5cm,right=0.5cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}[H]\centering
+		\caption{Labor market regions in Germany}\label{fig: AMR_regions_Germany}
+		\begin{subfigure}[h]{0.43\linewidth}\centering\caption{Region boundaries}
+			\includegraphics[width=\linewidth]{paper/AMR_germany.png}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.55\linewidth}\centering\caption{Population density}
+			\includegraphics[width=\linewidth]{paper/AMR_popdensity.png}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The map on the left shows the labor market regions (LMR) used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany (`West Germany'), while the white areas indicate the area of the former German Democratic Republic (`East Germany'). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). There are in total 245 LMR, with 204 in the area of the FRG and 41 in the area of the former GDR. The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals. The map on the right presents the regional variation of population density across German regions. Labor market regions are labeled as urban if their population density exceeds the median value of all regions.
+			\newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+
+
+
+% % map: AMR of Germany
+% \vspace*{\fill}
+% \begin{figure}[H]\centering
+% 	\caption{Labor market regions in Germany}\label{fig: AMR_regions_Germany}
+% 	\includegraphics[width=0.8\linewidth]{paper/AMR_germany.png}
+% 	\scriptsize
+% 	\begin{minipage}{0.9 \linewidth}
+% 		\emph{Notes:} This map shows the labor market regions (LMR) used in the analysis. The areas with the red background depict the area of the former Federal Republic of Germany (`West Germany'), while the white areas indicate the area of the former German Democratic Republic (`East Germany'). The area of West Germany is used throughout the paper, the regions of East Germany only in a robustness check (triple-differences model). The baseline specification aggregates to level of West and East Germany, yet there are some specifications that aggregate to the regional level (red borderlines). There are in total 245 LMR, with 204 in the area of the FRG and 41 in the area of the former GDR. The black outlines indicate federal state boundaries and the red dots represent the corresponding state capitals. \newline \emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR).
+% 	\end{minipage}
+% \end{figure}
+% \vspace*{\fill}\clearpage
+% %--------------------------------------------
+% % map: population density per AMR in Germany
+% \newpage
+
+% \vspace*{\fill}
+% \begin{figure}[H]\centering
+% 	\caption{Region-level population density}\label{fig: AMR_regions_population_density}
+% 	\includegraphics[width=0.8 \linewidth]{paper/AMR_popdensity.png}
+% 	\scriptsize
+% 	\begin{minipage}{0.9\linewidth}
+% 		\emph{Notes:} This map shows the regional variation of population density across German regions. Labor market regions are labeled as urban if their population density exceeds the median value of all regions. \newline\emph{Source:} Own representation with data from the Federal Institute for Research on Building, Urban Affairs and Spatial Development (BBSR) and the Regional Database Germany.
+% 	\end{minipage}
+% \end{figure}
+% \vspace*{\fill}\clearpage
 %--------------------------------------------
 
 % LC MATRIX FOR ALL CHAPTERS
@@ -1336,41 +1414,7 @@ Table \ref{tab: validity_birth_rate} presents estimates of the effect of the ML 
 \restoregeometry
 
 
-%--------------------------------------------
-% ITT effects nach chaptern
-% original 3 3 2 3
-\newpage
-\newgeometry{left=3cm,right=3cm,top=1cm,bottom=2.5cm} 
-\vspace*{\fill}
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission and main diagnoses chapters (total)}}\label{tab: ITT_across_chapters_per_age_group_total}
-		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{5}{c}}
-				\toprule 
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
-				\midrule
-				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
-				\cmidrule(lr){3-6}
-				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
-				
-				\midrule
-				
-				\input{paper/paper_ITTacrosschapters.tex}
-				
-				\bottomrule 
-		\end{tabular}}
-		% \begin{tablenotes} 
-		% 	\item 
-		% \end{tablenotes} 
-	\end{threeparttable} 
-	\begin{minipage}{0.95\linewidth}
-		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individuals (births). The point estimates are coming from a DiD regression as described in section \ref{sec:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).\newline
-		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental and behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), symptoms, signs, and ill-defined conditions (Sym), injury, poisoning and certain other consequences of external causes (Ext).
-	\end{minipage}
-\end{table} 
-\vspace*{\fill}\clearpage 
-\restoregeometry
-%--------------------------------------------
+
 
 
 % % ITT effects nach chaptern (WOMEN)
