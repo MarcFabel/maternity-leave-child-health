@@ -1,0 +1,556 @@
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+\usepackage[onehalfspacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} 	% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} 			% better control over placement of tables and figures in the text
+\usepackage{graphicx} 		% input of graphics
+\usepackage{xcolor} 		% advanced color package
+\usepackage{url} 			% include (clickable) URLs
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{pdfpages}		% insert pages of external pdf documents
+\setlength{\parskip}{0.75em}	% vertical spacing for paragraphs
+\setlength{\parindent}{0em}	% horizonzal spacing for paragraphs
+\usepackage{tikz}
+\usepackage{tikzscale}		% helps to adjust tikz pictures to textwidth/linewidth
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\usepackage{eurosym}		% Eurosymbol
+
+% Have sections in TOC, but not in text
+\usepackage{xparse}% for easier management of optional arguments
+\ExplSyntaxOn
+\NewDocumentCommand{\TODO}{msom}
+{
+	\IfBooleanF{#1}% do nothing if it's starred
+	{
+		\cs_if_eq:NNT #1 \chapter { \cleardoublepage\mbox{} }
+		\refstepcounter{\cs_to_str:N #1}
+		\IfNoValueTF{#3}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#4}
+		}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#3}
+		}
+	}
+	\cs_if_eq:NNF #1 \chapter { \mbox{} }% allow page breaks after sections
+}
+\ExplSyntaxOff
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{threeparttable} % add notes below tables
+\renewcommand\TPTrlap{}		% add margins on the side of the notes
+	\renewcommand\TPTnoteSettings{%
+	\setlength\leftmargin{5 pt}%
+	\setlength\rightmargin{5 pt}%
+}
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis 
+
+
+%\usepackage{threeparttablex} % for "ThreePartTable" environment, helps to combine threepart and longtable
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\rlb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}% optional argument: b = bottom or t= top alignment
+
+
+\usepackage[singlelinecheck=on]{subcaption}%both together help to have subfigures
+\usepackage{wrapfig}				% wrap text around figure
+
+
+\usepackage{rotating}				% rotating figures & tables
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts} % more math symbols and commands
+\let\vec\mathbf				 % make vector bold, with no arrow and not in italic
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	BIBLIOGRAPHY & CITATIONS
+%--------------------------------------------------------------------
+\usepackage{csquotes} % language specific quotations
+\usepackage{etex}		% some more Tex functionality
+\usepackage[nottoc]{tocbibind} %add bibliography to TOC
+\usepackage[authoryear, round, comma]{natbib} %biblatex
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/}}	%PATH TO TABLES
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/}}		% PATH TO GRAPHS
+
+%--------------------------------------------------------------------
+%	LAYOUT
+%--------------------------------------------------------------------
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\newcommand\natalia[1]{\textcolor{orange}{#1}}
+
+% CAPTIAL LETTERS FOR SECTION CAPTIONS
+%\usepackage{sectsty}
+%\sectionfont{\normalfont\scshape\centering\textbf}
+%\renewcommand{\thesection}{\Roman{section}.}
+%\renewcommand{\thesubsection}{\Alph{subsection}.}%\thesection\Alph{subsection}.
+%\subsectionfont{\itshape}
+%\subsubsectionfont{\scshape}
+%\newcommand\relphantom[1]{\mathrel{\phantom{#1}}}
+%\setlength\topmargin{0.1in} \setlength\headheight{0.1in}
+%\setlength\headsep{0in} \setlength\textheight{9.2in}
+%\setlength\textwidth{6.3in} \setlength\oddsidemargin{0.1in}
+%\setlength\evensidemargin{0.1in}
+
+\hypersetup{
+  colorlinks  = true,
+  citecolor   = darkblue,
+ 	linkcolor   = darkblue,
+  urlcolor    = darkblue 
+} % macht die URLS blau   
+     
+\usepackage{lettrine}	% First letter capitalized
+
+% have date in month year format (i.e. omit the day in dates)
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+%--------------------------------------------------------------------
+%	AUTHOR & TITLE
+%--------------------------------------------------------------------
+\title{Maternity Leave and Children's Health Outcomes\\ in the Long-Term\\ REVISION}
+\author{Marc Fabel}
+
+\date{\today}
+
+
+
+
+
+
+
+
+%--------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%--------------------------------------------------------------------
+\begin{document}
+\maketitle
+\newpage
+\section{Parallel trends assumption}
+
+
+
+\begin{landscape}
+\begin{figure}[H]\centering
+	\caption{Parallel trends for \textbf{hospital admission}}\label{fig_mlch: parallel_trends_hospital2}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_hospital2.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Women}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_hospital2_f.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Men}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_hospital2_m.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} %The figures plot DiD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admission over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. The outcomes are defined as the number of cases per 1,000 individuals. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males, respectively. The control group is comprised of children that are born in the same months, but one year before the reform (i.e. children born between November 1977 and October 1978).
+	\end{minipage}
+\end{figure}
+\end{landscape}
+
+
+
+
+
+\begin{landscape}
+\begin{figure}[H]\centering
+	\caption{Parallel trends for \textbf{mental and behavioral disorders}}\label{fig_mlch: parallel_trends_d5}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_d5.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Women}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_d5_f.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Men}
+		\includegraphics[width=\linewidth]{paper/mlch_lc_trends_d5_m.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} %The figures plot DiD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on mental and behavioral disorders over the life-course. The light gray line in the background represents the baseline mean of the pre-reform treated cohort. The outcomes are defined as the number of cases per 1,000 individuals. Panel a shows the results for all admissions, whereas panel b and c show the estimates for females and males, respectively. The control group is comprised of children	that are born in the same months but one year before (i.e. children born between November 1977 and October 1978).
+	\end{minipage}
+\end{figure}
+\end{landscape}
+
+
+
+\section{Interaction Treatment $\times$ Age groups }
+
+\pagestyle{empty}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Robustness: Interaction Treatment with Age Brackets (hospitalization)}\label{tab_mlch: interaction_TxA_agegroups_hospital2}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A. Total}} \\
+				\input{paper/include/paper_hospital2_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel B. Women}} \\
+				\input{paper/include/paper_hospital2_f_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel C. Men}} \\
+				\input{paper/include/paper_hospital2_m_DD_interaction_agegroups} 				
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} The table reports DiD estimates when using interactions of $Treat \times After$ with the age brackets and relying on the full sample. This robustness check differs from the specification in Table \ref{tab_mlch: DD_hopsital2_total} in which there are different regressions for each age-bracket. The interaction of the effect of being born after the threshold with the age groups while using the full sample addresses serial correlation for a given month of birth cohort. 			
+		\end{tablenotes}
+	\end{threeparttable} 
+\end{table}
+
+
+
+\pagestyle{empty}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Interaction for MBDs}\label{tab_mlch: interaction_TxA_agegroups_d5}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A. Total}} \\
+				\input{paper/include/paper_d5_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel B. Female}} \\
+				\input{paper/include/paper_d5_f_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel C. Male}} \\
+				\input{paper/include/paper_d5_m_DD_interaction_agegroups} 				
+				\bottomrule 
+		\end{tabular}}
+	\end{threeparttable} 
+\end{table}
+
+
+
+
+
+
+
+
+\section{Difference in Dicontinuities}
+\begin{landscape}
+\begin{figure}[H]\centering
+	\caption{Difference in Discontinuitoes for \textbf{hospital admission}}\label{fig_mlch: diff_disc_hospital2}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{temp/diff_disc_hospital2.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Female}
+		\includegraphics[width=\linewidth]{temp/diff_disc_hospital2_f.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Male}
+		\includegraphics[width=\linewidth]{temp/diff_disc_hospital2_m.pdf}
+	\end{subfigure}
+\end{figure}
+\begin{figure}[H]\centering
+	\caption{Difference in Discontinuitoes for \textbf{MBDs}}\label{fig_mlch: diff_disc_d5}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Total}
+		\includegraphics[width=\linewidth]{temp/diff_disc_d5.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Female}
+		\includegraphics[width=\linewidth]{temp/diff_disc_d5_f.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.3\linewidth}\centering\caption{Male}
+		\includegraphics[width=\linewidth]{temp/diff_disc_d5_m.pdf}
+	\end{subfigure}
+\end{figure}
+\end{landscape}
+
+
+
+
+
+start with RDD: data not ideal, if I do this same estimate as in baseline specification 
+same logic applies to regression in discontinuities 
+
+
+
+
+
+\section{Regular RDD}
+
+
+\input{../../analysis/tables/paper/RDD_hospital2_overall_agegroup_total}
+
+
+% Hospital - Reduced form pooled
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for hospital admission (pooled)}\label{fig: rf_hospital2_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_female_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_hospital2_male_pooled.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry  
+%--------------------------------------------
+% Hospital -Reduced form AGE groups 
+% original 3 3 2 3
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for hospital admission across age groups}\label{fig: rf_hospital2_agegroup}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_hospital2_overview_agegroups_CIfits.pdf}
+		\scriptsize
+		\begin{minipage}{0.9\linewidth}
+			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry
+
+
+
+
+
+
+
+% d5 - RF pooled
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for mental \& behavioral disorders (pooled)}\label{fig: rf_d5_pooled}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/rd_d5_total_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/rd_d5_female_pooled.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/rd_d5_male_pooled.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry 
+
+
+
+
+%--------------------------------------------
+% D5 - RF (age group)
+\newgeometry{left=1cm,right=1cm,top=3cm,bottom=3cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}
+		[H]\centering
+		\caption{RD plots for mental \& behavioral disorders across age groups}\label{fig: rf_d5_agegroup}
+		\includegraphics[width=0.85\linewidth]{paper/rd_r_fert_d5_overview_agegroups_CIfits.pdf}
+		\scriptsize
+		\begin{minipage}{0.9\linewidth}
+			\emph{Notes:} The figure plots the number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion across gender and different age groups. The first column reports the ratios for all patients, and the second and third column do so for women and men, respectively. The rows show the ratios across different age groups. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+			\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry
+
+
+
+
+\section{School Entry Effects}
+
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Account for School cutoff \textbf{hospital admission}}\label{tab_mlch: DD_hopsital2_total_school_cutoff}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window pre-threshold} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{Nov-Apr}&\multicolumn{1}{c}{Dec-Apr}&\multicolumn{1}{c}{Jan-Apr}&\multicolumn{1}{c}{Feb-Apr}&\multicolumn{1}{c}{Mar-Apr}\\
+				\midrule
+%				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+%				\input{paper/include/paper_hospital2_DD_overall_incl2m} \\ \\
+%				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+				\input{paper/include/paper_hospital2_DD_17-21_school_cutoffs} \input{paper/include/paper_hospital2_DD_22-26_school_cutoffs} \input{paper/include/paper_hospital2_DD_27-31_school_cutoffs} \input{paper/include/paper_hospital2_DD_32-35_school_cutoffs} 
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} Post threshold is restricted to the months May and June only to remove any other discontinuities from school entry effects. %The table shows DiD estimates of the 1979 maternity leave reform on hospital admission for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. Panel A shows the effect for the entire pooled time frame and panel B breaks the life-course up in age brackets. The outcome variables are defined as the number of cases per thousand individuals. All regressions control for year and month-of-birth fixed effects. The control group is comprised of children that are born in the same months but one year before the reform (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$. The dependent mean and the effect size in standard deviation units correspond to pre-reform values of the treated group. Clustered standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline 	%\emph{Source:} Hospital registry data.
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage 
+
+
+
+
+\subsection{different bandwidths for additional Control Group}
+
+
+
+
+
+
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission}, with additional Control group}\label{XXXXXX}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\input{paper/include/paper_hospital2_addcg_different_bws} 
+				\input{paper/include/paper_hospital2_addcg_different_bws_female}
+				\input{paper/include/paper_hospital2_addcg_different_bws_male}
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} %The table shows DiD estimates of the 1979 maternity leave reform on hospital admission for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. Panel A shows the effect for the entire pooled time frame and panel B breaks the life-course up in age brackets. The outcome variables are defined as the number of cases per thousand individuals. All regressions control for year and month-of-birth fixed effects. The control group is comprised of children that are born in the same months but one year before the reform (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$. The dependent mean and the effect size in standard deviation units correspond to pre-reform values of the treated group. Clustered standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline 	%\emph{Source:} Hospital registry data.
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage 
+
+
+
+\section{Level of aggregation}
+
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (total)}}\label{XXXXXX}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+				\multicolumn{1}{c}{year [age]}&\multicolumn{1}{c}{estimate}&\multicolumn{1}{c}{st. error}&\multicolumn{1}{c}{N}\\
+				\midrule
+				\input{paper/include/revision_hospital2_lifecourse_table.tex}
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} 
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (Women)}}\label{XXXXXX}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+				\multicolumn{1}{c}{year [age]}&\multicolumn{1}{c}{estimate}&\multicolumn{1}{c}{st. error}&\multicolumn{1}{c}{N}\\
+				\midrule
+				\input{paper/include/revision_hospital2_f_lifecourse_table.tex}
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} 
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission (Men)}}\label{XXXXXX}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+				\multicolumn{1}{c}{year [age]}&\multicolumn{1}{c}{estimate}&\multicolumn{1}{c}{st. error}&\multicolumn{1}{c}{N}\\
+				\midrule
+				\input{paper/include/revision_hospital2_m_lifecourse_table.tex}
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} 
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage
+
+
+
+
+\end{document}
