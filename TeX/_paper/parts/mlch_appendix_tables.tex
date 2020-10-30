@@ -56,6 +56,54 @@
 
 
 
+
+
+
+%--------------------------------------------
+% Interaction Treatment & Age Groups for Hospital2
+\newgeometry{left=1cm,right=1cm,top=0cm,bottom=0cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Robustness: Interaction Treatment with Age Brackets (hospitalization)}\label{tab_mlch: interaction_TxA_agegroups_hospital2}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A. Total}} \\
+				\input{paper/include/paper_hospital2_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel B. Women}} \\
+				\input{paper/include/paper_hospital2_f_DD_interaction_agegroups} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel C. Men}} \\
+				\input{paper/include/paper_hospital2_m_DD_interaction_agegroups} 				
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} The table reports DiD estimates when using interactions of $Treat \times After$ with the age brackets and relying on the full sample. This robustness check differs from the specification in Table \ref{tab_mlch: DD_hopsital2_total} in which there are different regressions for each age-bracket. The interaction of the effect of being born after the threshold with the age groups while using the full sample addresses serial correlation for a given month of birth cohort. 			
+		\end{tablenotes}
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage 
+\restoregeometry
+
+
+
+
+
+
+
+
+
+
+
+
+
 % % ITT effects nach chaptern (WOMEN)
 
 % \newpage
