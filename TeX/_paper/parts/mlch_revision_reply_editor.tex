@@ -21,8 +21,8 @@ Below is a summary of how I have revised the paper based on the comments made by
 
 Two general notes:
 \begin{enumerate}
-	\item Any changes that were made in the document since the original submission are highlighted in orange. 
-	\item I decided to have the replies in the same document as the paper. This allows me to provide cross-references to sections, figures and tables in the replies.
+	\item Any changes that were made in the document since the original submission are highlighted in dark green. 
+	\item I decided to have the replies in the same document as the paper. This allows me to provide clickable cross-references to sections, figures, tables, and footnotes in the replies.
 \end{enumerate}
 
 \subsection*{Identification}
@@ -33,17 +33,19 @@ Two general notes:
 \textit{"One of the main problems of the paper (as reviewer 1 also raises) is that you do not end up running a regression discontinuity design, but a difference in differences. For the difference in differences to be credible, you need to provide evidence that the parallel trends assumption holds, which you do not. For those born in 1978-1979 prior to May 1st 1979, you should expect the differences in hospitalization rates 20 years later (relative to those born in the same months of 1977-1978) to be parallel. You should test that, ideally, using the same timeframes you use for the results."}
 \end{quote}
 
-\underline{Response:} I agree that evidence for the parallel trends assumption was missing. For this reason, I extended the figures presenting the year-by-year trajectories of the differentials (`life-course') to also show the pre-threshold means of the treatment and control cohort. The figures show that hospitalization rates for the cohort born in 1978-1979 prior to the threshold in May are parallel to the hospitalization rates for the cohort born in the same month of 1977-1978. See Figure \ref{fig_mlch: lc_hospital2_frg_DD} for hospitalizations and Figure \ref{fig_mlch: lc_d5_frg_DD} for MBDs. 
+\underline{Response:} I agree that evidence for the parallel trends assumption was missing. For this reason, I extended the figures presenting the year-by-year trajectories of the differentials (`life-course') to also show the pre-threshold means of the treatment and control cohort. The figures show that hospitalization rates for the cohort born in 1978-1979 prior to the threshold in May are parallel to the hospitalization rates for the cohort born in the same month of 1977-1978. See Figure \ref{fig_mlch: lc_hospital2_frg_DD} for hospitalizations (page \pageref{fig_mlch: lc_hospital2_frg_DD}) and Figure \ref{fig_mlch: lc_d5_frg_DD} for MBDs (page \pageref{fig_mlch: lc_d5_frg_DD}). The text in the results section had to be adjusted accordingly. Please go to page \pageref{rev_mlch: editor_parallel_trends_text} for changes affecting hospitalization and page \pageref{rev_mlch: editor_parallel_trends_text_d5} for changes concerning MBDs.
 
-XXX The text in the results section has been adjusted, too. Please see section XXX
+
+
 %positive side effect: better readability
 %adjusted figures in life course approach such that the dependent mean is not shown anymore, the effect size can n
 
 
 %-----------------------------------------
 % Regression Discontinuity
+\bigskip
 \begin{quote}
-	\textit{You could also run a difference-in-regression discontinuity design for robustness, using kernel weighting, automatic bandwidth choice, and a polynomial on the running variable. Results would be substantially stronger if you were able to show similar estimates under both approaches (at least for the main specifications).}
+	\textit{"You could also run a difference-in-regression discontinuity design for robustness, using kernel weighting, automatic bandwidth choice, and a polynomial on the running variable. Results would be substantially stronger if you were able to show similar estimates under both approaches (at least for the main specifications)."}
 \end{quote}
 \underline{Response:}
 Although this suggestion is a great idea, the data set does not allow identification with any type of Regression Discontinuity Designs (RDD) as standard errors become quite large. Let me exemplify this by showing you the results when running a normal RDD of the following form: 
@@ -124,49 +126,47 @@ Or should I have a Table with RDD and Diff-in-Disc
 
 
 %-----------------------------------------
-
 % SUTVA
+\bigskip
 \begin{quote}
-	\textit{Extended maternal leave could also have affected older siblings in the family, in particular those close in age to the newborn (by making the mother more available, improving her health or increasing household income). If this were the case, SUTVA would not hold and your effects would represent a lower bound. You conduct a robustness analysis using the cohort just below the one in the core control group. You could try with several cohorts older to avoid this problem.}
+	\textit{"Extended maternal leave could also have affected older siblings in the family, in particular those close in age to the newborn (by making the mother more available, improving her health or increasing household income). If this were the case, SUTVA would not hold and your effects would represent a lower bound. You conduct a robustness analysis using the cohort just below the one in the core control group. You could try with several cohorts older to avoid this problem."}
 \end{quote}
 \underline{Response:}
 
-%-----------------------------------------
+discuss things in robustness section (section \ref{sec_mlch: robustness}) with additional control cohort
 
+(page \pageref{rev_mlch: editor_SUTVA_older_cohorts})
+
+
+added Figure \ref{fig_mlch: SUTVA_older_controls_hospital2} in Appendix (page \pageref{fig_mlch: SUTVA_older_controls_hospital2})
+
+XXX discuss more here XXX
+
+
+%-----------------------------------------
 % Interactions
+\bigskip
 \begin{quote}
-	\textit{It is not quite clear whether you have a different regression for each age-bracket (I tend to believe this is the case) or if you include (Treat x After x age-range) interactions in the same regression. This latter approach would address correlation of the errors over time for a given month of birth cohort. In a robustness check, I would like to see results of such a regression, and how they compare with the results you present when running individual regressions.}
+	\textit{"It is not quite clear whether you have a different regression for each age-bracket (I tend to believe this is the case) or if you include (Treat x After x age-range) interactions in the same regression. This latter approach would address correlation of the errors over time for a given month of birth cohort. In a robustness check, I would like to see results of such a regression, and how they compare with the results you present when running individual regressions."}
 \end{quote}
 \underline{Response:}
 
 
+So far I used different regressions for each age bracket. Due to the fact that this was not clear, I added a phrase in the results section (page \pageref{rev_mlch: editor_comprehension_interaction}) to make it explicit.
 
+In order to address your point, I added Table \ref{tab_mlch: interaction_TxA_agegroups_hospital2} (page \pageref{tab_mlch: interaction_TxA_agegroups_hospital2}) in the appendix and discussed the findings in Footnote \ref{rev_mlch: editor_interaction_TxA_agegroups} (page \pageref{rev_mlch: editor_interaction_TxA_agegroups}).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+XXX Should I explicitly point to the differences or leave it with the similarities? XXX
 
 
 
 
 
 %-----------------------------------------
-
-
 % not affected by school entry and others
+\bigskip
 \begin{quote}
-	\textit{You should also provide some evidence that your treated cohort was not affected differentially than the control cohort throughout the years by other policies (school-based or health care-based) that could have affected health outcomes during young adulthood}
+	\textit{"You should also provide some evidence that your treated cohort was not affected differentially than the control cohort throughout the years by other policies (school-based or health care-based) that could have affected health outcomes during young adulthood"}
 \end{quote}
 \underline{Response:}
 
@@ -183,32 +183,38 @@ Or should I have a Table with RDD and Diff-in-Disc
 \subsection*{Paper structure and other features}
 
 
-% 
+% Formulation selective fertility
+\bigskip
 \begin{quote}
-	\textit{In the last paragraph in section 5, “An examination of the fertility…”, you refer to selection fertility as a possible threat, but the real threat is selective delivery. In the appendix you clarify that, but you should make that clearer in that paragraph.}
+	\textit{"In the last paragraph in section 5, “An examination of the fertility…”, you refer to selection fertility as a possible threat, but the real threat is selective delivery. In the appendix you clarify that, but you should make that clearer in that paragraph."}
 \end{quote}
 \underline{Response:}
+I agree that the formulation was not unambiguous. In section \ref{sec_mlch:empirical_strategy} (page \pageref{rev_mlch: editor_selective_delivery}), I changed the formulation to include both, changes in fertility (strategic conception) and delivery (postponing induced births and C-sections). 
 
-
-% 
-\begin{quote}
-	\textit{Last paragraph in subsection 6.3 “Why are the effects of the 1979…”. I would shift this to the discussion of mechanisms section at the end. I would also shift the discussion of long term mechanisms in section 3 to this last section (as suggested by Reviewer 2).}
-\end{quote}
-\underline{Response:}
 
 
 
 % 
+\bigskip
 \begin{quote}
-	\textit{When discussing mechanisms, please refer to the findings of the other papers that have already studied maternity leave policies with respect to potential mediating out-comes. The literature on the effects of income on children’s health is much broader, and you could try expanding it a little. Same with the literature on parental attachment, parental investment and children’s outcomes.}
+	\textit{"Last paragraph in subsection 6.3 “Why are the effects of the 1979…”. I would shift this to the discussion of mechanisms section at the end. I would also shift the discussion of long term mechanisms in section 3 to this last section (as suggested by Reviewer 2)."}
 \end{quote}
 \underline{Response:}
 
 
 
 % 
+\bigskip
 \begin{quote}
-	\textit{You don’t cite Beuchert et al (2016) in the introduction when describing papers that studied the effects of maternal leave on children’s health. Unlike the other papers, Beuchert et al. do not seem to find evidence that maternal leave extensions increase children’s health.}
+	\textit{"When discussing mechanisms, please refer to the findings of the other papers that have already studied maternity leave policies with respect to potential mediating out-comes. The literature on the effects of income on children’s health is much broader, and you could try expanding it a little. Same with the literature on parental attachment, parental investment and children’s outcomes."}
 \end{quote}
 \underline{Response:}
 
+
+
+% 
+\bigskip
+\begin{quote}
+	\textit{"You don’t cite Beuchert et al (2016) in the introduction when describing papers that studied the effects of maternal leave on children’s health. Unlike the other papers, Beuchert et al. do not seem to find evidence that maternal leave extensions increase children’s health."}
+\end{quote}
+\underline{Response:} So far, I have been citing \cite{beuchert2016} in the discussion about mechanisms (paragraph on maternal health outcomes). Yet, I forgot to include their null results in the introduction. In order to account for this issue, I included the information on \cite{beuchert2016} in footnote \ref{rev_mlch: editor_beuchert_omission} (page \pageref{rev_mlch: editor_beuchert_omission}). Thank you for spotting the omission.
