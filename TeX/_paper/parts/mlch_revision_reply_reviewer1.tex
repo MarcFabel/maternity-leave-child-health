@@ -22,20 +22,56 @@
 \underline{Response:}
 
 %-----------------------------------------
-% 
+% School entry rules
 \begin{quote}
 	\textit{"Related to this issue, I worry about \underline{school-entry rules} in Germany. The before-group was born between November and April, the post-group was born between May and October. As I understood correctly, in most German states the cut-off date for school entry is June 30. Thus, students born in May or June are the youngest in their cohort, while children born in July are the oldest. Relative age effects academic achievement (see for example Jürges/Schneider (2011): Why young boys stumble: Early tracking, age and gender bias in the German school system, German Economic Review 12 (4) 2011, 371-394). First, given the cut-off in school entry rules between June and July, I worry that potential unobserved differences between those students are not fully accounted for in the difference-in-difference estimations. This issue should be discussed in the paper in more detail and some robustness checks should be presented. For example, I would like to see results when the sample window is reduced to March - June only and I would like to see robustness checks with the additional control cohort (2 years prior to the reform) for various sampling windows. It is important to convince the reader that the reform effect is different from the usual differences between students born in different months of the year. I think more has to be done here."}
 \end{quote}
 \underline{Response:}
+
+
+
+
+
+cutoff in most German states is June 30 -> have only children born before the other discontinuity in the post-threshold group (i.e. May and June) and estimate model again with varying bandwidth on the other side of the cutoff. Start with widest specification of half a year (Nov-Apr) and reduce to two months before the threshold (Mar-Apr). The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}
+
+
+
+\begin{figure}[H]\centering\caption{Robustness: Account for School Cutoff Rules for Hospitalization}\label{fig_mlch: school_cutoff_hospital}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_pooled.pdf}
+	\end{subfigure}
+
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_17-21.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_22-26.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_27-31.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_32-35.pdf}
+	\end{subfigure}
+		\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} The figure displays DiD estimates of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}.
+	\end{minipage}
+\end{figure}
+
 
 %-----------------------------------------
 % 
 \begin{quote}
 	\textit{"The Difference-in-Difference estimates are based on \underline{aggregated data} by cohort x birth-month x reporting year. I worry that the number of observations is artificially blown up by the dimension of the reporting year (age). Are the estimates still significantly different from zero if only year x birth-month is used as level of aggregation (for a given reporting year)?"}
 \end{quote}
-\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression per year with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose here the corresponding tables per reporting year.
+\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose here in the reply the corresponding tables \ref{rev_mlch: lc_table_hospital} per reporting year.
 
-XXX ADD TABLEs HERE XXX
+
+\input{paper/include/revision_hospital2_lifecourse_table_all_genders}
+\input{paper/include/revision_d5_lifecourse_table_all_genders}
+
+
 
 %-----------------------------------------
 % 
