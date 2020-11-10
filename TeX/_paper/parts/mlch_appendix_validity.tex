@@ -11,6 +11,10 @@
 % THREATS
 \bigskip
 \section*{Potential Threats to Identification and Validity of the Design}\label{sec_mlch:empirical_strategy_threats+validity}
+
+\revision{In the following, I present two threats to the empirical strategy. First, I discuss potential self-selection into the treatment group by postponing delivery or strategic conception. Second, I consider threats along the distribution of birth months, which may be the result of seasonal and age of school entry effects.}
+
+\subsection*{Threats at the threshold}
 Behavioral responses with respect to the forcing variable, the birth date of the child, could potentially jeopardize the validity of the identification strategy. Typically, gestation length is a normally distributed random variable with mean of 40 weeks and 2 weeks standard deviation, from the beginning of the last menstrual cycle \citep{Ekberg2013parental}. However, parents may influence the time when their child is born in two ways. 
 
 First, parents may be incentivized to get strategically pregnant in response to the more attractive ML leave scheme. However, it is unlikely that children in my sample were conceived due to this reason. The draft bill was only proposed four months before the threshold birth date and the widest specification includes children who were born on October 1979, the month in which the earliest possible birth date could be. However, it is plausible that the topic increased public awareness due to media coverage even before the draft bill was initiated. For that reason, \cite{Dustmann2012} conduct a literature search for articles regarding the reform. Subsequently, their results show that the earliest articles were published two months prior to the cutoff date.
@@ -41,40 +45,70 @@ Panel B of Figure \ref{fig_mlch: fertilitydistr} shows the time series after rem
 I regress the number of children born on day $i$, $\text{Births}_i$, on a series of dummies: year interacted with day of the week, day of the year, and a dummy for public national holidays.\footnote{For public holidays I use Good Friday, Holy Saturday, Easter Sunday, Easter Monday, Labor Day, Ascension Day, Whit Sunday, Whit Monday, and Corpus Christi.} Parameters are left out for better readability. Panel B plots the residuals $(\text{Births}-\widehat{\text{Births}})$ from the calibrated model. In contrast to \cite{gans2009born}, I do not observe systematically fewer births prior to the reform, or more births right after the policy change came into effect. These results suggest that there is no evidence that parents delayed births to after the cutoff date.
 
 
+%--------------------------------------------
+%VALIDITY: Birth rate effects
+\begin{table}[t] \centering
+	\caption{Birth rate effects of the 1979 ML reform}\label{tab_mlch: validity_birth_rate}
+	{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+		\begin{tabular}{l*{5}{c}}
+			\toprule
+			& \multicolumn{4}{c}{Estimation window} \\
+			\cmidrule{2-5}
+			&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+			& \multicolumn{1}{c}{$\pm$7 days} & \multicolumn{1}{c}{$\pm$14 days} & \multicolumn{1}{c}{$\pm$21 days} & \multicolumn{1}{c}{$\pm$28 days}\\ 
+			\midrule
+			\multicolumn{5}{l}{\emph{Panel A. Dependent variable is number of births}}\\
+			\input{../../analysis/tables/paper/include/birth_rate_effects_births}
+			\\ \\
+			\multicolumn{5}{l}{\emph{Panel B. Dependent variable is ln(number of births)}}\\
+			\input{../../analysis/tables/paper/include/birth_rate_effects_lnbirths}
+			\bottomrule
+	\end{tabular}}
+	\begin{minipage}{0.7\linewidth}
+		\scriptsize \emph{Notes:} The table shows regression estimates of the impact of the 1979 ML reform on fertility. The sample comprises daily births within the relevant estimation window in the federal states of Baden-Württemberg and North Rhine-Westphalia from 1977-1990. Panel A uses the number of births as dependent variable, whereas panel B shows results with the log of the number of births as dependent variable. All specifications control for day of year, public holiday, and year$\times$day of week fixed effects. The estimation window is referring to the number of days before and after May 01. For instance, the $\pm$ 7 day window includes the last week in April and the first week in May across all years. Standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
+	\end{minipage}
+\end{table}
+
+
+
 Table \ref{tab_mlch: validity_birth_rate} presents estimates of the effect of the ML expansion on fertility outcomes, for different estimation windows.\footnote{I estimate: $f(\text{Births}_i) = I^{\text{Reform}}_i + I^{\text{Year}}_i\times I^{\text{Day of Week}}_i + I^{\text{Day of Year}}_i + I^{\text{Public Holiday}}_i + \varepsilon_i$, with the dummy $I^{\text{Reform}}_i$, which equals one for days after the cutoff in 1979. The results remain qualitatively the same if $I^{\text{Public Holiday}}_i$ is interacted with $I^{\text{Day of Week}}_i$.} Irrespective of whether the number of births or the log of the number of births is used, there is no evidence suggesting that parents deliberately postponed births until after the threshold date. On the contrary, the point estimates are negative throughout all specifications and become significantly different from zero with increasing estimation windows. Furthermore, the magnitude of the estimates is constant across estimation windows, which is a counterintuitive result if parents shifted births from the week prior to the reform to the week after the reform. If such behavior were present, one would expect point estimates to decrease in absolute value as the estimation window is enlarged. 
 
 
-%--------------------------------------------
-% Fertility distribuition
 
 
 
+% Threats along distribution of birth months
+\revision{\subsection*{Threats along the whole distribution of birth months}}
+As discussed in section \ref{sec_mlch:empirical_strategy}, I cannot directly compare children born before and after the 1979 ML reform cutoff as birth months may affect outcomes directly \citep{buckles2013season,currie2013within}. Particularly important in this respect are age-based cutoff rules at school-entry \citep{black2011too}. Under the assumption that treatment and control cohort are subject to the same seasonality effects, the DiD design can isolate the reform impact from seasonality and age of school entry effects. There is no formal test to investigate whether the assumption of time-invariance of seasonality is met. However, the parallel trends for pre-threshold born children in treatment and control group (Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD}) provide suggestive evidence that the cohort born in year prior to the reform can be used as counterfactual.
+
+
+The parallel trends cannot indicate whether the discontinuities caused by school entry rules are an issue as the school entry cutoff dates fall into the post-threshold group of the 1979 ML reform. In West Germany, the cutoff date for school entry was June 30 \citep{juerges2011}.\footnote{The school entry rule dictates that children who turn 6 before to cutoff date, June 30, are admitted to primary school in that year. Children born after the threshold are admitted one year later.} It may be that the DiD estimations cannot fully account for unobserved differences between children born around the school entry cutoff threshold. This may happen if treated children are affected differentially by the school-based entry rules than control children. In order to check whether school entry rules pose a threat to the identification, I run two robustness checks. First, I limit my post-threshold group to children born before the school entry discontinuity (i.e. May and June). Figure \ref{fig_mlch: school_cutoff_hospital} shows estimates with varying bandwidths on the other side of the cutoff for different age brackets. The first estimate per panel represents the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}. The estimation window contains in the widest specification half a year before the cutoff (Nov-Apr) and shrinks to two months before the threshold (Mar-Apr). In the first panel, which shows the pooled results, the estimates are insignificant compared to the baseline specification. The overall insignificant effect can be explained by the fact that the estimates for the age group 27-31 years are note significant anymore. However, the overall picture does not change. The largest effects are found for the oldest age bracket (32-35 years) {\color{red}and are coming from males (not shown here)}. The point estimates are throughout negative and mostly significant. Only when reducing the pre-threshold group to two months, the standard errors are too large for a significant estimate. 
 
 
 
-%--------------------------------------------
-%VALIDITY: Birth rate effects
- \begin{table}[H] \centering
- \caption{Birth rate effects of the 1979 ML reform}\label{tab_mlch: validity_birth_rate}
- {\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
- \begin{tabular}{l*{5}{c}}
- 	\toprule
- 	& \multicolumn{4}{c}{Estimation window} \\
- 	\cmidrule{2-5}
- 	&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-	 & \multicolumn{1}{c}{$\pm$7 days} & \multicolumn{1}{c}{$\pm$14 days} & \multicolumn{1}{c}{$\pm$21 days} & \multicolumn{1}{c}{$\pm$28 days}\\ 
- 	\midrule
- 	\multicolumn{5}{l}{\emph{Panel A. Dependent variable is number of births}}\\
- 	\input{../../analysis/tables/paper/include/birth_rate_effects_births}
- 	\\ \\
- 	\multicolumn{5}{l}{\emph{Panel B. Dependent variable is ln(number of births)}}\\
- 	\input{../../analysis/tables/paper/include/birth_rate_effects_lnbirths}
- 	\bottomrule
- \end{tabular}}
- \begin{minipage}{0.7\linewidth}
- 		\scriptsize \emph{Notes:} The table shows regression estimates of the impact of the 1979 ML reform on fertility. The sample comprises daily births within the relevant estimation window in the federal states of Baden-Württemberg and North Rhine-Westphalia from 1977-1990. Panel A uses the number of births as dependent variable, whereas panel B shows results with the log of the number of births as dependent variable. All specifications control for day of year, public holiday, and year$\times$day of week fixed effects. The estimation window is referring to the number of days before and after May 01. For instance, the $\pm$ 7 day window includes the last week in April and the first week in May across all years. Standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
- 	\end{minipage}
- \end{table}
-\clearpage
+% mention here other control cohorts in SUTVA check
 
+
+\begin{figure}[t]\centering\caption{Robustness: Account for School Cutoff Rules for Hospitalization}\label{fig_mlch: school_cutoff_hospital}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_pooled.pdf}
+	\end{subfigure}
+	
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_17-21.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_22-26.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_27-31.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_32-35.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{\linewidth}
+		\emph{Notes:} The figure displays DiD estimates of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}.
+	\end{minipage}
+\end{figure}
 

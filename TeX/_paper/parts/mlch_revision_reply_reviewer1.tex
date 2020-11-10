@@ -29,35 +29,39 @@
 \underline{Response:}
 
 
+I split up the appendix in two parts. The first part describes the threats at the threshold (self-selection due to postponed delivery or strategic conception). The second part contains a discussion of threats along the distribution of birth months. 
+
+% both things matter
+
+Figure \ref{fig_mlch: school_cutoff_hospital} (see Table \ref{tab_mlch: DD_hospital2_total_school_cutoff} for your convenience)
 
 
 
-cutoff in most German states is June 30 -> have only children born before the other discontinuity in the post-threshold group (i.e. May and June) and estimate model again with varying bandwidth on the other side of the cutoff. Start with widest specification of half a year (Nov-Apr) and reduce to two months before the threshold (Mar-Apr). The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}
+% table format for your convenience
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Account for School cutoff \textbf{hospital admission}}\label{tab_mlch: DD_hospital2_total_school_cutoff}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{5}{c}{Estimation window pre-threshold} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{Nov-Apr}&\multicolumn{1}{c}{Dec-Apr}&\multicolumn{1}{c}{Jan-Apr}&\multicolumn{1}{c}{Feb-Apr}&\multicolumn{1}{c}{Mar-Apr}\\
+				\midrule
+				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+				\input{paper/include/paper_hospital2_DD_overall_school_cutoffs} \\ \\
+				
+				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+				\input{paper/include/paper_hospital2_DD_17-21_school_cutoffs} \input{paper/include/paper_hospital2_DD_22-26_school_cutoffs} \input{paper/include/paper_hospital2_DD_27-31_school_cutoffs} \input{paper/include/paper_hospital2_DD_32-35_school_cutoffs} 
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} Post-threshold group is restricted to individuals born in May and June to remove any other discontinuities from school entry effects. 
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
 
-
-
-\begin{figure}[H]\centering\caption{Robustness: Account for School Cutoff Rules for Hospitalization}\label{fig_mlch: school_cutoff_hospital}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_pooled.pdf}
-	\end{subfigure}
-
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_17-21.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_22-26.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_27-31.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_32-35.pdf}
-	\end{subfigure}
-		\scriptsize
-	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figure displays DiD estimates of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}.
-	\end{minipage}
-\end{figure}
 
 
 %-----------------------------------------
