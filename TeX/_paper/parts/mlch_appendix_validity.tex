@@ -82,43 +82,10 @@ Table \ref{tab_mlch: validity_birth_rate} presents estimates of the effect of th
 As discussed in section \ref{sec_mlch:empirical_strategy}, I cannot directly compare children born before and after the 1979 ML reform cutoff as birth months may affect outcomes directly \citep{buckles2013season,currie2013within}. Particularly important in this respect are age-based cutoff rules at school-entry \citep{black2011too}. Under the assumption that treatment and control cohort are subject to the same seasonality effects, the DiD design can isolate the reform impact from seasonality and age of school entry effects. There is no formal test to investigate whether the assumption of time-invariance of seasonality is met. However, the parallel trends for pre-threshold born children in treatment and control group (Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD}) provide suggestive evidence that the cohort born in year prior to the reform can be used as counterfactual.
 
 
-The parallel trends cannot indicate whether the discontinuities caused by school entry rules are an issue as the school entry cutoff dates fall into the post-threshold group of the 1979 ML reform. In West Germany, the cutoff date for school entry was June 30 \citep{juerges2011}.\footnote{The school entry rule dictates that children who turn 6 before to cutoff date, June 30, are admitted to primary school in that year. Children born after the threshold are admitted one year later.} It may be that the DiD estimations cannot fully account for unobserved differences between children born around the school entry cutoff threshold. This may happen if treated children are affected differentially by the school-based entry rules than control children. In order to check whether school entry rules pose a threat to the identification, I run two robustness checks. First, I limit my post-threshold group to children born before the school entry discontinuity (i.e. May and June). Figure \ref{fig_mlch: school_cutoff_hospital} shows estimates with varying bandwidths on the other side of the cutoff for different age brackets. The first estimate per panel represents the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}. The estimation window contains in the widest specification half a year before the cutoff (Nov-Apr) and shrinks to two months before the threshold (Mar-Apr). In the first panel, which shows the pooled results, the estimates are insignificant compared to the baseline specification. The overall insignificant effect can be explained by the fact that the estimates for the age group 27-31 years are note significant anymore. However, the overall picture does not change. The largest effects are found for the oldest age bracket (32-35 years) {\color{red}and are coming from males (not shown here)}. The point estimates are throughout negative, of similar magnitude, and mostly significant. Only when reducing the pre-threshold group to two months, the standard errors are too large for a significant estimate.
 
-
-
-\begin{figure}[H]\centering\caption{Robustness: Account for School Cutoff Rules for Hospitalization}\label{fig_mlch: school_cutoff_hospital}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_pooled.pdf}
-	\end{subfigure}
-	
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_17-21.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_22-26.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_27-31.pdf}
-	\end{subfigure}
-	\begin{subfigure}[h]{0.48\linewidth}\centering
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_32-35.pdf}
-	\end{subfigure}
-	\scriptsize
-	\begin{minipage}{\linewidth}
-		\emph{Notes:} The figure displays DiD estimates of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}.
-	\end{minipage}
-\end{figure}
-
-
-
-
-
-
-
-
-
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{Account for School cutoff \textbf{hospital admission}}\label{tab_mlch: DD_hospital2_total_school_cutoff}
+% Table: School cutoff, only 2 months in post period
+\begin{table}[t] \centering 
+	\begin{threeparttable} \centering \caption{Robustness: Account for School Cutoff Rules}\label{tab_mlch: DD_hospital2_total_school_cutoff}
 		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 			\begin{tabular}{l*{6}{c}}
 				\toprule 
@@ -138,29 +105,43 @@ The parallel trends cannot indicate whether the discontinuities caused by school
 				\input{paper/include/paper_hospital2_m_DD_overall_school_cutoffs} 
 				\midrule
 				Observations & 304      &       266       &      228      &       190       &      152 \\
-				
 				\bottomrule 
 		\end{tabular}}
 		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes:} Post-threshold group is restricted to individuals born in May and June to remove any other discontinuities from school entry effects. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.
+			\item \scriptsize \emph{Notes:} The table contains DiD estimates of the 1979 ML reform on hospitalization (pooled). To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.
 		\end{tablenotes} 
 	\end{threeparttable} 
 \end{table}
 
 
+The parallel trends cannot indicate whether the discontinuities caused by school entry rules are an issue as the school entry cutoff dates fall into the post-threshold group of the 1979 ML reform. In West Germany, the cutoff date for school entry was June 30 \citep{juerges2011}.\footnote{The school entry rule dictates that children who turn 6 before to cutoff date, June 30, are admitted to primary school in that year. Children born after the threshold are admitted one year later.} It may be that the DiD estimations cannot fully account for unobserved differences between children born around the school entry cutoff threshold. This may happen if treated children are affected differentially by the school-based entry rules than control children. In order to check whether school entry rules pose a threat to the identification, I run two robustness checks. First, I limit my post-threshold group to children born before the school entry discontinuity (i.e. May and June). Figure \ref{fig_mlch: school_cutoff_hospital} shows estimates with varying bandwidths on the other side of the cutoff for different age brackets. The first estimate per panel represents the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}. The estimation window contains in the widest specification half a year before the cutoff (Nov-Apr) and shrinks to two months before the threshold (Mar-Apr). In the first panel, which shows the pooled results, the estimates are insignificant compared to the baseline specification. The overall insignificant effect can be explained by the fact that the estimates for the age group 27-31 years are note significant anymore. However, the overall picture does not change. The largest effects are found for the oldest age bracket (32-35 years) {\color{red}and are coming from males (not shown here)}. The point estimates are throughout negative, of similar magnitude, and mostly significant. Only when reducing the pre-threshold group to two months, the standard errors are too large for a significant estimate.
 
-% figure: school_entry cutoffs different bandwidths
+
+
+
+
+% figure: school_entry cutoffs different bandwidths, per gender and age-group
+\newgeometry{left=0.5cm,right=0.5cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
-	\begin{figure}[H]\centering\caption{xxx}\label{fig_mlch: hospital2_school_cutoff}
-		\includegraphics[width=0.9\linewidth]{paper/hospital2_school_entry_small_bw_overview.pdf}
+	\begin{figure}[H]\centering
+		\caption{Robustness: Account for School Cutoff Rules, by gender and age-group}\label{fig_mlch: hospital2_school_cutoff}
+		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_overview.pdf}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure displays DiD estimates (along with 95\% confidence intervals) of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total} and \ref{tab_mlch: DD_hospital2_female_male}.
+		\end{minipage}
 	\end{figure}
-	\scriptsize
-	\begin{minipage}{0.9\linewidth}
-		\emph{Notes:}.
-	\end{minipage}
 	\vspace*{\fill}\clearpage
 \end{landscape}
+\restoregeometry 
+
+
+
+
+
+
+
 
 
 
@@ -173,9 +154,9 @@ Second,
 
 
 
-\vspace*{\fill}
+% table: additional control group - pooled
 \begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{ITT effects on \textbf{hospital admission}, with additional Control group}\label{XXXXXX}
+	\begin{threeparttable} \centering \caption{Robustness: Using the Additional Control Group}\label{tab_mlch: hospital2_addcg_bws_pooled}
 		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 			\begin{tabular}{l*{6}{c}}
 				\toprule 
@@ -198,27 +179,38 @@ Second,
 				\bottomrule 
 		\end{tabular}}
 		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes:} \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.
+			\item \scriptsize \emph{Notes:} The Table shows DiD estimates of the 1979 ML reform on hospital admissions (pooled). To check the robustness of the findings when accounting for school-entry rules, it presents estimates when including the additional control group born two years before the reform (i.e. born around May 1977, see column 5 of Table \ref{tab_mlch: robustness_hospital}). The DiD estimates are reported for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.
 		\end{tablenotes} 
 	\end{threeparttable} 
 \end{table}
-\vspace*{\fill}\clearpage 
+
 
 
 
 
 % figure: additional control group, different bandwidths for t,f,m
+\newgeometry{left=0.5cm,right=0.5cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
-	\begin{figure}[H]\centering\caption{xxx}\label{fig_mlch: add_cg}
-		\includegraphics[width=0.9\linewidth]{paper/hospital2_addcg_different_bws_overview.pdf}
+	\begin{figure}[H]\centering
+		\caption{Robustness: Using the Additional Control Group, by gender and age-group}\label{fig_mlch: hospital2_addcg_bws_age-group_gender}
+		\includegraphics[width=\linewidth]{paper/hospital2_addcg_different_bws_overview.pdf}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The Table shows DiD estimates (along with 95\% confidence intervals) of the 1979 ML reform on hospital admissions (pooled). To check the robustness of the findings when accounting for school-entry rules, it presents estimates when including the additional control group born two years before the reform (i.e. born around May 1977, see column 5 of Table \ref{tab_mlch: robustness_hospital}). The DiD estimates are reported for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total} and \ref{tab_mlch: DD_hospital2_female_male}.
+		\end{minipage}
 	\end{figure}
-	\scriptsize
-	\begin{minipage}{0.9\linewidth}
-		\emph{Notes:}.
-	\end{minipage}
 	\vspace*{\fill}\clearpage
 \end{landscape}
+\restoregeometry 
+
+
+
+
+
+
+
+
 
 
 
@@ -228,3 +220,32 @@ Second,
 
 
 
+
+
+
+
+
+%old robustness:
+% Table: School cutoff, only 2 months in post period Hospital (total) with age-groups
+%\begin{figure}[H]\centering\caption{Robustness: Account for School Cutoff Rules for Hospitalization}\label{fig_mlch: school_cutoff_hospital}
+%	\begin{subfigure}[h]{0.48\linewidth}\centering
+%		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_pooled.pdf}
+%	\end{subfigure}
+%	
+%	\begin{subfigure}[h]{0.48\linewidth}\centering
+%		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_17-21.pdf}
+%	\end{subfigure}
+%	\begin{subfigure}[h]{0.48\linewidth}\centering
+%		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_22-26.pdf}
+%	\end{subfigure}
+%	\begin{subfigure}[h]{0.48\linewidth}\centering
+%		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_27-31.pdf}
+%	\end{subfigure}
+%	\begin{subfigure}[h]{0.48\linewidth}\centering
+%		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_32-35.pdf}
+%	\end{subfigure}
+%	\scriptsize
+%	\begin{minipage}{\linewidth}
+%		\emph{Notes:} The figure displays DiD estimates of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total}.
+%	\end{minipage}
+%\end{figure}
