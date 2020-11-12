@@ -12,56 +12,28 @@
 
 %-----------------------------------------
 % 
-\begin{quote}
-	\textit{"The author discusses potential \underline{threats to the validity} of the design in the Appendix. While the Appendix operates at a very close window around the cut-off (including at most 8 weeks (4 weeks at either side)), the main specification of the paper is based on a window of 12 months	and some estimates are shown also for 10, 8 and 6 months. This is not coherent. }
-			
-	\textit{I was surprised that the author uses a window of 12 months for the main specification. This is a large window and includes children born in all months of the year. I understand that this is an argument for the implementation of a difference-in-difference approach. However, it has nothing to do with the analysis given in the Appendix.} 
-	 		
-	\textit{I recommend expanding the Appendix by discussing also potential threats to the validity of the study design that \underline{occur not only at the threshold} but along the whole distribution of birth months (potential seasonal differences in socio-economic characteristics, potential biases resulting from relative age effects induced by school-entry rules). One important question is whether the parallel trends assumption holds."}
-\end{quote}
-\underline{Response:}
+%\begin{quote}
+%	\textit{"The author discusses potential \underline{threats to the validity} of the design in the Appendix. While the Appendix operates at a very close window around the cut-off (including at most 8 weeks (4 weeks at either side)), the main specification of the paper is based on a window of 12 months and some estimates are shown also for 10, 8 and 6 months. This is not coherent. }
+%			
+%	\textit{I was surprised that the author uses a window of 12 months for the main specification. This is a large window and includes children born in all months of the year. I understand that this is an argument for the implementation of a difference-in-difference approach. However, it has nothing to do with the analysis given in the Appendix.} 
+%	 		
+%	\textit{I recommend expanding the Appendix by discussing also potential threats to the validity of the study design that \underline{occur not only at the threshold} but along the whole distribution of birth months (potential seasonal differences in socio-economic characteristics, potential biases resulting from relative age effects induced by school-entry rules). One important question is whether the parallel trends assumption holds."}
+%\end{quote}
+%\underline{Response:}
 
 %-----------------------------------------
-% School entry rules
+% expand appendix: Season of birth & School entry rules
 \begin{quote}
+	\textit{"The author discusses potential \underline{threats to the validity} of the design in the Appendix. While the Appendix operates at a very close window around the cut-off (including at most 8 weeks (4 weeks at either side)), the main specification of the paper is based on a window of 12 months and some estimates are shown also for 10, 8 and 6 months. This is not coherent. I was surprised that the author uses a window of 12 months for the main specification. This is a large window and includes children born in all months of the year. I understand that this is an argument for the implementation of a difference-in-difference approach. However, it has nothing to do with the analysis given in the Appendix. I recommend expanding the Appendix by discussing also potential threats to the validity of the study design that \underline{occur not only at the threshold} but along the whole distribution of birth months (potential seasonal differences in socio-economic characteristics, potential biases resulting from relative age effects induced by school-entry rules). One important question is whether the parallel trends assumption holds."}
+	
 	\textit{"Related to this issue, I worry about \underline{school-entry rules} in Germany. The before-group was born between November and April, the post-group was born between May and October. As I understood correctly, in most German states the cut-off date for school entry is June 30. Thus, students born in May or June are the youngest in their cohort, while children born in July are the oldest. Relative age effects academic achievement (see for example Jürges/Schneider (2011): Why young boys stumble: Early tracking, age and gender bias in the German school system, German Economic Review 12 (4) 2011, 371-394). First, given the cut-off in school entry rules between June and July, I worry that potential unobserved differences between those students are not fully accounted for in the difference-in-difference estimations. This issue should be discussed in the paper in more detail and some robustness checks should be presented. For example, I would like to see results when the sample window is reduced to March - June only and I would like to see robustness checks with the additional control cohort (2 years prior to the reform) for various sampling windows. It is important to convince the reader that the reform effect is different from the usual differences between students born in different months of the year. I think more has to be done here."}
 \end{quote}
 \underline{Response:}
 
-
-I split up the appendix in two parts. The first part describes the threats at the threshold (self-selection due to postponed delivery or strategic conception). The second part contains a discussion of threats along the distribution of birth months. 
-
-% both things matter
-
-Figure \ref{fig_mlch: school_cutoff_hospital} (see Table \ref{tab_mlch: DD_hospital2_total_school_cutoff} for your convenience)
-
-
-
-% table format for your convenience
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{Account for School cutoff \textbf{hospital admission}}\label{tab_mlch: DD_hospital2_total_school_cutoff}
-		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{6}{c}}
-				\toprule 
-				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-				& \multicolumn{5}{c}{Estimation window pre-threshold} \\ 
-				\cmidrule(lr){2-6}
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
-				&\multicolumn{1}{c}{Nov-Apr}&\multicolumn{1}{c}{Dec-Apr}&\multicolumn{1}{c}{Jan-Apr}&\multicolumn{1}{c}{Feb-Apr}&\multicolumn{1}{c}{Mar-Apr}\\
-				\midrule
-				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-				\input{paper/include/paper_hospital2_DD_overall_school_cutoffs} \\ \\
-				
-				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
-				\input{paper/include/paper_hospital2_DD_17-21_school_cutoffs} \input{paper/include/paper_hospital2_DD_22-26_school_cutoffs} \input{paper/include/paper_hospital2_DD_27-31_school_cutoffs} \input{paper/include/paper_hospital2_DD_32-35_school_cutoffs} 
-				\bottomrule 
-		\end{tabular}}
-		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes:} Post-threshold group is restricted to individuals born in May and June to remove any other discontinuities from school entry effects. 
-		\end{tablenotes} 
-	\end{threeparttable} 
-\end{table}
-
+\begin{itemize}
+	\item As suggested, I expanded the appendix such that it consists of two parts. The first part describes the threats at the threshold (self-selection due to postponed delivery or strategic conception). I added the second part (section V.2 on page \pageref{rev_mlch:threats_birth_months}), which discusses threats along the distribution of birth months. The section contains a theoretical explanation of which threats are encountered in this context, a brief discussion on the parallel trends for the pre-threshold cohorts, and covers the two robustness checks suggested by you (see Figures \ref{fig_mlch: hospital2_school_cutoff} and \ref{fig_mlch: hospital2_addcg_bws_age-group_gender}). 
+	\item The explanation on parallel trends is rather brief as I thought it best to add them to the results section in the paper (together with the life-course figures showing the yearly differentials). If you feel they belong in the Appendix, I can move them accordingly.
+\end{itemize}
 
 
 %-----------------------------------------
@@ -69,7 +41,7 @@ Figure \ref{fig_mlch: school_cutoff_hospital} (see Table \ref{tab_mlch: DD_hospi
 \begin{quote}
 	\textit{"The Difference-in-Difference estimates are based on \underline{aggregated data} by cohort x birth-month x reporting year. I worry that the number of observations is artificially blown up by the dimension of the reporting year (age). Are the estimates still significantly different from zero if only year x birth-month is used as level of aggregation (for a given reporting year)?"}
 \end{quote}
-\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose here in the reply the corresponding tables \ref{rev_mlch: lc_table_hospital} per reporting year.
+\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose here in the reply the corresponding Tables \ref{rev_mlch: lc_table_hospital} and \ref{rev_mlch: lc_table_d5}.
 
 
 \input{paper/include/revision_hospital2_lifecourse_table_all_genders}
@@ -113,3 +85,42 @@ Figure \ref{fig_mlch: school_cutoff_hospital} (see Table \ref{tab_mlch: DD_hospi
 \underline{Response:} Adjusted, as requested. Footnote \ref{rev_mlch: footnote_csections_germany} (page \pageref{rev_mlch: footnote_csections_germany}) reports the fraction of C-sections for Australia in 2004 and Germany in 1982. I had to fall back on the Federal State of Bavaria as a proxy (the second largest state), as national numbers are not available.
 
 %-----------------------------------------
+
+
+
+
+
+
+
+
+
+
+% OLD
+%-----------------------------------------
+%% table format of school cutoff rules for R1 convenience
+%\begin{table}[H] \centering 
+%	\begin{threeparttable} \centering \caption{Account for School cutoff \textbf{hospital admission}}\label{tab_mlch: DD_hospital2_total_school_cutoff}
+%		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+%			\begin{tabular}{l*{6}{c}}
+%				\toprule 
+%				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+%				& \multicolumn{5}{c}{Estimation window pre-threshold} \\ 
+%				\cmidrule(lr){2-6}
+%				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+%				&\multicolumn{1}{c}{Nov-Apr}&\multicolumn{1}{c}{Dec-Apr}&\multicolumn{1}{c}{Jan-Apr}&\multicolumn{1}{c}{Feb-Apr}&\multicolumn{1}{c}{Mar-Apr}\\
+%				\midrule
+%				\multicolumn{5}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+%				\input{paper/include/paper_hospital2_DD_overall_school_cutoffs} \\ \\
+%				
+%				\multicolumn{5}{l}{\emph{Panel B. Age brackets}} \\
+%				\input{paper/include/paper_hospital2_DD_17-21_school_cutoffs} \input{paper/include/paper_hospital2_DD_22-26_school_cutoffs} \input{paper/include/paper_hospital2_DD_27-31_school_cutoffs} \input{paper/include/paper_hospital2_DD_32-35_school_cutoffs} 
+%				\bottomrule 
+%		\end{tabular}}
+%		\begin{tablenotes} 
+%			\item \scriptsize \emph{Notes:} Post-threshold group is restricted to individuals born in May and June to remove any other discontinuities from school entry effects. 
+%		\end{tablenotes} 
+%	\end{threeparttable} 
+%\end{table}
+
+% put in reply: table for overall and write below
+% In the first panel, which shows the pooled results, the estimates are insignificant compared to the baseline specification. The overall insignificant effect can be explained by the fact that the estimates for the age group 27-31 years are note significant anymore
