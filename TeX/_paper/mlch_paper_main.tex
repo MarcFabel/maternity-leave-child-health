@@ -181,9 +181,34 @@ labelfont={bf}
 \begin{document}
 	
 	
+\renewcommand\thesection{R}
+\renewcommand\thefigure{R.\arabic{figure}}
+\setcounter{figure}{0} 
+\captionsetup[subfigure]{labelformat=parens}
+\renewcommand\thetable{R.\arabic{table}}
+\setcounter{table}{0} 
+\renewcommand\theequation{R.\arabic{equation}}
+\setcounter{equation}{0} 	
+	
+	
+	
 \input{parts/mlch_revision_reply_editor}	
 \input{parts/mlch_revision_reply_reviewer1}	
 \input{parts/mlch_revision_reply_reviewer2}		
+
+
+
+\renewcommand\thesection{\arabic{section}}
+\setcounter{section}{0} 
+\renewcommand\thefigure{\arabic{figure}}
+\setcounter{figure}{0} 
+\captionsetup[subfigure]{labelformat=parens}
+\renewcommand\thetable{\arabic{table}}
+\setcounter{table}{0}
+\renewcommand\theequation{\arabic{equation}}
+\setcounter{equation}{0}  
+
+
 
 %\setcounter{page}{0}  
 %\tableofcontents
@@ -267,10 +292,11 @@ labelfont={bf}
 {\huge\begin{center}\textbf{(Intended for Online Publication)}\end{center}}
 \vspace*{\fill}\clearpage
 
-\renewcommand\thefigure{V\arabic{figure}}
+\renewcommand\thesection{V}
+\renewcommand\thefigure{V.\arabic{figure}}
 \setcounter{figure}{0} 
 \captionsetup[subfigure]{labelformat=parens}
-\renewcommand\thetable{V\arabic{table}}
+\renewcommand\thetable{V.\arabic{table}}
 \setcounter{table}{0} 
 
 
@@ -287,10 +313,10 @@ labelfont={bf}
 \vspace*{\fill}\clearpage
 
 
-\renewcommand\thefigure{A\arabic{figure}}
+\renewcommand\thefigure{A.\arabic{figure}}
 \setcounter{figure}{0} 
 \captionsetup[subfigure]{labelformat=parens}
-\renewcommand\thetable{A\arabic{table}}
+\renewcommand\thetable{A.\arabic{table}}
 \setcounter{table}{0} 
 
 \input{parts/mlch_appendix_figures}
