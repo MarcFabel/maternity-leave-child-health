@@ -4,22 +4,12 @@
 
 
 %-----------------------------------------
-% 
+% combination RDD with DID and "shortly"
 \begin{quote}
 	\textit{"Identification is based on a \underline{difference-in-difference} approach. While this is fine, I do not see many elements of a regression discontinuity design, as this is characterized by local estimation of treatment effects, kernel weighting and flexible controls for trends in the running variable on either side of the cutoff. Thus, the statement that it is a combination of a regression discontinuity design with a difference-in-difference approach is inappropriate. The author states that he compares health differentials between children born shortly before and after the reform with health differentials in the previous year. Given that the main regressions in the paper are based on a window of 12 months (6 months on either side of the cut-off), the term “shortly” is misleading."}
 \end{quote}
-\underline{Response:}
+\underline{Response:} I agree that the claim of `a combination of a regression discontinuity design with a difference-in-differences approach' may entertain wrong expectations. For this reason, I dropped this statement and label my empirical strategy as a difference-in-differences design (see page \pageref{rev_mlch: r1_rdd+did_intro} in the introduction and page \pageref{rev_mlch: r1_rdd+did_em_section} in the section on the empirical strategy). Related to this issue, I also removed the term `shortly' and replaced it with `in the months' in these instances.
 
-%-----------------------------------------
-% 
-%\begin{quote}
-%	\textit{"The author discusses potential \underline{threats to the validity} of the design in the Appendix. While the Appendix operates at a very close window around the cut-off (including at most 8 weeks (4 weeks at either side)), the main specification of the paper is based on a window of 12 months and some estimates are shown also for 10, 8 and 6 months. This is not coherent. }
-%			
-%	\textit{I was surprised that the author uses a window of 12 months for the main specification. This is a large window and includes children born in all months of the year. I understand that this is an argument for the implementation of a difference-in-difference approach. However, it has nothing to do with the analysis given in the Appendix.} 
-%	 		
-%	\textit{I recommend expanding the Appendix by discussing also potential threats to the validity of the study design that \underline{occur not only at the threshold} but along the whole distribution of birth months (potential seasonal differences in socio-economic characteristics, potential biases resulting from relative age effects induced by school-entry rules). One important question is whether the parallel trends assumption holds."}
-%\end{quote}
-%\underline{Response:}
 
 %-----------------------------------------
 % expand appendix: Season of birth & School entry rules
@@ -31,17 +21,17 @@
 \underline{Response:}
 
 \begin{itemize}
-	\item As suggested, I expanded the appendix such that it consists of two parts. The first part describes the threats at the threshold (self-selection due to postponed delivery or strategic conception). I added the second part (section V.2 on page \pageref{rev_mlch:threats_birth_months}), which discusses threats along the distribution of birth months. The section contains a theoretical explanation of which threats are encountered in this context, a brief discussion on the parallel trends for the pre-threshold cohorts, and covers the two robustness checks suggested by you (see Figures \ref{fig_mlch: hospital2_school_cutoff} and \ref{fig_mlch: hospital2_addcg_bws_age-group_gender}). 
+	\item As suggested, I expanded the Appendix such that it consists of two parts. The first part describes the threats at the threshold (self-selection due to postponed delivery or strategic conception). I added the second part (section V.2 on page \pageref{rev_mlch:threats_birth_months}), which discusses threats along the distribution of birth months. The section contains a theoretical explanation of which threats are encountered in this context, a brief discussion on the parallel trends for the pre-threshold cohorts, and covers the two robustness checks suggested by you (see Figures \ref{fig_mlch: hospital2_school_cutoff} and \ref{fig_mlch: hospital2_addcg_bws_age-group_gender}). 
 	\item The explanation on parallel trends is rather brief as I thought it best to add them to the results section in the paper (together with the life-course figures showing the yearly differentials). If you feel they belong in the Appendix, I can move them accordingly.
 \end{itemize}
 
 
 %-----------------------------------------
-% 
+% Level of aggregation - estimates per reporting year
 \begin{quote}
 	\textit{"The Difference-in-Difference estimates are based on \underline{aggregated data} by cohort x birth-month x reporting year. I worry that the number of observations is artificially blown up by the dimension of the reporting year (age). Are the estimates still significantly different from zero if only year x birth-month is used as level of aggregation (for a given reporting year)?"}
 \end{quote}
-\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose here in the reply the corresponding Tables \ref{rev_mlch: lc_table_hospital} and \ref{rev_mlch: lc_table_d5}.
+\underline{Response:} The life-course Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD} report estimates per reporting year in which each estimate comes from a regression with $N=24$. The estimates are significantly different from zero for older ages, and, in particular, for men (for more details, please refer to corresponding sections). I added a phrase in the footnotes of the Figures to make it explicit that the estimates are per reporting year. I hope this makes the concept of the life-course graphs clearer. For your convenience, I enclose the corresponding Tables \ref{rev_mlch: lc_table_hospital} and \ref{rev_mlch: lc_table_d5} here in the reply.
 
 
 \input{paper/include/revision_hospital2_lifecourse_table_all_genders}
@@ -50,7 +40,7 @@
 
 
 %-----------------------------------------
-% 
+% FRG, GRD - subgroup analysis
 \begin{quote}
 	\textit{"The author cannot distinguish children from mothers who were affected by the reform from children whose mothers who were not because e.g. they might have \underline{migrated} to West-Germany from either Eastern-Germany or other countries. A subgroup analysis of the ITT for regions with few and many migrants might be interesting and should yield stronger effects for regions without many migrants."}
 \end{quote}
