@@ -54,8 +54,31 @@
 
 
 
-
-
+%--------------------------------------------
+% Number of observations for age brackets
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Number of observations per age-bracket}\label{tab_mlch: observations_age_brackets}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{6}{c}}
+				\toprule  
+				& \multicolumn{5}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-6}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}&\multicolumn{1}{c}{3M}&\multicolumn{1}{c}{Donut}\\
+				\midrule
+				Age 17-21	&	120		&	100		&	80	&   60	&  100  \\  
+				Age 22-26	&	120		&	100		&	80	&   60	&  100  \\  
+				Age 27-31	&	120		&	100		&	80	&   60	&  100  \\  
+				Age 32-35	&	 96		&	 80		&	64	&   48	&   80  \\
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} The table reports the number of observations per age bracket and estimation window. It refers to the DiD estimations shown in Panels B of Tables \ref{tab_mlch: DD_hopsital2_total}, \ref{tab_mlch: DD_hospital2_female_male}, \ref{tab_mlch: DD_d5_total}, and \ref{tab_mlch: DD_d5_female_male}.
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+\vspace*{\fill}\clearpage 
 
 
 
