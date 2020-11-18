@@ -65,7 +65,8 @@
 				\midrule
 				
 				\input{paper/paper_ITTacrosschapters.tex}
-				
+				\midrule
+				\(N\) (MOB $\times$ year)& 456 & 120 & 120 & 120 & 96\\
 				\bottomrule 
 		\end{tabular}}
 		% \begin{tablenotes} 
@@ -73,12 +74,15 @@
 		% \end{tablenotes} 
 	\end{threeparttable} 
 	\begin{minipage}{0.95\linewidth}
-		\scriptsize \emph{Notes:} This table reports intention-to-treat estimates across the main diagnosis chapters for the entire life-course or per age bracket. The outcomes are defined as the number of cases per 1,000 individualsbeim . The point estimates are coming from a DiD regression as described in section \ref{sec_mlch:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$.\newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline
+		\scriptsize \emph{Notes:} This table reports DiD estimates across the main diagnosis chapters for the entire life-course or per age bracket. Each row corresponds to a different estimation with the number of diagnoses per 1,000 individuals. See Table \ref{tab_mlch: DD_hopsital2_total} for additional details. Clustered standard errors are reported in parentheses.\newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline
 		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental and behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), symptoms, signs, and ill-defined conditions (Sym), injury, poisoning and certain other consequences of external causes (Ext).\newline %\emph{Source:} Hospital registry data.
 	\end{minipage}
 \end{table} 
 \vspace*{\fill}\clearpage 
 \restoregeometry
+
+%The outcomes are defined as the number of cases per 1,000 individualsbeim . The point estimates are coming from a DiD regression as described in section \ref{sec_mlch:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and clustered standard errors on the month-of-birth level. The control group is comprised of children that are born in the same months but one year before (i.e. children born between November 1977 and October 1978). In order to compare the two birth cohorts at the same age, I shift the control cohort from wave $t$ to wave $t+1$.
+
 %--------------------------------------------
 
 
