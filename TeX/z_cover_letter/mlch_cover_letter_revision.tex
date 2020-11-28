@@ -1,0 +1,241 @@
+% 	TO DO: 
+%	MZ Tabelle nicht einfügen: DDRD estimate von Regression mit 3 CG
+
+
+%--------------------------------------------------------------------
+%	DOCUMENT CLASS
+%--------------------------------------------------------------------
+\documentclass[11pt, a4paper]{article} % type of document (paper, presentation, book,...); scrartcl class with sans serif titles, European layout 
+\usepackage{fullpage} % leaves less space at margins of page
+\usepackage[singlespacing]{setspace} % determine line pitch to 1.5
+
+%--------------------------------------------------------------------
+%	INPUT
+%--------------------------------------------------------------------
+\usepackage[T1]{fontenc} 	% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc} % Required for including letters with accents, Umlaute,...
+\usepackage{float} 			% better control over placement of tables and figures in the text
+\usepackage{graphicx} 		% input of graphics
+\usepackage{xcolor} 		% advanced color package
+\usepackage{url} 			% include (clickable) URLs
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{pdfpages}		% insert pages of external pdf documents
+\setlength{\parskip}{0.75em}	% vertical spacing for paragraphs
+\setlength{\parindent}{0em}	% horizonzal spacing for paragraphs
+\usepackage{tikz}
+\usepackage{tikzscale}		% helps to adjust tikz pictures to textwidth/linewidth
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{arrows}
+\usepackage{eurosym}		% Eurosymbol
+
+% Have sections in TOC, but not in text
+\usepackage{xparse}% for easier management of optional arguments
+\ExplSyntaxOn
+\NewDocumentCommand{\TODO}{msom}
+{
+	\IfBooleanF{#1}% do nothing if it's starred
+	{
+		\cs_if_eq:NNT #1 \chapter { \cleardoublepage\mbox{} }
+		\refstepcounter{\cs_to_str:N #1}
+		\IfNoValueTF{#3}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#4}
+		}
+		{
+			\addcontentsline{toc}{\cs_to_str:N #1}{\protect\numberline{\use:c{the\cs_to_str:N #1}}#3}
+		}
+	}
+	\cs_if_eq:NNF #1 \chapter { \mbox{} }% allow page breaks after sections
+}
+\ExplSyntaxOff
+
+%--------------------------------------------------------------------
+%	TABLES, FIGURES, LISTS
+%--------------------------------------------------------------------
+\usepackage{booktabs} 		% better tables
+\usepackage{longtable}		% tables that may be continued on the next page
+\usepackage{threeparttable} % add notes below tables
+\renewcommand\TPTrlap{}		% add margins on the side of the notes
+	\renewcommand\TPTnoteSettings{%
+	\setlength\leftmargin{5 pt}%
+	\setlength\rightmargin{5 pt}%
+}
+\usepackage[
+center, format=plain,
+font=normalsize,
+nooneline,
+labelfont={bf}
+]{caption} 				% change format of captions of tables and graphs 
+%USED IN MPHIL: \usepackage[labelfont=bf,labelsep = period, singlelinecheck=off,justification=raggedright]{caption}, other specifications which are nice: labelformat = parens -> number in paranthesis 
+
+
+%\usepackage{threeparttablex} % for "ThreePartTable" environment, helps to combine threepart and longtable
+
+% Allow line breaks with \\ in column headings of tables
+\newcommand{\clb}[3][c]{%
+	\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}
+
+% allow line breaks with \\ in row titles
+\usepackage{multirow}
+
+\newcommand{\rlb}[3][c]{%
+\multirow{2}{*}{\begin{tabular}[#1]{@{}#2@{}}#3\end{tabular}}}% optional argument: b = bottom or t= top alignment
+
+
+\usepackage[singlelinecheck=on]{subcaption}%both together help to have subfigures
+\usepackage{wrapfig}				% wrap text around figure
+
+
+\usepackage{rotating}				% rotating figures & tables
+\usepackage{enumerate}				% change appearance of the enumerator
+\usepackage{paralist, enumitem}		% better enumerations
+\setlist{noitemsep}					% no additional vertical spacing for enurations
+%--------------------------------------------------------------------
+%	MATH
+%--------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts} % more math symbols and commands
+\let\vec\mathbf				 % make vector bold, with no arrow and not in italic
+
+%--------------------------------------------------------------------
+%	LANGUAGE SPECIFICS
+%--------------------------------------------------------------------
+\usepackage[american]{babel} % man­ages cul­tur­ally-de­ter­mined ty­po­graph­i­cal (and other) rules, and hy­phen­ation pat­terns
+\usepackage{csquotes} % language specific quotations
+
+%--------------------------------------------------------------------
+%	BIBLIOGRAPHY & CITATIONS
+%--------------------------------------------------------------------
+\usepackage{csquotes} % language specific quotations
+\usepackage{etex}		% some more Tex functionality
+\usepackage[nottoc]{tocbibind} %add bibliography to TOC
+\usepackage[authoryear, round, comma]{natbib} %biblatex
+
+%--------------------------------------------------------------------
+%	PATHS
+%--------------------------------------------------------------------
+\makeatletter
+\def\input@path{{../../analysis/tables/}}	%PATH TO TABLES
+%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
+\makeatother
+\graphicspath{{../../analysis/graphs/}}		% PATH TO GRAPHS
+
+%--------------------------------------------------------------------
+%	LAYOUT
+%--------------------------------------------------------------------
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{pdflscape} % lscape.sty Produce landscape pages in a (mainly) portrait document.
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\newcommand\natalia[1]{\textcolor{orange}{#1}}
+
+% CAPTIAL LETTERS FOR SECTION CAPTIONS
+%\usepackage{sectsty}
+%\sectionfont{\normalfont\scshape\centering\textbf}
+%\renewcommand{\thesection}{\Roman{section}.}
+%\renewcommand{\thesubsection}{\Alph{subsection}.}%\thesection\Alph{subsection}.
+%\subsectionfont{\itshape}
+%\subsubsectionfont{\scshape}
+%\newcommand\relphantom[1]{\mathrel{\phantom{#1}}}
+%\setlength\topmargin{0.1in} \setlength\headheight{0.1in}
+%\setlength\headsep{0in} \setlength\textheight{9.2in}
+%\setlength\textwidth{6.3in} \setlength\oddsidemargin{0.1in}
+%\setlength\evensidemargin{0.1in}
+
+\hypersetup{
+  colorlinks  = true,
+  citecolor   = darkblue,
+ 	linkcolor   = darkblue,
+  urlcolor    = darkblue 
+} % macht die URLS blau   
+     
+\usepackage{lettrine}	% First letter capitalized
+
+% have date in month year format (i.e. omit the day in dates)
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+%--------------------------------------------------------------------
+%	AUTHOR & TITLE
+%--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+%--------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%--------------------------------------------------------------------
+\begin{document}
+
+\singlespacing
+\thispagestyle{empty}
+
+
+
+
+
+% Other Heading
+\begin{center}
+	\textbf{Marc Fabel} \\
+	\textit{ifo Institue for Economic Research \\
+	Poschingerstraße 5, 81679 Munich, Germany \\
+	E-mail: \href{mailto:fabel@ifo.de}{fabel@ifo.de}}
+\end{center}
+
+\hfill Munich, \today\\
+\vspace{1em} 
+
+
+Manuscript Number: JHE\_2020\_401R1
+
+"Maternity Leave and Children's Health Outcomes in the Long-Term"
+
+Journal of Health Economics
+
+\vspace{3em}
+
+
+
+Dear Professor Balsa,
+
+Thank you very much for the opportunity to revise my paper, “Maternity Leave and Children's Health Outcomes in the Long-Term” (Ms. No. JHE\_2020\_401R1), for possible publication in the Journal of Health Economics.
+
+I am very grateful to you and the referees for the detailed reading of my paper, the constructive comments, and helpful suggestions. Having now spent additional time and effort on the paper, I feel that the comments have helped me a lot in further improving it. 
+
+I provide comprehensive point-by-point responses to the comments raised by you and the referees in the enclosed response letter. Here, I would like to stress the following main parts of my revision: 
+
+\begin{itemize}[leftmargin=*]
+	\item[-] I have presented new evidence that the parallel trends assumption holds (section 5). 
+	\item[-] I have included an extra section in the Appendix discussing potential threats along the whole distribution of birth months (section V.2). In there, I show that seasonal month of birth effects, such as discontinuities from school entry rules, do not pose a threat to the identification scheme.
+	\item[-] I have run additional estimations which support the notion that SUTVA holds and spillover effects on older siblings are not an issue in my context (section 5.4).
+	\item[-] I have restructured the paper to have a more concise discussion section (section 6), containing the conceptual framework and mechanisms.
+\end{itemize}
+
+
+I hope you like the revised version of the paper and look forward to hearing from you in due course. 
+
+Kind regards,
+
+\begin{figure}[h!]
+   	\hspace{0.001\textwidth} \includegraphics[width=0.25\textwidth]{Unterschrift.jpg}
+\end{figure}\vspace{-1.5 em}
+\hspace{0.001\textwidth}  Marc Fabel 
+
+
+
+
+% \newpage
+% \begin{center}
+% 	\textbf{Competing Interest Statement}\\
+% \end{center}
+
+% 	Declarations of interest: none.
+
+
+
+\end{document}
