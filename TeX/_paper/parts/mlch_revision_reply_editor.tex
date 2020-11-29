@@ -32,74 +32,46 @@
 	\textit{Ed.2: "You could also run a difference-in-regression discontinuity design for robustness, using kernel weighting, automatic bandwidth choice, and a polynomial on the running variable. Results would be substantially stronger if you were able to show similar estimates under both approaches (at least for the main specifications)."}
 \end{quote}
 \underline{Response:}
-Although this suggestion is a great idea, the data set does not allow identification with any type of Regression Discontinuity Design (RDD) as standard errors become quite large. Let me exemplify this by showing you the results when running a normal RDD of the following form: 
-\begin{align}
-Y_{mt} &= \beta_0 + \beta_1 After_{m} + \beta_2 \tilde X_{m} + \beta_3 After_{m} \times \tilde X_{m} + \varepsilon_{mt} \label{eq:RD}
-\end{align}
-where $Y_{mt}$ is the health outcome of the cohort born in month $m$ at time t $t$, $\tilde X_{im}=(X_{im}-c)$ is the normalized birth month, $After_{im}$ is a Dummy variable that equals one for individuals born after the cutoff, and with $\beta_1$ as the parameter of interest. I keep things as simple as possible: include the treatment group (individuals born around the threshold) only, no automatic bandwidth selection or kernel weighting, and a linear polynomial with different slopes on both sides of the cutoff. Table \ref{tab_mlch: revision_RDD_hopsital2_total} shows the results from this `classic' RDD. You can see that all estimates are not significantly different from zero and the already large standard errors are increasing with decreasing bandwidth. Reassuringly, the magnitude of the RDD estimates matches the size of the DiD estimates from Table \ref{tab_mlch: DD_hopsital2_total} very closely.
+Your suggestion to run discontinuity designs for robustness is a great idea. Unfortunately, the data does not allow identification with any type of discontinuity approach as standard errors become too large. In order to exemplify this point, I have added Appendix Table \ref{tab_mlch: revision_RDD_hopsital2_total_app}, which contains estimates from a classic Regression Discontinuity Design (RDD). The estimates are described in Footnote \ref{rev_mlch: ed_rdd_empsection} (page \pageref{rev_mlch: ed_rdd_empsection}). Reassuringly, the direction and magnitude of the RDD estimates match the DiD estimates from Table \ref{tab_mlch: DD_hopsital2_total} very closely.
 
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{RDD on \textbf{hospital admission (total)}}\label{tab_mlch: revision_RDD_hopsital2_total}
-		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{3}{c}}
-				\toprule 
-				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-				& \multicolumn{3}{c}{Estimation window} \\ 
-				\cmidrule(lr){2-4}
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}\\
-				\midrule
-				\multicolumn{4}{l}{\emph{Panel A. Over entire length of the life-course}} \\
-				\input{paper/include/revision_hospital2_RDD_overall} \\ \\
-				\multicolumn{4}{l}{\emph{Panel B. Age brackets}} \\
-				\input{paper/include/revision_hospital2_RDD_17-21} \input{paper/include/revision_hospital2_RDD_22-26} \input{paper/include/revision_hospital2_RDD_27-31} \input{paper/include/revision_hospital2_RDD_32-35} 
-				\bottomrule 
-		\end{tabular}}
-		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes: Standard errors clustered on the month-of-birth level.} 
-		\end{tablenotes} 
-	\end{threeparttable} 
-\end{table}
+The lack of precision to identify discontinuities of local averages around the threshold is deeply rooted in the level of aggregation in the data set. If I had the birth date on the daily level, I could use an RDD with a small window around the cutoff. The corresponding RD plots shown in Figure \ref{fig: rf_hospital2_pooled_reply} visualize this well.
 
-The lack of precision to identify discontinuities of local averages around the threshold is rooted in the level of aggregation in the data set. If I had the birth date on the daily level, I could use an RDD with a small window around the cutoff. For this reason, I work with the DiD setup, as explained in the paper.  
+
+
+
+
+
+
+\begin{figure}
+	[H]\centering
+	\caption{Discontinuity plots for hospital admission (pooled)}\label{fig: rf_hospital2_pooled_reply}
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Regression Discontinuity Design}
+		\includegraphics[width=\linewidth]{paper/rd_hospital2_total_pooled.pdf}
+	\end{subfigure}
+	\begin{subfigure}[h]{0.48\linewidth}\centering\caption{Difference-in-Discontinuities}
+		\includegraphics[width=\linewidth]{temp/diff_disc_hospital2.pdf}
+	\end{subfigure}
+	\scriptsize
+	\begin{minipage}{0.95\linewidth}
+		\emph{Notes:} %The figure plots the average number of diagnoses per 1,000 individuals for month-of-birth cohorts born half a year around the cut-off date of the 1979 maternity leave expansion. The monthly averages are taken over the entire sample length from 1995 to 2014. The dashed lines represent linear fitted values along with 90\%/95\% confidence intervals. The solid vertical red line divides pre- and post-reform schemes (two vs. six months of leave).\newline
+		\emph{Source:} Hospital registry data for individuals born between November 1978 and October 1979.
+	\end{minipage}
+\end{figure}
+
+
+
+The variation between the birth months is larger than the potential discontinuity itself. Because of the birth date's availability on the monthly level and the resulting precision problems associated with discontinuity designs, I have to exploit the DiD setup explained in the manuscript. The same reasoning also applies to a difference-in-discontinuities approach (see Panel B of Figure \ref{fig: rf_hospital2_pooled_reply}). 
+
+
+
+
 
 
 To not entertain wrong expectations with the reader, I have reformulated the statement that the identification is build on a \textit{`combination of a DiD and an RDD'} (see page \pageref{rev_mlch: r1_rdd+did_intro} in the introduction and page \pageref{rev_mlch: r1_rdd+did_em_section} in the section on the empirical strategy). Now, I label the empirical approach as a difference-in-differences design. 
 
 
-{\color{red}
-XXX RDD plots? XXX
-
-XXX  the same reasoning applies to difference in discontinuities XXX
-
-XXX I can add the Table in the appendix and make it explicit why I cannot rely on a RDD design?  Shall I do that? XXX
-
-XXX Or should I have a Table with RDD and Diff-in-Disc XXX}
 
 
-\begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{Discontinuity Designs for \textbf{hospital admission (total)}}\label{tab_mlch: revision_RDD_DiffDisc_hopsital2_total}
-		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
-			\begin{tabular}{l*{5}{c}}
-				\toprule 
-				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
-				& & \multicolumn{4}{c}{Age brackets} \\ 
-				\cmidrule(lr){3-6}
-				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
-				&\multicolumn{1}{c}{Overall}&\multicolumn{1}{c}{Age 17-21}&\multicolumn{1}{c}{Age 22-26}&\multicolumn{1}{c}{Age 27-31} &\multicolumn{1}{c}{Age 32-35}\\
-				\midrule
-				\multicolumn{4}{l}{\emph{Panel A. Regression Discontinuity Design}} \\
-				\input{paper/include/revision_hospital2_RDD_DiffDisc_1.tex} \\ \\
-				
-				\multicolumn{4}{l}{\emph{Panel B. Difference-in-Discontinuities}} \\
-				 \input{paper/include/revision_hospital2_RDD_DiffDisc_2.tex}
-				\bottomrule 
-		\end{tabular}}
-		\begin{tablenotes} 
-			\item \scriptsize \emph{Notes: Standard errors clustered on the month-of-birth level.} 
-		\end{tablenotes} 
-	\end{threeparttable} 
-\end{table}
 
 
 
@@ -130,7 +102,6 @@ I fully agree that the paper has not sufficiently covered a potential violation 
 \underline{Response:}
 So far, I have used different regressions for each age bracket. Due to the fact that this has not been clear, I have added a phrase in the results section (page \pageref{rev_mlch: editor_comprehension_interaction}) to make it explicit. I have incorporated your comment (the interactions with the age brackets) by adding Table \ref{tab_mlch: interaction_TxA_agegroups_hospital2} (page \pageref{tab_mlch: interaction_TxA_agegroups_hospital2}) in the Appendix and discussing the findings in Footnote \ref{rev_mlch: editor_interaction_TxA_agegroups} (page \pageref{rev_mlch: editor_interaction_TxA_agegroups}).
 
-{\color{red}XXX Should I explicitly point to the differences or leave it with the similarities? XXX}
 
 
 

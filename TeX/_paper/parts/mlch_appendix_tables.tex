@@ -55,6 +55,32 @@
 
 
 %--------------------------------------------
+% RDD for Hospital Admission
+
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{RDD on \textbf{hospital admissions}}\label{tab_mlch: revision_RDD_hopsital2_total_app}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{3}{c}}
+				\toprule 
+				%\multicolumn{5}{l}{Dependant variable: \textbf{Hospital admission (total)}}\\ \\ 
+				& \multicolumn{3}{c}{Estimation window} \\ 
+				\cmidrule(lr){2-4}
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+				&\multicolumn{1}{c}{6M}&\multicolumn{1}{c}{5M}&\multicolumn{1}{c}{4M}\\
+				\midrule
+				\multicolumn{4}{l}{\emph{Panel A. Over entire length of the life-course}} \\
+				\input{paper/include/revision_hospital2_RDD_overall} \\ \\
+				\multicolumn{4}{l}{\emph{Panel B. Age brackets}} \\
+				\input{paper/include/revision_hospital2_RDD_17-21} \input{paper/include/revision_hospital2_RDD_22-26} \input{paper/include/revision_hospital2_RDD_27-31} \input{paper/include/revision_hospital2_RDD_32-35} 
+				\bottomrule 
+		\end{tabular}}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes: The Table shows RDD estimates coming from the following specification: $Y_{mt} = \beta_0 + \beta_1 After_{m} + \beta_2 \tilde X_{m} + \beta_3 After_{m} \times \tilde X_{m} + \varepsilon_{mt}$. $\tilde X_{im}=(X_{im}-c)$ corresponds to the normalized birth month and $\beta_1$ is the parameter of interest. The sample includes the treatment group (individuals born around the threshold) only. Standard errors clustered on the month-of-birth level.} 
+		\end{tablenotes} 
+	\end{threeparttable} 
+\end{table}
+
+%--------------------------------------------
 % Number of observations for age brackets
 \vspace*{\fill}
 \begin{table}[H] \centering 
