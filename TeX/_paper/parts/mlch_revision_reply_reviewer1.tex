@@ -59,29 +59,54 @@
 \end{quote}
 \underline{Response:}
 
+As you rightfully point out, I cannot exclude children whose mothers were not affected by the 1979 ML reform (e.g. born in East-Germany or other countries). The infeasibility to separate unaffected from affected individuals merely attenuates my ITT estimates and does not pose a threat to the validity of the identification scheme (see section \ref{sec_mlch:data}, last paragraph).
 
 
 
-\begin{figure}[H] \centering
-	\caption{Joint Distribution of Population Density and the Share of Migrants}\label{ref_mlch: rev_pop_mig}
-	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/paper/pop_density_migrants.pdf}
-	\begin{minipage}{0.9\linewidth}
-		\scriptsize{\emph{Notes:} The Figure shows the joint and marginal distributions of the log of population density and the share of foreigners.}
-	\end{minipage}
-\end{figure}
-
-{\color{red} XXX GOOD response MISSING XXX
-Not so high variation, wrong data, already captured with first sample split: Pearson correlation coefficient is 0.70
-long duration with approval on the part of the Statistical Office, HELP!
-
-\textbf{draft:} Although your suggestion is a great idea, the implementation is difficult for me. First, when using new data at the Research Data Center, I have to file for approval, which is always a protracted endeavor (we're speaking of months). For this reason, I thought hard which kind of data I would need. Data on the migration from East to West is not available free of charge. However, what is available is population figures by nationality. This does only capture the dilution coming from children born in other countries and not the one induced by East-West migration. I think, however, that this variable does not lead to completely different results as compared to when using the sample split by population density. Figure \ref{ref_mlch: rev_pop_mig} shows the joint distribution of the population density and the share of migrants. The two variables capture similar aspects and are highly correlated. The Pearson correlation coefficient is 0.696.
+Your suggestion is a great idea to check how large the dilution effects of non-treated children from East-Germany (GDR) and other countries are. The implementation, though, is rather difficult and will take considerable time. This is due to the fact that when using new data at the Research Data Center, I have to file for approval, which is always a protracted endeavor (we're speaking of months). 
 
 
-problem is also that foreigners could have been treated by the reform
+Since the implementation challenges are considerable, I hereby address your concern by checking how large the potential dilution effects are likely to be and which kind of data I would need to implement the sample split you suggest. Let's go through the two cases separately. 
+
+First, to capture the non-treated children from the GDR, I would need to construct yearly migration matrices since 1990 to have the local number of migrants from the GDR. Since this data is not publicly available, I checked whether the GDR migrants have a big enough impact to dilute the DiD estimates to a large extent. For that exercise, I use the 2014 wave of the German Socio-Economic Panel and look at the birth cohort of 1979, which resides in the area of West-Germany. Table \ref{rev_mlch: fractions_gdr_foreigners} shows that only 7.6 percent of the 1979 birth cohort living in West-Germany are untreated GDR migrants, which suggests that the dilution effect on the obtained results might be negligible. 
 
 
-honest answer: it is an aweful lot of work, for nothing. and you need quite some moneys!
-}
+% Table
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{Where did you live in 1989?}\label{rev_mlch: fractions_gdr_foreigners}
+		\begin{tabular}{lr}
+			\toprule
+			Location & Fraction \\
+			\midrule
+			
+			East Germany (GDR) incl. East Berlin & 7.58 \\
+			West Germany (FRG) incl. West Berlin & 61.24 \\
+			Abroad & 31.19 \\
+			\midrule
+			Total & 100.00 \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes} 
+			\item \scriptsize \emph{Notes:} The table shows weighted fractions for where respondents lived in 1989. The sample is restricted to individuals born in 1979 and reside in the area of former West-Germany in 2014 (N$=409$). The fractions are weighted with longitudinal individual survey weights.\newline \emph{Source: SOEP, Version 31, 2014, doi:10.5684/soep.v31}
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+
+Second, as shown in Table \ref{rev_mlch: fractions_gdr_foreigners}, the dilution effect of non-treated children from other countries is likely to be more important than the impact of GDR migrants. To capture the effect of this set of migrants, I could use publicly available proxies. For instance, the German Statistical Office provides population figures per nationality and age bracket. Using the number of foreigners to generate the sample split will have other challenges. One caveat is that working mothers with non-German nationalities were eligible for ML in 1979. 
+
+
+Summing up, at the moment, I cannot present the desired sample split because of data issues. Considering the long time lag stemming from the institutional setup here in Germany, I am unsure whether the benefits of that sample split outweigh its costs. In the case of GDR migrants, their impact is too small to have a meaningful dilution effect. And in the case of migrants from other countries, the sample split according to the available data might be inappropriate.  
+
+However, if you feel the paper should cover this sample split, I will gladly conduct it as suggested.
+
+
+%\begin{figure}[H] \centering
+%	\caption{Joint Distribution of Population Density and the Share of Migrants}\label{ref_mlch: rev_pop_mig}
+%	\includegraphics[width=0.8\linewidth]{../../analysis/graphs/paper/pop_density_migrants.pdf}
+%	\begin{minipage}{0.9\linewidth}
+%		\scriptsize{\emph{Notes:} The Figure shows the joint and marginal distributions of the log of population density and the share of foreigners.}
+%	\end{minipage}
+%\end{figure}
 
 
 %-----------------------------------------
