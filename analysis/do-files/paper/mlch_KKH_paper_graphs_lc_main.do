@@ -2,7 +2,7 @@
 	clear all
 	set more off
 	
-	global path   "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	
+	global path   "F:\econ\m-l-c-h/analysis"	
 	global temp   "$path/temp"
 	global graphs "$path/graphs/KKH"
 	global graph_paper "$path/graphs/paper" 
@@ -158,6 +158,36 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	program define DDRD
 			qui reg `1' treat after TxA i.MOB   `2'  , vce(cluster MxY) 
 	end
+	
+	
+	* adjust label
+	#delimit ;
+	label define YEAR_AGE	
+	1995 "16"
+	1996 "17"
+	1997 "18"
+	1998 "19"
+	1999 "20"
+	2000 "21"
+	2001 "22"
+	2002 "23"
+	2003 "24"
+	2004 "25"
+	2005 "26"
+	2006 "27"
+	2007 "28"
+	2008 "29"
+	2009 "30"
+	2010 "31"
+	2011 "32"
+	2012 "33"
+	2013 "34"
+	2014 "35"; 
+	#delimit cr
+	label val year_treat YEAR_AGE
+	
+	
+	
 *************************
 // PANEL 1.1: PLOTS FOR EACH GENDER SEPERATELY (WITH CG2!) 
 	capture drop Dinregression temp
@@ -200,8 +230,8 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 				legend(label(1 "95% CI") label(2 "90% CI")) ///
 				legend(order(2 1)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 				legend(region(color(none))) legend(symx(5)) ///
-				xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-				xmtick(`start_mtick'  (4) `ende') ///
+				xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+				xmtick(`start'  (1) `ende') ///
 				ytitle("ITT effect") ///
 				title("B. Differentials",pos(11) span  size(vlarge)) ///
 				saving($graphs/lc_`1'_wo_y, replace)
@@ -216,8 +246,8 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 				legend(label(1 "95% CI") label(2 "90% CI")) ///
 				legend(order(2 1)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 				legend(region(color(none))) legend(symx(5)) ///
-				xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-				xmtick(`start_mtick'  (4) `ende') ///
+				xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+				xmtick(`start'  (1) `ende') ///
 				ytitle("ITT effect") ///
 				title("B. Differentials",pos(11) span  size(vlarge)) ///
 				saving($graphs/lc_`1'_f_wo_y, replace)	
@@ -232,8 +262,8 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 				legend(label(1 "95% CI") label(2 "90% CI")) ///
 				legend(order(2 1)) legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 				legend(region(color(none))) legend(symx(5)) ///
-				xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-				xmtick(`start_mtick'  (4) `ende') ///
+				xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+				xmtick(`start'  (1) `ende') ///
 				ytitle("ITT effect") ///
 				title("B. Differentials",pos(11) span  size(vlarge)) ///
 				saving($graphs/lc_`1'_m_wo_y, replace)
@@ -268,26 +298,26 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	
 	#delimit ;
 	label define YEAR 	
-	1995 "1995 [16]"
-	1996 "1996 [17]"
-	1997 "1997 [18]"
-	1998 "1998 [19]"
-	1999 "1999 [20]"
-	2000 "2000 [21]"
-	2001 "2001 [22]"
-	2002 "2002 [23]"
-	2003 "2003 [24]"
-	2004 "2004 [25]"
-	2005 "2005 [26]"
-	2006 "2006 [27]"
-	2007 "2007 [28]"
-	2008 "2008 [29]"
-	2009 "2009 [30]"
-	2010 "2010 [31]"
-	2011 "2011 [32]"
-	2012 "2012 [33]"
-	2013 "2013 [34]"
-	2014 "2014 [35]"; 
+	1995 "16"
+	1996 "17"
+	1997 "18"
+	1998 "19"
+	1999 "20"
+	2000 "21"
+	2001 "22"
+	2002 "23"
+	2003 "24"
+	2004 "25"
+	2005 "26"
+	2006 "27"
+	2007 "28"
+	2008 "29"
+	2009 "30"
+	2010 "31"
+	2011 "32"
+	2012 "33"
+	2013 "34"
+	2014 "35"; 
 	#delimit cr
 	label val year YEAR
 	
@@ -298,14 +328,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	
 	
 	// pre-threshold diagram total
-	line r_fert_hospital2 year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(gray) || /// 
-		line r_fert_hospital2 year if after == 0 &  treat == 1 & year <= `ende', lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_hospital2 year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(gray)  lpattern(dash) || /// 
+		line r_fert_hospital2 year if after == 0 &  treat == 1 & year <= `ende',  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014)) ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_hospital2,replace)
@@ -314,14 +344,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 		 
 		 
 	// pre-threshold diagram female
-	line r_fert_hospital2_f year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(cranberry) || /// 
-		line r_fert_hospital2_f year if after == 0 &  treat == 1 & year <= `ende', color(cranberry) lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_hospital2_f year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(cranberry) lpattern(dash) || /// 
+		line r_fert_hospital2_f year if after == 0 &  treat == 1 & year <= `ende', color(cranberry)  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014)) ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_hospital2_f,replace)
@@ -334,14 +364,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	local ende = 2013
 	local start_mtick = 1998
 	local ende_mtick = 2014
-	line r_fert_hospital2_m year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(navy) || /// 
-		line r_fert_hospital2_m year if after == 0 &  treat == 1 & year <= `ende', color(navy) lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_hospital2_m year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(navy) lpattern(dash) || /// 
+		line r_fert_hospital2_m year if after == 0 &  treat == 1 & year <= `ende', color(navy)  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014)) ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_hospital2_m,replace)	
@@ -379,26 +409,26 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	
 	#delimit ;
 	label define YEAR 	
-	1995 "1995 [16]"
-	1996 "1996 [17]"
-	1997 "1997 [18]"
-	1998 "1998 [19]"
-	1999 "1999 [20]"
-	2000 "2000 [21]"
-	2001 "2001 [22]"
-	2002 "2002 [23]"
-	2003 "2003 [24]"
-	2004 "2004 [25]"
-	2005 "2005 [26]"
-	2006 "2006 [27]"
-	2007 "2007 [28]"
-	2008 "2008 [29]"
-	2009 "2009 [30]"
-	2010 "2010 [31]"
-	2011 "2011 [32]"
-	2012 "2012 [33]"
-	2013 "2013 [34]"
-	2014 "2014 [35]"; 
+	1995 "16"
+	1996 "17"
+	1997 "18"
+	1998 "19"
+	1999 "20"
+	2000 "21"
+	2001 "22"
+	2002 "23"
+	2003 "24"
+	2004 "25"
+	2005 "26"
+	2006 "27"
+	2007 "28"
+	2008 "29"
+	2009 "30"
+	2010 "31"
+	2011 "32"
+	2012 "33"
+	2013 "34"
+	2014 "35"; 
 	#delimit cr
 	label val year YEAR
 	
@@ -409,14 +439,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	
 	
 	// pre-threshold diagram total
-	line r_fert_d5 year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(gray) || /// 
-		line r_fert_d5 year if after == 0 &  treat == 1 & year <= `ende', lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_d5 year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(gray)  lpattern(dash) || /// 
+		line r_fert_d5 year if after == 0 &  treat == 1 & year <= `ende',  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014)) ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_d5,replace)
@@ -425,14 +455,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	
 		 
 	// pre-threshold diagram female
-	line r_fert_d5_f year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(cranberry) || /// 
-		line r_fert_d5_f year if after == 0 &  treat == 1 & year <= `ende', color(cranberry) lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_d5_f year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(cranberry) lpattern(dash) || /// 
+		line r_fert_d5_f year if after == 0 &  treat == 1 & year <= `ende', color(cranberry)  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014))	 ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_d5_f,replace) 
@@ -445,14 +475,14 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 	local ende = 2013
 	local start_mtick = 1998
 	local ende_mtick = 2014
-	line r_fert_d5_m year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(navy) || /// 
-		line r_fert_d5_m year if after == 0 &  treat == 1 & year <= `ende', color(navy) lpattern(dash)  ///
-		legend(label(1 "control") label(2 "treatment") label(3 "90% CI control")) ///
-		ytitle("Dependent mean") xtitle("Year [Age]") ///
+	line r_fert_d5_m year if after == 0 & treat == 0 & year >= `start' & year <= `ende' , color(navy) lpattern(dash) || /// 
+		line r_fert_d5_m year if after == 0 &  treat == 1 & year <= `ende', color(navy)  ///
+		legend(label(1 "control") label(2 "treatment") order(2 1)) ///
+		ytitle("Dependent mean") xtitle("Age") ///
 		 legend(pos(11) ring(0) col(1)) legend(size(vsmall)) ///
 		 legend(region(color(none))) legend(symx(5)) ///
-		 xlabel(`start' (4) `ende' ,val angle(0)) xtitle("Year [Age]") ///
-		 xmtick(`start_mtick'  (4) `ende_mtick')  ///
+		 xlabel(`start' (3) `ende' ,val angle(0)) xtitle("Age") ///
+		 xmtick(`start'  (1) `ende_mtick')  ///
 		 scheme(s1mono) plotregion(color(white)) xscale(r(1995 2014))	 ///
 		 title("A. Pre-threshold means",pos(11) span  size(vlarge)) ///
 		 saving($graphs/mlch_parallel_trends_d5_m,replace)
@@ -465,13 +495,13 @@ foreach 1 of varlist hospital2 d5 { // hospital2 d5
 		
 		
 		
-	* combine the dependent means with the lifecourse graphs
+	/* combine the dependent means with the lifecourse graphs
 	foreach 1 in "hospital2" "d5" { // hospital2 d5
 		foreach j in "" "_f" "_m"  { // rows 
 			graph combine "$graphs/mlch_parallel_trends_`1'`j'" "$graphs/lc_`1'`j'_wo_y",  altshrink scheme(s1mono) plotregion(color(white)) col(2) xsize(11) xcommon
 			graph export "$graph_paper/mlch_lc_trends_`1'`j'.pdf", as(pdf) replace
 		}
-	}
+	}*/
 	
 	
 		

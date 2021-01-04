@@ -1,8 +1,8 @@
-global path  "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	//MAC
+global path  "F:\econ\m-l-c-h/analysis"	//MAC
 global graph_paper "$path/graphs/paper" 
 
 
-import excel "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h\analysis\source\2014_Diagnosedaten\DiagnosedatenKrankenhaus2120621147005.xlsx", sheet("2.1.1.1") cellrange(A1:L72) clear
+import excel "$path\source\2014_Diagnosedaten\DiagnosedatenKrankenhaus2120621147005.xlsx", sheet("2.1.1.1") cellrange(A1:L72) clear
 
 *delete unwanted rows
 qui gen temp = _n
@@ -113,7 +113,7 @@ foreach var of varlist d_* rest* {
 }
 
 graph bar d_S00_T98 d_F00_F99 d_J00_J99 d_K00_K93  d_A00_B99 rest_nata, over(age) stack ///
-	ytitle("Absolute numbers [in thousand]") ylabel(,grid glc(gs12) glw(vthin)) ///
+	ytitle("Absolute numbers [in thousand]") ylabel(,nogrid) ///
 	legend( lab(1 "Injury, poisoning; other consequences of external causes") ///
 		lab(2 "Mental & behavioral disorders") lab(3 "Diseases of the respiratory system ") ///
 		lab(4 "Diseases of the digestive system") lab(5 "Certain infectious and parasitic diseases") ///

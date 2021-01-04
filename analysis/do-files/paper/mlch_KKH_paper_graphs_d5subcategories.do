@@ -6,7 +6,7 @@
 	clear all
 	set more off
 	
-	global path   "G:\Projekte\Projekte_ab2016\EcUFam\m-l-c-h/analysis"	
+	global path   "F:\econ\m-l-c-h/analysis"	
 	global temp   "$path/temp"
 	global graphs "$path/graphs/KKH"
 	global graph_paper "$path/graphs/paper" 
@@ -77,7 +77,7 @@ order var
 #delim ;
 label define VAR
 	1  "all MBD"
-	2  "psychoactive substances"
+	2  "substances"
 	3  "schizophrenia"
 	4  "affective"
 	5  "neurosis"
@@ -106,13 +106,13 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 
 *total	
 	twoway bar diagnoses var if var >= 2,  color(gs2%80) ///
-		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150, grid ) xlabel(none) ///
-		graphregion(color(white)) ///
+		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150) xlabel(none) ///
+		graphregion(color(white))  ///
 		xscale(r(0.5 6.5) alt lc(white)) ///
 		scheme(s1mono) ///
 		fysize(25) /// 
 		yscale(r(0 150)) ///	
-		plotregion(margin(top)) ///
+		plotregion(margin(top)) plotregion(color(white)) ///
 		saving($graphs/frequency_across_d5,replace)
 
 	twoway rspike CI_h90 CI_l90 var, color(gs2%80)  || ///
@@ -122,7 +122,7 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 		xscale(r(0.5 6.5)) ///
 		yline(0, lc(black%80) lp(dash)) ///
 		legend(off) xtitle("") ytitle("ITT effect" " ") ///
-		graphregion(color(white)) scheme(s1mono) ///
+		plotregion(color(white)) scheme(s1mono) ///
 		saving($graphs/ITT_across_d5,replace)
 	
 	graph combine "$graphs/frequency_across_d5" "$graphs/ITT_across_d5", imargin(zero) scheme(s1mono) col(1)  xcommon
@@ -130,13 +130,13 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 	
 * female 
 	twoway bar diagnoses_f var if var >= 2,  color(cranberry%80) ///
-		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150, grid ) xlabel(none) ///
+		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150) xlabel(none) ///
 		graphregion(color(white)) ///
 		xscale(r(0.5 6.5) alt lc(white)) ///
 		scheme(s1mono) ///
 		fysize(25) /// 
 		yscale(r(0 150)) ///	
-		plotregion(margin(top)) ///
+		plotregion(margin(top)) plotregion(color(white)) ///
 		saving($graphs/frequency_across_d5_f,replace)
 
 	twoway rspike CI_h90_f CI_l90_f var, color(gs2%80)  || ///
@@ -146,7 +146,7 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 		xscale(r(0.5 6.5)) ///
 		yline(0, lc(black%80) lp(dash)) ///
 		legend(off) xtitle("") ytitle("ITT effect" " ") ///
-		graphregion(color(white)) scheme(s1mono) ///
+		plotregion(color(white)) scheme(s1mono) ///
 		saving($graphs/ITT_across_d5_f,replace)
 
 	graph combine "$graphs/frequency_across_d5_f" "$graphs/ITT_across_d5_f", imargin(zero) scheme(s1mono) col(1)  xcommon
@@ -154,13 +154,13 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 	
 * male 
 	twoway bar diagnoses_m var if var >= 2,  color(navy%80) ///
-		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150, grid ) xlabel(none) ///
+		xtitle("") ytitle("Frequency" "[in thousand]") ylabel(50 100 150) xlabel(none) ///
 		graphregion(color(white)) ///
 		xscale(r(0.5 6.5) alt lc(white)) ///
 		scheme(s1mono) ///
 		fysize(25) /// 
 		yscale(r(0 150)) ///	
-		plotregion(margin(top)) ///
+		plotregion(margin(top)) plotregion(color(white)) ///
 		saving($graphs/frequency_across_d5_m,replace)
 
 	twoway rspike CI_h90_m CI_l90_m var, color(gs2%80)  || ///
@@ -170,7 +170,7 @@ keep if bandwidth == 6	& year == -99 // al observations   // corrected for year 
 		xscale(r(0.5 6.5)) ///
 		yline(0, lc(black%80) lp(dash)) ///
 		legend(off) xtitle("") ytitle("ITT effect" " ") ///
-		graphregion(color(white)) scheme(s1mono) ///
+		graphregion(color(white)) plotregion(color(white)) scheme(s1mono) ///
 		saving($graphs/ITT_across_d5_m,replace)
 
 	graph combine "$graphs/frequency_across_d5_m" "$graphs/ITT_across_d5_m", imargin(zero) scheme(s1mono) col(1)  xcommon
