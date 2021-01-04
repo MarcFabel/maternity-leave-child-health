@@ -210,9 +210,9 @@ capture drop p_threshold p_treat p_after p_TxA
 	
 foreach 1 of varlist hospital2 d5 {	
 	eststo clear
-	DDRD b1 r_fert_`1'   "i.MOB i.year" "if $control2"
-	DDRD b2 r_fert_`1'_f   "i.MOB i.year" "if $control2"
-	DDRD b3 r_fert_`1'_m   "i.MOB i.year" "if $control2"
+	DDRD b1 r_fert_`1'     "i.MOB i.year" "if $control2 & (year_treat >= 1997 & year_treat<=2015)"
+	DDRD b2 r_fert_`1'_f   "i.MOB i.year" "if $control2 & (year_treat >= 1997 & year_treat<=2015)"
+	DDRD b3 r_fert_`1'_m   "i.MOB i.year" "if $control2 & (year_treat >= 1997 & year_treat<=2015)"
 	
 	esttab b* ,  ///
 			keep(p_TxA)  ///
@@ -220,3 +220,50 @@ foreach 1 of varlist hospital2 d5 {
 					scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Observations")  
 
 }
+
+
+
+
+// additional Control groups
+
+
+
+
+
+use "$temp\KKH_final_R1", clear
+run "$auxiliary/varlists_varnames_sample-spcifications"
+
+
+*define new global for tables ( müssen extra abgespeichert werden) 
+
+capture program drop DDRD_sclrs
+	program define DDRD_sclrs
+		qui eststo `1': reg `2' treat after TxA  `3'  `4', vce(cluster MxY) 
+		qui estadd scalar Nn = e(N)
+		qui sum `2' if e(sample) & treat== 1 & after == 0 
+		qui estadd scalar mean = round(`r(mean)',.01)		// pre-reform mean for treated group
+		qui estadd scalar sd = abs(round(_b[TxA]/`r(sd)'*100,.01))		
+
+	end		
+	
+	
+
+foreach 1 of varlist hospital2 d5    { // hospital2 d5 
+		eststo clear 	
+		*overall effect
+		DDRD_sclrs b1 r_fert_`1'   "i.MOB i.year" "if 	$C1_C2 & $all_age"
+		DDRD_sclrs b2 r_fert_`1'_f   "i.MOB i.year" "if $C1_C2 & $all_age"
+		DDRD_sclrs b3 r_fert_`1'_m   "i.MOB i.year" "if $C1_C2 & $all_age"
+		
+		esttab b* , replace t ///
+			keep(TxA)  ///
+			se star(+ 0.15 * 0.10 ** 0.05 *** 0.01) ///
+			scalars(  "mean \midrule Dependent mean" "sd Effect in SDs [\%]" "Nn Obs")  
+			
+		
+	// Panels zusammenfassen
+	
+} //end: varlist
+
+
+
