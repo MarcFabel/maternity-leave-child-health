@@ -151,7 +151,7 @@ qui gen reform = cond(date>=td(01may1979) & date<=td(30jun1979),1,0)
 	 keep if days_to_threshold <= 28
 	 
 * Figure - panel A 
-line birth date if date > td(01apr1979) & date < td(31may1979), xline(7059.5)  /// 
+line birth date if date > td(01apr1979) & date < td(31may1979), xline(7060)  /// 
 	scheme(s1mono)  plotregion(color(white)) yscale(r(400 1000)) /// 
 	title("Panel A. Raw data") ytitle("Births per day (unadjusted)" "") ///
 	xsize(15) ysize(4) tlabel(3apr1979 (7) 29may1979, angle(45) format(%tdDDmon)) /// 
@@ -163,7 +163,7 @@ reg birth i.year##i.dow i.holiday i.doy if date < td(01apr1979) | date > td(31ma
 	predict birth_hat
 	qui gen delta = birth_hat - birth
 
-line delta date if date > td(01apr1979) & date < td(31may1979), xline(7059.5) yline(0) ///
+line delta date if date > td(01apr1979) & date < td(31may1979), xline(7060) yline(0) ///
 		scheme(s1mono) plotregion(color(white)) /// 
 		title("Panel B. Regression-Adjusted") ytitle("Births per day" "(relative to expected)") ///
 		xsize(15) ysize(4) tlabel(3apr1979 (7) 29may1979, angle(45) format(%tdDDmon)) ///
