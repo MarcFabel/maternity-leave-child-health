@@ -10,11 +10,11 @@
 %--------------------------------------------------------------------
 % THREATS
 \bigskip
-\section{Potential Threats to Identification and Validity of the Design}\label{sec_mlch:empirical_strategy_threats+validity}
+\subsection{Potential Threats to Identification and Validity of the Design}\label{sec_mlch:empirical_strategy_threats+validity}
 
 In the following, I discuss two threats to the empirical strategy. First, I examine potential self-selection into the treatment group by postponing delivery or strategic conception. Second, I consider threats along the distribution of birth months, which may result from seasonal and age of school entry effects.
 
-\subsection{Threats at the Threshold}
+\subsubsection{Threats at the Threshold}
 Behavioral responses with respect to the forcing variable, the birth date of the child, could potentially jeopardize the validity of the identification strategy. Typically, gestation length is a normally distributed random variable with mean of 40 weeks and 2 weeks standard deviation, from the beginning of the last menstrual cycle \citep{Ekberg2013parental}. However, parents may influence the time when their child is born in two ways. 
 
 First, parents may be incentivized to get strategically pregnant in response to the more attractive ML leave scheme. However, it is unlikely that children in my sample were conceived due to this reason. The draft bill was only proposed four months before the threshold birth date and the widest specification includes children who were born on October 1979, the month in which the earliest possible birth date could be. However, it is plausible that the topic increased public awareness due to media coverage even before the draft bill was initiated. For that reason, \cite{Dustmann2012} conduct a literature search for articles regarding the reform. Subsequently, their results show that the earliest articles were published two months prior to the cutoff date.
@@ -48,6 +48,7 @@ I regress the number of children born on day $i$, $\text{Births}_i$, on a series
 %--------------------------------------------
 %VALIDITY: Birth rate effects
 \begin{table}[t] \centering
+	\begin{threeparttable} \centering 
 	\caption{Birth rate effects of the 1979 ML reform}\label{tab_mlch: validity_birth_rate}
 	{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 		\begin{tabular}{l*{5}{c}}
@@ -64,9 +65,10 @@ I regress the number of children born on day $i$, $\text{Births}_i$, on a series
 			\input{../../analysis/tables/paper/include/birth_rate_effects_lnbirths}
 			\bottomrule
 	\end{tabular}}
-	\begin{minipage}{0.7\linewidth}
-		\scriptsize \emph{Notes:} The table shows regression estimates of the impact of the 1979 ML reform on fertility. The sample comprises daily births within the relevant estimation window in the federal states of Baden-Württemberg and North Rhine-Westphalia from 1977-1990. Panel A uses the number of births as dependent variable, whereas panel B shows results with the log of the number of births as dependent variable. All specifications control for day of year, public holiday, and year$\times$day of week fixed effects. The estimation window is referring to the number of days before and after May 01. For instance, the $\pm$ 7 day window includes the last week in April and the first week in May across all years. Standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
-	\end{minipage}
+	\begin{tablenotes}
+		\item \scriptsize \emph{Notes:} The table shows regression estimates of the impact of the 1979 ML reform on fertility. The sample comprises daily births within the relevant estimation window in the federal states of Baden-Württemberg and North Rhine-Westphalia from 1977-1990. Panel A uses the number of births as dependent variable, whereas panel B shows results with the log of the number of births as dependent variable. All specifications control for day of year, public holiday, and year$\times$day of week fixed effects. The estimation window is referring to the number of days before and after May 01. For instance, the $\pm$ 7 day window includes the last week in April and the first week in May across all years. Standard errors are reported in parentheses. \newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
+	\end{tablenotes}
+	\end{threeparttable}
 \end{table}
 
 
@@ -78,7 +80,7 @@ Table \ref{tab_mlch: validity_birth_rate} presents estimates of the effect of th
 
 
 % Threats along distribution of birth months
-\subsection{Threats Along the Whole Distribution of Birth Months}
+\subsubsection{Threats Along the Whole Distribution of Birth Months}
 \label{rev_mlch:threats_birth_months}
 As discussed in section \ref{sec_mlch:empirical_strategy}, I cannot directly compare children born before and after the 1979 ML reform cutoff as birth months may affect outcomes directly \citep{buckles2013season,currie2013within}. Age-based cutoff rules at school entry are an important example in this respect \citep{black2011too}. As the data is only available on the birth month level, I exploit a DiD design with different estimation windows around the cutoff, with a maximum bandwidth of six months on both sides of the threshold. Under the assumption that the treatment and control cohort share the same seasonality effects, the DiD design can isolate the reform impact from seasonality and age of school entry effects. There is no formal test to investigate whether the assumption of time-invariance of seasonality is met. However, the parallel trends for pre-threshold-born children in treatment and control group (Figures \ref{fig_mlch: lc_hospital2_frg_DD} and \ref{fig_mlch: lc_d5_frg_DD}) provide evidence in favor of the assumption, suggesting that the cohort born in the year prior to the reform may be used as counterfactual.
 
@@ -100,7 +102,7 @@ Overall, the additional robustness tests demonstrate that the main results are d
 
 
 % figure: school_entry cutoffs different bandwidths, per gender and age-group
-\newgeometry{left=0.5cm,right=0.5cm,top=3cm,bottom=3cm} 
+\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
@@ -119,7 +121,7 @@ Overall, the additional robustness tests demonstrate that the main results are d
 
 
 % figure: additional control group, different bandwidths for t,f,m
-\newgeometry{left=0.5cm,right=0.5cm,top=3cm,bottom=3cm} 
+\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
