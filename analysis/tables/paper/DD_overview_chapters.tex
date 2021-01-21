@@ -1,0 +1,32 @@
+\newgeometry{left=3cm,right=3cm,top=3cm,bottom=3cm} 
+\vspace*{\fill}
+\begin{table}[H] \centering 
+	\begin{threeparttable} \centering \caption{ITT effects on hospital admission and main diagnoses chapters}\label{tab_mlch: ITT_across_chapters_per_age_group_total}
+		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
+			\begin{tabular}{l*{5}{c}}
+				\toprule 
+				&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+				\midrule
+				&\multirow{2}{*}{Overall} & \multicolumn{4}{c}{Age brackets [years]} \\ 
+				\cmidrule(lr){3-6}
+				&&\multicolumn{1}{c}{17-21}&\multicolumn{1}{c}{22-26}&\multicolumn{1}{c}{27-31}&\multicolumn{1}{c}{32-35}\\
+				
+				\midrule
+				
+				\input{paper/paper_ITTacrosschapters.tex}
+				\midrule
+				\(N\) (MOB $\times$ year)& 456 & 120 & 120 & 120 & 96\\
+				\bottomrule 
+		\end{tabular}}
+		% \begin{tablenotes} 
+		% 	\item 
+		% \end{tablenotes} 
+	
+	\begin{tablenotes}
+		\item \scriptsize \emph{Notes:} This table reports DiD estimates across the main diagnosis chapters for the entire life-course or per age bracket. Each row corresponds to a different estimation with the number of diagnoses per 1,000 individuals. See Table \ref{tab_mlch: DD_hopsital2_total} for additional details. Clustered standard errors are reported in parentheses.\newline Significance levels: * p < 0.10, ** p < 0.05, *** p < 0.01.\newline
+		\emph{Legend:} Infectious and parasitic diseases (IPD), neoplasms (Neo), mental and behavioral disorders (MBD), diseases of the nervous system (Ner), diseases of the sense organs (Sen), diseases of the circulatory system (Cir), diseases of the respiratory system (Res), diseases of the digestive system (Dig), diseases of the skin and subcutaneous tissue (SST), diseases of the musculoskeletal system (Mus), diseases of the genitourinary system (Gen), symptoms, signs, and ill-defined conditions (Sym), injury, poisoning and certain other consequences of external causes (Ext).
+	\end{tablenotes}
+\end{threeparttable} 
+\end{table} 
+\vspace*{\fill}\clearpage 
+\restoregeometry

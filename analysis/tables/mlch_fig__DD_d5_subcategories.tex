@@ -1,0 +1,23 @@
+\newgeometry{left=3cm,right=3cm,top=2.9cm,bottom=2.9cm} 
+\begin{landscape}
+	\vspace*{\fill}
+	\begin{figure}[H]\centering
+		\caption{ITT effect for subcategories of mental and behavioral disorders}\label{fig_mlch: ITT_d5_subcategories}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Women}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency_f.pdf}
+		\end{subfigure}
+		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
+			\includegraphics[width=\linewidth]{paper/effect_d5_frequency_m.pdf}
+		\end{subfigure}
+		\scriptsize
+		\begin{minipage}{0.95\linewidth}
+			\emph{Notes:} The figure plots ITT estimates (along with 90\%/95\% confidence intervals) across the five most common subcategories of MBDs. Moreover, they indicate how often each subcategory is diagnosed over the time window of 1995-2014. The outcomes are defined as the number of cases per 1,000 individuals. The point estimates are coming from a DiD regression as described in section \ref{sec_mlch:empirical_strategy}, with a bandwidth of six months, month-of-birth and year fixed effects, and standard errors clustered at the month-of-birth level. The control group is comprised of children that are born in the same months but one year before the reform (i.e. children born between November 1977 and October 1978).\newline
+			% \emph{Source:} Hospital registry data.
+		\end{minipage}
+	\end{figure}
+	\vspace*{\fill}\clearpage
+\end{landscape}
+\restoregeometry
