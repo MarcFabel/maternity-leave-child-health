@@ -1,11 +1,9 @@
-
 \afterpage{
 	\clearpage% To flush out all floats, might not be what you want
-\newgeometry{left=3cm,right=3cm,top=3cm,bottom=3cm} 
+%\newgeometry{left=3cm,right=3cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Life-course approach for hospital admission}\label{fig_mlch: lc_hospital2_frg_DD}
 		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Total}
 			\includegraphics[width=\linewidth]{paper/mlch_lc_trends_hospital2.pdf}
 		\end{subfigure}
@@ -15,16 +13,13 @@
 		\begin{subfigure}[h]{0.31\linewidth}\centering\caption{Men}
 			\includegraphics[width=\linewidth]{paper/mlch_lc_trends_hospital2_m.pdf}
 		\end{subfigure}
-	
 		\scriptsize
 		\begin{minipage}{\linewidth}
+			\caption{Life-course approach for hospital admission}\label{fig_mlch: lc_hospital2_frg_DD}
 			\emph{Notes:} The top panels show pre-threshold (born November-April) means for the treatment (1978/79, solid line) and control cohort (1977/78, dashed line) across the years. The bottom panels plot DiD estimates (along with 90\% and 95\% confidence intervals) for the impact of the reform on hospital admissions over the life-course. For a given reporting year ($N=24$), I estimate the model in equation \ref{eq_mlch:DD_basline} (without $\rho_t$) and plot the DiD estimate and the corresponding confidence interval for that year. The outcomes are defined as the number of cases per 1,000 individuals. Column a shows the results for all admissions, whereas columns b and c show the estimates for females and males, respectively.
 		\end{minipage}
 	\end{figure}
 	\vspace*{\fill}\clearpage
 \end{landscape}
-\restoregeometry
-
-
-
+%\restoregeometry
 }

@@ -28,10 +28,10 @@ It is possible that there are similar distortionary `introduction effects' in th
 To check for such potential behavioral responses, I investigate the number of births around the cutoff. I follow the example of \cite{gans2009born} closely to show that there are no peculiarities in the fertility distribution. In the analysis, I use daily births from the federal states of Baden-Württemberg and North Rhine-Westphalia over the window of 1977-1990. These two states are representative of the former FRG, as they accounted for almost 36\% of all births in 1979. In the analysis, I limit the sample to a time window of one month before and after the cutoff date. Panel A of Figure \ref{fig_mlch: fertilitydistr} shows the (unadjusted) daily number of births for April and May 1979. Over the time window, a strong weekly pattern with more births on weekdays and fewer births on weekends is observed. On May 1, which fell on a Tuesday, there was an unexpected drop in the number of births. If parents delayed the time of birth, one would expect a rise in the number of births right after the cutoff date. However, May 1 was a national public holiday (Labor Day), during which birth rates have been documented to be lower \citep{neugart2013economic}.
 
 \begin{figure}[H]\centering
-	\caption{Daily number of births around the ML expansion}\label{fig_mlch: fertilitydistr}
 	\includegraphics[width=0.9\linewidth]{paper/fertility_raw_regression_adjusted.pdf}
 	\scriptsize
 	\begin{minipage}{0.9 \linewidth}
+		\caption{Daily number of births around the ML expansion}\label{fig_mlch: fertilitydistr}
 		\emph{Notes:} The figure plots the number of births around the cutoff date May 01, 1979 for the ML expansion from two to six months after childbirth. Panel A shows the raw data, i.e. the actual number of births per day (unadjusted). Panel B, however, plots the difference between the raw and expected number of births when accounting for day of year, public holiday, and year$\times$day of week fixed effects. For the expected number of births I use data in the same time window (one month before and after the threshold) for the years 1977-1990, except for the year in which the reform took place. \newline\emph{Source:} Birth registry data from North Rhine-Westphalia and Baden-Württemberg. Taken together, both states account for almost 36\% of all births in the former Federal Republic of Germany in 1979.
 		% {\color{red}how do I get the gray shading from the original figure in the bottom part?}
 	\end{minipage}
@@ -102,39 +102,39 @@ Overall, the additional robustness tests demonstrate that the main results are d
 
 
 % figure: school_entry cutoffs different bandwidths, per gender and age-group
-\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
+%\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Robustness: Account for School Cutoff Rules, by gender and age-group}\label{fig_mlch: hospital2_school_cutoff}
-		\includegraphics[width=\linewidth]{paper/hospital2_school_entry_small_bw_overview.pdf}
+		\includegraphics[width=0.91\linewidth]{paper/hospital2_school_entry_small_bw_overview.pdf}
 		\scriptsize
 		\begin{minipage}{0.95\linewidth}
+			\caption{Robustness: Account for School Cutoff Rules, by gender and age-group}\label{fig_mlch: hospital2_school_cutoff}
 			\emph{Notes:} The figure displays DiD estimates (along with 95\% confidence intervals) of the 1979 ML reform on hospitalization. To check the robustness of the findings when accounting for school-entry rules, the post-threshold group is restricted to only include the months May and June. Each panel shows the effect of the reform when reducing the estimation window for the people born before the threshold (shrinking from half a year to two months). The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total} and \ref{tab_mlch: DD_hospital2_female_male}. It uses a bandwidth of half a year.
 		\end{minipage}
 	\end{figure}
 	\vspace*{\fill}\clearpage
 \end{landscape}
-\restoregeometry 
+%\restoregeometry 
 
 
 
 
 % figure: additional control group, different bandwidths for t,f,m
-\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
+%\newgeometry{left=2.0cm,right=2.0cm,top=3cm,bottom=3cm} 
 \begin{landscape}
 	\vspace*{\fill}
 	\begin{figure}[H]\centering
-		\caption{Robustness: Using the Additional Control Group, by gender and age-group}\label{fig_mlch: hospital2_addcg_bws_age-group_gender}
-		\includegraphics[width=\linewidth]{paper/hospital2_addcg_different_bws_overview.pdf}
+		\includegraphics[width=0.91\linewidth]{paper/hospital2_addcg_different_bws_overview.pdf}
 		\scriptsize
 		\begin{minipage}{0.95\linewidth}
+			\caption{Robustness: Using the Additional Control Group, by gender and age-group}\label{fig_mlch: hospital2_addcg_bws_age-group_gender}
 			\emph{Notes:} The Table shows DiD estimates (along with 95\% confidence intervals) of the 1979 ML reform on hospital admissions (pooled). To check the robustness of the findings when accounting for school-entry rules, it presents estimates when including the additional control group born two years before the reform (i.e. born around May 1977, see column 5 of Table \ref{tab_mlch: robustness_hospital}). The DiD estimates are reported for different estimation windows around the cutoff. The \textit{`Donut'} specification uses a bandwidth of half a year and excludes children born in April and May. The first estimate per panel indicates the baseline estimate as shown in Table \ref{tab_mlch: DD_hopsital2_total} and \ref{tab_mlch: DD_hospital2_female_male}. It uses a bandwidth of half a year.
 		\end{minipage}
 	\end{figure}
 	\vspace*{\fill}\clearpage
 \end{landscape}
-\restoregeometry 
+%\restoregeometry 
 
 
 
