@@ -1,12 +1,11 @@
 
 
-%--------------------------------------------
-% Overview Hopsital admission
-\newgeometry{left=2.7cm,right=2.7cm,top=3cm,bottom=3cm} 
 
-\begin{landscape}
-	\vspace*{\fill}
-	\begin{table}[h] \centering % table environment for caption and label
+
+\vfill\
+\begin{center}
+	\begin{sideways}
+		\setlength{\tabcolsep}{3pt}
 		\begin{threeparttable}
 			\centering % center the tabular
 			\caption{Summary statistics for different diagnoses} % caption
@@ -25,8 +24,43 @@
 				\scriptsize{ \item \textit{Continued on next page}}
 			\end{tablenotes}
 		\end{threeparttable}
-	\end{table}
-	\vspace*{\fill}\clearpage 
+	\end{sideways}
+
+\end{center}	
+\vfill
+
+
+
+
+
+
+%--------------------------------------------
+% Overview Hopsital admission
+\newgeometry{left=2.7cm,right=2.7cm,top=3cm,bottom=3cm} 
+
+\begin{landscape}
+%	\vspace*{\fill}
+%	\begin{table}[h] \centering % table environment for caption and label
+%		\begin{threeparttable}
+%			\centering % center the tabular
+%			\caption{Summary statistics for different diagnoses} % caption
+%			\label{tab_mlch:outcomes_coding_main_chapters} 
+%			\begin{tabular}{lrrrrrr} % alignment and number of columns of actual table
+%				\toprule % top thicker horizontal line (" rule ")
+%				&\multicolumn{1}{r}{(1)}& &\multicolumn{1}{r}{(2)}&\multicolumn{1}{r}{(3)} &\multicolumn{1}{r}{(4)}\\
+%				&\multicolumn{1}{r}{ICD-9} & & \multicolumn{1}{r}{ICD-10}&\multicolumn{1}{r}{Mean}&\multicolumn{1}{r}{SD} \\ 
+%				\midrule
+%				%-------------------------------------------------------------------------
+%				\input{../../analysis/tables/paper/outcome_classification_ICD_System_hospital2.tex}
+%				%-------------------------------------------------------------------------
+%				\bottomrule % bottom thicker horizontal line (" rule ")
+%			\end{tabular}
+%			\begin{tablenotes}
+%				\scriptsize{ \item \textit{Continued on next page}}
+%			\end{tablenotes}
+%		\end{threeparttable}
+%	\end{table}
+%	\vspace*{\fill}\clearpage 
 	
 	
 	\vspace*{\fill}
@@ -115,7 +149,7 @@
 \newgeometry{left=3cm,right=3cm,top=3cm,bottom=3cm} 
 \vspace*{\fill}
 \begin{table}[H] \centering 
-	\begin{threeparttable} \centering \caption{Robustness: Interaction Treatment with Age Brackets (hospitalization)}\label{tab_mlch: interaction_TxA_agegroups_hospital2}
+	\begin{threeparttable} \centering \caption{Robustness---Interaction treatment with age brackets (hospitalization)}\label{tab_mlch: interaction_TxA_agegroups_hospital2}
 		{\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi} 
 			\begin{tabular}{l*{6}{c}}
 				\toprule 
